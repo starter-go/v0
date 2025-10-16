@@ -1,23 +1,24 @@
 package main4wat
 import (
-    p45c9f8c2d "github.com/starter-go/v0/security-web-app/app/web/controllers"
+    pd1a916a20 "github.com/starter-go/libgin"
+    p3456572df "github.com/starter-go/v0/web-app-template/app/web/controllers"
      "github.com/starter-go/application"
 )
 
-// type p45c9f8c2d.ExampleController in package:github.com/starter-go/v0/security-web-app/app/web/controllers
+// type p3456572df.ExampleController in package:github.com/starter-go/v0/web-app-template/app/web/controllers
 //
-// id:com-45c9f8c2d5988003-controllers-ExampleController
-// class:
+// id:com-3456572df3d3078b-controllers-ExampleController
+// class:class-d1a916a203352fd5d33eabc36896b42e-Controller
 // alias:
 // scope:singleton
 //
-type p45c9f8c2d5_controllers_ExampleController struct {
+type p3456572df3_controllers_ExampleController struct {
 }
 
-func (inst* p45c9f8c2d5_controllers_ExampleController) register(cr application.ComponentRegistry) error {
+func (inst* p3456572df3_controllers_ExampleController) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
-	r.ID = "com-45c9f8c2d5988003-controllers-ExampleController"
-	r.Classes = ""
+	r.ID = "com-3456572df3d3078b-controllers-ExampleController"
+	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
 	r.Aliases = ""
 	r.Scope = "singleton"
 	r.NewFunc = inst.new
@@ -25,19 +26,25 @@ func (inst* p45c9f8c2d5_controllers_ExampleController) register(cr application.C
 	return r.Commit()
 }
 
-func (inst* p45c9f8c2d5_controllers_ExampleController) new() any {
-    return &p45c9f8c2d.ExampleController{}
+func (inst* p3456572df3_controllers_ExampleController) new() any {
+    return &p3456572df.ExampleController{}
 }
 
-func (inst* p45c9f8c2d5_controllers_ExampleController) inject(injext application.InjectionExt, instance any) error {
+func (inst* p3456572df3_controllers_ExampleController) inject(injext application.InjectionExt, instance any) error {
 	ie := injext
-	com := instance.(*p45c9f8c2d.ExampleController)
+	com := instance.(*p3456572df.ExampleController)
 	nop(ie, com)
 
 	
+    com.Sender = inst.getSender(ie)
 
 
     return nil
+}
+
+
+func (inst*p3456572df3_controllers_ExampleController) getSender(ie application.InjectionExt)pd1a916a20.Responder{
+    return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
 }
 
 

@@ -16,14 +16,14 @@
         "destinations": [
             {
                 "id": "main",
-                "path": "gen/main4wat",
+                "path": "gen/main4swa",
                 "sources": [
                     "main"
                 ]
             },
             {
                 "id": "test",
-                "path": "gen/test4wat",
+                "path": "gen/test4swa",
                 "sources": [
                     "test"
                 ]

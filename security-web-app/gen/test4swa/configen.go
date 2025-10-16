@@ -1,4 +1,4 @@
-package main4wat
+package test4swa
 
 import "github.com/starter-go/application"
 

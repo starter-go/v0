@@ -1,22 +1,22 @@
 package test4wat
 import (
-    p4876c9c6d "github.com/starter-go/v0/security-web-app/src/test/golang/unittestcases"
+    p891b3af5b "github.com/starter-go/v0/web-app-template/src/test/golang/unittestcases"
      "github.com/starter-go/application"
 )
 
-// type p4876c9c6d.ExampleCase in package:github.com/starter-go/v0/security-web-app/src/test/golang/unittestcases
+// type p891b3af5b.ExampleCase in package:github.com/starter-go/v0/web-app-template/src/test/golang/unittestcases
 //
-// id:com-4876c9c6d67f4da3-unittestcases-ExampleCase
+// id:com-891b3af5b83599e0-unittestcases-ExampleCase
 // class:
 // alias:
 // scope:singleton
 //
-type p4876c9c6d6_unittestcases_ExampleCase struct {
+type p891b3af5b8_unittestcases_ExampleCase struct {
 }
 
-func (inst* p4876c9c6d6_unittestcases_ExampleCase) register(cr application.ComponentRegistry) error {
+func (inst* p891b3af5b8_unittestcases_ExampleCase) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
-	r.ID = "com-4876c9c6d67f4da3-unittestcases-ExampleCase"
+	r.ID = "com-891b3af5b83599e0-unittestcases-ExampleCase"
 	r.Classes = ""
 	r.Aliases = ""
 	r.Scope = "singleton"
@@ -25,13 +25,13 @@ func (inst* p4876c9c6d6_unittestcases_ExampleCase) register(cr application.Compo
 	return r.Commit()
 }
 
-func (inst* p4876c9c6d6_unittestcases_ExampleCase) new() any {
-    return &p4876c9c6d.ExampleCase{}
+func (inst* p891b3af5b8_unittestcases_ExampleCase) new() any {
+    return &p891b3af5b.ExampleCase{}
 }
 
-func (inst* p4876c9c6d6_unittestcases_ExampleCase) inject(injext application.InjectionExt, instance any) error {
+func (inst* p891b3af5b8_unittestcases_ExampleCase) inject(injext application.InjectionExt, instance any) error {
 	ie := injext
-	com := instance.(*p4876c9c6d.ExampleCase)
+	com := instance.(*p891b3af5b.ExampleCase)
 	nop(ie, com)
 
 	

@@ -1,22 +1,22 @@
-package main4wat
+package main4swa
 
 import "github.com/starter-go/application"
 
-func nop(a ... any) {    
+func nop(a ...any) {
 }
 
 func registerComponents(cr application.ComponentRegistry) error {
-    ac:=&autoRegistrar{}
-    ac.init(cr)
-    return ac.addAll()
+	ac := &autoRegistrar{}
+	ac.init(cr)
+	return ac.addAll()
 }
 
 type comFactory interface {
-    register(cr application.ComponentRegistry) error
+	register(cr application.ComponentRegistry) error
 }
 
 type autoRegistrar struct {
-    cr application.ComponentRegistry
+	cr application.ComponentRegistry
 }
 
 func (inst *autoRegistrar) init(cr application.ComponentRegistry) {
@@ -27,11 +27,9 @@ func (inst *autoRegistrar) register(factory comFactory) error {
 	return factory.register(inst.cr)
 }
 
-func (inst*autoRegistrar) addAll() error {
+func (inst *autoRegistrar) addAll() error {
 
-    
-    inst.register(&p45c9f8c2d5_controllers_ExampleController{})
+	inst.register(&p45c9f8c2d5_controllers_ExampleController{})
 
-
-    return nil
+	return nil
 }

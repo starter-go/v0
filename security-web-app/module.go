@@ -4,9 +4,10 @@ import (
 	"embed"
 
 	"github.com/starter-go/application"
+	"github.com/starter-go/libgin/modules/libgin"
 	"github.com/starter-go/starter"
-	"github.com/starter-go/v0/security-web-app/gen/main4wat"
-	"github.com/starter-go/v0/security-web-app/gen/test4wat"
+	"github.com/starter-go/v0/security-web-app/gen/main4swa"
+	"github.com/starter-go/v0/security-web-app/gen/test4swa"
 )
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -41,9 +42,10 @@ func Module() application.Module {
 
 	mb.EmbedResources(theMainModuleResFS, theMainModuleResPath)
 
-	mb.Components(main4wat.ExportComponents)
+	mb.Components(main4swa.ExportComponents)
 
 	mb.Depend(starter.Module())
+	mb.Depend(libgin.Module())
 
 	return mb.Create()
 }
@@ -57,7 +59,7 @@ func ModuleForTest() application.Module {
 
 	mb.EmbedResources(theTestModuleResFS, theTestModuleResPath)
 
-	mb.Components(test4wat.ExportComponents)
+	mb.Components(test4swa.ExportComponents)
 
 	mb.Depend(Module())
 
