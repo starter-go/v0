@@ -1,6 +1,8 @@
 package controllers
 
 import (
+	"strconv"
+
 	"github.com/gin-gonic/gin"
 	"github.com/starter-go/libgin"
 	"github.com/starter-go/v0/web-app-template/app/data/dxo"
@@ -36,6 +38,8 @@ func (inst *ExampleController) route(rp libgin.RouterProxy) error {
 	rp.GET("", inst.handleGetList)
 	rp.GET(":id", inst.handleGetOne)
 
+	rp.PUT(":id", inst.handlePutItem)
+
 	return nil
 }
 
@@ -63,6 +67,18 @@ func (inst *ExampleController) handleGetList(gc *gin.Context) {
 	req.execute(req.doGetList)
 }
 
+func (inst *ExampleController) handlePutItem(gc *gin.Context) {
+
+	req := new(myExampleRequest)
+	req.context = gc
+	req.controller = inst
+
+	req.wantRequestID = true
+	req.wantRequestBody = true
+
+	req.execute(req.doPutItem)
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 
 type myExampleRequest struct {
@@ -79,13 +95,21 @@ type myExampleRequest struct {
 
 func (inst *myExampleRequest) open(ctx *gin.Context) error {
 
-	// inst.context = ctx
-	// inst.controller = ctr
-
 	if inst.wantRequestID {
+		str := ctx.Param("id")
+		num, err := strconv.Atoi(str)
+		if err != nil {
+			return err
+		}
+		inst.id = dxo.ExampleID(num)
 	}
 
 	if inst.wantRequestBody {
+		obj := &inst.body1
+		err := ctx.BindJSON(obj)
+		if err != nil {
+			return err
+		}
 	}
 
 	return nil
@@ -118,6 +142,18 @@ func (inst *myExampleRequest) doGetOne() error {
 	it := &dto.Example{}
 
 	inst.body2.Items = []*dto.Example{it}
+	return nil
+}
+
+func (inst *myExampleRequest) doPutItem() error {
+
+	it1 := inst.body1.Items[0]
+	it2 := &dto.Example{}
+	id := inst.id
+
+	it2.ID = id
+
+	inst.body2.Items = []*dto.Example{it1, it2}
 	return nil
 }
 
