@@ -4,13 +4,13 @@ import (
 	"os"
 
 	"github.com/starter-go/starter"
-	securitywebapp "github.com/starter-go/v0/security-web-app"
+	"github.com/starter-go/v0/security/modules/security"
 )
 
 func main() {
 
 	a := os.Args
-	m := securitywebapp.ModuleForTest()
+	m := security.ModuleForTest()
 	i := starter.Init(a)
 
 	i.MainModule(m)

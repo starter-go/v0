@@ -1,4 +1,4 @@
-package main4wat
+package test4security
 
 import "github.com/starter-go/application"
 

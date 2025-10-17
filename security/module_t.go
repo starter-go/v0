@@ -4,15 +4,12 @@ import (
 	"embed"
 
 	"github.com/starter-go/application"
-	"github.com/starter-go/starter"
-	"github.com/starter-go/v0/security-web-app/gen/main4wat"
-	"github.com/starter-go/v0/security-web-app/gen/test4wat"
 )
 
 ////////////////////////////////////////////////////////////////////////////////
 
 const (
-	theModuleName     = "github.com/starter-go/v0/security-web-app"
+	theModuleName     = "github.com/starter-go/v0/security"
 	theModuleVersion  = "v0.0.0"
 	theModuleRevision = 0
 )
@@ -32,7 +29,7 @@ var theTestModuleResFS embed.FS
 
 ////////////////////////////////////////////////////////////////////////////////
 
-func Module() application.Module {
+func NewMainModuleBuilder() *application.ModuleBuilder {
 	mb := new(application.ModuleBuilder)
 
 	mb.Name(theModuleName + "#main")
@@ -41,14 +38,10 @@ func Module() application.Module {
 
 	mb.EmbedResources(theMainModuleResFS, theMainModuleResPath)
 
-	mb.Components(main4wat.ExportComponents)
-
-	mb.Depend(starter.Module())
-
-	return mb.Create()
+	return mb
 }
 
-func ModuleForTest() application.Module {
+func NewTestModuleBuilder() *application.ModuleBuilder {
 	mb := new(application.ModuleBuilder)
 
 	mb.Name(theModuleName + "#test")
@@ -57,11 +50,7 @@ func ModuleForTest() application.Module {
 
 	mb.EmbedResources(theTestModuleResFS, theTestModuleResPath)
 
-	mb.Components(test4wat.ExportComponents)
-
-	mb.Depend(Module())
-
-	return mb.Create()
+	return mb
 }
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -1,4 +1,4 @@
-package main4wat
+package test4security
 
 import "github.com/starter-go/application"
 
@@ -30,7 +30,7 @@ func (inst *autoRegistrar) register(factory comFactory) error {
 func (inst*autoRegistrar) addAll() error {
 
     
-    inst.register(&p45c9f8c2d5_controllers_ExampleController{})
+    inst.register(&p151f31cd96_unittestcases_ExampleCase{})
 
 
     return nil
