@@ -1,4 +1,4 @@
-package securitywebapp
+package security
 
 import (
 	"embed"

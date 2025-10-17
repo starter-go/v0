@@ -4,13 +4,13 @@ import (
 	"os"
 
 	"github.com/starter-go/starter"
-	securitywebapp "github.com/starter-go/v0/security-web-app"
+	simpleapptemplate "github.com/starter-go/v0/simple-app-template"
 )
 
 func main() {
 
 	a := os.Args
-	m := securitywebapp.Module()
+	m := simpleapptemplate.Module()
 	i := starter.Init(a)
 
 	i.MainModule(m)

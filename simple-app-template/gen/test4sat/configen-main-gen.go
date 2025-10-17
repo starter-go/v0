@@ -1,4 +1,4 @@
-package test4wat
+package test4sat
 
 import "github.com/starter-go/application"
 
@@ -30,7 +30,7 @@ func (inst *autoRegistrar) register(factory comFactory) error {
 func (inst*autoRegistrar) addAll() error {
 
     
-    inst.register(&p4876c9c6d6_unittestcases_ExampleCase{})
+    inst.register(&p7acdadc5ba_unittestcases_ExampleCase{})
 
 
     return nil

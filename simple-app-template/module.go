@@ -1,12 +1,12 @@
-package securitywebapp
+package simpleapptemplate
 
 import (
 	"embed"
 
 	"github.com/starter-go/application"
 	"github.com/starter-go/starter"
-	"github.com/starter-go/v0/security-web-app/gen/main4wat"
-	"github.com/starter-go/v0/security-web-app/gen/test4wat"
+	"github.com/starter-go/v0/simple-app-template/gen/main4sat"
+	"github.com/starter-go/v0/simple-app-template/gen/test4sat"
 )
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -41,7 +41,7 @@ func Module() application.Module {
 
 	mb.EmbedResources(theMainModuleResFS, theMainModuleResPath)
 
-	mb.Components(main4wat.ExportComponents)
+	mb.Components(main4sat.ExportComponents)
 
 	mb.Depend(starter.Module())
 
@@ -57,7 +57,7 @@ func ModuleForTest() application.Module {
 
 	mb.EmbedResources(theTestModuleResFS, theTestModuleResPath)
 
-	mb.Components(test4wat.ExportComponents)
+	mb.Components(test4sat.ExportComponents)
 
 	mb.Depend(Module())
 

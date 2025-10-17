@@ -1,4 +1,4 @@
-package main4wat
+package test4sat
 
 import "github.com/starter-go/application"
 

@@ -1,4 +1,4 @@
-module github.com/starter-go/v0/security-web-app
+module github.com/starter-go/v0/security
 
 go 1.23
 
