@@ -12,7 +12,7 @@ import (
 ////////////////////////////////////////////////////////////////////////////////
 
 const (
-	theModuleName     = "github.com/starter-go/v0/security-web-app"
+	theModuleName     = "github.com/starter-go/v0/simple-app-template"
 	theModuleVersion  = "v0.0.1"
 	theModuleRevision = 1
 )
