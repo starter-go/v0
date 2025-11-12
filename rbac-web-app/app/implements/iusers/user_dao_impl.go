@@ -26,6 +26,54 @@ type UserDaoImpl struct {
 
 }
 
+// FindByEmail implements UserDaoAPI.
+func (inst *UserDaoImpl) FindByEmail(db *gorm.DB, addr dxo.EmailAddress) (*entity.User, error) {
+
+	db = inst.Agent.DB(db)
+	item := inst.makeModel()
+
+	res := db.Where("email=?", addr).First(&item)
+	err := res.Error
+	if err != nil {
+		return nil, err
+	}
+
+	return item, nil
+
+}
+
+// FindByMobile implements UserDaoAPI.
+func (inst *UserDaoImpl) FindByMobile(db *gorm.DB, num dxo.PhoneNumber) (*entity.User, error) {
+
+	db = inst.Agent.DB(db)
+	item := inst.makeModel()
+
+	res := db.Where("mobile=?", num).First(&item)
+	err := res.Error
+	if err != nil {
+		return nil, err
+	}
+
+	return item, nil
+
+}
+
+// FindByName implements UserDaoAPI.
+func (inst *UserDaoImpl) FindByName(db *gorm.DB, name dxo.UserName) (*entity.User, error) {
+
+	db = inst.Agent.DB(db)
+	item := inst.makeModel()
+
+	res := db.Where("name=?", name).First(&item)
+	err := res.Error
+	if err != nil {
+		return nil, err
+	}
+
+	return item, nil
+
+}
+
 func (inst *UserDaoImpl) _impl() UserDaoAPI {
 	return inst
 }

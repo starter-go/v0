@@ -12,6 +12,13 @@ func ConvertE2D(src *entity.User, dst *dto.User) error {
 
 	rbacdb.CopyBaseFieldsFromEntityToDTO(&src.BaseEntity, &dst.BaseDTO)
 
+	dst.Name = src.Name
+	dst.Email = src.Email
+	dst.Mobile = src.Mobile
+
+	dst.Avatar = src.Avatar
+	dst.DisplayName = src.DisplayName
+
 	dst.Roles = src.Roles.List()
 
 	return nil
@@ -30,7 +37,7 @@ func ConvertD2E(src *dto.User, dst *entity.User) error {
 	dst.Avatar = src.Avatar
 	dst.DisplayName = src.DisplayName
 
-	dst.Roles = src.Roles.List()
+	dst.Roles = src.Roles.Format()
 
 	return nil
 }

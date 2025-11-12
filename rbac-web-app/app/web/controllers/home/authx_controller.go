@@ -43,7 +43,14 @@ func (inst *AuthxController) route(rp libgin.RouterProxy) error {
 	rp = rp.For("auth")
 
 	rp.GET("", inst.handleGetMock)
-	rp.POST("", inst.handlePostLogin)
+
+	rp.POST("", inst.handlePostLogin) // 默认操作: login
+
+	rp.POST("login", inst.handlePostLogin)
+	rp.POST("sign-up", inst.handleGetMock)
+	rp.POST("change-password", inst.handleGetMock)
+	rp.POST("reset-password", inst.handleGetMock)
+	rp.POST("send-verification-email", inst.handleGetMock)
 
 	return nil
 }
@@ -195,7 +202,7 @@ func (inst *innerAuthxTask) doLogin() error {
 	v1 := &inst.body1
 
 	v2, err := ser.Auth(ctx, v1)
-	if err == nil {
+	if err != nil {
 		return err
 	}
 

@@ -14,7 +14,7 @@ type RoleNameList = rbac.RoleNameList
 
 type RoleNameSlice []rbac.RoleName
 
-func (sl RoleNameSlice) List() RoleNameList {
+func (sl RoleNameSlice) Format() RoleNameList {
 
 	const sep = ','
 	builder := new(strings.Builder)

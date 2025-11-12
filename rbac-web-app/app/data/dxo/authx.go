@@ -1,9 +1,6 @@
 package dxo
 
-////////////////////////////////////////////////////////////////////////////////
-
-// UserAuthName 表示用户登录时，使用的 ID 名称，它可以是 [user_name|user_email|user_phone|...]
-type UserAuthName string
+import "strings"
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -41,7 +38,55 @@ const (
 	AuthMechanismEmail              AuthMechanism = "email"
 	AuthMechanismPhone              AuthMechanism = "phone"
 	AuthMechanismPublicKeySignature AuthMechanism = "public-key-signature"
+	AuthMechanismBasicHTTP          AuthMechanism = "Basic"
 )
+
+////////////////////////////////////////////////////////////////////////////////
+
+// UserAuthName 表示用户登录时，使用的 ID 名称，它可以是 [user_name|user_email|user_phone|...]
+type UserAuthName string
+
+func (name UserAuthName) String() string {
+	return string(name)
+}
+
+func (name UserAuthName) IsEmailAddress() bool {
+	str := name.String()
+	return strings.Contains(str, "@")
+}
+
+func (name UserAuthName) IsPhoneNumber() bool {
+	const (
+		space = ' '
+		bar   = '-'
+	)
+	array := []byte(name)
+	for _, ch := range array {
+		if '0' <= ch && ch <= '9' {
+			continue
+		} else if ch == space || ch == bar {
+			continue
+		} else {
+			return false
+		}
+	}
+	return true
+}
+
+func (name UserAuthName) IsUserName() bool {
+
+	if name.IsEmailAddress() {
+		return false
+	}
+
+	if name.IsPhoneNumber() {
+		return false
+	}
+
+	str := name.String()
+	str = strings.TrimSpace(str)
+	return (len(str) > 0)
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // EOF

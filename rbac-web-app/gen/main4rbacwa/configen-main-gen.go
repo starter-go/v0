@@ -36,6 +36,8 @@ func (inst*autoRegistrar) addAll() error {
     inst.register(&p383a5f3ee9_iauthx_AuthenticationServiceImpl{})
     inst.register(&p383a5f3ee9_iauthx_AuthorizationServiceImpl{})
     inst.register(&p383a5f3ee9_iauthx_AuthxServiceImpl{})
+    inst.register(&p383a5f3ee9_iauthx_HTTPBasicAuthenticator{})
+    inst.register(&p383a5f3ee9_iauthx_UserAuthNameServiceImpl{})
     inst.register(&p4b670e5fac_iusers_UserDaoImpl{})
     inst.register(&p4b670e5fac_iusers_UserServiceImpl{})
     inst.register(&p7249a1596a_controllers_ExampleController{})

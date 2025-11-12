@@ -238,6 +238,100 @@ func (inst*p383a5f3ee9_iauthx_AuthxServiceImpl) getAuth2(ie application.Injectio
 
 
 
+// type p383a5f3ee.HTTPBasicAuthenticator in package:github.com/starter-go/v0/rbac-web-app/app/implements/iauthx
+//
+// id:com-383a5f3ee9f70032-iauthx-HTTPBasicAuthenticator
+// class:class-84e86b31b37511e994be50a820fadd04-Authenticator
+// alias:
+// scope:singleton
+//
+type p383a5f3ee9_iauthx_HTTPBasicAuthenticator struct {
+}
+
+func (inst* p383a5f3ee9_iauthx_HTTPBasicAuthenticator) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-383a5f3ee9f70032-iauthx-HTTPBasicAuthenticator"
+	r.Classes = "class-84e86b31b37511e994be50a820fadd04-Authenticator"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p383a5f3ee9_iauthx_HTTPBasicAuthenticator) new() any {
+    return &p383a5f3ee.HTTPBasicAuthenticator{}
+}
+
+func (inst* p383a5f3ee9_iauthx_HTTPBasicAuthenticator) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p383a5f3ee.HTTPBasicAuthenticator)
+	nop(ie, com)
+
+	
+    com.UserAuthNameService = inst.getUserAuthNameService(ie)
+    com.DebugEnabled = inst.getDebugEnabled(ie)
+
+
+    return nil
+}
+
+
+func (inst*p383a5f3ee9_iauthx_HTTPBasicAuthenticator) getUserAuthNameService(ie application.InjectionExt)p84e86b31b.UserAuthNameService{
+    return ie.GetComponent("#alias-84e86b31b37511e994be50a820fadd04-UserAuthNameService").(p84e86b31b.UserAuthNameService)
+}
+
+
+func (inst*p383a5f3ee9_iauthx_HTTPBasicAuthenticator) getDebugEnabled(ie application.InjectionExt)bool{
+    return ie.GetBool("${debug.enabled}")
+}
+
+
+
+// type p383a5f3ee.UserAuthNameServiceImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/iauthx
+//
+// id:com-383a5f3ee9f70032-iauthx-UserAuthNameServiceImpl
+// class:
+// alias:alias-84e86b31b37511e994be50a820fadd04-UserAuthNameService
+// scope:singleton
+//
+type p383a5f3ee9_iauthx_UserAuthNameServiceImpl struct {
+}
+
+func (inst* p383a5f3ee9_iauthx_UserAuthNameServiceImpl) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-383a5f3ee9f70032-iauthx-UserAuthNameServiceImpl"
+	r.Classes = ""
+	r.Aliases = "alias-84e86b31b37511e994be50a820fadd04-UserAuthNameService"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p383a5f3ee9_iauthx_UserAuthNameServiceImpl) new() any {
+    return &p383a5f3ee.UserAuthNameServiceImpl{}
+}
+
+func (inst* p383a5f3ee9_iauthx_UserAuthNameServiceImpl) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p383a5f3ee.UserAuthNameServiceImpl)
+	nop(ie, com)
+
+	
+    com.Dao = inst.getDao(ie)
+
+
+    return nil
+}
+
+
+func (inst*p383a5f3ee9_iauthx_UserAuthNameServiceImpl) getDao(ie application.InjectionExt)p2d258e798.DAO{
+    return ie.GetComponent("#alias-2d258e79845135c43979b78bd9f1f74e-DAO").(p2d258e798.DAO)
+}
+
+
+
 // type pabcfb7520.MyDatabaseAgentImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/idatabase
 //
 // id:com-abcfb752071056b5-idatabase-MyDatabaseAgentImpl
