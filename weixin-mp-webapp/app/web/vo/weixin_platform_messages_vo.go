@@ -7,5 +7,9 @@ type WeixinPlatformMessages struct {
 
 	Query dto.WeixinPlatformQuery
 
+	// request
 	Items []*dto.WeixinPlatformMessageHolder `json:"messages"`
+
+	// response
+	Items2 []*dto.WeixinPlatformMsgResponseHolder `json:"msg2s"`
 }

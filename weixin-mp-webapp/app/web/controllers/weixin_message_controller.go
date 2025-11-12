@@ -6,6 +6,7 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
+	"github.com/starter-go/base/lang"
 	"github.com/starter-go/libgin"
 	"github.com/starter-go/v0/weixin-mp-webapp/app/classes/weixinmessages"
 	"github.com/starter-go/v0/weixin-mp-webapp/app/data/dxo"
@@ -24,8 +25,9 @@ type WeixinPlatformMessageController struct {
 	Sender  libgin.Responder       //starter:inject("#")
 	Handler weixinmessages.Handler //starter:inject("#")
 
-	PlatformMessageToken string //starter:inject("${weixin.mp-gateway.token}")
-	GatewayPath          string //starter:inject("${weixin.mp-gateway.path}")
+	PlatformMessageToken   string //starter:inject("${weixin.mp-gateway.token}")
+	GatewayPath            string //starter:inject("${weixin.mp-gateway.path}")
+	IgnoreRequestSignature bool   //starter:inject("${weixin.mp-gateway.ignore-request-signature}")
 
 }
 
@@ -92,6 +94,10 @@ type myWeixinPlatformMessageRequest struct {
 	id    dxo.ExampleID
 	body1 vo.WeixinPlatformMessages
 	body2 vo.WeixinPlatformMessages
+
+	clientSideUser dxo.WxMsgUserName
+	serverSideUser dxo.WxMsgUserName
+	timestamp      dxo.WxMsgTime
 }
 
 func (inst *myWeixinPlatformMessageRequest) open() error {
@@ -151,36 +157,43 @@ func (inst *myWeixinPlatformMessageRequest) parseRequestBodyXML() error {
 		sub := new(dto.WeixinPlatformMessageText)
 		err = binder.BindXML(sub)
 		holder.Text = sub.Normalize()
+		inst.handleRequestBodyBase(&sub.WeixinPlatformMessageBase)
 
 	case dto.WxMsgTypeImage:
 		sub := new(dto.WeixinPlatformMessageImage)
 		err = binder.BindXML(sub)
 		holder.Image = sub.Normalize()
+		inst.handleRequestBodyBase(&sub.WeixinPlatformMessageBase)
 
 	case dto.WxMsgTypeVoice:
 		sub := new(dto.WeixinPlatformMessageVoice)
 		err = binder.BindXML(sub)
 		holder.Voice = sub.Normalize()
+		inst.handleRequestBodyBase(&sub.WeixinPlatformMessageBase)
 
 	case dto.WxMsgTypeVideo:
 		sub := new(dto.WeixinPlatformMessageVideo)
 		err = binder.BindXML(sub)
 		holder.Video = sub.Normalize()
+		inst.handleRequestBodyBase(&sub.WeixinPlatformMessageBase)
 
 	case dto.WxMsgTypeShortVideo:
 		sub := new(dto.WeixinPlatformMessageShortVideo)
 		err = binder.BindXML(sub)
 		holder.ShortVideo = sub.Normalize()
+		inst.handleRequestBodyBase(&sub.WeixinPlatformMessageBase)
 
 	case dto.WxMsgTypeLocation:
 		sub := new(dto.WeixinPlatformMessageLocation)
 		err = binder.BindXML(sub)
 		holder.Location = sub.Normalize()
+		inst.handleRequestBodyBase(&sub.WeixinPlatformMessageBase)
 
 	case dto.WxMsgTypeLink:
 		sub := new(dto.WeixinPlatformMessageLink)
 		err = binder.BindXML(sub)
 		holder.Link = sub.Normalize()
+		inst.handleRequestBodyBase(&sub.WeixinPlatformMessageBase)
 
 	default:
 	}
@@ -195,6 +208,12 @@ func (inst *myWeixinPlatformMessageRequest) parseRequestBodyXML() error {
 
 	inst.body1.Items = []*dto.WeixinPlatformMessageHolder{holder}
 	return nil
+}
+
+func (inst *myWeixinPlatformMessageRequest) handleRequestBodyBase(body *dto.WeixinPlatformMessageBase) {
+	inst.timestamp = body.CreateTime
+	inst.clientSideUser = body.FromUserName.Normalize()
+	inst.serverSideUser = body.ToUserName.Normalize()
 }
 
 func (inst *myWeixinPlatformMessageRequest) send(err error) {
@@ -221,14 +240,27 @@ func (inst *myWeixinPlatformMessageRequest) sendForGet(err error) {
 }
 
 func (inst *myWeixinPlatformMessageRequest) sendForPost(err error) {
+
+	ctx := inst.context
 	data := &inst.body2
-	code := inst.body2.Status
-	resp := new(libgin.Response)
-	resp.Context = inst.context
-	resp.Error = err
-	resp.Data = data
-	resp.Status = code
-	inst.controller.Sender.Send(resp)
+
+	// code := inst.body2.Status
+
+	// resp := new(libgin.Response)
+	// resp.Context = inst.context
+	// resp.Error = err
+	// resp.Data = data
+	// resp.Status = code
+	// inst.controller.Sender.Send(resp)
+
+	sender := new(webutils.ResponseBodySender)
+	sender.Context = ctx
+	sender.ClientSideUserName = inst.clientSideUser
+	sender.ServerSideUserName = inst.serverSideUser
+	sender.TimeStamp = inst.timestamp
+
+	sender.Send(data)
+
 }
 
 func (inst *myWeixinPlatformMessageRequest) execute(fn func() error) {
@@ -259,6 +291,11 @@ func (inst *myWeixinPlatformMessageRequest) checkQueryInfo() error {
 	vlog.Info("   q.nonce     = %v", nonce)
 	vlog.Info("   q.echostr   = %v", echostr)
 
+	if inst.controller.IgnoreRequestSignature {
+		vlog.Warn("ignore request signature")
+		return nil
+	}
+
 	return q.VerifyWithToken(token)
 }
 
@@ -269,7 +306,7 @@ func (inst *myWeixinPlatformMessageRequest) doPostGateway() error {
 		return err
 	}
 
-	return nil
+	return inst.tmpWorkaroundDoSimapleResp()
 }
 
 func (inst *myWeixinPlatformMessageRequest) doGetGateway() error {
@@ -279,5 +316,39 @@ func (inst *myWeixinPlatformMessageRequest) doGetGateway() error {
 		return err
 	}
 
+	return nil
+}
+
+func (inst *myWeixinPlatformMessageRequest) tmpWorkaroundDoSimapleResp() error {
+
+	list1 := inst.body1.Items
+	content1 := ""
+
+	for _, it1 := range list1 {
+		txt := it1.Text
+		if txt != nil {
+			content1 = txt.Content
+			break
+		}
+	}
+
+	holder2 := new(dto.WeixinPlatformMsgResponseHolder)
+
+	if content1 == dxo.WxMsgTypeText.String() {
+
+		now := lang.Now()
+
+		item := new(dto.WeixinPlatformMsgResponseText)
+		item.Content = "t = " + now.String()
+		holder2.Text = item
+
+	} else if content1 == dxo.WxMsgTypeImage.String() {
+
+		item := new(dto.WeixinPlatformMsgResponseImage)
+		item.Image.MediaID = "abcd"
+		holder2.Image = item
+	}
+
+	inst.body2.Items2 = []*dto.WeixinPlatformMsgResponseHolder{holder2}
 	return nil
 }

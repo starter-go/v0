@@ -7,39 +7,40 @@ import (
 	"strings"
 
 	"github.com/starter-go/base/lang"
+	"github.com/starter-go/v0/weixin-mp-webapp/app/data/dxo"
 )
 
-type WeixinMessageType string
+type WeixinMessageType = dxo.WxMsgType
 
 const (
-	WxMsgTypeText       WeixinMessageType = "text"
-	WxMsgTypeImage      WeixinMessageType = "image"
-	WxMsgTypeVoice      WeixinMessageType = "voice"
-	WxMsgTypeVideo      WeixinMessageType = "video"
-	WxMsgTypeShortVideo WeixinMessageType = "shortvideo"
-	WxMsgTypeLocation   WeixinMessageType = "location"
-	WxMsgTypeLink       WeixinMessageType = "link"
+	WxMsgTypeText       WeixinMessageType = dxo.WxMsgTypeText
+	WxMsgTypeImage      WeixinMessageType = dxo.WxMsgTypeImage
+	WxMsgTypeVoice      WeixinMessageType = dxo.WxMsgTypeVoice
+	WxMsgTypeVideo      WeixinMessageType = dxo.WxMsgTypeVideo
+	WxMsgTypeShortVideo WeixinMessageType = dxo.WxMsgTypeShortVideo
+	WxMsgTypeLocation   WeixinMessageType = dxo.WxMsgTypeLocation
+	WxMsgTypeLink       WeixinMessageType = dxo.WxMsgTypeLink
 )
 
-func (t WeixinMessageType) Normalize() WeixinMessageType {
-	str := t.String()
-	str = strings.TrimSpace(str)
-	str = strings.ToLower(str)
-	return WeixinMessageType(str)
-}
+// func (t WeixinMessageType) Normalize() WeixinMessageType {
+// 	str := t.String()
+// 	str = strings.TrimSpace(str)
+// 	str = strings.ToLower(str)
+// 	return WeixinMessageType(str)
+// }
 
-func (t WeixinMessageType) String() string {
-	return string(t)
-}
+// func (t WeixinMessageType) String() string {
+// 	return string(t)
+// }
 
 ////////////////////////////////////////////////////////////////////////////////
 
 // WeixinPlatformMessageBase ...
 type WeixinPlatformMessageBase struct {
-	ToUserName   string            `xml:"ToUserName"`
-	FromUserName string            `xml:"FromUserName"`
-	CreateTime   string            `xml:"CreateTime"`
-	MsgType      WeixinMessageType `xml:"MsgType"`
+	ToUserName   dxo.WxMsgUserName `xml:"ToUserName"`
+	FromUserName dxo.WxMsgUserName `xml:"FromUserName"`
+	CreateTime   dxo.WxMsgTime     `xml:"CreateTime"`
+	MsgType      dxo.WxMsgType     `xml:"MsgType"`
 	MsgId        string            `xml:"MsgId"`
 	MsgDataId    string            `xml:"MsgDataId"`
 	Idx          string            `xml:"Idx"`
@@ -175,11 +176,18 @@ func (inst *innerWeixinPlatformMessageNormalizer) normalizeString(src string) st
 	return strings.TrimSpace(src)
 }
 
+func (inst *innerWeixinPlatformMessageNormalizer) normalizeUserName(src dxo.WxMsgUserName) dxo.WxMsgUserName {
+	str := string(src)
+	str = strings.TrimSpace(str)
+	return dxo.WxMsgUserName(str)
+}
+
 func (inst *innerWeixinPlatformMessageNormalizer) normalizeBase(src, dst *WeixinPlatformMessageBase) {
 
-	dst.FromUserName = inst.normalizeString(src.FromUserName)
-	dst.ToUserName = inst.normalizeString(src.ToUserName)
-	dst.CreateTime = inst.normalizeString(src.CreateTime)
+	dst.FromUserName = inst.normalizeUserName(src.FromUserName)
+	dst.ToUserName = inst.normalizeUserName(src.ToUserName)
+
+	dst.CreateTime = src.CreateTime
 
 	dst.MsgId = inst.normalizeString(src.MsgId)
 	dst.MsgDataId = inst.normalizeString(src.MsgDataId)

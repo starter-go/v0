@@ -300,6 +300,7 @@ func (inst* p8701997662_controllers_WeixinPlatformMessageController) inject(inje
     com.Handler = inst.getHandler(ie)
     com.PlatformMessageToken = inst.getPlatformMessageToken(ie)
     com.GatewayPath = inst.getGatewayPath(ie)
+    com.IgnoreRequestSignature = inst.getIgnoreRequestSignature(ie)
 
 
     return nil
@@ -323,6 +324,11 @@ func (inst*p8701997662_controllers_WeixinPlatformMessageController) getPlatformM
 
 func (inst*p8701997662_controllers_WeixinPlatformMessageController) getGatewayPath(ie application.InjectionExt)string{
     return ie.GetString("${weixin.mp-gateway.path}")
+}
+
+
+func (inst*p8701997662_controllers_WeixinPlatformMessageController) getIgnoreRequestSignature(ie application.InjectionExt)bool{
+    return ie.GetBool("${weixin.mp-gateway.ignore-request-signature}")
 }
 
 
