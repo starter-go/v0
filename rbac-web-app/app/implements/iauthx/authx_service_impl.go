@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/starter-go/v0/rbac-web-app/app/classes/authx"
+	"github.com/starter-go/v0/rbac-web-app/app/web/dto"
 	"github.com/starter-go/v0/rbac-web-app/app/web/vo"
 )
 
@@ -38,7 +39,12 @@ func (inst *AuthxServiceImpl) Auth(ctx context.Context, view *vo.Authx) (*vo.Aut
 		return nil, err
 	}
 
-	return tc.view2, nil
+	// ok, done
+	view2 := tc.view2
+	if view2 == nil {
+		view2 = new(vo.Authx)
+	}
+	return view2, nil
 }
 
 func (inst *AuthxServiceImpl) doAuth1(x *innerAuthxServiceTaskContext) error {
@@ -57,6 +63,10 @@ func (inst *AuthxServiceImpl) doAuth1(x *innerAuthxServiceTaskContext) error {
 		if err != nil {
 			return err
 		}
+		user := actx.AuthUser
+		if user != nil {
+			x.authUser = actx.AuthUser
+		}
 	}
 
 	return nil
@@ -71,6 +81,7 @@ func (inst *AuthxServiceImpl) doAuth2(x *innerAuthxServiceTaskContext) error {
 	actx.Context = x.context
 	actx.Auth = nil
 	actx.View = x.view1
+	actx.AuthUser = x.authUser
 
 	for _, item := range list {
 		actx.Auth = item
@@ -86,7 +97,8 @@ func (inst *AuthxServiceImpl) doAuth2(x *innerAuthxServiceTaskContext) error {
 ////////////////////////////////////////////////////////////////////////////////
 
 type innerAuthxServiceTaskContext struct {
-	context context.Context
-	view1   *vo.Authx // request
-	view2   *vo.Authx // response
+	context  context.Context
+	view1    *vo.Authx // request
+	view2    *vo.Authx // response
+	authUser *dto.User // 已经过验证的用户信息
 }

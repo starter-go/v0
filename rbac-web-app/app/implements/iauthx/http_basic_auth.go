@@ -72,7 +72,7 @@ func (inst *HTTPBasicAuthenticator) innerAuthenticate(ctx *authx.AuthenticationC
 		return err
 	}
 
-	ctx.User = task.userDto
+	ctx.AuthUser = task.userDto
 	return nil
 }
 

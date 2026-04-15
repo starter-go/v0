@@ -1,17 +1,20 @@
-package rbacwebapp
+package httest
 
 import (
 	"embed"
 
 	"github.com/starter-go/application"
+	"github.com/starter-go/starter"
+	"github.com/starter-go/v0/httest/gen/main4httest"
+	"github.com/starter-go/v0/httest/gen/test4httest"
 )
 
 ////////////////////////////////////////////////////////////////////////////////
 
 const (
-	theModuleName     = "github.com/starter-go/v0/rbac-web-app"
+	theModuleName     = "github.com/starter-go/v0/httest"
 	theModuleVersion  = "v0.0.1"
-	theModuleRevision = 1
+	theModuleRevision = 2
 )
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -29,8 +32,7 @@ var theTestModuleResFS embed.FS
 
 ////////////////////////////////////////////////////////////////////////////////
 
-func NewMainModuleBuilder() *application.ModuleBuilder {
-
+func Module() application.Module {
 	mb := new(application.ModuleBuilder)
 
 	mb.Name(theModuleName + "#main")
@@ -39,11 +41,14 @@ func NewMainModuleBuilder() *application.ModuleBuilder {
 
 	mb.EmbedResources(theMainModuleResFS, theMainModuleResPath)
 
-	return mb
+	mb.Components(main4httest.ExportComponents)
+
+	mb.Depend(starter.Module())
+
+	return mb.Create()
 }
 
-func NewTestModuleBuilder() *application.ModuleBuilder {
-
+func ModuleForTest() application.Module {
 	mb := new(application.ModuleBuilder)
 
 	mb.Name(theModuleName + "#test")
@@ -52,7 +57,11 @@ func NewTestModuleBuilder() *application.ModuleBuilder {
 
 	mb.EmbedResources(theTestModuleResFS, theTestModuleResPath)
 
-	return mb
+	mb.Components(test4httest.ExportComponents)
+
+	mb.Depend(Module())
+
+	return mb.Create()
 }
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -15,6 +15,11 @@ func ConvertE2D(src *entity.Session, dst *dto.Session) error {
 
 	dst.AliveFrom = lang.NewTime(src.AliveFrom)
 	dst.AliveTo = lang.NewTime(src.AliveTo)
+	dst.Alive = src.Alive
+
+	dst.DisplayName = src.DisplayName
+	dst.Avatar = src.Avatar
+	dst.Roles = src.Roles.List()
 
 	return nil
 }
@@ -27,6 +32,11 @@ func ConvertD2E(src *dto.Session, dst *entity.Session) error {
 
 	dst.AliveFrom = src.AliveFrom.Time()
 	dst.AliveTo = src.AliveTo.Time()
+	dst.Alive = src.Alive
+
+	dst.DisplayName = src.DisplayName
+	dst.Avatar = src.Avatar
+	dst.Roles = src.Roles.Format()
 
 	return nil
 }

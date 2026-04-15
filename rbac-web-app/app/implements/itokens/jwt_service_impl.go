@@ -19,6 +19,7 @@ import (
 const (
 	theJWTGetParamName = "x-jwt"
 	theJWTSetParamName = "x-set-jwt"
+	theJWTCookieName   = "jwt"
 )
 
 type JWTokenServiceAPI interface {
@@ -147,7 +148,7 @@ func (inst *innerJWTokenReader) innerReadFromHeader(c *gin.Context) (tokens.JWT,
 }
 
 func (inst *innerJWTokenReader) innerReadFromCookie(c *gin.Context) (tokens.JWT, error) {
-	const name = theJWTGetParamName
+	const name = theJWTCookieName
 	cookie, err := c.Request.Cookie(name)
 	if err != nil {
 		return "", err
@@ -210,7 +211,7 @@ func (inst *innerJWTokenWriter) innerWriteToHeader(c *gin.Context, jstr tokens.J
 
 func (inst *innerJWTokenWriter) innerWriteToCookie(c *gin.Context, jstr tokens.JWT) error {
 
-	const name = theJWTSetParamName
+	const name = theJWTCookieName
 
 	ser := inst.ser
 	cfg := ser.innerGetConfig()

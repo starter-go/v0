@@ -16,5 +16,9 @@ type Session struct {
 	AliveFrom time.Time
 	AliveTo   time.Time
 
+	DisplayName string
+	Avatar      dxo.URL
+	Roles       dxo.RoleNameList
+
 	Alive bool
 }

@@ -13,6 +13,8 @@ type Service interface {
 
 	Find(cc context.Context, id dxo.SessionID) (*dto.Session, error)
 
+	GetCurrent(cc context.Context) (*dto.Session, error)
+
 	// edit
 
 	Insert(cc context.Context, item *dto.Session) (*dto.Session, error)

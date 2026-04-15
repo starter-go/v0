@@ -199,9 +199,19 @@ func (inst *innerAuthxTask) doLogin() error {
 
 	ctx := inst.context
 	ser := inst.controller.Service
-	v1 := &inst.body1
+	view1 := &inst.body1
 
-	v2, err := ser.Auth(ctx, v1)
+	listAuthorizations := view1.Authorizations
+	if len(listAuthorizations) == 0 {
+
+		authorization1 := new(dto.Authorization)
+		authorization1.Action = dxo.AuthActionLogin
+
+		listAuthorizations = append(listAuthorizations, authorization1)
+		view1.Authorizations = listAuthorizations
+	}
+
+	v2, err := ser.Auth(ctx, view1)
 	if err != nil {
 		return err
 	}

@@ -21,7 +21,9 @@ type AuthenticationContext struct {
 
 	// output
 
-	User *dto.User
+	Authenticated bool
+
+	AuthUser *dto.User
 }
 
 // 认证服务

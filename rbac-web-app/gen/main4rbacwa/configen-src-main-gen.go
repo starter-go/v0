@@ -88,6 +88,56 @@ func (inst*pf75fd20ca4_database_MyDataGroup) getURI(ie application.InjectionExt)
 
 
 
+// type p383a5f3ee.ActionLoginAuthorizer in package:github.com/starter-go/v0/rbac-web-app/app/implements/iauthx
+//
+// id:com-383a5f3ee9f70032-iauthx-ActionLoginAuthorizer
+// class:class-84e86b31b37511e994be50a820fadd04-Authorizer
+// alias:
+// scope:singleton
+//
+type p383a5f3ee9_iauthx_ActionLoginAuthorizer struct {
+}
+
+func (inst* p383a5f3ee9_iauthx_ActionLoginAuthorizer) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-383a5f3ee9f70032-iauthx-ActionLoginAuthorizer"
+	r.Classes = "class-84e86b31b37511e994be50a820fadd04-Authorizer"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p383a5f3ee9_iauthx_ActionLoginAuthorizer) new() any {
+    return &p383a5f3ee.ActionLoginAuthorizer{}
+}
+
+func (inst* p383a5f3ee9_iauthx_ActionLoginAuthorizer) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p383a5f3ee.ActionLoginAuthorizer)
+	nop(ie, com)
+
+	
+    com.SessionService = inst.getSessionService(ie)
+    com.TokenService = inst.getTokenService(ie)
+
+
+    return nil
+}
+
+
+func (inst*p383a5f3ee9_iauthx_ActionLoginAuthorizer) getSessionService(ie application.InjectionExt)p63b715cf9.Service{
+    return ie.GetComponent("#alias-63b715cf9c89c4b9295921d813a75e67-Service").(p63b715cf9.Service)
+}
+
+
+func (inst*p383a5f3ee9_iauthx_ActionLoginAuthorizer) getTokenService(ie application.InjectionExt)p441b1814d.Service{
+    return ie.GetComponent("#alias-441b1814dcb3d885c070bf59d5773c63-Service").(p441b1814d.Service)
+}
+
+
+
 // type p383a5f3ee.AuthenticationServiceImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/iauthx
 //
 // id:com-383a5f3ee9f70032-iauthx-AuthenticationServiceImpl
@@ -458,6 +508,7 @@ func (inst* p8841b23836_isessions_SessionServiceImpl) inject(injext application.
 
 	
     com.Dao = inst.getDao(ie)
+    com.TokenService = inst.getTokenService(ie)
 
 
     return nil
@@ -466,6 +517,11 @@ func (inst* p8841b23836_isessions_SessionServiceImpl) inject(injext application.
 
 func (inst*p8841b23836_isessions_SessionServiceImpl) getDao(ie application.InjectionExt)p63b715cf9.DAO{
     return ie.GetComponent("#alias-63b715cf9c89c4b9295921d813a75e67-DAO").(p63b715cf9.DAO)
+}
+
+
+func (inst*p8841b23836_isessions_SessionServiceImpl) getTokenService(ie application.InjectionExt)p441b1814d.Service{
+    return ie.GetComponent("#alias-441b1814dcb3d885c070bf59d5773c63-Service").(p441b1814d.Service)
 }
 
 
@@ -946,6 +1002,56 @@ func (inst*p79b61f17f7_home_JWTokenController) getSessionService(ie application.
 
 func (inst*p79b61f17f7_home_JWTokenController) getUserService(ie application.InjectionExt)p2d258e798.Service{
     return ie.GetComponent("#alias-2d258e79845135c43979b78bd9f1f74e-Service").(p2d258e798.Service)
+}
+
+
+
+// type p79b61f17f.SessionController in package:github.com/starter-go/v0/rbac-web-app/app/web/controllers/home
+//
+// id:com-79b61f17f767d154-home-SessionController
+// class:class-d1a916a203352fd5d33eabc36896b42e-Controller
+// alias:
+// scope:singleton
+//
+type p79b61f17f7_home_SessionController struct {
+}
+
+func (inst* p79b61f17f7_home_SessionController) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-79b61f17f767d154-home-SessionController"
+	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p79b61f17f7_home_SessionController) new() any {
+    return &p79b61f17f.SessionController{}
+}
+
+func (inst* p79b61f17f7_home_SessionController) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p79b61f17f.SessionController)
+	nop(ie, com)
+
+	
+    com.Responder = inst.getResponder(ie)
+    com.Service = inst.getService(ie)
+
+
+    return nil
+}
+
+
+func (inst*p79b61f17f7_home_SessionController) getResponder(ie application.InjectionExt)pd1a916a20.Responder{
+    return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
+}
+
+
+func (inst*p79b61f17f7_home_SessionController) getService(ie application.InjectionExt)p63b715cf9.Service{
+    return ie.GetComponent("#alias-63b715cf9c89c4b9295921d813a75e67-Service").(p63b715cf9.Service)
 }
 
 
