@@ -23,6 +23,16 @@ type UserServiceImpl struct {
 
 }
 
+// Query implements UserServiceAPI.
+func (inst *UserServiceImpl) Query(ctx context.Context, q *users.Query) ([]*dto.User, error) {
+
+	list1, err := inst.Dao.Query(nil, q)
+	if err != nil {
+		return nil, err
+	}
+	return users.ConvertListE2D(list1, nil)
+}
+
 func (inst *UserServiceImpl) _impl() UserServiceAPI {
 	return inst
 }

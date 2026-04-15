@@ -13,6 +13,8 @@ type Service interface {
 
 	Find(ctx context.Context, id dxo.UserID) (*dto.User, error)
 
+	Query(ctx context.Context, q *Query) ([]*dto.User, error)
+
 	// edit
 
 	Insert(cc context.Context, item *dto.User) (*dto.User, error)

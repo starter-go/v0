@@ -41,3 +41,17 @@ func ConvertD2E(src *dto.User, dst *entity.User) error {
 
 	return nil
 }
+
+func ConvertListE2D(src []*entity.User, dst []*dto.User) ([]*dto.User, error) {
+
+	for _, it1 := range src {
+		it2 := new(dto.User)
+		err := ConvertE2D(it1, it2)
+		if err != nil {
+			return nil, err
+		}
+		dst = append(dst, it2)
+	}
+
+	return dst, nil
+}

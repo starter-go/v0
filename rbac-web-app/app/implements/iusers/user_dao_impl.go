@@ -26,6 +26,28 @@ type UserDaoImpl struct {
 
 }
 
+// Query implements UserDaoAPI.
+func (inst *UserDaoImpl) Query(db *gorm.DB, q *users.Query) ([]*entity.User, error) {
+
+	db = inst.Agent.DB(db)
+
+	item := inst.makeModel()
+	list := inst.makeModelList()
+	want := q.Want
+	limit := q.Pagination.Limit()
+	offset := q.Pagination.Offset()
+	var count int64
+
+	db = db.Model(item).Where(want)
+	db.Count(&count)
+	db = db.Limit(int(limit)).Offset(int(offset))
+	res := db.Find(&list)
+
+	q.Pagination.Total = count
+	err := res.Error
+	return list, err
+}
+
 // FindByEmail implements UserDaoAPI.
 func (inst *UserDaoImpl) FindByEmail(db *gorm.DB, addr dxo.EmailAddress) (*entity.User, error) {
 

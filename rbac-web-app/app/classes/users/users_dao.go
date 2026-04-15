@@ -18,6 +18,8 @@ type DAO interface {
 
 	FindByEmail(db *gorm.DB, addr dxo.EmailAddress) (*entity.User, error)
 
+	Query(db *gorm.DB, q *Query) ([]*entity.User, error)
+
 	// edit
 
 	Insert(db *gorm.DB, item *entity.User) (*entity.User, error)
