@@ -1,0 +1,33 @@
+package entities
+
+////////////////////////////////////////////////////////////////////////////////
+
+func ListAll(prefix string) []any {
+
+	all := make([]any, 0)
+
+	all = append(all, new(SessionEntity))
+
+	innerSetupTableNamePrefix(prefix)
+	return all
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+var theTableNamePrefix string = ""
+
+func innerSetupTableNamePrefix(prefix string) {
+	older := theTableNamePrefix
+	if older == "" && prefix != "" {
+		theTableNamePrefix = prefix
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+func (SessionEntity) TableName() string {
+	return theTableNamePrefix + "sessions"
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// EOF

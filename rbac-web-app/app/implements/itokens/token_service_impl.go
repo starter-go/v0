@@ -3,7 +3,6 @@ package itokens
 import (
 	"context"
 
-	"github.com/starter-go/v0/rbac-web-app/app/classes/subjects"
 	"github.com/starter-go/v0/rbac-web-app/app/classes/tokens"
 	"github.com/starter-go/v0/rbac-web-app/app/web/dto"
 )
@@ -25,20 +24,7 @@ func (inst *TokenServiceImpl) _impl() TokenServiceAPI {
 	return inst
 }
 
-func (inst *TokenServiceImpl) GetCurrentToken(cc context.Context) (*dto.Token, error) {
-
-	sub, err := subjects.Current(cc)
-	if err != nil {
-		return nil, err
-	}
-
-	return sub.GetToken()
-}
-
-func (inst *TokenServiceImpl) LoadCurrentToken(cc context.Context) (*dto.Token, error) {
-
-	// holder, err := webcontexts.GetHolder(cc)
-	// gc := holder.Get()
+func (inst *TokenServiceImpl) innerLoadToken(cc context.Context) (*dto.Token, error) {
 
 	ser := inst.JWTser
 	jwt, err := ser.ReadJWT(cc)
@@ -47,6 +33,14 @@ func (inst *TokenServiceImpl) LoadCurrentToken(cc context.Context) (*dto.Token, 
 	}
 
 	return ser.DecodeJWT(jwt)
+}
+
+func (inst *TokenServiceImpl) GetCurrentToken(cc context.Context) (*dto.Token, error) {
+	return inst.innerLoadToken(cc)
+}
+
+func (inst *TokenServiceImpl) LoadCurrentToken(cc context.Context) (*dto.Token, error) {
+	return inst.innerLoadToken(cc)
 }
 
 func (inst *TokenServiceImpl) SetCurrentToken(cc context.Context, token *dto.Token) (*dto.Token, error) {

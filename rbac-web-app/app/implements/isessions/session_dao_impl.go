@@ -26,6 +26,21 @@ type SessionDaoImpl struct {
 
 }
 
+// FindByUUID implements SessionDaoAPI.
+func (inst *SessionDaoImpl) FindByUUID(db *gorm.DB, uuid lang.UUID) (*entity.Session, error) {
+	panic("unimplemented")
+}
+
+// Remove implements SessionDaoAPI.
+func (inst *SessionDaoImpl) Remove(db *gorm.DB, id dxo.SessionID) error {
+	panic("unimplemented")
+}
+
+// Update implements SessionDaoAPI.
+func (inst *SessionDaoImpl) Update(db *gorm.DB, id dxo.SessionID, callback func(item *entity.Session) error) (*entity.Session, error) {
+	panic("unimplemented")
+}
+
 func (inst *SessionDaoImpl) _impl() SessionDaoAPI {
 	return inst
 }

@@ -8,6 +8,7 @@ import (
 	"github.com/starter-go/rbac"
 
 	"github.com/starter-go/v0/rbac-web-app/app/classes/sessions"
+	"github.com/starter-go/v0/rbac-web-app/app/classes/subjects"
 	"github.com/starter-go/v0/rbac-web-app/app/data/dxo"
 	"github.com/starter-go/v0/rbac-web-app/app/web/dto"
 	"github.com/starter-go/v0/rbac-web-app/app/web/vo"
@@ -143,14 +144,19 @@ func (inst *innerSessionTask) doGetMock() error {
 func (inst *innerSessionTask) doGetCurrentSessionInfo() error {
 
 	ctx := inst.context
-	ser := inst.controller.Service
+	// ser := inst.controller.Service
 
-	info, err := ser.GetCurrent(ctx)
+	sub, err := subjects.Current(ctx)
 	if err != nil {
 		return err
 	}
 
-	inst.body2.Items = []*dto.Session{info}
+	ses, err := sub.GetSession()
+	if err != nil {
+		return err
+	}
+
+	inst.body2.Items = []*dto.Session{ses}
 	return nil
 }
 

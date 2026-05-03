@@ -3,7 +3,9 @@ package subjects
 import (
 	"context"
 
+	"github.com/starter-go/application/properties"
 	"github.com/starter-go/v0/rbac-web-app/app/classes/sessions"
+	"github.com/starter-go/v0/rbac-web-app/app/classes/statestores"
 	"github.com/starter-go/v0/rbac-web-app/app/classes/tokens"
 	"github.com/starter-go/v0/rbac-web-app/app/classes/users"
 	"github.com/starter-go/v0/rbac-web-app/app/web/dto"
@@ -17,6 +19,8 @@ type Services struct {
 
 	Sessions sessions.Service
 
+	Subjects Service
+
 	Users users.Service
 }
 
@@ -26,6 +30,10 @@ type Cache struct {
 	Session *dto.Session
 
 	User *dto.User
+
+	Properties properties.Table
+
+	Dirty bool
 }
 
 type Context struct {
@@ -36,11 +44,14 @@ type Context struct {
 	// services
 	Services Services
 
-	// cache
-	Cache Cache
-
 	// facade
 	Subject Subject
+
+	// store
+	Store statestores.Store
+
+	// cache
+	Cache *Cache
 }
 
 func NewContext() *Context {

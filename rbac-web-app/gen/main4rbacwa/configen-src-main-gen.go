@@ -5,12 +5,15 @@ import (
     p9621e8b71 "github.com/starter-go/security/random"
     p84e86b31b "github.com/starter-go/v0/rbac-web-app/app/classes/authx"
     p63b715cf9 "github.com/starter-go/v0/rbac-web-app/app/classes/sessions"
+    p6489a1c97 "github.com/starter-go/v0/rbac-web-app/app/classes/statestores"
     p441b1814d "github.com/starter-go/v0/rbac-web-app/app/classes/tokens"
     p2d258e798 "github.com/starter-go/v0/rbac-web-app/app/classes/users"
     pf75fd20ca "github.com/starter-go/v0/rbac-web-app/app/data/database"
     p383a5f3ee "github.com/starter-go/v0/rbac-web-app/app/implements/iauthx"
     pabcfb7520 "github.com/starter-go/v0/rbac-web-app/app/implements/idatabase"
     p8841b2383 "github.com/starter-go/v0/rbac-web-app/app/implements/isessions"
+    pc500a8465 "github.com/starter-go/v0/rbac-web-app/app/implements/istore"
+    p157aad7a5 "github.com/starter-go/v0/rbac-web-app/app/implements/isubject"
     p3821d5b0f "github.com/starter-go/v0/rbac-web-app/app/implements/itokens"
     p4b670e5fa "github.com/starter-go/v0/rbac-web-app/app/implements/iusers"
     p7249a1596 "github.com/starter-go/v0/rbac-web-app/app/web/controllers"
@@ -426,6 +429,44 @@ func (inst*pabcfb75207_idatabase_MyDatabaseAgentImpl) getDSManager(ie applicatio
 
 
 
+// type p8841b2383.CacheSessionStoreFilter in package:github.com/starter-go/v0/rbac-web-app/app/implements/isessions
+//
+// id:com-8841b23836065757-isessions-CacheSessionStoreFilter
+// class:class-6489a1c97ae609f33eb9078085053c74-FilterRegistry
+// alias:
+// scope:singleton
+//
+type p8841b23836_isessions_CacheSessionStoreFilter struct {
+}
+
+func (inst* p8841b23836_isessions_CacheSessionStoreFilter) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-8841b23836065757-isessions-CacheSessionStoreFilter"
+	r.Classes = "class-6489a1c97ae609f33eb9078085053c74-FilterRegistry"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p8841b23836_isessions_CacheSessionStoreFilter) new() any {
+    return &p8841b2383.CacheSessionStoreFilter{}
+}
+
+func (inst* p8841b23836_isessions_CacheSessionStoreFilter) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p8841b2383.CacheSessionStoreFilter)
+	nop(ie, com)
+
+	
+
+
+    return nil
+}
+
+
+
 // type p8841b2383.SessionDaoImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/isessions
 //
 // id:com-8841b23836065757-isessions-SessionDaoImpl
@@ -476,6 +517,50 @@ func (inst*p8841b23836_isessions_SessionDaoImpl) getUUIDSer(ie application.Injec
 
 
 
+// type p8841b2383.DatabaseSessionStoreFilter in package:github.com/starter-go/v0/rbac-web-app/app/implements/isessions
+//
+// id:com-8841b23836065757-isessions-DatabaseSessionStoreFilter
+// class:class-6489a1c97ae609f33eb9078085053c74-FilterRegistry
+// alias:
+// scope:singleton
+//
+type p8841b23836_isessions_DatabaseSessionStoreFilter struct {
+}
+
+func (inst* p8841b23836_isessions_DatabaseSessionStoreFilter) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-8841b23836065757-isessions-DatabaseSessionStoreFilter"
+	r.Classes = "class-6489a1c97ae609f33eb9078085053c74-FilterRegistry"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p8841b23836_isessions_DatabaseSessionStoreFilter) new() any {
+    return &p8841b2383.DatabaseSessionStoreFilter{}
+}
+
+func (inst* p8841b23836_isessions_DatabaseSessionStoreFilter) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p8841b2383.DatabaseSessionStoreFilter)
+	nop(ie, com)
+
+	
+    com.Sessions = inst.getSessions(ie)
+
+
+    return nil
+}
+
+
+func (inst*p8841b23836_isessions_DatabaseSessionStoreFilter) getSessions(ie application.InjectionExt)p63b715cf9.Service{
+    return ie.GetComponent("#alias-63b715cf9c89c4b9295921d813a75e67-Service").(p63b715cf9.Service)
+}
+
+
+
 // type p8841b2383.SessionServiceImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/isessions
 //
 // id:com-8841b23836065757-isessions-SessionServiceImpl
@@ -509,6 +594,7 @@ func (inst* p8841b23836_isessions_SessionServiceImpl) inject(injext application.
 	
     com.Dao = inst.getDao(ie)
     com.TokenService = inst.getTokenService(ie)
+    com.StoreChainHolder = inst.getStoreChainHolder(ie)
 
 
     return nil
@@ -522,6 +608,211 @@ func (inst*p8841b23836_isessions_SessionServiceImpl) getDao(ie application.Injec
 
 func (inst*p8841b23836_isessions_SessionServiceImpl) getTokenService(ie application.InjectionExt)p441b1814d.Service{
     return ie.GetComponent("#alias-441b1814dcb3d885c070bf59d5773c63-Service").(p441b1814d.Service)
+}
+
+
+func (inst*p8841b23836_isessions_SessionServiceImpl) getStoreChainHolder(ie application.InjectionExt)p6489a1c97.FilterChainHolder{
+    return ie.GetComponent("#alias-6489a1c97ae609f33eb9078085053c74-FilterChainHolder").(p6489a1c97.FilterChainHolder)
+}
+
+
+
+// type p8841b2383.SimpleStoreChainHolder in package:github.com/starter-go/v0/rbac-web-app/app/implements/isessions
+//
+// id:com-8841b23836065757-isessions-SimpleStoreChainHolder
+// class:
+// alias:alias-6489a1c97ae609f33eb9078085053c74-FilterChainHolder
+// scope:singleton
+//
+type p8841b23836_isessions_SimpleStoreChainHolder struct {
+}
+
+func (inst* p8841b23836_isessions_SimpleStoreChainHolder) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-8841b23836065757-isessions-SimpleStoreChainHolder"
+	r.Classes = ""
+	r.Aliases = "alias-6489a1c97ae609f33eb9078085053c74-FilterChainHolder"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p8841b23836_isessions_SimpleStoreChainHolder) new() any {
+    return &p8841b2383.SimpleStoreChainHolder{}
+}
+
+func (inst* p8841b23836_isessions_SimpleStoreChainHolder) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p8841b2383.SimpleStoreChainHolder)
+	nop(ie, com)
+
+	
+    com.Loader = inst.getLoader(ie)
+
+
+    return nil
+}
+
+
+func (inst*p8841b23836_isessions_SimpleStoreChainHolder) getLoader(ie application.InjectionExt)p6489a1c97.FilterChainLoader{
+    return ie.GetComponent("#alias-6489a1c97ae609f33eb9078085053c74-FilterChainLoader").(p6489a1c97.FilterChainLoader)
+}
+
+
+
+// type p8841b2383.SimpleStoreChainLoader in package:github.com/starter-go/v0/rbac-web-app/app/implements/isessions
+//
+// id:com-8841b23836065757-isessions-SimpleStoreChainLoader
+// class:
+// alias:alias-6489a1c97ae609f33eb9078085053c74-FilterChainLoader
+// scope:singleton
+//
+type p8841b23836_isessions_SimpleStoreChainLoader struct {
+}
+
+func (inst* p8841b23836_isessions_SimpleStoreChainLoader) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-8841b23836065757-isessions-SimpleStoreChainLoader"
+	r.Classes = ""
+	r.Aliases = "alias-6489a1c97ae609f33eb9078085053c74-FilterChainLoader"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p8841b23836_isessions_SimpleStoreChainLoader) new() any {
+    return &p8841b2383.SimpleStoreChainLoader{}
+}
+
+func (inst* p8841b23836_isessions_SimpleStoreChainLoader) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p8841b2383.SimpleStoreChainLoader)
+	nop(ie, com)
+
+	
+    com.RegistryList = inst.getRegistryList(ie)
+
+
+    return nil
+}
+
+
+func (inst*p8841b23836_isessions_SimpleStoreChainLoader) getRegistryList(ie application.InjectionExt)[]p6489a1c97.FilterRegistry{
+    dst := make([]p6489a1c97.FilterRegistry, 0)
+    src := ie.ListComponents(".class-6489a1c97ae609f33eb9078085053c74-FilterRegistry")
+    for _, item1 := range src {
+        item2 := item1.(p6489a1c97.FilterRegistry)
+        dst = append(dst, item2)
+    }
+    return dst
+}
+
+
+
+// type pc500a8465.StateStoreServiceImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/istore
+//
+// id:com-c500a84655b87324-istore-StateStoreServiceImpl
+// class:
+// alias:alias-6489a1c97ae609f33eb9078085053c74-Service
+// scope:singleton
+//
+type pc500a84655_istore_StateStoreServiceImpl struct {
+}
+
+func (inst* pc500a84655_istore_StateStoreServiceImpl) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-c500a84655b87324-istore-StateStoreServiceImpl"
+	r.Classes = ""
+	r.Aliases = "alias-6489a1c97ae609f33eb9078085053c74-Service"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pc500a84655_istore_StateStoreServiceImpl) new() any {
+    return &pc500a8465.StateStoreServiceImpl{}
+}
+
+func (inst* pc500a84655_istore_StateStoreServiceImpl) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pc500a8465.StateStoreServiceImpl)
+	nop(ie, com)
+
+	
+    com.Holder = inst.getHolder(ie)
+
+
+    return nil
+}
+
+
+func (inst*pc500a84655_istore_StateStoreServiceImpl) getHolder(ie application.InjectionExt)p6489a1c97.FilterChainHolder{
+    return ie.GetComponent("#alias-6489a1c97ae609f33eb9078085053c74-FilterChainHolder").(p6489a1c97.FilterChainHolder)
+}
+
+
+
+// type p157aad7a5.SubjectServiceImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/isubject
+//
+// id:com-157aad7a54f1b957-isubject-SubjectServiceImpl
+// class:
+// alias:alias-45dbe3237457ab5b761a911af615329f-Service
+// scope:singleton
+//
+type p157aad7a54_isubject_SubjectServiceImpl struct {
+}
+
+func (inst* p157aad7a54_isubject_SubjectServiceImpl) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-157aad7a54f1b957-isubject-SubjectServiceImpl"
+	r.Classes = ""
+	r.Aliases = "alias-45dbe3237457ab5b761a911af615329f-Service"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p157aad7a54_isubject_SubjectServiceImpl) new() any {
+    return &p157aad7a5.SubjectServiceImpl{}
+}
+
+func (inst* p157aad7a54_isubject_SubjectServiceImpl) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p157aad7a5.SubjectServiceImpl)
+	nop(ie, com)
+
+	
+    com.Tokens = inst.getTokens(ie)
+    com.Users = inst.getUsers(ie)
+    com.Sessions = inst.getSessions(ie)
+    com.SSS = inst.getSSS(ie)
+
+
+    return nil
+}
+
+
+func (inst*p157aad7a54_isubject_SubjectServiceImpl) getTokens(ie application.InjectionExt)p441b1814d.Service{
+    return ie.GetComponent("#alias-441b1814dcb3d885c070bf59d5773c63-Service").(p441b1814d.Service)
+}
+
+
+func (inst*p157aad7a54_isubject_SubjectServiceImpl) getUsers(ie application.InjectionExt)p2d258e798.Service{
+    return ie.GetComponent("#alias-2d258e79845135c43979b78bd9f1f74e-Service").(p2d258e798.Service)
+}
+
+
+func (inst*p157aad7a54_isubject_SubjectServiceImpl) getSessions(ie application.InjectionExt)p63b715cf9.Service{
+    return ie.GetComponent("#alias-63b715cf9c89c4b9295921d813a75e67-Service").(p63b715cf9.Service)
+}
+
+
+func (inst*p157aad7a54_isubject_SubjectServiceImpl) getSSS(ie application.InjectionExt)p6489a1c97.Service{
+    return ie.GetComponent("#alias-6489a1c97ae609f33eb9078085053c74-Service").(p6489a1c97.Service)
 }
 
 
@@ -634,6 +925,50 @@ func (inst* p3821d5b0f6_itokens_TokenServiceImpl) inject(injext application.Inje
 
 func (inst*p3821d5b0f6_itokens_TokenServiceImpl) getJWTser(ie application.InjectionExt)p441b1814d.JWTokenService{
     return ie.GetComponent("#alias-441b1814dcb3d885c070bf59d5773c63-JWTokenService").(p441b1814d.JWTokenService)
+}
+
+
+
+// type p3821d5b0f.TokenStoreFilter in package:github.com/starter-go/v0/rbac-web-app/app/implements/itokens
+//
+// id:com-3821d5b0f6716e9c-itokens-TokenStoreFilter
+// class:class-6489a1c97ae609f33eb9078085053c74-FilterRegistry
+// alias:
+// scope:singleton
+//
+type p3821d5b0f6_itokens_TokenStoreFilter struct {
+}
+
+func (inst* p3821d5b0f6_itokens_TokenStoreFilter) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-3821d5b0f6716e9c-itokens-TokenStoreFilter"
+	r.Classes = "class-6489a1c97ae609f33eb9078085053c74-FilterRegistry"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p3821d5b0f6_itokens_TokenStoreFilter) new() any {
+    return &p3821d5b0f.TokenStoreFilter{}
+}
+
+func (inst* p3821d5b0f6_itokens_TokenStoreFilter) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p3821d5b0f.TokenStoreFilter)
+	nop(ie, com)
+
+	
+    com.Tokens = inst.getTokens(ie)
+
+
+    return nil
+}
+
+
+func (inst*p3821d5b0f6_itokens_TokenStoreFilter) getTokens(ie application.InjectionExt)p441b1814d.Service{
+    return ie.GetComponent("#alias-441b1814dcb3d885c070bf59d5773c63-Service").(p441b1814d.Service)
 }
 
 

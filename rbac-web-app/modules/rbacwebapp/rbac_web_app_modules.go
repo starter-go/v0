@@ -9,6 +9,7 @@ import (
 	"github.com/starter-go/security/modules/security"
 	rbacwebapp "github.com/starter-go/v0/rbac-web-app"
 	"github.com/starter-go/v0/rbac-web-app/gen/main4rbacwa"
+	"github.com/starter-go/v0/rbac-web-app/gen/test4rbacwa"
 )
 
 // Module aka. ModuleForMain
@@ -32,7 +33,7 @@ func ModuleForTest() application.Module {
 
 	mb := rbacwebapp.NewTestModuleBuilder()
 
-	mb.Components(main4rbacwa.ExportComponents)
+	mb.Components(test4rbacwa.ExportComponents)
 
 	mb.Depend(Module())
 

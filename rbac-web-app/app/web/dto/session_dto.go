@@ -19,4 +19,6 @@ type Session struct {
 	Alive     bool      `json:"alive"`
 	AliveFrom lang.Time `json:"not_before"`
 	AliveTo   lang.Time `json:"not_after"`
+
+	Properties map[string]string `json:"properties"`
 }

@@ -30,6 +30,9 @@ func (inst *autoRegistrar) register(factory comFactory) error {
 func (inst*autoRegistrar) addAll() error {
 
     
+    inst.register(&p78d6a2ce14_wuclient_WebUnitTestSessionRunner{})
+    inst.register(&p90f4aa59a9_wuserver_WebUnitTestSessionController{})
+    inst.register(&pfabbd91b2d_unittestcases_CaseTrySubject{})
     inst.register(&pfabbd91b2d_unittestcases_ExampleCase{})
 
 
