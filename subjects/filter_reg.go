@@ -8,7 +8,10 @@ const (
 	FilterPriorityDB
 	FilterPriorityCache2
 	FilterPriorityJWT
+	FilterPriorityBuffer
+	FilterPriorityCodec
 	FilterPriorityCache1
+	FilterPriorityCacheEmpty
 	FilterPriorityLog
 
 	FilterPriorityMax

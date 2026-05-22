@@ -1,29 +1,31 @@
 package unittestcases
 
-import "github.com/starter-go/application"
+import (
+	"github.com/starter-go/units"
+)
 
 type ExampleCase struct {
 
 	//starter:component
 
-	Enabled bool //starter:inject("${test-case.example.enabled}")
+	Enabled bool //starter:inject("${unit.test-example.enabled}")
 
 }
 
-// Life implements application.Lifecycle.
-func (inst *ExampleCase) Life() *application.Life {
+// ListRegistrations implements units.Unit.
+func (inst *ExampleCase) ListRegistrations(list []*units.Registration) []*units.Registration {
 
-	l := new(application.Life)
-
-	if inst.Enabled {
-		l.OnLoop = inst.run
+	u1 := &units.Registration{
+		Name:    "ExampleCase",
+		Enabled: inst.Enabled,
+		Do:      inst.run,
 	}
 
-	return l
-
+	list = append(list, u1)
+	return list
 }
 
-func (inst *ExampleCase) _impl() application.Lifecycle {
+func (inst *ExampleCase) _impl() units.Unit {
 	return inst
 }
 

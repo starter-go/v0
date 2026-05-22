@@ -14,7 +14,7 @@ type TrySessionService struct {
 
 	Service sessions.Service //starter:inject("#")
 
-	Enabled bool //starter:inject("${test-case.session-service.enabled}")
+	Enabled bool //starter:inject("${unit.test-session-service.enabled}")
 
 	id sessions.ID
 }
@@ -22,12 +22,13 @@ type TrySessionService struct {
 // ListRegistrations implements units.Unit.
 func (inst *TrySessionService) ListRegistrations(list []*units.Registration) []*units.Registration {
 
-	ur := &units.Registration{
+	u1 := &units.Registration{
 		Name:    "TrySessionService",
-		Enabled: true,
+		Enabled: inst.Enabled,
 		Do:      inst.run,
 	}
-	list = append(list, ur)
+
+	list = append(list, u1)
 	return list
 }
 

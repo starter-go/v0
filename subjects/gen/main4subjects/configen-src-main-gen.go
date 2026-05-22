@@ -6,7 +6,9 @@ import (
     pdb4050fdb "github.com/starter-go/v0/subjects/core/autoloaders"
     p85899ef78 "github.com/starter-go/v0/subjects/core/classes/sessions"
     pba9b83e76 "github.com/starter-go/v0/subjects/core/data/subjectdb"
+    p45b883c73 "github.com/starter-go/v0/subjects/core/filters/filter4buffer"
     pd3bd430b1 "github.com/starter-go/v0/subjects/core/filters/filter4cache"
+    pe5401edcd "github.com/starter-go/v0/subjects/core/filters/filter4codec"
     p1e478b5d4 "github.com/starter-go/v0/subjects/core/filters/filter4db"
     p4270aadd3 "github.com/starter-go/v0/subjects/core/filters/filter4jwt"
     pd00479541 "github.com/starter-go/v0/subjects/core/filters/filter4log"
@@ -109,6 +111,44 @@ func (inst*pdb4050fdbd_autoloaders_DefaultFilterChainLoader) getRegList(ie appli
 
 
 
+// type p45b883c73.Filter4Buffer in package:github.com/starter-go/v0/subjects/core/filters/filter4buffer
+//
+// id:com-45b883c7373e9f00-filter4buffer-Filter4Buffer
+// class:class-fd2c28477d8555ea1fa4190037afa453-FilterRegistry
+// alias:
+// scope:singleton
+//
+type p45b883c737_filter4buffer_Filter4Buffer struct {
+}
+
+func (inst* p45b883c737_filter4buffer_Filter4Buffer) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-45b883c7373e9f00-filter4buffer-Filter4Buffer"
+	r.Classes = "class-fd2c28477d8555ea1fa4190037afa453-FilterRegistry"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p45b883c737_filter4buffer_Filter4Buffer) new() any {
+    return &p45b883c73.Filter4Buffer{}
+}
+
+func (inst* p45b883c737_filter4buffer_Filter4Buffer) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p45b883c73.Filter4Buffer)
+	nop(ie, com)
+
+	
+
+
+    return nil
+}
+
+
+
 // type pd3bd430b1.Filter4Cache1 in package:github.com/starter-go/v0/subjects/core/filters/filter4cache
 //
 // id:com-d3bd430b1e9a539a-filter4cache-Filter4Cache1
@@ -175,6 +215,82 @@ func (inst* pd3bd430b1e_filter4cache_Filter4Cache2) new() any {
 func (inst* pd3bd430b1e_filter4cache_Filter4Cache2) inject(injext application.InjectionExt, instance any) error {
 	ie := injext
 	com := instance.(*pd3bd430b1.Filter4Cache2)
+	nop(ie, com)
+
+	
+
+
+    return nil
+}
+
+
+
+// type pd3bd430b1.Filter4CacheEmpty in package:github.com/starter-go/v0/subjects/core/filters/filter4cache
+//
+// id:com-d3bd430b1e9a539a-filter4cache-Filter4CacheEmpty
+// class:class-fd2c28477d8555ea1fa4190037afa453-FilterRegistry
+// alias:
+// scope:singleton
+//
+type pd3bd430b1e_filter4cache_Filter4CacheEmpty struct {
+}
+
+func (inst* pd3bd430b1e_filter4cache_Filter4CacheEmpty) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-d3bd430b1e9a539a-filter4cache-Filter4CacheEmpty"
+	r.Classes = "class-fd2c28477d8555ea1fa4190037afa453-FilterRegistry"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pd3bd430b1e_filter4cache_Filter4CacheEmpty) new() any {
+    return &pd3bd430b1.Filter4CacheEmpty{}
+}
+
+func (inst* pd3bd430b1e_filter4cache_Filter4CacheEmpty) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pd3bd430b1.Filter4CacheEmpty)
+	nop(ie, com)
+
+	
+
+
+    return nil
+}
+
+
+
+// type pe5401edcd.Filter4Codec in package:github.com/starter-go/v0/subjects/core/filters/filter4codec
+//
+// id:com-e5401edcdeb1c54f-filter4codec-Filter4Codec
+// class:class-fd2c28477d8555ea1fa4190037afa453-FilterRegistry
+// alias:
+// scope:singleton
+//
+type pe5401edcde_filter4codec_Filter4Codec struct {
+}
+
+func (inst* pe5401edcde_filter4codec_Filter4Codec) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-e5401edcdeb1c54f-filter4codec-Filter4Codec"
+	r.Classes = "class-fd2c28477d8555ea1fa4190037afa453-FilterRegistry"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pe5401edcde_filter4codec_Filter4Codec) new() any {
+    return &pe5401edcd.Filter4Codec{}
+}
+
+func (inst* pe5401edcde_filter4codec_Filter4Codec) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pe5401edcd.Filter4Codec)
 	nop(ie, com)
 
 	

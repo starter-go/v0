@@ -87,7 +87,7 @@ type innerReaderChainNode struct {
 }
 
 // Read implements FilterChain.
-func (inst *innerReaderChainNode) Read(c *Context) error {
+func (inst *innerReaderChainNode) Read(c *IOC) error {
 
 	n := inst.next
 	f := inst.filter
@@ -104,7 +104,7 @@ type innerReaderChainEnd struct {
 }
 
 // Read implements FilterChain.
-func (inst *innerReaderChainEnd) Read(c *Context) error {
+func (inst *innerReaderChainEnd) Read(c *IOC) error {
 	return nil
 }
 

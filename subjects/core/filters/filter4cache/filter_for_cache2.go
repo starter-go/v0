@@ -14,13 +14,13 @@ type Filter4Cache2 struct {
 }
 
 // Read implements subjects.ReadFilter.
-func (inst *Filter4Cache2) Read(c *subjects.Context, next subjects.ReadFilterChain) error {
+func (inst *Filter4Cache2) Read(c *subjects.IOC, next subjects.ReadFilterChain) error {
 
 	return next.Read(c)
 }
 
 // Write implements subjects.WriteFilter.
-func (inst *Filter4Cache2) Write(c *subjects.Context, next subjects.WriteFilterChain) error {
+func (inst *Filter4Cache2) Write(c *subjects.IOC, next subjects.WriteFilterChain) error {
 
 	return next.Write(c)
 }

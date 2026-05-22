@@ -9,5 +9,7 @@ const (
 	MethodPut    Method = http.MethodPut
 	MethodPost   Method = http.MethodPost
 	MethodDelete Method = http.MethodDelete
+
 	MethodReload Method = "RELOAD"
+	MethodFlush  Method = "FLUSH"
 )

@@ -1,58 +1,46 @@
 package consoles
 
-import (
-	"context"
-	"fmt"
+// type SubjectAdapter struct {
+// }
 
-	"github.com/starter-go/v0/subjects"
-)
+// // GetHolder implements subjects.Adapter.
+// func (inst *SubjectAdapter) GetHolder(c context.Context) (*subjects.Holder, error) {
 
-type SubjectAdapter struct {
-}
+// 	name := inst.innerGetHolderName()
+// 	val := c.Value(name)
+// 	h, ok := val.(*subjects.Holder)
 
-// GetHolder implements subjects.Adapter.
-func (inst *SubjectAdapter) GetHolder(c context.Context) (*subjects.Holder, error) {
+// 	if !ok {
+// 		return nil, fmt.Errorf("consoles.SubjectAdapter() : no subjects.Holder in context")
+// 	}
 
-	name := inst.innerGetHolderName()
-	val := c.Value(name)
-	h, ok := val.(*subjects.Holder)
+// 	return h, nil
+// }
 
-	if !ok {
-		return nil, fmt.Errorf("consoles.SubjectAdapter() : no subjects.Holder in context")
-	}
+// func (inst *SubjectAdapter) Setup(sc *subjects.Context) *subjects.Context {
 
-	return h, nil
-}
+// 	cc := sc.CC
+// 	if cc == nil {
+// 		cc = context.Background()
+// 	}
 
-func (inst *SubjectAdapter) Setup(sc *subjects.Context) *subjects.Context {
+// 	holder := new(subjects.Holder)
+// 	name4h := inst.innerGetHolderName()
+// 	holder.Context = sc
 
-	cc := sc.CC
-	if cc == nil {
-		cc = context.Background()
-	}
+// 	if sc.Facade == nil {
+// 		sub := subjects.NewSubject(sc)
+// 		sc.Facade = sub
+// 	}
 
-	holder := new(subjects.Holder)
-	name4h := inst.innerGetHolderName()
-	holder.Context = sc
+// 	sc.CC = cc
+// 	return sc
+// }
 
-	subjects.SetupAdapter(func(name4a string) {
-		cc = context.WithValue(cc, name4a, inst)
-		cc = context.WithValue(cc, name4h, holder)
-	})
+// func (inst *SubjectAdapter) innerGetHolderName() string {
+// 	return "github.com/starter-go/v0/subjects/consoles#SubjectAdapter/holder"
+// }
 
-	if sc.Facade == nil {
-		sub := subjects.NewSubject(sc)
-		sc.Facade = sub
-	}
-
-	sc.CC = cc
-	return sc
-}
-
-func (inst *SubjectAdapter) innerGetHolderName() string {
-	return "github.com/starter-go/v0/subjects/consoles#SubjectAdapter/holder"
-}
-
-func (inst *SubjectAdapter) _impl() subjects.Adapter {
-	return inst
-}
+// func (inst *SubjectAdapter) _impl() subjects.Adapter {
+// 	return inst
+// }

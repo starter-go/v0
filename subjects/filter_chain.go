@@ -1,11 +1,11 @@
 package subjects
 
 type ReadFilterChain interface {
-	Read(c *Context) error
+	Read(c *IOC) error
 }
 
 type WriteFilterChain interface {
-	Write(c *Context) error
+	Write(c *IOC) error
 }
 
 ////////////////////////////////////////////////////////////////////////////////

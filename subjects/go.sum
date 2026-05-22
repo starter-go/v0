@@ -15,6 +15,12 @@ github.com/starter-go/application v0.9.28 h1:fQxnfXw8eNIbKaUSqBRWQpQLZsu8ICkNv/Y
 github.com/starter-go/application v0.9.28/go.mod h1:8JvdNU24P35K9pXBy4ip+XJKGKpOkUA0t7SXjeviwTs=
 github.com/starter-go/base v0.9.11 h1:QG5kcShJSV9cs2KEeqZ8UN9icM/0uPZwPFrh0XUOf+Q=
 github.com/starter-go/base v0.9.11/go.mod h1:MMqPMFzwPHjKyfX0cMmkpAAbeJ0tJupFbI8D+x27fJM=
+github.com/starter-go/base v0.9.13 h1:CFFyE/spjIt3arFUgN8UBVdtsI5pYfheD3wYIecoTFs=
+github.com/starter-go/base v0.9.13/go.mod h1:MMqPMFzwPHjKyfX0cMmkpAAbeJ0tJupFbI8D+x27fJM=
+github.com/starter-go/base v0.9.14 h1:INwKTGIKA7CMilzL5S0b+QrH0VmuPvQ6ClHf12ObkPY=
+github.com/starter-go/base v0.9.14/go.mod h1:MMqPMFzwPHjKyfX0cMmkpAAbeJ0tJupFbI8D+x27fJM=
+github.com/starter-go/base v0.9.15 h1:xtaOQ7egRJ0WuTFxLTGAzhlhxf8uXdhCqkWPE6qdWMg=
+github.com/starter-go/base v0.9.15/go.mod h1:MMqPMFzwPHjKyfX0cMmkpAAbeJ0tJupFbI8D+x27fJM=
 github.com/starter-go/configen v0.9.5 h1:KTwueLMQA3Ba70sJddK+hOLEifOI0dTXpPkX/jiBjIo=
 github.com/starter-go/configen v0.9.5/go.mod h1:n3qiv4z1nZ0h4qfcX9Ju8kUMgjuLUkv0EvL6lxQOwtQ=
 github.com/starter-go/keyvalues v0.0.1 h1:nwvE7xp0eCq5rjHfLyYFEfowgZkDYBZcIT39c9ECjjk=

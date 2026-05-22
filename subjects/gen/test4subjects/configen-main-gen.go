@@ -30,6 +30,7 @@ func (inst *autoRegistrar) register(factory comFactory) error {
 func (inst*autoRegistrar) addAll() error {
 
     
+    inst.register(&p6720c088b9_helpfilters_MockTokenFilter{})
     inst.register(&p8158f311c0_unittestcases_CaseToTrySubject{})
     inst.register(&p8158f311c0_unittestcases_ExampleCase{})
     inst.register(&p8158f311c0_unittestcases_TrySessionService{})

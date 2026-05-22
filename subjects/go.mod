@@ -21,7 +21,7 @@ require (
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/starter-go/afs v0.9.13 // indirect
 	github.com/starter-go/application v0.9.28
-	github.com/starter-go/base v0.9.11
+	github.com/starter-go/base v0.9.15
 	github.com/starter-go/configen v0.9.5 // indirect
 	github.com/starter-go/libgorm v0.9.16
 	github.com/starter-go/module-gorm-mysql v1.0.0

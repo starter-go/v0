@@ -87,7 +87,7 @@ type innerWriterChainNode struct {
 }
 
 // Write implements FilterChain.
-func (inst *innerWriterChainNode) Write(c *Context) error {
+func (inst *innerWriterChainNode) Write(c *IOC) error {
 
 	n := inst.next
 	f := inst.filter
@@ -104,7 +104,7 @@ type innerWriterChainEnd struct {
 }
 
 // Write implements FilterChain.
-func (inst *innerWriterChainEnd) Write(c *Context) error {
+func (inst *innerWriterChainEnd) Write(c *IOC) error {
 	return nil
 }
 

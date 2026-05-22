@@ -1,6 +1,8 @@
 package isessions
 
 import (
+	"fmt"
+
 	"github.com/starter-go/base/lang"
 	"github.com/starter-go/security/random"
 	"github.com/starter-go/v0/subjects/core/classes/sessions"
@@ -47,7 +49,7 @@ func (inst *SessionDaoImpl) Find(db *gorm.DB, id sessions.ID) (*sessions.Entity,
 
 	db = inst.innerPrepareDB(db)
 	item := inst.innerMakeItem()
-	res := db.Find(&item, id)
+	res := db.First(&item, id)
 	err := res.Error
 	return item, err
 }
@@ -116,6 +118,10 @@ func (inst *SessionDaoImpl) Remove(db *gorm.DB, id sessions.ID) error {
 
 // Update implements sessions.DAO.
 func (inst *SessionDaoImpl) Update(db *gorm.DB, id sessions.ID, callback func(item *sessions.Entity) error) (*sessions.Entity, error) {
+
+	if id <= 0 {
+		return nil, fmt.Errorf("bad session.id:(id=%d)", id)
+	}
 
 	db = inst.innerPrepareDB(db)
 

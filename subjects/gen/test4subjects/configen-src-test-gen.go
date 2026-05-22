@@ -2,9 +2,48 @@ package test4subjects
 import (
     pfd2c28477 "github.com/starter-go/v0/subjects"
     p85899ef78 "github.com/starter-go/v0/subjects/core/classes/sessions"
+    p6720c088b "github.com/starter-go/v0/subjects/src/test/golang/helpfilters"
     p8158f311c "github.com/starter-go/v0/subjects/src/test/golang/unittestcases"
      "github.com/starter-go/application"
 )
+
+// type p6720c088b.MockTokenFilter in package:github.com/starter-go/v0/subjects/src/test/golang/helpfilters
+//
+// id:com-6720c088b931ef7b-helpfilters-MockTokenFilter
+// class:class-fd2c28477d8555ea1fa4190037afa453-FilterRegistry
+// alias:
+// scope:singleton
+//
+type p6720c088b9_helpfilters_MockTokenFilter struct {
+}
+
+func (inst* p6720c088b9_helpfilters_MockTokenFilter) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-6720c088b931ef7b-helpfilters-MockTokenFilter"
+	r.Classes = "class-fd2c28477d8555ea1fa4190037afa453-FilterRegistry"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p6720c088b9_helpfilters_MockTokenFilter) new() any {
+    return &p6720c088b.MockTokenFilter{}
+}
+
+func (inst* p6720c088b9_helpfilters_MockTokenFilter) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p6720c088b.MockTokenFilter)
+	nop(ie, com)
+
+	
+
+
+    return nil
+}
+
+
 
 // type p8158f311c.ExampleCase in package:github.com/starter-go/v0/subjects/src/test/golang/unittestcases
 //
@@ -45,7 +84,7 @@ func (inst* p8158f311c0_unittestcases_ExampleCase) inject(injext application.Inj
 
 
 func (inst*p8158f311c0_unittestcases_ExampleCase) getEnabled(ie application.InjectionExt)bool{
-    return ie.GetBool("${test-case.example.enabled}")
+    return ie.GetBool("${unit.test-example.enabled}")
 }
 
 
@@ -95,7 +134,7 @@ func (inst*p8158f311c0_unittestcases_TrySessionService) getService(ie applicatio
 
 
 func (inst*p8158f311c0_unittestcases_TrySessionService) getEnabled(ie application.InjectionExt)bool{
-    return ie.GetBool("${test-case.session-service.enabled}")
+    return ie.GetBool("${unit.test-session-service.enabled}")
 }
 
 
@@ -145,7 +184,7 @@ func (inst*p8158f311c0_unittestcases_CaseToTrySubject) getChainHolder(ie applica
 
 
 func (inst*p8158f311c0_unittestcases_CaseToTrySubject) getEnabled(ie application.InjectionExt)bool{
-    return ie.GetBool("${test-case.subjects.enabled}")
+    return ie.GetBool("${unit.test-subjects-1.enabled}")
 }
 
 

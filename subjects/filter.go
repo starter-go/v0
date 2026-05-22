@@ -1,9 +1,9 @@
 package subjects
 
 type ReadFilter interface {
-	Read(c *Context, next ReadFilterChain) error
+	Read(c *IOC, next ReadFilterChain) error
 }
 
 type WriteFilter interface {
-	Write(c *Context, next WriteFilterChain) error
+	Write(c *IOC, next WriteFilterChain) error
 }

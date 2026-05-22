@@ -36,11 +36,14 @@ func (inst*autoRegistrar) addAll() error {
     inst.register(&p29a9720d88_isubjectdb_SubjectDataBaseAgent{})
     inst.register(&p29a9720d88_isubjectdb_SubjectDataGroup{})
     inst.register(&p4270aadd3a_filter4jwt_Filter4jwt{})
+    inst.register(&p45b883c737_filter4buffer_Filter4Buffer{})
     inst.register(&pd00479541f_filter4log_Filter4Log{})
     inst.register(&pd3bd430b1e_filter4cache_Filter4Cache1{})
     inst.register(&pd3bd430b1e_filter4cache_Filter4Cache2{})
+    inst.register(&pd3bd430b1e_filter4cache_Filter4CacheEmpty{})
     inst.register(&pdb4050fdbd_autoloaders_DefaultFilterChainHolder{})
     inst.register(&pdb4050fdbd_autoloaders_DefaultFilterChainLoader{})
+    inst.register(&pe5401edcde_filter4codec_Filter4Codec{})
 
 
     return nil
