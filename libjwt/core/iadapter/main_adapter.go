@@ -169,7 +169,7 @@ func (inst *innerAdapterCache) Len() int {
 func (inst *innerAdapterCache) Less(i int, j int) bool {
 	n1 := inst.innerGetItemOrder(i)
 	n2 := inst.innerGetItemOrder(j)
-	return (n1 < n2)
+	return (n1 > n2)
 }
 
 // Swap implements sort.Interface.

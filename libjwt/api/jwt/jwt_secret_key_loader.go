@@ -19,6 +19,7 @@ type KeyLoaderRegistration struct {
 	Enabled  bool
 	Priority int
 	Loader   KeyLoader
+	Provider KeyLoaderProvider
 }
 
 ////////////////////////////////////////////////////////////////////////////////

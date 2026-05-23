@@ -13,9 +13,9 @@ type AdapterRegistration struct {
 
 	Priority int
 
-	Loader AdapterLoader
-
-	Adapter Adapter
+	Adapter  Adapter
+	Loader   AdapterLoader
+	Provider AdapterProvider
 }
 
 type AdapterProvider interface {

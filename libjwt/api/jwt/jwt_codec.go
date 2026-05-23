@@ -20,9 +20,9 @@ type CodecRegistration struct {
 
 	Priority int
 
-	Loader CodecLoader
-
-	Codec CODEC
+	Codec    CODEC
+	Loader   CodecLoader
+	Provider CodecProvider
 }
 
 type CodecProvider interface {

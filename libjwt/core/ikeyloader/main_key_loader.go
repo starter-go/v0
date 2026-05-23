@@ -98,6 +98,7 @@ func (inst *MainKeyLoader) _impl() (jwt.KeyLoader, jwt.KeyLoaderProvider) {
 
 type innerKeyLoaderCache struct {
 	items []*jwt.KeyLoaderRegistration
+	first *jwt.KeyLoaderRegistration
 }
 
 // Len implements sort.Interface.
@@ -109,7 +110,7 @@ func (inst *innerKeyLoaderCache) Len() int {
 func (inst *innerKeyLoaderCache) Less(i int, j int) bool {
 	n1 := inst.innerGetItemOrderNum(i)
 	n2 := inst.innerGetItemOrderNum(j)
-	return (n1 < n2)
+	return (n1 > n2)
 }
 
 // Swap implements sort.Interface.
@@ -135,7 +136,8 @@ func (inst *innerKeyLoaderCache) init(plist []jwt.KeyLoaderProvider) error {
 	inst.items = dst
 	inst.innerSortItems()
 
-	return nil
+	_, err := inst.getFirstLoader()
+	return err
 }
 
 func (inst *innerKeyLoaderCache) innerGetItemOrderNum(index int) int {
@@ -183,12 +185,21 @@ func (inst *innerKeyLoaderCache) getFirstLoader() (jwt.KeyLoader, error) {
 }
 
 func (inst *innerKeyLoaderCache) getFirstReg() (*jwt.KeyLoaderRegistration, error) {
+
+	first := inst.first
+	if first != nil {
+		return first, nil
+	}
+
+	// do load
 	src := inst.items
 	for _, it := range src {
 		if it == nil {
 			continue
 		}
+		inst.first = it
 		return it, nil
 	}
+
 	return nil, fmt.Errorf("jwt.key-loader: no key-loader (list is empty)")
 }

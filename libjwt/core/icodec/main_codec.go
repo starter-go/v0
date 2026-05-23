@@ -78,8 +78,8 @@ func (inst *MainCodec) _impl() jwt.CODEC {
 ////////////////////////////////////////////////////////////////////////////////
 
 type innerCodecCache struct {
-	regs  []*jwt.CodecRegistration
-	first jwt.CODEC
+	items []*jwt.CodecRegistration
+	first *jwt.CodecRegistration
 }
 
 func (inst *innerCodecCache) load(plist []jwt.CodecProvider) error {
@@ -100,14 +100,16 @@ func (inst *innerCodecCache) load(plist []jwt.CodecProvider) error {
 		}
 	}
 
-	inst.regs = dst
+	inst.items = dst
 	inst.innerSortItems()
 
-	first, err := inst.innerLoadFirstCodec()
+	first, err := inst.getFirstCodec()
 	if err != nil {
 		return err
 	}
-	inst.first = first.Codec
+	if first == nil {
+		return fmt.Errorf("jwt.main-codec: no any codec")
+	}
 
 	return nil
 }
@@ -156,8 +158,8 @@ func (inst *innerCodecCache) innerIsReady(item *jwt.CodecRegistration) bool {
 	return true
 }
 
-func (inst *innerCodecCache) innerLoadFirstCodec() (*jwt.CodecRegistration, error) {
-	src := inst.regs
+func (inst *innerCodecCache) innerLoadFirst() (*jwt.CodecRegistration, error) {
+	src := inst.items
 	for _, item := range src {
 		if item != nil {
 			return item, nil
@@ -174,7 +176,7 @@ func (inst *innerCodecCache) innerSortItems() {
 }
 
 func (inst *innerCodecCache) innerGetOrderNumberOf(index int) int {
-	item := inst.regs[index]
+	item := inst.items[index]
 	if item == nil {
 		return 0
 	}
@@ -182,19 +184,35 @@ func (inst *innerCodecCache) innerGetOrderNumberOf(index int) int {
 }
 
 func (inst *innerCodecCache) Len() int {
-	return len(inst.regs)
+	return len(inst.items)
 }
 func (inst *innerCodecCache) Less(i1, i2 int) bool {
 	n1 := inst.innerGetOrderNumberOf(i1)
 	n2 := inst.innerGetOrderNumberOf(i2)
-	return (n1 < n2)
+	return (n1 > n2)
 }
 func (inst *innerCodecCache) Swap(i1, i2 int) {
-	list := inst.regs
+	list := inst.items
 	list[i1], list[i2] = list[i2], list[i1]
 }
 
 func (inst *innerCodecCache) getFirstCodec() (jwt.CODEC, error) {
+
+	reg, err := inst.getFirst()
+	if err != nil {
+		return nil, err
+	}
+
+	codec := reg.Codec
+	if codec == nil {
+		err = fmt.Errorf("jwt.main-codec: codec is nil")
+		return nil, err
+	}
+
+	return codec, nil
+}
+
+func (inst *innerCodecCache) getFirst() (*jwt.CodecRegistration, error) {
 
 	the1st := inst.first
 	if the1st != nil {
@@ -203,18 +221,18 @@ func (inst *innerCodecCache) getFirstCodec() (jwt.CODEC, error) {
 
 	// load
 
-	reg1, err := inst.innerLoadFirstCodec()
+	reg, err := inst.innerLoadFirst()
 	if err != nil {
 		return nil, err
 	}
 
-	the1st = reg1.Codec
-	if the1st == nil {
+	codec := reg.Codec
+	if codec == nil {
 		return nil, fmt.Errorf("innerCodecCache: the first codec is nil")
 	}
 
-	inst.first = the1st
-	return the1st, nil
+	inst.first = reg
+	return reg, nil
 }
 
 ////////////////////////////////////////////////////////////////////////////////
