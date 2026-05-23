@@ -36,6 +36,7 @@ func (inst*autoRegistrar) addAll() error {
     inst.register(&pd2ae4a4ea8_icodec_DefaultCodec{})
     inst.register(&pd2ae4a4ea8_icodec_MainCodec{})
     inst.register(&pdd265c3560_iadapter_MainAdapter{})
+    inst.register(&pdd265c3560_iadapter_MockAdapter{})
 
 
     return nil

@@ -39,9 +39,89 @@ func (inst* pdd265c3560_iadapter_MainAdapter) inject(injext application.Injectio
 	nop(ie, com)
 
 	
+    com.ProviderList = inst.getProviderList(ie)
+    com.AutoTermEnabled = inst.getAutoTermEnabled(ie)
+    com.AutoTermAge = inst.getAutoTermAge(ie)
 
 
     return nil
+}
+
+
+func (inst*pdd265c3560_iadapter_MainAdapter) getProviderList(ie application.InjectionExt)[]p40146ff25.AdapterProvider{
+    dst := make([]p40146ff25.AdapterProvider, 0)
+    src := ie.ListComponents(".class-40146ff2506e686679e1be8b766901e1-AdapterProvider")
+    for _, item1 := range src {
+        item2 := item1.(p40146ff25.AdapterProvider)
+        dst = append(dst, item2)
+    }
+    return dst
+}
+
+
+func (inst*pdd265c3560_iadapter_MainAdapter) getAutoTermEnabled(ie application.InjectionExt)bool{
+    return ie.GetBool("${jwt.auto-term.enabled}")
+}
+
+
+func (inst*pdd265c3560_iadapter_MainAdapter) getAutoTermAge(ie application.InjectionExt)int64{
+    return ie.GetInt64("${jwt.auto-term.age-in-ms}")
+}
+
+
+
+// type pdd265c356.MockAdapter in package:github.com/starter-go/v0/libjwt/core/iadapter
+//
+// id:com-dd265c35606f28b4-iadapter-MockAdapter
+// class:class-40146ff2506e686679e1be8b766901e1-AdapterProvider
+// alias:
+// scope:singleton
+//
+type pdd265c3560_iadapter_MockAdapter struct {
+}
+
+func (inst* pdd265c3560_iadapter_MockAdapter) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-dd265c35606f28b4-iadapter-MockAdapter"
+	r.Classes = "class-40146ff2506e686679e1be8b766901e1-AdapterProvider"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pdd265c3560_iadapter_MockAdapter) new() any {
+    return &pdd265c356.MockAdapter{}
+}
+
+func (inst* pdd265c3560_iadapter_MockAdapter) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pdd265c356.MockAdapter)
+	nop(ie, com)
+
+	
+    com.MyName = inst.getMyName(ie)
+    com.MyPriority = inst.getMyPriority(ie)
+    com.MyEnabled = inst.getMyEnabled(ie)
+
+
+    return nil
+}
+
+
+func (inst*pdd265c3560_iadapter_MockAdapter) getMyName(ie application.InjectionExt)string{
+    return ie.GetString("${jwt-adapter.mock.name}")
+}
+
+
+func (inst*pdd265c3560_iadapter_MockAdapter) getMyPriority(ie application.InjectionExt)int{
+    return ie.GetInt("${jwt-adapter.mock.priority}")
+}
+
+
+func (inst*pdd265c3560_iadapter_MockAdapter) getMyEnabled(ie application.InjectionExt)bool{
+    return ie.GetBool("${jwt-adapter.mock.enabled}")
 }
 
 
@@ -77,18 +157,13 @@ func (inst* pd2ae4a4ea8_icodec_DefaultCodec) inject(injext application.Injection
 	nop(ie, com)
 
 	
-    com.KeyLoader = inst.getKeyLoader(ie)
     com.Name = inst.getName(ie)
     com.Enabled = inst.getEnabled(ie)
     com.Priority = inst.getPriority(ie)
+    com.KeyLoader = inst.getKeyLoader(ie)
 
 
     return nil
-}
-
-
-func (inst*pd2ae4a4ea8_icodec_DefaultCodec) getKeyLoader(ie application.InjectionExt)p40146ff25.KeyLoader{
-    return ie.GetComponent("#alias-40146ff2506e686679e1be8b766901e1-KeyLoader").(p40146ff25.KeyLoader)
 }
 
 
@@ -104,6 +179,11 @@ func (inst*pd2ae4a4ea8_icodec_DefaultCodec) getEnabled(ie application.InjectionE
 
 func (inst*pd2ae4a4ea8_icodec_DefaultCodec) getPriority(ie application.InjectionExt)int{
     return ie.GetInt("${jwt-codec.default.priority}")
+}
+
+
+func (inst*pd2ae4a4ea8_icodec_DefaultCodec) getKeyLoader(ie application.InjectionExt)p40146ff25.KeyLoader{
+    return ie.GetComponent("#alias-40146ff2506e686679e1be8b766901e1-KeyLoader").(p40146ff25.KeyLoader)
 }
 
 
