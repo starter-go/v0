@@ -2,9 +2,11 @@ package main4subjects
 import (
     p512a30914 "github.com/starter-go/libgorm"
     p9621e8b71 "github.com/starter-go/security/random"
+    p40146ff25 "github.com/starter-go/v0/libjwt/api/jwt"
     pfd2c28477 "github.com/starter-go/v0/subjects"
     pdb4050fdb "github.com/starter-go/v0/subjects/core/autoloaders"
     p85899ef78 "github.com/starter-go/v0/subjects/core/classes/sessions"
+    pe36083c14 "github.com/starter-go/v0/subjects/core/consoles"
     pba9b83e76 "github.com/starter-go/v0/subjects/core/data/subjectdb"
     p45b883c73 "github.com/starter-go/v0/subjects/core/filters/filter4buffer"
     pd3bd430b1 "github.com/starter-go/v0/subjects/core/filters/filter4cache"
@@ -107,6 +109,62 @@ func (inst*pdb4050fdbd_autoloaders_DefaultFilterChainLoader) getRegList(ie appli
         dst = append(dst, item2)
     }
     return dst
+}
+
+
+
+// type pe36083c14.ConsoleJwtAdapter in package:github.com/starter-go/v0/subjects/core/consoles
+//
+// id:com-e36083c14cb95b87-consoles-ConsoleJwtAdapter
+// class:class-40146ff2506e686679e1be8b766901e1-AdapterProvider
+// alias:
+// scope:singleton
+//
+type pe36083c14c_consoles_ConsoleJwtAdapter struct {
+}
+
+func (inst* pe36083c14c_consoles_ConsoleJwtAdapter) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-e36083c14cb95b87-consoles-ConsoleJwtAdapter"
+	r.Classes = "class-40146ff2506e686679e1be8b766901e1-AdapterProvider"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pe36083c14c_consoles_ConsoleJwtAdapter) new() any {
+    return &pe36083c14.ConsoleJwtAdapter{}
+}
+
+func (inst* pe36083c14c_consoles_ConsoleJwtAdapter) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pe36083c14.ConsoleJwtAdapter)
+	nop(ie, com)
+
+	
+    com.MyName = inst.getMyName(ie)
+    com.MyEnabled = inst.getMyEnabled(ie)
+    com.MyPriority = inst.getMyPriority(ie)
+
+
+    return nil
+}
+
+
+func (inst*pe36083c14c_consoles_ConsoleJwtAdapter) getMyName(ie application.InjectionExt)string{
+    return ie.GetString("${jwt-adapter.console.name}")
+}
+
+
+func (inst*pe36083c14c_consoles_ConsoleJwtAdapter) getMyEnabled(ie application.InjectionExt)bool{
+    return ie.GetBool("${jwt-adapter.console.enabled}")
+}
+
+
+func (inst*pe36083c14c_consoles_ConsoleJwtAdapter) getMyPriority(ie application.InjectionExt)int{
+    return ie.GetInt("${jwt-adapter.console.priority}")
 }
 
 
@@ -225,19 +283,19 @@ func (inst* pd3bd430b1e_filter4cache_Filter4Cache2) inject(injext application.In
 
 
 
-// type pd3bd430b1.Filter4CacheEmpty in package:github.com/starter-go/v0/subjects/core/filters/filter4cache
+// type pd3bd430b1.Filter4GoodResult in package:github.com/starter-go/v0/subjects/core/filters/filter4cache
 //
-// id:com-d3bd430b1e9a539a-filter4cache-Filter4CacheEmpty
+// id:com-d3bd430b1e9a539a-filter4cache-Filter4GoodResult
 // class:class-fd2c28477d8555ea1fa4190037afa453-FilterRegistry
 // alias:
 // scope:singleton
 //
-type pd3bd430b1e_filter4cache_Filter4CacheEmpty struct {
+type pd3bd430b1e_filter4cache_Filter4GoodResult struct {
 }
 
-func (inst* pd3bd430b1e_filter4cache_Filter4CacheEmpty) register(cr application.ComponentRegistry) error {
+func (inst* pd3bd430b1e_filter4cache_Filter4GoodResult) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
-	r.ID = "com-d3bd430b1e9a539a-filter4cache-Filter4CacheEmpty"
+	r.ID = "com-d3bd430b1e9a539a-filter4cache-Filter4GoodResult"
 	r.Classes = "class-fd2c28477d8555ea1fa4190037afa453-FilterRegistry"
 	r.Aliases = ""
 	r.Scope = "singleton"
@@ -246,13 +304,13 @@ func (inst* pd3bd430b1e_filter4cache_Filter4CacheEmpty) register(cr application.
 	return r.Commit()
 }
 
-func (inst* pd3bd430b1e_filter4cache_Filter4CacheEmpty) new() any {
-    return &pd3bd430b1.Filter4CacheEmpty{}
+func (inst* pd3bd430b1e_filter4cache_Filter4GoodResult) new() any {
+    return &pd3bd430b1.Filter4GoodResult{}
 }
 
-func (inst* pd3bd430b1e_filter4cache_Filter4CacheEmpty) inject(injext application.InjectionExt, instance any) error {
+func (inst* pd3bd430b1e_filter4cache_Filter4GoodResult) inject(injext application.InjectionExt, instance any) error {
 	ie := injext
-	com := instance.(*pd3bd430b1.Filter4CacheEmpty)
+	com := instance.(*pd3bd430b1.Filter4GoodResult)
 	nop(ie, com)
 
 	
@@ -376,9 +434,15 @@ func (inst* p4270aadd3a_filter4jwt_Filter4jwt) inject(injext application.Injecti
 	nop(ie, com)
 
 	
+    com.JWTService = inst.getJWTService(ie)
 
 
     return nil
+}
+
+
+func (inst*p4270aadd3a_filter4jwt_Filter4jwt) getJWTService(ie application.InjectionExt)p40146ff25.Service{
+    return ie.GetComponent("#alias-40146ff2506e686679e1be8b766901e1-Service").(p40146ff25.Service)
 }
 
 

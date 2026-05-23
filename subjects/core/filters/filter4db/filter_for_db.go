@@ -1,6 +1,7 @@
 package filter4db
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/starter-go/application/properties"
@@ -60,6 +61,12 @@ func (inst *Filter4db) innerDoGet(c *subjects.IOC, next subjects.ReadFilterChain
 		return err
 	}
 
+	uuidWant := c.Want.SessionUUID
+	uuidHave := o1.UUID
+	if uuidHave != uuidWant || id != o1.ID {
+		return fmt.Errorf("no want session")
+	}
+
 	have, err := inst.innerMakeNewResult(o1)
 	if err != nil {
 		return err
@@ -78,6 +85,14 @@ func (inst *Filter4db) innerPrepareWriteSessionDTO(c *subjects.IOC) (*rbac.Sessi
 	want := &c.Want
 	src := want.Properties
 	dst := new(rbac.SessionDTO)
+	buffer := want.Buffer
+
+	if buffer != nil && src == nil {
+		src2 := buffer.Properties
+		if src2 != nil {
+			src = src2
+		}
+	}
 
 	err := sessions.ConvertP2D(src, dst)
 	if err != nil {
@@ -100,10 +115,18 @@ func (inst *Filter4db) innerMakeNewResult(src *rbac.SessionDTO) (*subjects.Have,
 		return nil, err
 	}
 
+	cache := &subjects.Cache{
+		Loaded:      true,
+		Properties:  pt,
+		SessionID:   src.ID,
+		SessionUUID: src.UUID,
+	}
+
 	dst.SessionID = src.ID
 	dst.SessionUUID = src.UUID
 	dst.Properties = pt
 	dst.Status = http.StatusOK
+	dst.Cache = cache
 
 	return dst, nil
 }

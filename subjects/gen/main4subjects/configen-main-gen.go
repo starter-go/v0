@@ -40,9 +40,10 @@ func (inst*autoRegistrar) addAll() error {
     inst.register(&pd00479541f_filter4log_Filter4Log{})
     inst.register(&pd3bd430b1e_filter4cache_Filter4Cache1{})
     inst.register(&pd3bd430b1e_filter4cache_Filter4Cache2{})
-    inst.register(&pd3bd430b1e_filter4cache_Filter4CacheEmpty{})
+    inst.register(&pd3bd430b1e_filter4cache_Filter4GoodResult{})
     inst.register(&pdb4050fdbd_autoloaders_DefaultFilterChainHolder{})
     inst.register(&pdb4050fdbd_autoloaders_DefaultFilterChainLoader{})
+    inst.register(&pe36083c14c_consoles_ConsoleJwtAdapter{})
     inst.register(&pe5401edcde_filter4codec_Filter4Codec{})
 
 

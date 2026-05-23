@@ -77,10 +77,10 @@ func (inst *innerSetterImpl) SetNotBefore(t lang.Time) {
 }
 
 // SetProperty implements Setter.
-func (inst *innerSetterImpl) SetProperty(name string, value string) {
+func (inst *innerSetterImpl) SetProperty(name PropertyName, value string) {
 
 	agent := inst.innerGetAgent()
-	agent.SetString(name, value)
+	agent.SetString(string(name), value)
 
 }
 

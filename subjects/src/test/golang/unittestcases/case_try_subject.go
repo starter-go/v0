@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 
 	"github.com/starter-go/base/context2"
+	"github.com/starter-go/base/lang"
 	"github.com/starter-go/rbac"
 	"github.com/starter-go/units"
 	"github.com/starter-go/v0/subjects"
@@ -117,6 +118,8 @@ func (inst *CaseToTrySubject) run() error {
 	vlog.Debug("do: subject.update()")
 	inst.innerTryGetL1(cc)
 
+	now := lang.Now()
+
 	sett, err = sub.DoSet()
 	if err != nil {
 		return err
@@ -124,6 +127,19 @@ func (inst *CaseToTrySubject) run() error {
 	sett.SetProperty("foo", "f-value-2")
 	sett.SetProperty("ccc", "c-value-1")
 	sett.SetProperty("ddd", "d-value-1")
+
+	sett.SetProperty(subjects.PNameAvatar, "http://example.com/demo/avatar.jpg")
+	sett.SetProperty(subjects.PNameNickName, "Foo Bar")
+	sett.SetProperty(subjects.PNameAuthenticated, "1")
+	sett.SetProperty(subjects.PNameRoles, "user,admin, root")
+	sett.SetProperty(subjects.PNameLanguage, "zh-cn")
+
+	sett.SetNotBefore(now - 1)
+	sett.SetNotAfter(now + 3600000)
+
+	sett.SetUserID(9527)
+	sett.SetUserName("huaan")
+	sett.SetUserEmail("huaan9527@example.com")
 
 	err = sub.Save()
 	if err != nil {

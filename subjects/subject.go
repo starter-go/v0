@@ -10,7 +10,7 @@ import (
 )
 
 type Getter interface {
-	GetProperty(name string) string
+	GetProperty(name PropertyName) string
 
 	Names() []string
 
@@ -36,7 +36,7 @@ type Getter interface {
 }
 
 type Setter interface {
-	SetProperty(name, value string)
+	SetProperty(name PropertyName, value string)
 
 	SetSession(se *rbac.SessionDTO)
 
@@ -71,14 +71,6 @@ type Subject interface {
 	Create() error
 
 	Exit() error
-
-	// // session
-	// GetSession(result *rbac.SessionDTO) error
-	// SetSession(se *rbac.SessionDTO) error
-	// // properties
-	// GetProperty(name string) (string, error)
-	// SetProperty(name, value string) error
-	// GetPropertyNameList() ([]string, error)
 
 	DoGet() (Getter, error)
 

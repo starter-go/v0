@@ -7,18 +7,19 @@ import (
 )
 
 type Message struct {
-	Properties properties.Table
+	SessionID rbac.SessionID
 
-	// Session     *rbac.SessionDTO
-
-	SessionID   rbac.SessionID
 	SessionUUID lang.UUID
+
+	Properties properties.Table // 引用 buffer | cache 中的属性
 }
 
 type Want struct {
 
 	// base of Want
 	Message
+
+	Buffer *Buffer
 
 	Method Method
 }
@@ -27,6 +28,8 @@ type Have struct {
 
 	// base of Have
 	Message
+
+	Cache *Cache
 
 	Status int
 }

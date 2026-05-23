@@ -51,6 +51,8 @@ github.com/starter-go/units v0.1.0 h1:TeLORKMAxjrhGnsQ1FcOrWPcK2YKjjRoz3e4oHKqvl
 github.com/starter-go/units v0.1.0/go.mod h1:fnTy7hUsN6mWTak3/406hSaQ07RArTyPAX+lv5Dnr4o=
 github.com/starter-go/units v0.1.1 h1:Zd8tiu/+TiTO18afr7f8wRm4lViIG5EWUOjET+n0a3g=
 github.com/starter-go/units v0.1.1/go.mod h1:fnTy7hUsN6mWTak3/406hSaQ07RArTyPAX+lv5Dnr4o=
+github.com/starter-go/v0/libjwt v0.0.1 h1:5Z5DQaVt92kV1htELOOVWzdtCStPjj+zI5pBq+pqNUQ=
+github.com/starter-go/v0/libjwt v0.0.1/go.mod h1:lGD0R/KRMDzzs7jbNbMryJDvnUtvi+IeO0MEd/7vDc8=
 github.com/starter-go/vlog v0.9.12 h1:gaKCLPvEY6d8SoVfEemGTqyNdrFZlRqf1dVDimCqgZw=
 github.com/starter-go/vlog v0.9.12/go.mod h1:ywWUCfWNTqXrelvO4/3sQ04SCW4ClR3PiN3qpSlXhH0=
 golang.org/x/sys v0.22.0 h1:RI27ohtqKCnwULzJLqkv897zojh5/DwS/ENaMzUOaWI=

@@ -54,6 +54,11 @@ func ConvertListE2D(src []*Entity, dst []*DTO) ([]*DTO, error) {
 
 func ConvertP2E(src properties.Table, dst *Entity) error {
 
+	t0a := lang.Time(0)
+	t0b := t0a.Time()
+	dst.NotBefore = t0b
+	dst.NotAfter = t0b
+
 	getter := new(innerPTGetter)
 	getter.init(src)
 

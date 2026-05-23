@@ -70,24 +70,71 @@ func (inst *innerGetterImpl) GetNotBefore() lang.Time {
 }
 
 // GetProperty implements Getter.
-func (inst *innerGetterImpl) GetProperty(name string) string {
+func (inst *innerGetterImpl) GetProperty(name PropertyName) string {
 
 	agent := inst.innerGetAgent()
-	return agent.GetString(name)
+	return agent.GetString(string(name))
 }
 
 // GetSession implements Getter.
 func (inst *innerGetterImpl) GetSession(se *rbac.SessionDTO) bool {
 
-	const key = PNameAuthenticated
 	agent := inst.innerGetAgent()
-	// return
-	//
-	agent.GetBool(string(key))
 
-	// panic("unimplemented")
+	// keys
 
-	// todo : no impl
+	const (
+		keyNotAfter  = string(PNameNotAfter)
+		keyNotBefore = string(PNameNotBefore)
+		keyCreatedAt = string(PNameCreatedAt)
+		keyUpdatedAt = string(PNameUpdatedAt)
+
+		keySessionID     = string(PNameSessionID)
+		keySessionUUID   = string(PNameSessionUUID)
+		keyUserID        = string(PNameUserID)
+		keyUserName      = string(PNameUserName)
+		keyNickName      = string(PNameNickName)
+		keyAvatar        = string(PNameAvatar)
+		keyRoles         = string(PNameRoles)
+		keyLanguage      = string(PNameLanguage)
+		keyEmail         = string(PNameEmail)
+		keyAuthenticated = string(PNameAuthenticated)
+	)
+
+	// get
+
+	valueAuthenticated := agent.GetBool(keyAuthenticated)
+	valueNotAfter := agent.GetInt64(keyNotAfter)
+	valueNotBefore := agent.GetInt64(keyNotBefore)
+	valueCreatedAt := agent.GetInt64(keyCreatedAt)
+	valueUpdatedAt := agent.GetInt64(keyUpdatedAt)
+	valueSessionID := agent.GetInt64(keySessionID)
+	valueSessionUUID := agent.GetString(keySessionUUID)
+	valueUserName := agent.GetString(keyUserName)
+	valueUserID := agent.GetInt64(keyUserID)
+	valueNickName := agent.GetString(keyNickName)
+	valueAvatar := agent.GetString(keyAvatar)
+	valueRoles := agent.GetString(keyRoles)
+	valueEmail := agent.GetString(keyEmail)
+	valueLang := agent.GetString(keyLanguage)
+
+	// set
+
+	se.Authenticated = valueAuthenticated
+	se.CreatedAt = lang.Time(valueCreatedAt)
+	se.UpdatedAt = lang.Time(valueUpdatedAt)
+	se.StartedAt = lang.Time(valueNotBefore)
+	se.ExpiredAt = lang.Time(valueNotAfter)
+	se.UUID = lang.UUID(valueSessionUUID)
+	se.ID = rbac.SessionID(valueSessionID)
+	se.UserID = rbac.UserID(valueUserID)
+	se.Owner = rbac.UserID(valueUserID)
+	se.Username = rbac.UserName(valueUserName)
+	se.Nickname = valueNickName
+	se.Avatar = valueAvatar
+	se.Email = rbac.EmailAddress(valueEmail)
+	se.Roles = rbac.RoleNameList(valueRoles)
+	se.Language = localization.Locale(valueLang)
 
 	return false
 }

@@ -1,6 +1,7 @@
 package filter4cache
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/starter-go/v0/subjects"
@@ -34,33 +35,33 @@ func (inst *Filter4Cache1) Read(c *subjects.IOC, next subjects.ReadFilterChain) 
 		return err
 	}
 
-	// read 成功后, 创建新的 cache
-	return inst.innerMakeNewCache(c)
+	// read 成功后, 保存新的 cache
+	return inst.innerKeepNewCache(c)
 }
 
 func (inst *Filter4Cache1) innerMakeResultFromCache(c *subjects.IOC, cache *subjects.Cache) error {
 
 	have := &c.Have
+
 	have.SessionID = cache.SessionID
 	have.SessionUUID = cache.SessionUUID
 	have.Properties = cache.Properties
 	have.Status = http.StatusOK
+	have.Cache = cache
 
 	return nil
 }
 
-func (inst *Filter4Cache1) innerMakeNewCache(c *subjects.IOC) error {
+func (inst *Filter4Cache1) innerKeepNewCache(c *subjects.IOC) error {
 
 	ctx := c.Context
-	cache := new(subjects.Cache)
-	have := &c.Have
-
-	cache.Properties = have.Properties
-	cache.SessionID = have.SessionID
-	cache.SessionUUID = have.SessionUUID
-	cache.Loaded = true
-
+	cache := c.Have.Cache
 	ctx.Cache = cache
+
+	if cache == nil {
+		return fmt.Errorf("Filter4Cache1: result cache is nil")
+	}
+
 	return nil
 }
 

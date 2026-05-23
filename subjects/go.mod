@@ -13,6 +13,7 @@ require (
 	github.com/golang-jwt/jwt/v5 v5.2.0 // indirect
 	github.com/starter-go/keyvalues v0.0.1 // indirect
 	github.com/starter-go/units v0.1.1 // indirect
+	github.com/starter-go/v0/libjwt v0.0.1 // indirect
 	gorm.io/driver/mysql v1.5.2 // indirect
 )
 

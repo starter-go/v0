@@ -6,13 +6,13 @@ const (
 	FilterPriorityMin FilterPriority = iota
 
 	FilterPriorityDB
-	FilterPriorityCache2
+	FilterPriorityCache2 // with redis
 	FilterPriorityJWT
 	FilterPriorityBuffer
 	FilterPriorityCodec
-	FilterPriorityCache1
-	FilterPriorityCacheEmpty
+	FilterPriorityGoodResult
 	FilterPriorityLog
+	FilterPriorityCache1 // with runtime memory
 
 	FilterPriorityMax
 )
