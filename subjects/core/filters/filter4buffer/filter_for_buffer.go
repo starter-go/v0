@@ -85,7 +85,7 @@ func (inst *Filter4Buffer) GetRegistrationList() []*subjects.FilterRegistration 
 
 	r1 := &subjects.FilterRegistration{
 		Name:     "Filter4Buffer",
-		Enabled:  true,
+		Enabled:  false,
 		Priority: subjects.FilterPriorityBuffer,
 		Writer:   inst,
 		Reader:   nil,

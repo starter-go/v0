@@ -114,6 +114,7 @@ func (inst *innerSubjectFacade) Create() error {
 	ctx1 := inst.context
 	wtr := ctx1.GetWriter(true)
 	ctx2 := ctx1.NewIOC(MethodPost)
+	ctx2.Want.Buffer = ctx1.Buffer
 
 	err = wtr.Write(ctx2)
 	if err == nil {
@@ -136,13 +137,14 @@ func (inst *innerSubjectFacade) Reload() error {
 func (inst *innerSubjectFacade) Save() error {
 
 	ctx1 := inst.context
-	ctx2 := ctx1.NewIOC(MethodFlush)
+	ctx2 := ctx1.NewIOC(MethodPut)
 	wtr := ctx1.Writer
 	buffer := ctx1.Buffer
 	want := &ctx2.Want
 
 	if buffer != nil {
 		want.Properties = buffer.Properties
+		want.Buffer = buffer
 	}
 
 	err := wtr.Write(ctx2)

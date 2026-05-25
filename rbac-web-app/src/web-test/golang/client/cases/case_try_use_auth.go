@@ -6,6 +6,7 @@ import (
 	"github.com/starter-go/rbac"
 	"github.com/starter-go/units"
 	"github.com/starter-go/v0/htttest"
+	"github.com/starter-go/vlog"
 )
 
 type CaseTryUseAuth struct {
@@ -49,6 +50,13 @@ func (inst *CaseTryUseAuth) run() error {
 	}
 	tran.Want.Body = body1
 	tran.Have.Body = body2
+
+	defer func() {
+
+		met := tran.Want.Method
+		vlog.Debug("foo", met)
+
+	}()
 
 	return agent.Execute(tran)
 }

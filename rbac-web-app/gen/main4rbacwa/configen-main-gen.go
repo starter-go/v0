@@ -43,7 +43,7 @@ func (inst*autoRegistrar) addAll() error {
     inst.register(&p79b61f17f7_home_SessionController{})
     inst.register(&p7f79a0bbff_admin_UsersController{})
     inst.register(&pabcfb75207_idatabase_MyDatabaseAgentImpl{})
-    inst.register(&pc3ca883e25_helper_GinSubjectAdapter{})
+    inst.register(&pc3ca883e25_helper_GinLibjwtAdapter{})
     inst.register(&pc3ca883e25_helper_JWTokenController{})
     inst.register(&pf75fd20ca4_database_MyDataGroup{})
 

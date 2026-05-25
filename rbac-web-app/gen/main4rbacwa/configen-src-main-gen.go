@@ -13,6 +13,7 @@ import (
     p7f79a0bbf "github.com/starter-go/v0/rbac-web-app/app/web/controllers/admin"
     pc3ca883e2 "github.com/starter-go/v0/rbac-web-app/app/web/controllers/helper"
     p79b61f17f "github.com/starter-go/v0/rbac-web-app/app/web/controllers/home"
+    pfd2c28477 "github.com/starter-go/v0/subjects"
      "github.com/starter-go/application"
 )
 
@@ -636,6 +637,7 @@ func (inst* pc3ca883e25_helper_JWTokenController) inject(injext application.Inje
 
 	
     com.Responder = inst.getResponder(ie)
+    com.ChainHolder = inst.getChainHolder(ie)
 
 
     return nil
@@ -647,21 +649,26 @@ func (inst*pc3ca883e25_helper_JWTokenController) getResponder(ie application.Inj
 }
 
 
+func (inst*pc3ca883e25_helper_JWTokenController) getChainHolder(ie application.InjectionExt)pfd2c28477.FilterChainHolder{
+    return ie.GetComponent("#alias-fd2c28477d8555ea1fa4190037afa453-FilterChainHolder").(pfd2c28477.FilterChainHolder)
+}
 
-// type pc3ca883e2.GinSubjectAdapter in package:github.com/starter-go/v0/rbac-web-app/app/web/controllers/helper
+
+
+// type pc3ca883e2.GinLibjwtAdapter in package:github.com/starter-go/v0/rbac-web-app/app/web/controllers/helper
 //
-// id:com-c3ca883e2525cff7-helper-GinSubjectAdapter
-// class:class-fd2c28477d8555ea1fa4190037afa453-Adapter
+// id:com-c3ca883e2525cff7-helper-GinLibjwtAdapter
+// class:class-40146ff2506e686679e1be8b766901e1-AdapterProvider
 // alias:
 // scope:singleton
 //
-type pc3ca883e25_helper_GinSubjectAdapter struct {
+type pc3ca883e25_helper_GinLibjwtAdapter struct {
 }
 
-func (inst* pc3ca883e25_helper_GinSubjectAdapter) register(cr application.ComponentRegistry) error {
+func (inst* pc3ca883e25_helper_GinLibjwtAdapter) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
-	r.ID = "com-c3ca883e2525cff7-helper-GinSubjectAdapter"
-	r.Classes = "class-fd2c28477d8555ea1fa4190037afa453-Adapter"
+	r.ID = "com-c3ca883e2525cff7-helper-GinLibjwtAdapter"
+	r.Classes = "class-40146ff2506e686679e1be8b766901e1-AdapterProvider"
 	r.Aliases = ""
 	r.Scope = "singleton"
 	r.NewFunc = inst.new
@@ -669,19 +676,55 @@ func (inst* pc3ca883e25_helper_GinSubjectAdapter) register(cr application.Compon
 	return r.Commit()
 }
 
-func (inst* pc3ca883e25_helper_GinSubjectAdapter) new() any {
-    return &pc3ca883e2.GinSubjectAdapter{}
+func (inst* pc3ca883e25_helper_GinLibjwtAdapter) new() any {
+    return &pc3ca883e2.GinLibjwtAdapter{}
 }
 
-func (inst* pc3ca883e25_helper_GinSubjectAdapter) inject(injext application.InjectionExt, instance any) error {
+func (inst* pc3ca883e25_helper_GinLibjwtAdapter) inject(injext application.InjectionExt, instance any) error {
 	ie := injext
-	com := instance.(*pc3ca883e2.GinSubjectAdapter)
+	com := instance.(*pc3ca883e2.GinLibjwtAdapter)
 	nop(ie, com)
 
 	
+    com.MyName = inst.getMyName(ie)
+    com.MyPriority = inst.getMyPriority(ie)
+    com.MyEnabled = inst.getMyEnabled(ie)
+    com.MyUseCookie = inst.getMyUseCookie(ie)
+    com.MyUseHeader = inst.getMyUseHeader(ie)
+    com.MyUseQuery = inst.getMyUseQuery(ie)
 
 
     return nil
+}
+
+
+func (inst*pc3ca883e25_helper_GinLibjwtAdapter) getMyName(ie application.InjectionExt)string{
+    return ie.GetString("${jwt-adapter.libgin.name}")
+}
+
+
+func (inst*pc3ca883e25_helper_GinLibjwtAdapter) getMyPriority(ie application.InjectionExt)int{
+    return ie.GetInt("${jwt-adapter.libgin.priority}")
+}
+
+
+func (inst*pc3ca883e25_helper_GinLibjwtAdapter) getMyEnabled(ie application.InjectionExt)bool{
+    return ie.GetBool("${jwt-adapter.libgin.enabled}")
+}
+
+
+func (inst*pc3ca883e25_helper_GinLibjwtAdapter) getMyUseCookie(ie application.InjectionExt)bool{
+    return ie.GetBool("${jwt-adapter.libgin.use-http-cookie}")
+}
+
+
+func (inst*pc3ca883e25_helper_GinLibjwtAdapter) getMyUseHeader(ie application.InjectionExt)bool{
+    return ie.GetBool("${jwt-adapter.libgin.use-http-header}")
+}
+
+
+func (inst*pc3ca883e25_helper_GinLibjwtAdapter) getMyUseQuery(ie application.InjectionExt)bool{
+    return ie.GetBool("${jwt-adapter.libgin.use-http-query}")
 }
 
 

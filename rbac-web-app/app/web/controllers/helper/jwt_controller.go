@@ -22,6 +22,8 @@ type JWTokenController struct {
 	// SessionService sessions.Service //x-starter:inject("#")
 	// UserService    users.Service    //x-starter:inject("#")
 
+	ChainHolder subjects.FilterChainHolder //starter:inject("#")
+
 }
 
 func (inst *JWTokenController) _impl() libgin.Controller {
@@ -82,12 +84,23 @@ func (inst *JWTokenController) doPrepareRbacContext(c *gin.Context) error {
 
 	webcontexts.SetupAccessForGinContext(c)
 
-	sub, err := subjects.GetCurrent(c)
+	ada, err := subjects.GetAdapter(c)
 	if err != nil {
 		return err
 	}
 
-	sub.GetContext()
+	holder, err := ada.GetHolder(c)
+	if err != nil {
+		return err
+	}
+
+	subCtx := holder.Context
+	subCtx.CC = c
+	subCtx.ChainHolder = inst.ChainHolder
+
+	// test
+	// facade := subCtx.GetFacade(true)
+	// facade.Load()
 
 	return nil
 }
