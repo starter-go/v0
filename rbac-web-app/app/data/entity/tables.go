@@ -4,7 +4,7 @@ func ListAllTables(prefix string) []any {
 
 	list := make([]any, 0)
 
-	list = append(list, new(Session))
+	// list = append(list, new(Session))
 	list = append(list, new(User))
 
 	if len(prefix) > 0 {
@@ -18,9 +18,9 @@ func ListAllTables(prefix string) []any {
 
 var theTableNamePrefix = "rbac_wa_"
 
-func (Session) TableName() string {
-	return theTableNamePrefix + "sessions"
-}
+// func (Session) TableName() string {
+// 	return theTableNamePrefix + "sessions"
+// }
 
 func (User) TableName() string {
 	return theTableNamePrefix + "users"

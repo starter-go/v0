@@ -1,34 +1,24 @@
 package statestores
 
-import (
-	"context"
-	"time"
+// type Context struct {
+// 	CC context.Context
 
-	"github.com/starter-go/application/properties"
-	"github.com/starter-go/base/lang"
-	"github.com/starter-go/v0/rbac-web-app/app/data/dxo"
-	"github.com/starter-go/v0/rbac-web-app/app/web/dto"
-)
+// 	Method Method
 
-type Context struct {
-	CC context.Context
+// 	SessionID   dxo.SessionID
+// 	SessionUUID lang.UUID
 
-	Method Method
+// 	Properties properties.Table
 
-	SessionID   dxo.SessionID
-	SessionUUID lang.UUID
+// 	// dto(s)
 
-	Properties properties.Table
+// 	User *dto.User
 
-	// dto(s)
+// 	Session *dto.Session
 
-	User *dto.User
+// 	Token *dto.Token
 
-	Session *dto.Session
+// 	SessionMaxAge time.Duration
 
-	Token *dto.Token
-
-	SessionMaxAge time.Duration
-
-	TokenMaxAge time.Duration
-}
+// 	TokenMaxAge time.Duration
+// }

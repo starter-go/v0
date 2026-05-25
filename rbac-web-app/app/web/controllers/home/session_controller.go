@@ -7,11 +7,11 @@ import (
 	"github.com/starter-go/libgin"
 	"github.com/starter-go/rbac"
 
-	"github.com/starter-go/v0/rbac-web-app/app/classes/sessions"
-	"github.com/starter-go/v0/rbac-web-app/app/classes/subjects"
 	"github.com/starter-go/v0/rbac-web-app/app/data/dxo"
 	"github.com/starter-go/v0/rbac-web-app/app/web/dto"
 	"github.com/starter-go/v0/rbac-web-app/app/web/vo"
+	"github.com/starter-go/v0/subjects"
+	"github.com/starter-go/v0/subjects/core/classes/sessions"
 )
 
 type SessionController struct {
@@ -22,7 +22,7 @@ type SessionController struct {
 
 	Responder libgin.Responder //starter:inject("#")
 
-	Service sessions.Service //starter:inject("#")
+	// Service sessions.Service //x-starter:inject("#")
 
 }
 
@@ -144,19 +144,21 @@ func (inst *innerSessionTask) doGetMock() error {
 func (inst *innerSessionTask) doGetCurrentSessionInfo() error {
 
 	ctx := inst.context
-	// ser := inst.controller.Service
 
-	sub, err := subjects.Current(ctx)
+	sub, err := subjects.GetCurrent(ctx)
 	if err != nil {
 		return err
 	}
 
-	ses, err := sub.GetSession()
+	gett, err := sub.DoGet()
 	if err != nil {
 		return err
 	}
 
-	inst.body2.Items = []*dto.Session{ses}
+	se := new(sessions.DTO)
+	gett.GetSession(se)
+
+	inst.body2.Items = []*rbac.SessionDTO{se}
 	return nil
 }
 

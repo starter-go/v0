@@ -30,11 +30,6 @@ func (inst *autoRegistrar) register(factory comFactory) error {
 func (inst*autoRegistrar) addAll() error {
 
     
-    inst.register(&p0fcabc88b9_debug_MockController{})
-    inst.register(&p157aad7a54_isubject_SubjectServiceImpl{})
-    inst.register(&p3821d5b0f6_itokens_JWTokenServiceImpl{})
-    inst.register(&p3821d5b0f6_itokens_TokenServiceImpl{})
-    inst.register(&p3821d5b0f6_itokens_TokenStoreFilter{})
     inst.register(&p383a5f3ee9_iauthx_ActionLoginAuthorizer{})
     inst.register(&p383a5f3ee9_iauthx_AuthenticationServiceImpl{})
     inst.register(&p383a5f3ee9_iauthx_AuthorizationServiceImpl{})
@@ -45,17 +40,11 @@ func (inst*autoRegistrar) addAll() error {
     inst.register(&p4b670e5fac_iusers_UserServiceImpl{})
     inst.register(&p7249a1596a_controllers_ExampleController{})
     inst.register(&p79b61f17f7_home_AuthxController{})
-    inst.register(&p79b61f17f7_home_JWTokenController{})
     inst.register(&p79b61f17f7_home_SessionController{})
     inst.register(&p7f79a0bbff_admin_UsersController{})
-    inst.register(&p8841b23836_isessions_CacheSessionStoreFilter{})
-    inst.register(&p8841b23836_isessions_DatabaseSessionStoreFilter{})
-    inst.register(&p8841b23836_isessions_SessionDaoImpl{})
-    inst.register(&p8841b23836_isessions_SessionServiceImpl{})
-    inst.register(&p8841b23836_isessions_SimpleStoreChainHolder{})
-    inst.register(&p8841b23836_isessions_SimpleStoreChainLoader{})
     inst.register(&pabcfb75207_idatabase_MyDatabaseAgentImpl{})
-    inst.register(&pc500a84655_istore_StateStoreServiceImpl{})
+    inst.register(&pc3ca883e25_helper_GinSubjectAdapter{})
+    inst.register(&pc3ca883e25_helper_JWTokenController{})
     inst.register(&pf75fd20ca4_database_MyDataGroup{})
 
 

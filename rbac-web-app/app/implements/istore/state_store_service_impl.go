@@ -1,29 +1,29 @@
 package istore
 
-import (
-	"context"
+// import (
+// 	"context"
 
-	"github.com/starter-go/v0/rbac-web-app/app/classes/statestores"
-)
+// 	"github.com/starter-go/v0/rbac-web-app/app/classes/statestores"
+// )
 
-type StateStoreServiceImpl struct {
+// type StateStoreServiceImpl struct {
 
-	//starter:component
+// 	//starter:component
 
-	_as func(statestores.Service) //starter:as("#")
+// 	_as func(statestores.Service) //starter:as("#")
 
-	Holder statestores.FilterChainHolder //starter:inject("#")
+// 	Holder statestores.FilterChainHolder //starter:inject("#")
 
-}
+// }
 
-// GetStore implements statestores.Service.
-func (inst *StateStoreServiceImpl) GetStore(cc context.Context) (statestores.Store, error) {
+// // GetStore implements statestores.Service.
+// func (inst *StateStoreServiceImpl) GetStore(cc context.Context) (statestores.Store, error) {
 
-	ch, err := inst.Holder.GetChain()
+// 	ch, err := inst.Holder.GetChain()
 
-	return ch, err
-}
+// 	return ch, err
+// }
 
-func (inst *StateStoreServiceImpl) _impl() statestores.Service {
-	return inst
-}
+// func (inst *StateStoreServiceImpl) _impl() statestores.Service {
+// 	return inst
+// }

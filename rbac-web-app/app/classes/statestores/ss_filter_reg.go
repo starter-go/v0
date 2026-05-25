@@ -1,15 +1,15 @@
 package statestores
 
-type FilterRegistry interface {
-	ListRegistrations() []*FilterRegistration
-}
+// type FilterRegistry interface {
+// 	ListRegistrations() []*FilterRegistration
+// }
 
-type FilterRegistration struct {
-	Name string
+// type FilterRegistration struct {
+// 	Name string
 
-	Enabled bool
+// 	Enabled bool
 
-	Priority FilterPriority
+// 	Priority FilterPriority
 
-	Filter Filter
-}
+// 	Filter Filter
+// }

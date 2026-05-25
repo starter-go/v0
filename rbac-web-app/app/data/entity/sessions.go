@@ -1,24 +1,18 @@
 package entity
 
-import (
-	"time"
+// type Session struct {
 
-	"github.com/starter-go/v0/rbac-web-app/app/data/dxo"
-)
+// 	// id
+// 	ID dxo.SessionID
 
-type Session struct {
+// 	Base
 
-	// id
-	ID dxo.SessionID
+// 	AliveFrom time.Time
+// 	AliveTo   time.Time
 
-	Base
+// 	DisplayName string
+// 	Avatar      dxo.URL
+// 	Roles       dxo.RoleNameList
 
-	AliveFrom time.Time
-	AliveTo   time.Time
-
-	DisplayName string
-	Avatar      dxo.URL
-	Roles       dxo.RoleNameList
-
-	Alive bool
-}
+// 	Alive bool
+// }

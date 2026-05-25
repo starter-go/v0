@@ -1,7 +1,6 @@
 package test4rbacwa
 import (
     pd1a916a20 "github.com/starter-go/libgin"
-    p45dbe3237 "github.com/starter-go/v0/rbac-web-app/app/classes/subjects"
     p2d258e798 "github.com/starter-go/v0/rbac-web-app/app/classes/users"
     pfabbd91b2 "github.com/starter-go/v0/rbac-web-app/src/test/golang/unittestcases"
     p78d6a2ce1 "github.com/starter-go/v0/rbac-web-app/src/test/golang/web_unit/wuclient"
@@ -78,15 +77,9 @@ func (inst* pfabbd91b2d_unittestcases_CaseTrySubject) inject(injext application.
 	nop(ie, com)
 
 	
-    com.Subjects = inst.getSubjects(ie)
 
 
     return nil
-}
-
-
-func (inst*pfabbd91b2d_unittestcases_CaseTrySubject) getSubjects(ie application.InjectionExt)p45dbe3237.Service{
-    return ie.GetComponent("#alias-45dbe3237457ab5b761a911af615329f-Service").(p45dbe3237.Service)
 }
 
 

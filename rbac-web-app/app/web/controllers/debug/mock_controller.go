@@ -1,236 +1,219 @@
 package debug
 
-import (
-	"strconv"
+// type MockController struct {
 
-	"github.com/gin-gonic/gin"
-	"github.com/starter-go/base/lang"
-	"github.com/starter-go/libgin"
-	"github.com/starter-go/vlog"
+// 	//starter:component
 
-	"github.com/starter-go/v0/rbac-web-app/app/classes/sessions"
-	"github.com/starter-go/v0/rbac-web-app/app/classes/subjects"
-	"github.com/starter-go/v0/rbac-web-app/app/classes/tokens"
-	"github.com/starter-go/v0/rbac-web-app/app/classes/users"
-	"github.com/starter-go/v0/rbac-web-app/app/data/dxo"
-	"github.com/starter-go/v0/rbac-web-app/app/web/dto"
-	"github.com/starter-go/v0/rbac-web-app/app/web/vo"
-)
+// 	_as func(libgin.Controller) //starter:as(".")
 
-type MockController struct {
+// 	Responder libgin.Responder //starter:inject("#")
 
-	//starter:component
+// 	TokenService   tokens.Service   //starter:inject("#")
+// 	SessionService sessions.Service //starter:inject("#")
+// 	UserService    users.Service    //starter:inject("#")
 
-	_as func(libgin.Controller) //starter:as(".")
+// }
 
-	Responder libgin.Responder //starter:inject("#")
+// func (inst *MockController) _impl() libgin.Controller {
+// 	return inst
+// }
 
-	TokenService   tokens.Service   //starter:inject("#")
-	SessionService sessions.Service //starter:inject("#")
-	UserService    users.Service    //starter:inject("#")
+// func (inst *MockController) Registration() *libgin.ControllerRegistration {
+// 	r1 := new(libgin.ControllerRegistration)
+// 	r1.Route = inst.route
+// 	return r1
+// }
 
-}
+// func (inst *MockController) route(rp libgin.RouterProxy) error {
 
-func (inst *MockController) _impl() libgin.Controller {
-	return inst
-}
+// 	rp = rp.For("mocks")
 
-func (inst *MockController) Registration() *libgin.ControllerRegistration {
-	r1 := new(libgin.ControllerRegistration)
-	r1.Route = inst.route
-	return r1
-}
+// 	// rp.GET("", inst.handleGetMock)
 
-func (inst *MockController) route(rp libgin.RouterProxy) error {
+// 	rp.GET("subject", inst.handleGetSubject)
 
-	rp = rp.For("mocks")
+// 	rp.POST("login", inst.handlePostLogin)
+// 	rp.POST("init-session", inst.handlePostInitSession)
 
-	// rp.GET("", inst.handleGetMock)
+// 	return nil
+// }
 
-	rp.GET("subject", inst.handleGetSubject)
+// func (inst *MockController) handleGetMock(c *gin.Context) {
 
-	rp.POST("login", inst.handlePostLogin)
-	rp.POST("init-session", inst.handlePostInitSession)
+// 	task := new(innerMockTask)
+// 	task.context = c
+// 	task.controller = inst
 
-	return nil
-}
+// 	task.execute(task.doGetMock)
+// }
 
-func (inst *MockController) handleGetMock(c *gin.Context) {
+// func (inst *MockController) handleGetSubject(c *gin.Context) {
 
-	task := new(innerMockTask)
-	task.context = c
-	task.controller = inst
+// 	task := new(innerMockTask)
+// 	task.context = c
+// 	task.controller = inst
 
-	task.execute(task.doGetMock)
-}
+// 	task.execute(task.doGetSubject)
+// }
 
-func (inst *MockController) handleGetSubject(c *gin.Context) {
+// func (inst *MockController) handlePostLogin(c *gin.Context) {
 
-	task := new(innerMockTask)
-	task.context = c
-	task.controller = inst
+// 	task := new(innerMockTask)
+// 	task.context = c
+// 	task.controller = inst
 
-	task.execute(task.doGetSubject)
-}
+// 	task.execute(task.doLogin)
+// }
 
-func (inst *MockController) handlePostLogin(c *gin.Context) {
+// func (inst *MockController) handlePostInitSession(c *gin.Context) {
 
-	task := new(innerMockTask)
-	task.context = c
-	task.controller = inst
+// 	task := new(innerMockTask)
+// 	task.context = c
+// 	task.controller = inst
 
-	task.execute(task.doLogin)
-}
+// 	task.execute(task.doInitSession)
+// }
 
-func (inst *MockController) handlePostInitSession(c *gin.Context) {
+// ////////////////////////////////////////////////////////////////////////////////
 
-	task := new(innerMockTask)
-	task.context = c
-	task.controller = inst
+// type innerMockTask struct {
+// 	context    *gin.Context
+// 	controller *MockController
 
-	task.execute(task.doInitSession)
-}
+// 	wantRequestID   bool
+// 	wantRequestBody bool
 
-////////////////////////////////////////////////////////////////////////////////
+// 	id    dxo.ExampleID
+// 	body1 vo.Example
+// 	body2 vo.Example
+// }
 
-type innerMockTask struct {
-	context    *gin.Context
-	controller *MockController
+// func (inst *innerMockTask) open(c *gin.Context) error {
 
-	wantRequestID   bool
-	wantRequestBody bool
+// 	if inst.wantRequestID {
+// 		idstr := c.Param("id")
+// 		num, err := strconv.ParseInt(idstr, 0, 0)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		inst.id = dxo.ExampleID(num)
+// 	}
 
-	id    dxo.ExampleID
-	body1 vo.Example
-	body2 vo.Example
-}
-
-func (inst *innerMockTask) open(c *gin.Context) error {
-
-	if inst.wantRequestID {
-		idstr := c.Param("id")
-		num, err := strconv.ParseInt(idstr, 0, 0)
-		if err != nil {
-			return err
-		}
-		inst.id = dxo.ExampleID(num)
-	}
-
-	if inst.wantRequestBody {
-		body := &inst.body1
-		err := c.BindJSON(body)
-		if err != nil {
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (inst *innerMockTask) send(err error) {
-
-	ctx := inst.context
-	body := &inst.body2
-	code := body.Status
-	resp := new(libgin.Response)
-	sender := inst.controller.Responder
-
-	resp.Error = err
-	resp.Context = ctx
-	resp.Status = code
-	resp.Data = body
-
-	sender.Send(resp)
-}
-
-func (inst *innerMockTask) execute(fn func() error) {
-	ctx := inst.context
-	err := inst.open(ctx)
-	if err == nil {
-		err = fn()
-	}
-	inst.send(err)
-}
-
-func (inst *innerMockTask) doGetMock() error {
-
-	return nil
-}
-
-func (inst *innerMockTask) doGetSubject() error {
-
-	cc := inst.context
-	sub, err := subjects.Current(cc)
-	if err != nil {
-		return err
-	}
-
-	user, err := sub.GetUser()
-	if err != nil {
-		return err
-	}
-
-	uid := user.ID
-	vlog.Info("subjects.current.uid=%d", uid)
-
-	return nil
-}
-
-func (inst *innerMockTask) doLogin() error {
-
-	return nil
-}
-
-func (inst *innerMockTask) doInitSession() error {
-
-	ctx := inst.context
-	ser1 := inst.controller.TokenService
-	ser2 := inst.controller.SessionService
-	ser3 := inst.controller.UserService
-
-	now := lang.Now()
-	nowStr := strconv.FormatInt(now.Int(), 10)
-
-	session := new(dto.Session)
-	token := new(dto.Token)
-	user := new(dto.User)
-
-	// user
-
-	user.Name = "user_" + dxo.UserName(nowStr)
-	user.Email = "mail_" + dxo.EmailAddress(nowStr)
-	user.Mobile = "phone_" + dxo.PhoneNumber(nowStr)
-
-	user2, err := ser3.Insert(ctx, user)
-	if err != nil {
-		return err
-	}
-
-	// session
-
-	session.DisplayName = user2.DisplayName
-	session.Avatar = user2.Avatar
-	session.Owner = user2.ID
-	session.AliveFrom = now
-	session.AliveTo = now + 3600*1000
-
-	sess2, err := ser2.Insert(ctx, session)
-	if err != nil {
-		return err
-	}
-
-	// token
-
-	token.SessionID = sess2.ID
-	token.SessionUUID = sess2.UUID
-	token2, err := ser1.SetCurrentToken(ctx, token)
-	if err != nil {
-		return err
-	}
-	vlog.Info("token2 = %v", token2)
-
-	return nil
-}
-
-////////////////////////////////////////////////////////////////////////////////
-// EOF
+// 	if inst.wantRequestBody {
+// 		body := &inst.body1
+// 		err := c.BindJSON(body)
+// 		if err != nil {
+// 			return err
+// 		}
+// 	}
+
+// 	return nil
+// }
+
+// func (inst *innerMockTask) send(err error) {
+
+// 	ctx := inst.context
+// 	body := &inst.body2
+// 	code := body.Status
+// 	resp := new(libgin.Response)
+// 	sender := inst.controller.Responder
+
+// 	resp.Error = err
+// 	resp.Context = ctx
+// 	resp.Status = code
+// 	resp.Data = body
+
+// 	sender.Send(resp)
+// }
+
+// func (inst *innerMockTask) execute(fn func() error) {
+// 	ctx := inst.context
+// 	err := inst.open(ctx)
+// 	if err == nil {
+// 		err = fn()
+// 	}
+// 	inst.send(err)
+// }
+
+// func (inst *innerMockTask) doGetMock() error {
+
+// 	return nil
+// }
+
+// func (inst *innerMockTask) doGetSubject() error {
+
+// 	cc := inst.context
+// 	sub, err := subjects.Current(cc)
+// 	if err != nil {
+// 		return err
+// 	}
+
+// 	user, err := sub.GetUser()
+// 	if err != nil {
+// 		return err
+// 	}
+
+// 	uid := user.ID
+// 	vlog.Info("subjects.current.uid=%d", uid)
+
+// 	return nil
+// }
+
+// func (inst *innerMockTask) doLogin() error {
+
+// 	return nil
+// }
+
+// func (inst *innerMockTask) doInitSession() error {
+
+// 	ctx := inst.context
+// 	ser1 := inst.controller.TokenService
+// 	ser2 := inst.controller.SessionService
+// 	ser3 := inst.controller.UserService
+
+// 	now := lang.Now()
+// 	nowStr := strconv.FormatInt(now.Int(), 10)
+
+// 	session := new(dto.Session)
+// 	token := new(dto.Token)
+// 	user := new(dto.User)
+
+// 	// user
+
+// 	user.Name = "user_" + dxo.UserName(nowStr)
+// 	user.Email = "mail_" + dxo.EmailAddress(nowStr)
+// 	user.Mobile = "phone_" + dxo.PhoneNumber(nowStr)
+
+// 	user2, err := ser3.Insert(ctx, user)
+// 	if err != nil {
+// 		return err
+// 	}
+
+// 	// session
+
+// 	session.DisplayName = user2.DisplayName
+// 	session.Avatar = user2.Avatar
+// 	session.Owner = user2.ID
+// 	session.AliveFrom = now
+// 	session.AliveTo = now + 3600*1000
+
+// 	sess2, err := ser2.Insert(ctx, session)
+// 	if err != nil {
+// 		return err
+// 	}
+
+// 	// token
+
+// 	token.SessionID = sess2.ID
+// 	token.SessionUUID = sess2.UUID
+// 	token2, err := ser1.SetCurrentToken(ctx, token)
+// 	if err != nil {
+// 		return err
+// 	}
+// 	vlog.Info("token2 = %v", token2)
+
+// 	return nil
+// }
+
+// ////////////////////////////////////////////////////////////////////////////////
+// // EOF

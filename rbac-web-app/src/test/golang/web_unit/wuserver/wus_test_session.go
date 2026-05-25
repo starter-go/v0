@@ -5,7 +5,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/starter-go/libgin"
-	"github.com/starter-go/v0/rbac-web-app/app/classes/subjects"
 	"github.com/starter-go/v0/rbac-web-app/app/classes/users"
 	"github.com/starter-go/v0/rbac-web-app/app/classes/webcontexts"
 )
@@ -61,28 +60,30 @@ func (inst *WebUnitTestSessionController) handleFetchSession(c *gin.Context) {
 
 func (inst *WebUnitTestSessionController) handleInsertSession(c *gin.Context) {
 
-	inst.setupWebContext(c)
+	// inst.setupWebContext(c)
 
-	sub, err := subjects.Current(c)
-	if err != nil {
-		c.AbortWithError(0, err)
-		return
-	}
+	// sub, err := subjects.Current(c)
+	// if err != nil {
+	// 	c.AbortWithError(0, err)
+	// 	return
+	// }
 
-	sub.SetProperty("a", "11")
-	sub.SetProperty("b", "22")
+	// sub.SetProperty("a", "11")
+	// sub.SetProperty("b", "22")
 
-	err = sub.Create()
-	if err != nil {
-		c.AbortWithError(0, err)
-		return
-	}
+	// err = sub.Create()
+	// if err != nil {
+	// 	c.AbortWithError(0, err)
+	// 	return
+	// }
 
-	code := http.StatusOK
-	ctype := "text/plain"
-	str := "hello, web-unit"
+	// code := http.StatusOK
+	// ctype := "text/plain"
+	// str := "hello, web-unit"
 
-	c.Data(code, ctype, []byte(str))
+	// c.Data(code, ctype, []byte(str))
+
+	panic("no impl")
 }
 
 func (inst *WebUnitTestSessionController) handleUpdateSession(c *gin.Context) {

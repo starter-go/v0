@@ -4,21 +4,14 @@ import (
     p512a30914 "github.com/starter-go/libgorm"
     p9621e8b71 "github.com/starter-go/security/random"
     p84e86b31b "github.com/starter-go/v0/rbac-web-app/app/classes/authx"
-    p63b715cf9 "github.com/starter-go/v0/rbac-web-app/app/classes/sessions"
-    p6489a1c97 "github.com/starter-go/v0/rbac-web-app/app/classes/statestores"
-    p441b1814d "github.com/starter-go/v0/rbac-web-app/app/classes/tokens"
     p2d258e798 "github.com/starter-go/v0/rbac-web-app/app/classes/users"
     pf75fd20ca "github.com/starter-go/v0/rbac-web-app/app/data/database"
     p383a5f3ee "github.com/starter-go/v0/rbac-web-app/app/implements/iauthx"
     pabcfb7520 "github.com/starter-go/v0/rbac-web-app/app/implements/idatabase"
-    p8841b2383 "github.com/starter-go/v0/rbac-web-app/app/implements/isessions"
-    pc500a8465 "github.com/starter-go/v0/rbac-web-app/app/implements/istore"
-    p157aad7a5 "github.com/starter-go/v0/rbac-web-app/app/implements/isubject"
-    p3821d5b0f "github.com/starter-go/v0/rbac-web-app/app/implements/itokens"
     p4b670e5fa "github.com/starter-go/v0/rbac-web-app/app/implements/iusers"
     p7249a1596 "github.com/starter-go/v0/rbac-web-app/app/web/controllers"
     p7f79a0bbf "github.com/starter-go/v0/rbac-web-app/app/web/controllers/admin"
-    p0fcabc88b "github.com/starter-go/v0/rbac-web-app/app/web/controllers/debug"
+    pc3ca883e2 "github.com/starter-go/v0/rbac-web-app/app/web/controllers/helper"
     p79b61f17f "github.com/starter-go/v0/rbac-web-app/app/web/controllers/home"
      "github.com/starter-go/application"
 )
@@ -122,21 +115,9 @@ func (inst* p383a5f3ee9_iauthx_ActionLoginAuthorizer) inject(injext application.
 	nop(ie, com)
 
 	
-    com.SessionService = inst.getSessionService(ie)
-    com.TokenService = inst.getTokenService(ie)
 
 
     return nil
-}
-
-
-func (inst*p383a5f3ee9_iauthx_ActionLoginAuthorizer) getSessionService(ie application.InjectionExt)p63b715cf9.Service{
-    return ie.GetComponent("#alias-63b715cf9c89c4b9295921d813a75e67-Service").(p63b715cf9.Service)
-}
-
-
-func (inst*p383a5f3ee9_iauthx_ActionLoginAuthorizer) getTokenService(ie application.InjectionExt)p441b1814d.Service{
-    return ie.GetComponent("#alias-441b1814dcb3d885c070bf59d5773c63-Service").(p441b1814d.Service)
 }
 
 
@@ -429,550 +410,6 @@ func (inst*pabcfb75207_idatabase_MyDatabaseAgentImpl) getDSManager(ie applicatio
 
 
 
-// type p8841b2383.CacheSessionStoreFilter in package:github.com/starter-go/v0/rbac-web-app/app/implements/isessions
-//
-// id:com-8841b23836065757-isessions-CacheSessionStoreFilter
-// class:class-6489a1c97ae609f33eb9078085053c74-FilterRegistry
-// alias:
-// scope:singleton
-//
-type p8841b23836_isessions_CacheSessionStoreFilter struct {
-}
-
-func (inst* p8841b23836_isessions_CacheSessionStoreFilter) register(cr application.ComponentRegistry) error {
-	r := cr.NewRegistration()
-	r.ID = "com-8841b23836065757-isessions-CacheSessionStoreFilter"
-	r.Classes = "class-6489a1c97ae609f33eb9078085053c74-FilterRegistry"
-	r.Aliases = ""
-	r.Scope = "singleton"
-	r.NewFunc = inst.new
-	r.InjectFunc = inst.inject
-	return r.Commit()
-}
-
-func (inst* p8841b23836_isessions_CacheSessionStoreFilter) new() any {
-    return &p8841b2383.CacheSessionStoreFilter{}
-}
-
-func (inst* p8841b23836_isessions_CacheSessionStoreFilter) inject(injext application.InjectionExt, instance any) error {
-	ie := injext
-	com := instance.(*p8841b2383.CacheSessionStoreFilter)
-	nop(ie, com)
-
-	
-
-
-    return nil
-}
-
-
-
-// type p8841b2383.SessionDaoImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/isessions
-//
-// id:com-8841b23836065757-isessions-SessionDaoImpl
-// class:
-// alias:alias-63b715cf9c89c4b9295921d813a75e67-DAO
-// scope:singleton
-//
-type p8841b23836_isessions_SessionDaoImpl struct {
-}
-
-func (inst* p8841b23836_isessions_SessionDaoImpl) register(cr application.ComponentRegistry) error {
-	r := cr.NewRegistration()
-	r.ID = "com-8841b23836065757-isessions-SessionDaoImpl"
-	r.Classes = ""
-	r.Aliases = "alias-63b715cf9c89c4b9295921d813a75e67-DAO"
-	r.Scope = "singleton"
-	r.NewFunc = inst.new
-	r.InjectFunc = inst.inject
-	return r.Commit()
-}
-
-func (inst* p8841b23836_isessions_SessionDaoImpl) new() any {
-    return &p8841b2383.SessionDaoImpl{}
-}
-
-func (inst* p8841b23836_isessions_SessionDaoImpl) inject(injext application.InjectionExt, instance any) error {
-	ie := injext
-	com := instance.(*p8841b2383.SessionDaoImpl)
-	nop(ie, com)
-
-	
-    com.Agent = inst.getAgent(ie)
-    com.UUIDSer = inst.getUUIDSer(ie)
-
-
-    return nil
-}
-
-
-func (inst*p8841b23836_isessions_SessionDaoImpl) getAgent(ie application.InjectionExt)pf75fd20ca.Agent{
-    return ie.GetComponent("#alias-f75fd20ca4f14f60caace00a3f949b98-Agent").(pf75fd20ca.Agent)
-}
-
-
-func (inst*p8841b23836_isessions_SessionDaoImpl) getUUIDSer(ie application.InjectionExt)p9621e8b71.UUIDService{
-    return ie.GetComponent("#alias-9621e8b71013b0fc25942a1749ed3652-UUIDService").(p9621e8b71.UUIDService)
-}
-
-
-
-// type p8841b2383.DatabaseSessionStoreFilter in package:github.com/starter-go/v0/rbac-web-app/app/implements/isessions
-//
-// id:com-8841b23836065757-isessions-DatabaseSessionStoreFilter
-// class:class-6489a1c97ae609f33eb9078085053c74-FilterRegistry
-// alias:
-// scope:singleton
-//
-type p8841b23836_isessions_DatabaseSessionStoreFilter struct {
-}
-
-func (inst* p8841b23836_isessions_DatabaseSessionStoreFilter) register(cr application.ComponentRegistry) error {
-	r := cr.NewRegistration()
-	r.ID = "com-8841b23836065757-isessions-DatabaseSessionStoreFilter"
-	r.Classes = "class-6489a1c97ae609f33eb9078085053c74-FilterRegistry"
-	r.Aliases = ""
-	r.Scope = "singleton"
-	r.NewFunc = inst.new
-	r.InjectFunc = inst.inject
-	return r.Commit()
-}
-
-func (inst* p8841b23836_isessions_DatabaseSessionStoreFilter) new() any {
-    return &p8841b2383.DatabaseSessionStoreFilter{}
-}
-
-func (inst* p8841b23836_isessions_DatabaseSessionStoreFilter) inject(injext application.InjectionExt, instance any) error {
-	ie := injext
-	com := instance.(*p8841b2383.DatabaseSessionStoreFilter)
-	nop(ie, com)
-
-	
-    com.Sessions = inst.getSessions(ie)
-
-
-    return nil
-}
-
-
-func (inst*p8841b23836_isessions_DatabaseSessionStoreFilter) getSessions(ie application.InjectionExt)p63b715cf9.Service{
-    return ie.GetComponent("#alias-63b715cf9c89c4b9295921d813a75e67-Service").(p63b715cf9.Service)
-}
-
-
-
-// type p8841b2383.SessionServiceImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/isessions
-//
-// id:com-8841b23836065757-isessions-SessionServiceImpl
-// class:
-// alias:alias-63b715cf9c89c4b9295921d813a75e67-Service
-// scope:singleton
-//
-type p8841b23836_isessions_SessionServiceImpl struct {
-}
-
-func (inst* p8841b23836_isessions_SessionServiceImpl) register(cr application.ComponentRegistry) error {
-	r := cr.NewRegistration()
-	r.ID = "com-8841b23836065757-isessions-SessionServiceImpl"
-	r.Classes = ""
-	r.Aliases = "alias-63b715cf9c89c4b9295921d813a75e67-Service"
-	r.Scope = "singleton"
-	r.NewFunc = inst.new
-	r.InjectFunc = inst.inject
-	return r.Commit()
-}
-
-func (inst* p8841b23836_isessions_SessionServiceImpl) new() any {
-    return &p8841b2383.SessionServiceImpl{}
-}
-
-func (inst* p8841b23836_isessions_SessionServiceImpl) inject(injext application.InjectionExt, instance any) error {
-	ie := injext
-	com := instance.(*p8841b2383.SessionServiceImpl)
-	nop(ie, com)
-
-	
-    com.Dao = inst.getDao(ie)
-    com.TokenService = inst.getTokenService(ie)
-    com.StoreChainHolder = inst.getStoreChainHolder(ie)
-
-
-    return nil
-}
-
-
-func (inst*p8841b23836_isessions_SessionServiceImpl) getDao(ie application.InjectionExt)p63b715cf9.DAO{
-    return ie.GetComponent("#alias-63b715cf9c89c4b9295921d813a75e67-DAO").(p63b715cf9.DAO)
-}
-
-
-func (inst*p8841b23836_isessions_SessionServiceImpl) getTokenService(ie application.InjectionExt)p441b1814d.Service{
-    return ie.GetComponent("#alias-441b1814dcb3d885c070bf59d5773c63-Service").(p441b1814d.Service)
-}
-
-
-func (inst*p8841b23836_isessions_SessionServiceImpl) getStoreChainHolder(ie application.InjectionExt)p6489a1c97.FilterChainHolder{
-    return ie.GetComponent("#alias-6489a1c97ae609f33eb9078085053c74-FilterChainHolder").(p6489a1c97.FilterChainHolder)
-}
-
-
-
-// type p8841b2383.SimpleStoreChainHolder in package:github.com/starter-go/v0/rbac-web-app/app/implements/isessions
-//
-// id:com-8841b23836065757-isessions-SimpleStoreChainHolder
-// class:
-// alias:alias-6489a1c97ae609f33eb9078085053c74-FilterChainHolder
-// scope:singleton
-//
-type p8841b23836_isessions_SimpleStoreChainHolder struct {
-}
-
-func (inst* p8841b23836_isessions_SimpleStoreChainHolder) register(cr application.ComponentRegistry) error {
-	r := cr.NewRegistration()
-	r.ID = "com-8841b23836065757-isessions-SimpleStoreChainHolder"
-	r.Classes = ""
-	r.Aliases = "alias-6489a1c97ae609f33eb9078085053c74-FilterChainHolder"
-	r.Scope = "singleton"
-	r.NewFunc = inst.new
-	r.InjectFunc = inst.inject
-	return r.Commit()
-}
-
-func (inst* p8841b23836_isessions_SimpleStoreChainHolder) new() any {
-    return &p8841b2383.SimpleStoreChainHolder{}
-}
-
-func (inst* p8841b23836_isessions_SimpleStoreChainHolder) inject(injext application.InjectionExt, instance any) error {
-	ie := injext
-	com := instance.(*p8841b2383.SimpleStoreChainHolder)
-	nop(ie, com)
-
-	
-    com.Loader = inst.getLoader(ie)
-
-
-    return nil
-}
-
-
-func (inst*p8841b23836_isessions_SimpleStoreChainHolder) getLoader(ie application.InjectionExt)p6489a1c97.FilterChainLoader{
-    return ie.GetComponent("#alias-6489a1c97ae609f33eb9078085053c74-FilterChainLoader").(p6489a1c97.FilterChainLoader)
-}
-
-
-
-// type p8841b2383.SimpleStoreChainLoader in package:github.com/starter-go/v0/rbac-web-app/app/implements/isessions
-//
-// id:com-8841b23836065757-isessions-SimpleStoreChainLoader
-// class:
-// alias:alias-6489a1c97ae609f33eb9078085053c74-FilterChainLoader
-// scope:singleton
-//
-type p8841b23836_isessions_SimpleStoreChainLoader struct {
-}
-
-func (inst* p8841b23836_isessions_SimpleStoreChainLoader) register(cr application.ComponentRegistry) error {
-	r := cr.NewRegistration()
-	r.ID = "com-8841b23836065757-isessions-SimpleStoreChainLoader"
-	r.Classes = ""
-	r.Aliases = "alias-6489a1c97ae609f33eb9078085053c74-FilterChainLoader"
-	r.Scope = "singleton"
-	r.NewFunc = inst.new
-	r.InjectFunc = inst.inject
-	return r.Commit()
-}
-
-func (inst* p8841b23836_isessions_SimpleStoreChainLoader) new() any {
-    return &p8841b2383.SimpleStoreChainLoader{}
-}
-
-func (inst* p8841b23836_isessions_SimpleStoreChainLoader) inject(injext application.InjectionExt, instance any) error {
-	ie := injext
-	com := instance.(*p8841b2383.SimpleStoreChainLoader)
-	nop(ie, com)
-
-	
-    com.RegistryList = inst.getRegistryList(ie)
-
-
-    return nil
-}
-
-
-func (inst*p8841b23836_isessions_SimpleStoreChainLoader) getRegistryList(ie application.InjectionExt)[]p6489a1c97.FilterRegistry{
-    dst := make([]p6489a1c97.FilterRegistry, 0)
-    src := ie.ListComponents(".class-6489a1c97ae609f33eb9078085053c74-FilterRegistry")
-    for _, item1 := range src {
-        item2 := item1.(p6489a1c97.FilterRegistry)
-        dst = append(dst, item2)
-    }
-    return dst
-}
-
-
-
-// type pc500a8465.StateStoreServiceImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/istore
-//
-// id:com-c500a84655b87324-istore-StateStoreServiceImpl
-// class:
-// alias:alias-6489a1c97ae609f33eb9078085053c74-Service
-// scope:singleton
-//
-type pc500a84655_istore_StateStoreServiceImpl struct {
-}
-
-func (inst* pc500a84655_istore_StateStoreServiceImpl) register(cr application.ComponentRegistry) error {
-	r := cr.NewRegistration()
-	r.ID = "com-c500a84655b87324-istore-StateStoreServiceImpl"
-	r.Classes = ""
-	r.Aliases = "alias-6489a1c97ae609f33eb9078085053c74-Service"
-	r.Scope = "singleton"
-	r.NewFunc = inst.new
-	r.InjectFunc = inst.inject
-	return r.Commit()
-}
-
-func (inst* pc500a84655_istore_StateStoreServiceImpl) new() any {
-    return &pc500a8465.StateStoreServiceImpl{}
-}
-
-func (inst* pc500a84655_istore_StateStoreServiceImpl) inject(injext application.InjectionExt, instance any) error {
-	ie := injext
-	com := instance.(*pc500a8465.StateStoreServiceImpl)
-	nop(ie, com)
-
-	
-    com.Holder = inst.getHolder(ie)
-
-
-    return nil
-}
-
-
-func (inst*pc500a84655_istore_StateStoreServiceImpl) getHolder(ie application.InjectionExt)p6489a1c97.FilterChainHolder{
-    return ie.GetComponent("#alias-6489a1c97ae609f33eb9078085053c74-FilterChainHolder").(p6489a1c97.FilterChainHolder)
-}
-
-
-
-// type p157aad7a5.SubjectServiceImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/isubject
-//
-// id:com-157aad7a54f1b957-isubject-SubjectServiceImpl
-// class:
-// alias:alias-45dbe3237457ab5b761a911af615329f-Service
-// scope:singleton
-//
-type p157aad7a54_isubject_SubjectServiceImpl struct {
-}
-
-func (inst* p157aad7a54_isubject_SubjectServiceImpl) register(cr application.ComponentRegistry) error {
-	r := cr.NewRegistration()
-	r.ID = "com-157aad7a54f1b957-isubject-SubjectServiceImpl"
-	r.Classes = ""
-	r.Aliases = "alias-45dbe3237457ab5b761a911af615329f-Service"
-	r.Scope = "singleton"
-	r.NewFunc = inst.new
-	r.InjectFunc = inst.inject
-	return r.Commit()
-}
-
-func (inst* p157aad7a54_isubject_SubjectServiceImpl) new() any {
-    return &p157aad7a5.SubjectServiceImpl{}
-}
-
-func (inst* p157aad7a54_isubject_SubjectServiceImpl) inject(injext application.InjectionExt, instance any) error {
-	ie := injext
-	com := instance.(*p157aad7a5.SubjectServiceImpl)
-	nop(ie, com)
-
-	
-    com.Tokens = inst.getTokens(ie)
-    com.Users = inst.getUsers(ie)
-    com.Sessions = inst.getSessions(ie)
-    com.SSS = inst.getSSS(ie)
-
-
-    return nil
-}
-
-
-func (inst*p157aad7a54_isubject_SubjectServiceImpl) getTokens(ie application.InjectionExt)p441b1814d.Service{
-    return ie.GetComponent("#alias-441b1814dcb3d885c070bf59d5773c63-Service").(p441b1814d.Service)
-}
-
-
-func (inst*p157aad7a54_isubject_SubjectServiceImpl) getUsers(ie application.InjectionExt)p2d258e798.Service{
-    return ie.GetComponent("#alias-2d258e79845135c43979b78bd9f1f74e-Service").(p2d258e798.Service)
-}
-
-
-func (inst*p157aad7a54_isubject_SubjectServiceImpl) getSessions(ie application.InjectionExt)p63b715cf9.Service{
-    return ie.GetComponent("#alias-63b715cf9c89c4b9295921d813a75e67-Service").(p63b715cf9.Service)
-}
-
-
-func (inst*p157aad7a54_isubject_SubjectServiceImpl) getSSS(ie application.InjectionExt)p6489a1c97.Service{
-    return ie.GetComponent("#alias-6489a1c97ae609f33eb9078085053c74-Service").(p6489a1c97.Service)
-}
-
-
-
-// type p3821d5b0f.JWTokenServiceImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/itokens
-//
-// id:com-3821d5b0f6716e9c-itokens-JWTokenServiceImpl
-// class:
-// alias:alias-441b1814dcb3d885c070bf59d5773c63-JWTokenService
-// scope:singleton
-//
-type p3821d5b0f6_itokens_JWTokenServiceImpl struct {
-}
-
-func (inst* p3821d5b0f6_itokens_JWTokenServiceImpl) register(cr application.ComponentRegistry) error {
-	r := cr.NewRegistration()
-	r.ID = "com-3821d5b0f6716e9c-itokens-JWTokenServiceImpl"
-	r.Classes = ""
-	r.Aliases = "alias-441b1814dcb3d885c070bf59d5773c63-JWTokenService"
-	r.Scope = "singleton"
-	r.NewFunc = inst.new
-	r.InjectFunc = inst.inject
-	return r.Commit()
-}
-
-func (inst* p3821d5b0f6_itokens_JWTokenServiceImpl) new() any {
-    return &p3821d5b0f.JWTokenServiceImpl{}
-}
-
-func (inst* p3821d5b0f6_itokens_JWTokenServiceImpl) inject(injext application.InjectionExt, instance any) error {
-	ie := injext
-	com := instance.(*p3821d5b0f.JWTokenServiceImpl)
-	nop(ie, com)
-
-	
-    com.ConfigUseCookie = inst.getConfigUseCookie(ie)
-    com.ConfigUseHeader = inst.getConfigUseHeader(ie)
-    com.ConfigKeySecret = inst.getConfigKeySecret(ie)
-    com.ConfigJWTokenMaxAgeSec = inst.getConfigJWTokenMaxAgeSec(ie)
-    com.ConfigDoVerify = inst.getConfigDoVerify(ie)
-
-
-    return nil
-}
-
-
-func (inst*p3821d5b0f6_itokens_JWTokenServiceImpl) getConfigUseCookie(ie application.InjectionExt)bool{
-    return ie.GetBool("${server.www.jwt.use-cookie}")
-}
-
-
-func (inst*p3821d5b0f6_itokens_JWTokenServiceImpl) getConfigUseHeader(ie application.InjectionExt)bool{
-    return ie.GetBool("${server.www.jwt.use-header}")
-}
-
-
-func (inst*p3821d5b0f6_itokens_JWTokenServiceImpl) getConfigKeySecret(ie application.InjectionExt)string{
-    return ie.GetString("${server.www.jwt.key-secret}")
-}
-
-
-func (inst*p3821d5b0f6_itokens_JWTokenServiceImpl) getConfigJWTokenMaxAgeSec(ie application.InjectionExt)int{
-    return ie.GetInt("${server.www.jwt.max-age-in-sec}")
-}
-
-
-func (inst*p3821d5b0f6_itokens_JWTokenServiceImpl) getConfigDoVerify(ie application.InjectionExt)bool{
-    return ie.GetBool("${server.www.jwt.do-verify}")
-}
-
-
-
-// type p3821d5b0f.TokenServiceImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/itokens
-//
-// id:com-3821d5b0f6716e9c-itokens-TokenServiceImpl
-// class:
-// alias:alias-441b1814dcb3d885c070bf59d5773c63-Service
-// scope:singleton
-//
-type p3821d5b0f6_itokens_TokenServiceImpl struct {
-}
-
-func (inst* p3821d5b0f6_itokens_TokenServiceImpl) register(cr application.ComponentRegistry) error {
-	r := cr.NewRegistration()
-	r.ID = "com-3821d5b0f6716e9c-itokens-TokenServiceImpl"
-	r.Classes = ""
-	r.Aliases = "alias-441b1814dcb3d885c070bf59d5773c63-Service"
-	r.Scope = "singleton"
-	r.NewFunc = inst.new
-	r.InjectFunc = inst.inject
-	return r.Commit()
-}
-
-func (inst* p3821d5b0f6_itokens_TokenServiceImpl) new() any {
-    return &p3821d5b0f.TokenServiceImpl{}
-}
-
-func (inst* p3821d5b0f6_itokens_TokenServiceImpl) inject(injext application.InjectionExt, instance any) error {
-	ie := injext
-	com := instance.(*p3821d5b0f.TokenServiceImpl)
-	nop(ie, com)
-
-	
-    com.JWTser = inst.getJWTser(ie)
-
-
-    return nil
-}
-
-
-func (inst*p3821d5b0f6_itokens_TokenServiceImpl) getJWTser(ie application.InjectionExt)p441b1814d.JWTokenService{
-    return ie.GetComponent("#alias-441b1814dcb3d885c070bf59d5773c63-JWTokenService").(p441b1814d.JWTokenService)
-}
-
-
-
-// type p3821d5b0f.TokenStoreFilter in package:github.com/starter-go/v0/rbac-web-app/app/implements/itokens
-//
-// id:com-3821d5b0f6716e9c-itokens-TokenStoreFilter
-// class:class-6489a1c97ae609f33eb9078085053c74-FilterRegistry
-// alias:
-// scope:singleton
-//
-type p3821d5b0f6_itokens_TokenStoreFilter struct {
-}
-
-func (inst* p3821d5b0f6_itokens_TokenStoreFilter) register(cr application.ComponentRegistry) error {
-	r := cr.NewRegistration()
-	r.ID = "com-3821d5b0f6716e9c-itokens-TokenStoreFilter"
-	r.Classes = "class-6489a1c97ae609f33eb9078085053c74-FilterRegistry"
-	r.Aliases = ""
-	r.Scope = "singleton"
-	r.NewFunc = inst.new
-	r.InjectFunc = inst.inject
-	return r.Commit()
-}
-
-func (inst* p3821d5b0f6_itokens_TokenStoreFilter) new() any {
-    return &p3821d5b0f.TokenStoreFilter{}
-}
-
-func (inst* p3821d5b0f6_itokens_TokenStoreFilter) inject(injext application.InjectionExt, instance any) error {
-	ie := injext
-	com := instance.(*p3821d5b0f.TokenStoreFilter)
-	nop(ie, com)
-
-	
-    com.Tokens = inst.getTokens(ie)
-
-
-    return nil
-}
-
-
-func (inst*p3821d5b0f6_itokens_TokenStoreFilter) getTokens(ie application.InjectionExt)p441b1814d.Service{
-    return ie.GetComponent("#alias-441b1814dcb3d885c070bf59d5773c63-Service").(p441b1814d.Service)
-}
-
-
-
 // type p4b670e5fa.UserDaoImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/iusers
 //
 // id:com-4b670e5facdc70b8-iusers-UserDaoImpl
@@ -1167,19 +604,19 @@ func (inst*p7f79a0bbff_admin_UsersController) getService(ie application.Injectio
 
 
 
-// type p0fcabc88b.MockController in package:github.com/starter-go/v0/rbac-web-app/app/web/controllers/debug
+// type pc3ca883e2.JWTokenController in package:github.com/starter-go/v0/rbac-web-app/app/web/controllers/helper
 //
-// id:com-0fcabc88b927ca96-debug-MockController
+// id:com-c3ca883e2525cff7-helper-JWTokenController
 // class:class-d1a916a203352fd5d33eabc36896b42e-Controller
 // alias:
 // scope:singleton
 //
-type p0fcabc88b9_debug_MockController struct {
+type pc3ca883e25_helper_JWTokenController struct {
 }
 
-func (inst* p0fcabc88b9_debug_MockController) register(cr application.ComponentRegistry) error {
+func (inst* pc3ca883e25_helper_JWTokenController) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
-	r.ID = "com-0fcabc88b927ca96-debug-MockController"
+	r.ID = "com-c3ca883e2525cff7-helper-JWTokenController"
 	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
 	r.Aliases = ""
 	r.Scope = "singleton"
@@ -1188,43 +625,63 @@ func (inst* p0fcabc88b9_debug_MockController) register(cr application.ComponentR
 	return r.Commit()
 }
 
-func (inst* p0fcabc88b9_debug_MockController) new() any {
-    return &p0fcabc88b.MockController{}
+func (inst* pc3ca883e25_helper_JWTokenController) new() any {
+    return &pc3ca883e2.JWTokenController{}
 }
 
-func (inst* p0fcabc88b9_debug_MockController) inject(injext application.InjectionExt, instance any) error {
+func (inst* pc3ca883e25_helper_JWTokenController) inject(injext application.InjectionExt, instance any) error {
 	ie := injext
-	com := instance.(*p0fcabc88b.MockController)
+	com := instance.(*pc3ca883e2.JWTokenController)
 	nop(ie, com)
 
 	
     com.Responder = inst.getResponder(ie)
-    com.TokenService = inst.getTokenService(ie)
-    com.SessionService = inst.getSessionService(ie)
-    com.UserService = inst.getUserService(ie)
 
 
     return nil
 }
 
 
-func (inst*p0fcabc88b9_debug_MockController) getResponder(ie application.InjectionExt)pd1a916a20.Responder{
+func (inst*pc3ca883e25_helper_JWTokenController) getResponder(ie application.InjectionExt)pd1a916a20.Responder{
     return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
 }
 
 
-func (inst*p0fcabc88b9_debug_MockController) getTokenService(ie application.InjectionExt)p441b1814d.Service{
-    return ie.GetComponent("#alias-441b1814dcb3d885c070bf59d5773c63-Service").(p441b1814d.Service)
+
+// type pc3ca883e2.GinSubjectAdapter in package:github.com/starter-go/v0/rbac-web-app/app/web/controllers/helper
+//
+// id:com-c3ca883e2525cff7-helper-GinSubjectAdapter
+// class:class-fd2c28477d8555ea1fa4190037afa453-Adapter
+// alias:
+// scope:singleton
+//
+type pc3ca883e25_helper_GinSubjectAdapter struct {
 }
 
-
-func (inst*p0fcabc88b9_debug_MockController) getSessionService(ie application.InjectionExt)p63b715cf9.Service{
-    return ie.GetComponent("#alias-63b715cf9c89c4b9295921d813a75e67-Service").(p63b715cf9.Service)
+func (inst* pc3ca883e25_helper_GinSubjectAdapter) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-c3ca883e2525cff7-helper-GinSubjectAdapter"
+	r.Classes = "class-fd2c28477d8555ea1fa4190037afa453-Adapter"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
 }
 
+func (inst* pc3ca883e25_helper_GinSubjectAdapter) new() any {
+    return &pc3ca883e2.GinSubjectAdapter{}
+}
 
-func (inst*p0fcabc88b9_debug_MockController) getUserService(ie application.InjectionExt)p2d258e798.Service{
-    return ie.GetComponent("#alias-2d258e79845135c43979b78bd9f1f74e-Service").(p2d258e798.Service)
+func (inst* pc3ca883e25_helper_GinSubjectAdapter) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pc3ca883e2.GinSubjectAdapter)
+	nop(ie, com)
+
+	
+
+
+    return nil
 }
 
 
@@ -1279,68 +736,6 @@ func (inst*p79b61f17f7_home_AuthxController) getService(ie application.Injection
 
 
 
-// type p79b61f17f.JWTokenController in package:github.com/starter-go/v0/rbac-web-app/app/web/controllers/home
-//
-// id:com-79b61f17f767d154-home-JWTokenController
-// class:class-d1a916a203352fd5d33eabc36896b42e-Controller
-// alias:
-// scope:singleton
-//
-type p79b61f17f7_home_JWTokenController struct {
-}
-
-func (inst* p79b61f17f7_home_JWTokenController) register(cr application.ComponentRegistry) error {
-	r := cr.NewRegistration()
-	r.ID = "com-79b61f17f767d154-home-JWTokenController"
-	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
-	r.Aliases = ""
-	r.Scope = "singleton"
-	r.NewFunc = inst.new
-	r.InjectFunc = inst.inject
-	return r.Commit()
-}
-
-func (inst* p79b61f17f7_home_JWTokenController) new() any {
-    return &p79b61f17f.JWTokenController{}
-}
-
-func (inst* p79b61f17f7_home_JWTokenController) inject(injext application.InjectionExt, instance any) error {
-	ie := injext
-	com := instance.(*p79b61f17f.JWTokenController)
-	nop(ie, com)
-
-	
-    com.Responder = inst.getResponder(ie)
-    com.TokenService = inst.getTokenService(ie)
-    com.SessionService = inst.getSessionService(ie)
-    com.UserService = inst.getUserService(ie)
-
-
-    return nil
-}
-
-
-func (inst*p79b61f17f7_home_JWTokenController) getResponder(ie application.InjectionExt)pd1a916a20.Responder{
-    return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
-}
-
-
-func (inst*p79b61f17f7_home_JWTokenController) getTokenService(ie application.InjectionExt)p441b1814d.Service{
-    return ie.GetComponent("#alias-441b1814dcb3d885c070bf59d5773c63-Service").(p441b1814d.Service)
-}
-
-
-func (inst*p79b61f17f7_home_JWTokenController) getSessionService(ie application.InjectionExt)p63b715cf9.Service{
-    return ie.GetComponent("#alias-63b715cf9c89c4b9295921d813a75e67-Service").(p63b715cf9.Service)
-}
-
-
-func (inst*p79b61f17f7_home_JWTokenController) getUserService(ie application.InjectionExt)p2d258e798.Service{
-    return ie.GetComponent("#alias-2d258e79845135c43979b78bd9f1f74e-Service").(p2d258e798.Service)
-}
-
-
-
 // type p79b61f17f.SessionController in package:github.com/starter-go/v0/rbac-web-app/app/web/controllers/home
 //
 // id:com-79b61f17f767d154-home-SessionController
@@ -1373,7 +768,6 @@ func (inst* p79b61f17f7_home_SessionController) inject(injext application.Inject
 
 	
     com.Responder = inst.getResponder(ie)
-    com.Service = inst.getService(ie)
 
 
     return nil
@@ -1382,11 +776,6 @@ func (inst* p79b61f17f7_home_SessionController) inject(injext application.Inject
 
 func (inst*p79b61f17f7_home_SessionController) getResponder(ie application.InjectionExt)pd1a916a20.Responder{
     return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
-}
-
-
-func (inst*p79b61f17f7_home_SessionController) getService(ie application.InjectionExt)p63b715cf9.Service{
-    return ie.GetComponent("#alias-63b715cf9c89c4b9295921d813a75e67-Service").(p63b715cf9.Service)
 }
 
 

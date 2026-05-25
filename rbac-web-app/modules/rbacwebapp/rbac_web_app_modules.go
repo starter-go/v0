@@ -10,6 +10,7 @@ import (
 	rbacwebapp "github.com/starter-go/v0/rbac-web-app"
 	"github.com/starter-go/v0/rbac-web-app/gen/main4rbacwa"
 	"github.com/starter-go/v0/rbac-web-app/gen/test4rbacwa"
+	"github.com/starter-go/v0/subjects/modules/subjects"
 )
 
 // Module aka. ModuleForMain
@@ -22,6 +23,7 @@ func Module() application.Module {
 	mb.Depend(libgin.Module())
 	mb.Depend(libgorm.Module())
 	mb.Depend(security.Module())
+	mb.Depend(subjects.ModuleForLib())
 
 	mb.Depend(mysql.Module())
 	mb.Depend(sqlserver.Module())

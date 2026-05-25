@@ -21,9 +21,10 @@ func (inst *WebUnitTestSessionRunner) _impl() {
 func (inst *WebUnitTestSessionRunner) Life() *application.Life {
 
 	l := &application.Life{
-		Order:  0,
-		OnLoop: inst.run,
+		Order: 0,
+		// OnLoop: inst.run,
 	}
+
 	return l
 }
 

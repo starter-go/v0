@@ -1,45 +1,40 @@
 package statestores
 
-import (
-	"context"
-	"net/http"
-)
+// ////////////////////////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////////////////////////////////
+// type Method string
 
-type Method string
+// const (
+// 	MethodGet    Method = http.MethodGet
+// 	MethodPut    Method = http.MethodPut
+// 	MethodPost   Method = http.MethodPost
+// 	MethodDelete Method = http.MethodDelete
+// )
 
-const (
-	MethodGet    Method = http.MethodGet
-	MethodPut    Method = http.MethodPut
-	MethodPost   Method = http.MethodPost
-	MethodDelete Method = http.MethodDelete
-)
+// ////////////////////////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////////////////////////////////
+// type FilterPriority int
 
-type FilterPriority int
+// const (
+// 	FilterPriorityBase FilterPriority = iota
+// 	FilterPriorityMin
 
-const (
-	FilterPriorityBase FilterPriority = iota
-	FilterPriorityMin
+// 	FilterPriorityDB
+// 	FilterPriorityCache
+// 	FilterPriorityToken
 
-	FilterPriorityDB
-	FilterPriorityCache
-	FilterPriorityToken
+// 	FilterPriorityMax
+// )
 
-	FilterPriorityMax
-)
+// ////////////////////////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////////////////////////////////
+// type Store interface {
+// 	Handle(sc *Context) error
+// }
 
-type Store interface {
-	Handle(sc *Context) error
-}
+// type Service interface {
+// 	GetStore(cc context.Context) (Store, error)
+// }
 
-type Service interface {
-	GetStore(cc context.Context) (Store, error)
-}
-
-////////////////////////////////////////////////////////////////////////////////
-// EOF
+// ////////////////////////////////////////////////////////////////////////////////
+// // EOF

@@ -4,12 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/starter-go/base/lang"
 	"github.com/starter-go/v0/rbac-web-app/app/classes/authx"
-	"github.com/starter-go/v0/rbac-web-app/app/classes/sessions"
-	"github.com/starter-go/v0/rbac-web-app/app/classes/tokens"
 	"github.com/starter-go/v0/rbac-web-app/app/data/dxo"
 	"github.com/starter-go/v0/rbac-web-app/app/web/dto"
+	"github.com/starter-go/v0/subjects"
 )
 
 type ActionLoginAuthorizer struct {
@@ -18,8 +16,9 @@ type ActionLoginAuthorizer struct {
 
 	_as func(authx.Authorizer) //starter:as(".")
 
-	SessionService sessions.Service //starter:inject("#")
-	TokenService   tokens.Service   //starter:inject("#")
+	// SessionService sessions.Service //x-starter:inject("#")
+	// TokenService   tokens.Service   //x-starter:inject("#")
+
 }
 
 // Accept implements authx.Authorizer.
@@ -70,57 +69,78 @@ type innerActionLoginAuthorizerSessionMaker struct {
 	user    *dto.User
 }
 
-func (inst *innerActionLoginAuthorizerSessionMaker) makeSession() error {
+// func (inst *innerActionLoginAuthorizerSessionMaker) makeSession() error {
 
-	ctx := inst.context
-	ser := inst.caller.SessionService
-	now := lang.Now()
-	user := inst.user
-	session := new(dto.Session)
+// 	ctx := inst.context
+// 	ser := inst.caller.SessionService
+// 	now := lang.Now()
+// 	user := inst.user
+// 	session := new(dto.Session)
 
-	session.Owner = user.ID
-	session.AliveFrom = now - 1000
-	session.AliveTo = now + (24 * 3600 * 1000)
-	session.Alive = true
-	session.DisplayName = user.DisplayName
-	session.Avatar = user.Avatar
-	session.Roles = user.Roles
+// 	session.Owner = user.ID
+// 	session.AliveFrom = now - 1000
+// 	session.AliveTo = now + (24 * 3600 * 1000)
+// 	session.Alive = true
+// 	session.DisplayName = user.DisplayName
+// 	session.Avatar = user.Avatar
+// 	session.Roles = user.Roles
 
-	ses2, err := ser.Insert(ctx, session)
-	if err != nil {
-		return err
-	}
+// 	ses2, err := ser.Insert(ctx, session)
+// 	if err != nil {
+// 		return err
+// 	}
 
-	inst.session = ses2
-	return nil
-}
+// 	inst.session = ses2
+// 	return nil
+// }
 
-func (inst *innerActionLoginAuthorizerSessionMaker) makeToken() error {
+// func (inst *innerActionLoginAuthorizerSessionMaker) makeToken() error {
 
-	ctx := inst.context
-	ser := inst.caller.TokenService
-	now := lang.Now()
+// 	ctx := inst.context
+// 	ser := inst.caller.TokenService
+// 	now := lang.Now()
 
-	session := inst.session
-	token := new(dto.Token)
+// 	session := inst.session
+// 	token := new(dto.Token)
 
-	token.AliveFrom = now - 1000
-	token.AliveTo = now + (1000 * 3600)
-	token.SessionID = session.ID
-	token.SessionUUID = session.UUID
+// 	token.AliveFrom = now - 1000
+// 	token.AliveTo = now + (1000 * 3600)
+// 	token.SessionID = session.ID
+// 	token.SessionUUID = session.UUID
 
-	_, err := ser.SetCurrentToken(ctx, token)
-	return err
-}
+// 	_, err := ser.SetCurrentToken(ctx, token)
+// 	return err
+// }
 
 func (inst *innerActionLoginAuthorizerSessionMaker) makeAll() error {
 
-	err := inst.makeSession()
+	ctx := inst.context
+	sub, err := subjects.GetCurrent(ctx)
 	if err != nil {
 		return err
 	}
 
-	err = inst.makeToken()
+	sett, err := sub.DoSet()
+	if err != nil {
+		return err
+	}
+
+	src := inst.user
+	roles := src.Roles.Format()
+
+	sett.SetUserID(src.ID)
+	sett.SetAvatar(string(src.Avatar))
+	sett.SetDisplayName(src.DisplayName)
+	sett.SetUserEmail(src.Email.String())
+	sett.SetProperty(subjects.PNameRoles, string(roles))
+	sett.SetUserName(src.Name)
+
+	err = sub.Create()
+	if err != nil {
+		return err
+	}
+
+	err = sub.Save()
 	if err != nil {
 		return err
 	}
