@@ -10,8 +10,8 @@ import (
 
 const (
 	theModuleName     = "github.com/starter-go/v0/htttest"
-	theModuleVersion  = "v0.0.1"
-	theModuleRevision = 3
+	theModuleVersion  = "v0.0.2"
+	theModuleRevision = 4
 )
 
 ////////////////////////////////////////////////////////////////////////////////
