@@ -11,7 +11,7 @@ import (
 const (
 	theModuleName     = "github.com/starter-go/v0/htttest"
 	theModuleVersion  = "v0.0.1"
-	theModuleRevision = 2
+	theModuleRevision = 3
 )
 
 ////////////////////////////////////////////////////////////////////////////////
