@@ -52,7 +52,7 @@ func (inst *CaseTryPostAuth) run() error {
 		"service": "demo-auth-rest-api",
 	}
 	tr.Want.Head = map[string]string{
-		"x-foo-bar": "12345678-x",
+		"Authorization": "Basic dGVzdDoxMjPCow==",
 	}
 
 	data1 := new(InnerAuthVO)

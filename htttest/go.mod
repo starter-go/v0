@@ -2,7 +2,7 @@ module github.com/starter-go/v0/htttest
 
 go 1.23
 
-require github.com/starter-go/units v0.1.1
+require github.com/starter-go/units v0.1.2
 
 require (
 	github.com/starter-go/afs v0.9.13 // indirect

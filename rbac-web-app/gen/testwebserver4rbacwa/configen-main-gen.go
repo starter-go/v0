@@ -1,4 +1,4 @@
-package test4rbacwa
+package testwebserver4rbacwa
 
 import "github.com/starter-go/application"
 
@@ -30,7 +30,7 @@ func (inst *autoRegistrar) register(factory comFactory) error {
 func (inst*autoRegistrar) addAll() error {
 
     
-    inst.register(&pb51fe7a597_testcase_CaseTryExample{})
+    inst.register(&p819ff56970_controllers_WebUnitTestSessionController{})
 
 
     return nil

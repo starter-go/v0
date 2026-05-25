@@ -1,4 +1,4 @@
-package wuserver
+package controllers
 
 import (
 	"net/http"

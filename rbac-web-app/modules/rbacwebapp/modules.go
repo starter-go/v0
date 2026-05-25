@@ -7,9 +7,12 @@ import (
 	"github.com/starter-go/module-gorm-mysql/modules/mysql"
 	"github.com/starter-go/module-gorm-sqlserver/modules/sqlserver"
 	"github.com/starter-go/security/modules/security"
+	"github.com/starter-go/v0/htttest/modules/htttest"
 	rbacwebapp "github.com/starter-go/v0/rbac-web-app"
 	"github.com/starter-go/v0/rbac-web-app/gen/main4rbacwa"
 	"github.com/starter-go/v0/rbac-web-app/gen/test4rbacwa"
+	"github.com/starter-go/v0/rbac-web-app/gen/testwebclient4rbacwa"
+	"github.com/starter-go/v0/rbac-web-app/gen/testwebserver4rbacwa"
 	"github.com/starter-go/v0/subjects/modules/subjects"
 )
 
@@ -36,6 +39,30 @@ func ModuleForTest() application.Module {
 	mb := rbacwebapp.NewTestModuleBuilder()
 
 	mb.Components(test4rbacwa.ExportComponents)
+
+	// mb.Depend(Module())
+
+	mb.Depend(htttest.Module())
+
+	return mb.Create()
+}
+
+func ModuleForTestWebClient() application.Module {
+
+	mb := rbacwebapp.NewTestWebClientModuleBuilder()
+
+	mb.Components(testwebclient4rbacwa.ExportComponents)
+
+	mb.Depend(htttest.Module())
+
+	return mb.Create()
+}
+
+func ModuleForTestWebServer() application.Module {
+
+	mb := rbacwebapp.NewTestWebServerModuleBuilder()
+
+	mb.Components(testwebserver4rbacwa.ExportComponents)
 
 	mb.Depend(Module())
 

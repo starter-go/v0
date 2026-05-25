@@ -11,6 +11,16 @@
                 "id": "test",
                 "path": "src/test/golang",
                 "r": true
+            },
+            {
+                "id": "test-web-client",
+                "path": "src/web-test/golang/client",
+                "r": true
+            },
+            {
+                "id": "test-web-server",
+                "path": "src/web-test/golang/server",
+                "r": true
             }
         ],
         "destinations": [
@@ -26,6 +36,20 @@
                 "path": "gen/test4rbacwa",
                 "sources": [
                     "test"
+                ]
+            },
+            {
+                "id": "test-web-client",
+                "path": "gen/testwebclient4rbacwa",
+                "sources": [
+                    "test-web-client"
+                ]
+            },
+            {
+                "id": "test-web-server",
+                "path": "gen/testwebserver4rbacwa",
+                "sources": [
+                    "test-web-server"
                 ]
             }
         ]

@@ -8,6 +8,7 @@ require (
 	filippo.io/edwards25519 v1.1.0 // indirect
 	github.com/golang-jwt/jwt/v5 v5.2.0 // indirect
 	github.com/starter-go/keyvalues v0.0.1 // indirect
+	github.com/starter-go/v0/htttest v0.0.1 // indirect
 	github.com/starter-go/v0/libjwt v0.0.1 // indirect
 	github.com/starter-go/v0/subjects v0.0.1 // indirect
 )
@@ -50,7 +51,7 @@ require (
 	github.com/starter-go/security v1.0.57
 	github.com/starter-go/starter v1.0.14 // indirect
 	github.com/starter-go/stopper v0.0.5 // indirect
-	github.com/starter-go/units v0.1.1 // indirect
+	github.com/starter-go/units v0.1.2 // indirect
 	github.com/starter-go/vlog v0.9.12 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.11 // indirect

@@ -114,6 +114,12 @@ func (inst *UserAgentImpl) innerPrepareRequest(c *h3t.Transaction) (*http.Reques
 		return nil, err
 	}
 
+	// headers
+	headers := c.Want.Head
+	for k, v := range headers {
+		req.Header.Set(k, v)
+	}
+
 	return req, nil
 }
 
