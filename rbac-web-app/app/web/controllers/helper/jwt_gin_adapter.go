@@ -20,6 +20,13 @@ type GinLibjwtAdapter struct {
 	MyUseHeader bool   //starter:inject("${jwt-adapter.libgin.use-http-header}")
 	MyUseQuery  bool   //starter:inject("${jwt-adapter.libgin.use-http-query}")
 
+	MyCookieName     string //starter:inject("${jwt-adapter.libgin.cookie.name}")
+	MyCookieMaxAge   int    //starter:inject("${jwt-adapter.libgin.cookie.max-age}")
+	MyCookiePath     string //starter:inject("${jwt-adapter.libgin.cookie.path}")
+	MyCookieDomain   string //starter:inject("${jwt-adapter.libgin.cookie.domain}")
+	MyCookieSecure   bool   //starter:inject("${jwt-adapter.libgin.cookie.secure}")
+	MyCookieHttpOnly bool   //starter:inject("${jwt-adapter.libgin.cookie.http-only}")
+
 }
 
 // Registration implements jwt.AdapterProvider.
@@ -105,16 +112,14 @@ func (inst *GinLibjwtAdapter) innerSetToCookie(gc *gin.Context, acc *jwt.Access)
 		return nil
 	}
 
-	const (
-		name = "jwt"
-	)
+	name := inst.MyCookieName
+	maxAge := inst.MyCookieMaxAge
+	path := inst.MyCookiePath
+	domain := inst.MyCookieDomain
+	secure := inst.MyCookieSecure
+	httpOnly := inst.MyCookieHttpOnly
 
 	value := acc.Text.String()
-	maxAge := 3600
-	path := ""
-	domain := ""
-	secure := false
-	httpOnly := false
 
 	gc.SetCookie(name, value, maxAge, path, domain, secure, httpOnly)
 	return nil
@@ -143,20 +148,14 @@ func (inst *GinLibjwtAdapter) innerSetToHeader(gc *gin.Context, acc *jwt.Access)
 }
 
 func (inst *GinLibjwtAdapter) innerGetFromCookie(gc *gin.Context, acc *jwt.Access) error {
-
 	if !inst.MyUseCookie {
 		return nil
 	}
-
-	const (
-		name = "jwt"
-	)
-
+	name := inst.MyCookieName
 	value, err := gc.Cookie(name)
 	if err != nil {
 		return err
 	}
-
 	acc.Text = jwt.Text(value)
 	return nil
 }

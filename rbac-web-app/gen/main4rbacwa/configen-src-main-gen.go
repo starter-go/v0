@@ -692,6 +692,12 @@ func (inst* pc3ca883e25_helper_GinLibjwtAdapter) inject(injext application.Injec
     com.MyUseCookie = inst.getMyUseCookie(ie)
     com.MyUseHeader = inst.getMyUseHeader(ie)
     com.MyUseQuery = inst.getMyUseQuery(ie)
+    com.MyCookieName = inst.getMyCookieName(ie)
+    com.MyCookieMaxAge = inst.getMyCookieMaxAge(ie)
+    com.MyCookiePath = inst.getMyCookiePath(ie)
+    com.MyCookieDomain = inst.getMyCookieDomain(ie)
+    com.MyCookieSecure = inst.getMyCookieSecure(ie)
+    com.MyCookieHttpOnly = inst.getMyCookieHttpOnly(ie)
 
 
     return nil
@@ -725,6 +731,36 @@ func (inst*pc3ca883e25_helper_GinLibjwtAdapter) getMyUseHeader(ie application.In
 
 func (inst*pc3ca883e25_helper_GinLibjwtAdapter) getMyUseQuery(ie application.InjectionExt)bool{
     return ie.GetBool("${jwt-adapter.libgin.use-http-query}")
+}
+
+
+func (inst*pc3ca883e25_helper_GinLibjwtAdapter) getMyCookieName(ie application.InjectionExt)string{
+    return ie.GetString("${jwt-adapter.libgin.cookie.name}")
+}
+
+
+func (inst*pc3ca883e25_helper_GinLibjwtAdapter) getMyCookieMaxAge(ie application.InjectionExt)int{
+    return ie.GetInt("${jwt-adapter.libgin.cookie.max-age}")
+}
+
+
+func (inst*pc3ca883e25_helper_GinLibjwtAdapter) getMyCookiePath(ie application.InjectionExt)string{
+    return ie.GetString("${jwt-adapter.libgin.cookie.path}")
+}
+
+
+func (inst*pc3ca883e25_helper_GinLibjwtAdapter) getMyCookieDomain(ie application.InjectionExt)string{
+    return ie.GetString("${jwt-adapter.libgin.cookie.domain}")
+}
+
+
+func (inst*pc3ca883e25_helper_GinLibjwtAdapter) getMyCookieSecure(ie application.InjectionExt)bool{
+    return ie.GetBool("${jwt-adapter.libgin.cookie.secure}")
+}
+
+
+func (inst*pc3ca883e25_helper_GinLibjwtAdapter) getMyCookieHttpOnly(ie application.InjectionExt)bool{
+    return ie.GetBool("${jwt-adapter.libgin.cookie.http-only}")
 }
 
 

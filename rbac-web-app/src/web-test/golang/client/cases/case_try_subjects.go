@@ -21,9 +21,10 @@ type CaseTrySubjects struct {
 // ListRegistrations implements units.Unit.
 func (inst *CaseTrySubjects) ListRegistrations(list []*units.Registration) []*units.Registration {
 	r1 := &units.Registration{
-		Name:    "unit-subjects",
-		Enabled: true,
-		Do:      inst.run,
+		Name:     "unit-subjects",
+		Enabled:  true,
+		Priority: 6,
+		Do:       inst.run,
 	}
 	list = append(list, r1)
 	return list

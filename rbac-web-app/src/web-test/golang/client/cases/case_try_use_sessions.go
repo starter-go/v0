@@ -20,9 +20,10 @@ type CaseTryUseSessions struct {
 // ListRegistrations implements units.Unit.
 func (inst *CaseTryUseSessions) ListRegistrations(list []*units.Registration) []*units.Registration {
 	r1 := &units.Registration{
-		Name:    "unit-sessions",
-		Enabled: true,
-		Do:      inst.run,
+		Name:     "unit-sessions",
+		Enabled:  true,
+		Priority: 5,
+		Do:       inst.run,
 	}
 	list = append(list, r1)
 	return list

@@ -1,12 +1,13 @@
 package cases
 
 import (
+	"fmt"
 	"net/http"
 
+	"github.com/starter-go/application/properties"
 	"github.com/starter-go/rbac"
 	"github.com/starter-go/units"
 	"github.com/starter-go/v0/htttest"
-	"github.com/starter-go/vlog"
 )
 
 type CaseTryUseAuth struct {
@@ -20,9 +21,10 @@ type CaseTryUseAuth struct {
 // ListRegistrations implements units.Unit.
 func (inst *CaseTryUseAuth) ListRegistrations(list []*units.Registration) []*units.Registration {
 	r1 := &units.Registration{
-		Name:    "unit-auth",
-		Enabled: true,
-		Do:      inst.run,
+		Name:     "unit-auth",
+		Enabled:  true,
+		Priority: 99,
+		Do:       inst.run,
 	}
 	list = append(list, r1)
 	return list
@@ -52,13 +54,41 @@ func (inst *CaseTryUseAuth) run() error {
 	tran.Have.Body = body2
 
 	defer func() {
-		if vlog.IsTraceEnabled() {
-			met := tran.Want.Method
-			vlog.Trace("foo", met)
+		if tran.Have.Error == nil {
+			inst.innerSaveJwtFromCookie(tran)
+			inst.innerSaveJwtFromHeader(tran)
 		}
 	}()
 
 	return agent.Execute(tran)
+}
+
+func (inst *CaseTryUseAuth) innerSaveJwtFromCookie(tr *htttest.Transaction) error {
+	return fmt.Errorf("no impl")
+}
+
+func (inst *CaseTryUseAuth) innerSaveJwtFromHeader(tr *htttest.Transaction) error {
+	const (
+		name1 = "x-jwt"
+		name2 = "x-set-jwt"
+	)
+
+	src := tr.Have.Head
+	dst := tr.AC.RequestHeaders
+	if src == nil {
+		return nil
+	}
+	if dst == nil {
+		dst = properties.NewTable(nil)
+		tr.AC.RequestHeaders = dst
+	}
+
+	value := src[name2]
+	if value == "" {
+		return nil
+	}
+	dst.SetProperty(name1, value)
+	return nil
 }
 
 func (inst *CaseTryUseAuth) _impl() units.Unit {

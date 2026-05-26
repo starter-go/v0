@@ -10,7 +10,7 @@ require (
 	github.com/starter-go/keyvalues v0.0.1 // indirect
 	github.com/starter-go/v0/htttest v0.0.2 // indirect
 	github.com/starter-go/v0/libjwt v0.0.1 // direct
-	github.com/starter-go/v0/subjects v0.0.3 // indirect
+	github.com/starter-go/v0/subjects v0.0.4 // indirect
 )
 
 require (

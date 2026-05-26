@@ -102,6 +102,13 @@ func (inst *ServiceImpl) NewTransaction(method string, url string) *h3t.Transact
 
 	have.Head = make(map[string]string)
 
+	headers1 := ac.RequestHeaders
+	if headers1 != nil {
+		tmp := want.Head
+		tmp = headers1.Export(tmp)
+		want.Head = tmp
+	}
+
 	return tr
 }
 
