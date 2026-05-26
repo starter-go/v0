@@ -52,10 +52,10 @@ func (inst *CaseTryUseAuth) run() error {
 	tran.Have.Body = body2
 
 	defer func() {
-
-		met := tran.Want.Method
-		vlog.Debug("foo", met)
-
+		if vlog.IsTraceEnabled() {
+			met := tran.Want.Method
+			vlog.Trace("foo", met)
+		}
 	}()
 
 	return agent.Execute(tran)

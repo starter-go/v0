@@ -139,11 +139,5 @@ func (inst *innerActionLoginAuthorizerSessionMaker) makeAll() error {
 	if err != nil {
 		return err
 	}
-
-	err = sub.Save()
-	if err != nil {
-		return err
-	}
-
-	return nil
+	return sub.Flush()
 }

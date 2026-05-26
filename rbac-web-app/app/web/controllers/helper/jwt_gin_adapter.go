@@ -52,10 +52,14 @@ func (inst *GinLibjwtAdapter) GetToken(acc *jwt.Access) error {
 		return err
 	}
 
-	// get from (cookie|header|query)
+	// get from (cookie|header|query|ctx)
 
 	acc.Text = ""
-	inst.innerGetFromHeader(gc, acc)
+	inst.innerGetFromGinCtx(gc, acc)
+
+	if acc.Text == "" {
+		inst.innerGetFromHeader(gc, acc)
+	}
 	if acc.Text == "" {
 		inst.innerGetFromQuery(gc, acc)
 	}
@@ -87,9 +91,10 @@ func (inst *GinLibjwtAdapter) SetToken(acc *jwt.Access) error {
 		return err
 	}
 
-	// set to (cookie|header)
+	// set to (cookie & header & ctx)
 	inst.innerSetToCookie(gc, acc)
 	inst.innerSetToHeader(gc, acc)
+	inst.innerSetToGinCtx(gc, acc)
 
 	return nil
 }
@@ -112,6 +117,15 @@ func (inst *GinLibjwtAdapter) innerSetToCookie(gc *gin.Context, acc *jwt.Access)
 	httpOnly := false
 
 	gc.SetCookie(name, value, maxAge, path, domain, secure, httpOnly)
+	return nil
+}
+
+func (inst *GinLibjwtAdapter) innerSetToGinCtx(gc *gin.Context, acc *jwt.Access) error {
+	const (
+		name = "context.jwt"
+	)
+	value := acc.Text
+	gc.Set(name, value)
 	return nil
 }
 
@@ -186,6 +200,21 @@ func (inst *GinLibjwtAdapter) innerGetFromQuery(gc *gin.Context, acc *jwt.Access
 		return nil
 	}
 
+	return nil
+}
+
+func (inst *GinLibjwtAdapter) innerGetFromGinCtx(gc *gin.Context, acc *jwt.Access) error {
+	const (
+		name = "context.jwt"
+	)
+	ref, ok := gc.Get(name)
+	if ok {
+		txt, ok := ref.(jwt.Text)
+		if ok {
+			acc.Text = txt
+			return nil
+		}
+	}
 	return nil
 }
 

@@ -117,7 +117,7 @@ func (inst *innerSubjectFacade) Flush() error {
 	// do write
 
 	ctx2 := ctx1.NewIOC(method)
-	wtr := ctx1.Writer
+	wtr := ctx1.GetWriter(true)
 	buffer := ctx1.Buffer
 	want := &ctx2.Want
 
