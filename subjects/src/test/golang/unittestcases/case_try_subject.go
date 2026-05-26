@@ -109,7 +109,7 @@ func (inst *CaseToTrySubject) run() error {
 		return err
 	}
 
-	err = sub.Save()
+	err = sub.Flush()
 	if err != nil {
 		return err
 	}
@@ -141,7 +141,12 @@ func (inst *CaseToTrySubject) run() error {
 	sett.SetUserName("huaan")
 	sett.SetUserEmail("huaan9527@example.com")
 
-	err = sub.Save()
+	err = sub.Update()
+	if err != nil {
+		return err
+	}
+
+	err = sub.Flush()
 	if err != nil {
 		return err
 	}

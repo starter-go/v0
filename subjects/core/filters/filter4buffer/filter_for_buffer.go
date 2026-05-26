@@ -43,14 +43,14 @@ func (inst *Filter4Buffer) innerDoFlush(c *subjects.IOC, next subjects.WriteFilt
 	want.Properties = buffer.Properties
 
 	// rewrite-method
-	if ctx.DoCreate {
+	if ctx.FlagCreate {
 		want.Method = subjects.MethodPost
 	} else {
 		want.Method = subjects.MethodPut
 	}
 
 	ctx.Buffer = nil
-	ctx.DoCreate = false
+	ctx.FlagCreate = false
 
 	return next.Write(c)
 }
@@ -68,7 +68,7 @@ func (inst *Filter4Buffer) innerDoPostOrPut(c *subjects.IOC, next subjects.Write
 	src := c.Want.Properties
 
 	if do_create {
-		ctx.DoCreate = true
+		ctx.FlagCreate = true
 	}
 
 	if src != nil {

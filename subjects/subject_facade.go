@@ -2,7 +2,6 @@ package subjects
 
 import (
 	"context"
-	"fmt"
 )
 
 func NewSubject(ctx *Context) Subject {
@@ -18,6 +17,12 @@ func NewSubject(ctx *Context) Subject {
 
 type innerSubjectFacade struct {
 	context *Context
+}
+
+// Update implements Subject.
+func (inst *innerSubjectFacade) Update() error {
+	inst.context.FlagDirty = true
+	return nil
 }
 
 // DoGet implements Subject.
@@ -48,6 +53,13 @@ func (inst *innerSubjectFacade) Exit() error {
 	ctx2 := ctx1.NewIOC(MethodDelete)
 	wtr := ctx1.GetWriter(true)
 
+	defer func() {
+		ctx1.FlagCreate = false
+		ctx1.FlagDirty = false
+		ctx1.Buffer = nil
+		ctx1.Cache = nil
+	}()
+
 	return wtr.Write(ctx2)
 }
 
@@ -57,72 +69,17 @@ func (inst *innerSubjectFacade) Load() error {
 	return err
 }
 
-// // SetProperties implements Subject.
-// func (inst *innerSubjectFacade) SetProperties(pt properties.Table) error {
-
-// 	if pt == nil {
-// 		return nil
-// 	}
-
-// 	ctx := inst.context
-// 	buffer := ctx.GetBuffer(true)
-// 	older := buffer.Properties
-
-// 	if older == nil {
-// 		older = properties.NewTable(nil)
-// 		buffer.Properties = older
-// 	}
-
-// 	older.Import(pt.Export(nil))
-// 	return nil
-// }
-
 // GetContext implements Subject.
 func (inst *innerSubjectFacade) GetContext() context.Context {
 	return inst.context.CC
 }
 
-// // GetSession implements Subject.
-// func (inst *innerSubjectFacade) GetSession() (*rbac.SessionDTO, error) {
-
-// 	cache, err := inst.innerGetCache()
-// 	if err != nil {
-// 		return nil, err
-// 	}
-
-// 	ses := cache.SessionDTO
-// 	if ses == nil {
-// 		// return nil, fmt.Errorf("subject: Session is nil")
-// 		ses = new(rbac.SessionDTO)
-// 	}
-
-// 	return ses, nil
-// }
-
 // Create implements Subject.
 func (inst *innerSubjectFacade) Create() error {
-
-	cache, err := inst.innerGetCache()
-	if err == nil && cache != nil {
-		sid := cache.SessionID
-		suuid := cache.SessionUUID
-		if sid > 0 && (suuid != "") {
-			return fmt.Errorf("the session exists")
-		}
-	}
-
-	ctx1 := inst.context
-	wtr := ctx1.GetWriter(true)
-	ctx2 := ctx1.NewIOC(MethodPost)
-	ctx2.Want.Buffer = ctx1.Buffer
-
-	err = wtr.Write(ctx2)
-	if err == nil {
-		ctx1.Buffer = nil
-		ctx1.Cache = nil
-	}
-
-	return err
+	ctx := inst.context
+	ctx.FlagCreate = true
+	ctx.FlagDirty = true
+	return nil
 }
 
 // Reload implements Subject.
@@ -134,10 +91,32 @@ func (inst *innerSubjectFacade) Reload() error {
 }
 
 // Save implements Subject.
-func (inst *innerSubjectFacade) Save() error {
+func (inst *innerSubjectFacade) Flush() error {
 
 	ctx1 := inst.context
-	ctx2 := ctx1.NewIOC(MethodPut)
+
+	defer func() {
+		ctx1.FlagCreate = false
+		ctx1.FlagDirty = false
+		ctx1.Buffer = nil
+		ctx1.Cache = nil
+	}()
+
+	// check flag
+
+	dirty := ctx1.FlagDirty
+	create := ctx1.FlagCreate
+	if !dirty {
+		return nil
+	}
+	method := MethodPut
+	if create {
+		method = MethodPost
+	}
+
+	// do write
+
+	ctx2 := ctx1.NewIOC(method)
 	wtr := ctx1.Writer
 	buffer := ctx1.Buffer
 	want := &ctx2.Want
@@ -147,54 +126,14 @@ func (inst *innerSubjectFacade) Save() error {
 		want.Buffer = buffer
 	}
 
-	err := wtr.Write(ctx2)
-	if err == nil {
-		ctx1.Buffer = nil
-		ctx1.Cache = nil
-	}
-
-	return err
+	return wtr.Write(ctx2)
 }
-
-// // GetProperties implements Subject.
-// func (inst *innerSubjectFacade) GetProperties() (properties.Table, error) {
-
-// 	cache, err := inst.innerGetCache()
-// 	if err != nil {
-// 		return nil, err
-// 	}
-// 	pt := cache.Properties
-// 	if pt == nil {
-// 		pt = properties.NewTable(nil)
-// 		cache.Properties = pt
-// 	}
-// 	return pt, nil
-// }
 
 func (inst *innerSubjectFacade) innerGetCache() (*Cache, error) {
 	ctx := inst.context
 	ch := ctx.GetCacheHolder(true)
 	return ch.GetCache(ctx)
 }
-
-// func (inst *innerSubjectFacade) innerLoadCache() (*Cache, error) {
-
-// 	ctx1 := inst.context
-// 	ctx2 := ctx1.NewIOC(MethodGet)
-// 	ctx2.Context.Cache = nil
-
-// 	err := inst.context.Reader.Read(ctx2)
-// 	if err != nil {
-// 		return nil, err
-// 	}
-
-// 	cache := ctx2.Context.Cache
-// 	if cache == nil {
-// 		return nil, fmt.Errorf("innerLoadCache() : cache is nil")
-// 	}
-
-// 	return cache, err
-// }
 
 func (inst *innerSubjectFacade) _impl() Subject {
 	return inst

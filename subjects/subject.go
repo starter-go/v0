@@ -62,19 +62,21 @@ type Setter interface {
 type Subject interface {
 	GetContext() context.Context
 
+	DoGet() (Getter, error)
+
+	DoSet() (Setter, error)
+
 	Reload() error
 
 	Load() error
 
-	Save() error
+	Update() error
 
 	Create() error
 
+	Flush() error
+
 	Exit() error
-
-	DoGet() (Getter, error)
-
-	DoSet() (Setter, error)
 }
 
 func GetCurrent(c context.Context) (Subject, error) {

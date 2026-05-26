@@ -17,7 +17,8 @@ type Context struct {
 
 	Buffer *Buffer // for writer
 
-	DoCreate bool
+	FlagCreate bool
+	FlagDirty  bool
 
 	Facade Subject
 
