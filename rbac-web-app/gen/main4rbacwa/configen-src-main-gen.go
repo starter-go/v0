@@ -116,9 +116,27 @@ func (inst* p383a5f3ee9_iauthx_ActionLoginAuthorizer) inject(injext application.
 	nop(ie, com)
 
 	
+    com.SessionSpanSecondsDef = inst.getSessionSpanSecondsDef(ie)
+    com.SessionSpanSecondsMax = inst.getSessionSpanSecondsMax(ie)
+    com.SessionSpanSecondsMin = inst.getSessionSpanSecondsMin(ie)
 
 
     return nil
+}
+
+
+func (inst*p383a5f3ee9_iauthx_ActionLoginAuthorizer) getSessionSpanSecondsDef(ie application.InjectionExt)int64{
+    return ie.GetInt64("${security.session.default-age-sec}")
+}
+
+
+func (inst*p383a5f3ee9_iauthx_ActionLoginAuthorizer) getSessionSpanSecondsMax(ie application.InjectionExt)int64{
+    return ie.GetInt64("${security.session.max-age-sec}")
+}
+
+
+func (inst*p383a5f3ee9_iauthx_ActionLoginAuthorizer) getSessionSpanSecondsMin(ie application.InjectionExt)int64{
+    return ie.GetInt64("${security.session.min-age-sec}")
 }
 
 

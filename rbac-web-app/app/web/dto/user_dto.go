@@ -1,6 +1,9 @@
 package dto
 
-import "github.com/starter-go/v0/rbac-web-app/app/data/dxo"
+import (
+	"github.com/starter-go/rbac/localization"
+	"github.com/starter-go/v0/rbac-web-app/app/data/dxo"
+)
 
 type User struct {
 
@@ -18,6 +21,8 @@ type User struct {
 	DisplayName string `json:"nickname"`
 
 	Avatar dxo.URL `json:"avatar"`
+
+	Language localization.Locale `json:"language"`
 
 	Roles dxo.RoleNameSlice `json:"roles"`
 }

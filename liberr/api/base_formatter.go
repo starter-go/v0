@@ -1,0 +1,31 @@
+package api
+
+import "fmt"
+
+////////////////////////////////////////////////////////////////////////////////
+
+var theBaseFormatter innerBaseFormatter
+
+////////////////////////////////////////////////////////////////////////////////
+
+func GetBaseFormatter() Formatter {
+	return &theBaseFormatter
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+type innerBaseFormatter struct {
+}
+
+// Format implements Formatter.
+func (i *innerBaseFormatter) Format(parent error, reg *Registration, args ...any) error {
+
+	str1 := fmt.Sprintf("error:%d/%s:", reg.Code, reg.Name)
+
+	str2 := fmt.Sprintf(reg.Format, args...)
+
+	return fmt.Errorf("%s %s", str1, str2)
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// EOF

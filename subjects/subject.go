@@ -28,6 +28,8 @@ type Getter interface {
 
 	GetLocale() localization.Locale
 
+	GetRoles() rbac.RoleNameList
+
 	GetAvatar() string
 
 	GetNotBefore() lang.Time
@@ -49,6 +51,8 @@ type Setter interface {
 	SetUserEmail(addr string)
 
 	SetDisplayName(name string)
+
+	SetRoles(roles rbac.RoleNameList)
 
 	SetLocale(l localization.Locale)
 

@@ -164,6 +164,8 @@ github.com/starter-go/v0/htttest v0.0.1 h1:5f1HiiIUxaHZR6OWMXiG2vEePCjQlDP+E17VX
 github.com/starter-go/v0/htttest v0.0.1/go.mod h1:ZVr3ijuXHdyOSVVv0eHEsFM2yUZriEOAiRlJTq8fnM4=
 github.com/starter-go/v0/htttest v0.0.2 h1:SmcSH1SLcC4vX02/RF10OmRLUgHD1f9+W9qqVajXjec=
 github.com/starter-go/v0/htttest v0.0.2/go.mod h1:3InwwsAdKn1NTIsyj7NYOEtJpQE9g4LhWhBP7Nwx7JM=
+github.com/starter-go/v0/htttest v0.0.3 h1:9Ttjn1Rwltm6kCcPAjfcGWi/YTVhCOZ2K1TuLy0z5bk=
+github.com/starter-go/v0/htttest v0.0.3/go.mod h1:3InwwsAdKn1NTIsyj7NYOEtJpQE9g4LhWhBP7Nwx7JM=
 github.com/starter-go/v0/libjwt v0.0.1 h1:5Z5DQaVt92kV1htELOOVWzdtCStPjj+zI5pBq+pqNUQ=
 github.com/starter-go/v0/libjwt v0.0.1/go.mod h1:lGD0R/KRMDzzs7jbNbMryJDvnUtvi+IeO0MEd/7vDc8=
 github.com/starter-go/v0/subjects v0.0.1 h1:t2jS1703lNKiok1pSjh8KeDwdfS5NZca7BcW+bXsJKQ=

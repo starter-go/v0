@@ -9,6 +9,7 @@ import (
 	"github.com/starter-go/base/lang"
 	"github.com/starter-go/libgin"
 	"github.com/starter-go/rbac"
+	"github.com/starter-go/vlog"
 
 	"github.com/starter-go/v0/rbac-web-app/app/classes/authx"
 	"github.com/starter-go/v0/rbac-web-app/app/data/dxo"
@@ -113,7 +114,8 @@ func (inst *innerAuthxTask) open(c *gin.Context) error {
 		info := c.Request.Header.Get("Authorization")
 		err := inst.parseHttpAuthorizationHeader(info)
 		if err != nil {
-			return err
+			// return err
+			vlog.Warn("%s", err.Error())
 		}
 	}
 

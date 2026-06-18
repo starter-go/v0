@@ -13,6 +13,16 @@ type innerGetterImpl struct {
 	agent   properties.Getter
 }
 
+// GetRoles implements Getter.
+func (inst *innerGetterImpl) GetRoles() rbac.RoleNameList {
+
+	const key = PNameRoles
+	agent := inst.innerGetAgent()
+	value := agent.GetString(string(key))
+	return rbac.RoleNameList(value)
+
+}
+
 func (inst *innerGetterImpl) init(ctx *Context, cache *Cache) {
 
 	if ctx == nil {

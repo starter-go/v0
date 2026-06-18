@@ -8,7 +8,7 @@ require (
 	filippo.io/edwards25519 v1.1.0 // indirect
 	github.com/golang-jwt/jwt/v5 v5.2.0 // indirect
 	github.com/starter-go/keyvalues v0.0.1 // indirect
-	github.com/starter-go/v0/htttest v0.0.2 // indirect
+	github.com/starter-go/v0/htttest v0.0.3 // indirect
 	github.com/starter-go/v0/libjwt v0.0.1 // direct
 	github.com/starter-go/v0/subjects v0.0.4 // indirect
 )

@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/starter-go/base/lang"
 	"github.com/starter-go/v0/rbac-web-app/app/classes/authx"
 	"github.com/starter-go/v0/rbac-web-app/app/data/dxo"
 	"github.com/starter-go/v0/rbac-web-app/app/web/dto"
@@ -16,8 +17,9 @@ type ActionLoginAuthorizer struct {
 
 	_as func(authx.Authorizer) //starter:as(".")
 
-	// SessionService sessions.Service //x-starter:inject("#")
-	// TokenService   tokens.Service   //x-starter:inject("#")
+	SessionSpanSecondsDef int64 //starter:inject("${security.session.default-age-sec}")
+	SessionSpanSecondsMax int64 //starter:inject("${security.session.max-age-sec}")
+	SessionSpanSecondsMin int64 //starter:inject("${security.session.min-age-sec}")
 
 }
 
@@ -69,48 +71,23 @@ type innerActionLoginAuthorizerSessionMaker struct {
 	user    *dto.User
 }
 
-// func (inst *innerActionLoginAuthorizerSessionMaker) makeSession() error {
+func (inst *innerActionLoginAuthorizerSessionMaker) computeNotAfter(notBefore lang.Time) lang.Time {
 
-// 	ctx := inst.context
-// 	ser := inst.caller.SessionService
-// 	now := lang.Now()
-// 	user := inst.user
-// 	session := new(dto.Session)
+	cl := inst.caller
+	sec := cl.SessionSpanSecondsDef
+	max := cl.SessionSpanSecondsMax
+	min := cl.SessionSpanSecondsMin
 
-// 	session.Owner = user.ID
-// 	session.AliveFrom = now - 1000
-// 	session.AliveTo = now + (24 * 3600 * 1000)
-// 	session.Alive = true
-// 	session.DisplayName = user.DisplayName
-// 	session.Avatar = user.Avatar
-// 	session.Roles = user.Roles
+	if sec < min {
+		sec = min
+	}
+	if sec > max {
+		sec = max
+	}
 
-// 	ses2, err := ser.Insert(ctx, session)
-// 	if err != nil {
-// 		return err
-// 	}
-
-// 	inst.session = ses2
-// 	return nil
-// }
-
-// func (inst *innerActionLoginAuthorizerSessionMaker) makeToken() error {
-
-// 	ctx := inst.context
-// 	ser := inst.caller.TokenService
-// 	now := lang.Now()
-
-// 	session := inst.session
-// 	token := new(dto.Token)
-
-// 	token.AliveFrom = now - 1000
-// 	token.AliveTo = now + (1000 * 3600)
-// 	token.SessionID = session.ID
-// 	token.SessionUUID = session.UUID
-
-// 	_, err := ser.SetCurrentToken(ctx, token)
-// 	return err
-// }
+	ms := sec * 1000
+	return notBefore + lang.Time(ms)
+}
 
 func (inst *innerActionLoginAuthorizerSessionMaker) makeAll() error {
 
@@ -127,13 +104,25 @@ func (inst *innerActionLoginAuthorizerSessionMaker) makeAll() error {
 
 	src := inst.user
 	roles := src.Roles.Format()
+	userID := src.ID
+	now := lang.Now()
+	notAfter := inst.computeNotAfter(now)
 
-	sett.SetUserID(src.ID)
+	if userID < 1 {
+		return fmt.Errorf("bad user-id")
+	}
+
+	sett.SetUserID(userID)
 	sett.SetAvatar(string(src.Avatar))
 	sett.SetDisplayName(src.DisplayName)
 	sett.SetUserEmail(src.Email.String())
-	sett.SetProperty(subjects.PNameRoles, string(roles))
 	sett.SetUserName(src.Name)
+	sett.SetLocale(src.Language)
+	sett.SetAuthenticated(true)
+	sett.SetNotBefore(now - 3)
+	sett.SetNotAfter(notAfter)
+
+	sett.SetProperty(subjects.PNameRoles, string(roles))
 
 	err = sub.Create()
 	if err != nil {

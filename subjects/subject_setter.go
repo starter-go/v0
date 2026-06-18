@@ -15,6 +15,16 @@ type innerSetterImpl struct {
 	agent   properties.Setter
 }
 
+// SetRoles implements Setter.
+func (inst *innerSetterImpl) SetRoles(roles rbac.RoleNameList) {
+
+	const key = PNameRoles
+	value := string(roles)
+	agent := inst.innerGetAgent()
+	agent.SetString(string(key), value)
+
+}
+
 func (inst *innerSetterImpl) init(c *Context) {
 	if c == nil {
 		panic("param: 'context' is nil")

@@ -15,7 +15,7 @@ func ConvertE2D(src *entity.User, dst *dto.User) error {
 	dst.Name = src.Name
 	dst.Email = src.Email
 	dst.Mobile = src.Mobile
-
+	dst.Language = src.Language
 	dst.Avatar = src.Avatar
 	dst.DisplayName = src.DisplayName
 
@@ -33,7 +33,7 @@ func ConvertD2E(src *dto.User, dst *entity.User) error {
 	dst.Name = src.Name
 	dst.Email = src.Email
 	dst.Mobile = src.Mobile
-
+	dst.Language = src.Language
 	dst.Avatar = src.Avatar
 	dst.DisplayName = src.DisplayName
 

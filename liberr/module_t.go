@@ -1,4 +1,4 @@
-package subjects
+package liberr
 
 import (
 	"embed"
@@ -9,9 +9,9 @@ import (
 ////////////////////////////////////////////////////////////////////////////////
 
 const (
-	theModuleName     = "github.com/starter-go/v0/subjects"
-	theModuleVersion  = "v0.0.5"
-	theModuleRevision = 5
+	theModuleName     = "github.com/starter-go/v0/liberr"
+	theModuleVersion  = "v0.0.0"
+	theModuleRevision = 0
 )
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -29,32 +29,24 @@ var theTestModuleResFS embed.FS
 
 ////////////////////////////////////////////////////////////////////////////////
 
-func BuildModuleForLib() *application.ModuleBuilder {
+func NewModuleForLib() *application.ModuleBuilder {
 	mb := new(application.ModuleBuilder)
-
-	mb.Name(theModuleName + "#main")
+	mb.Name(theModuleName + "#lib")
 	mb.Version(theModuleVersion)
 	mb.Revision(theModuleRevision)
 
 	mb.EmbedResources(theMainModuleResFS, theMainModuleResPath)
 
-	// mb.Components(main4subjects.ExportComponents)
-	// mb.Depend(starter.Module())
-
 	return mb
 }
 
-func BuildModuleForTest() *application.ModuleBuilder {
+func NewModuleForTest() *application.ModuleBuilder {
 	mb := new(application.ModuleBuilder)
-
 	mb.Name(theModuleName + "#test")
 	mb.Version(theModuleVersion)
 	mb.Revision(theModuleRevision)
 
 	mb.EmbedResources(theTestModuleResFS, theTestModuleResPath)
-
-	// mb.Components(test4subjects.ExportComponents)
-	// mb.Depend(Module())
 
 	return mb
 }

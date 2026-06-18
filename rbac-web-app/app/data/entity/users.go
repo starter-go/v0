@@ -2,6 +2,7 @@ package entity
 
 import (
 	"github.com/starter-go/base/lang"
+	"github.com/starter-go/rbac/localization"
 	"github.com/starter-go/v0/rbac-web-app/app/data/dxo"
 )
 
@@ -26,6 +27,8 @@ type User struct {
 
 	// 用户的手机号码
 	Mobile dxo.PhoneNumber `gorm:"unique"`
+
+	Language localization.Locale
 
 	Roles dxo.RoleNameList
 
