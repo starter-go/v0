@@ -70,6 +70,10 @@ type Subject interface {
 
 	DoSet() (Setter, error)
 
+	DoCheck() (Checker, error)
+
+	SetChecker(c Checker)
+
 	Reload() error
 
 	Load() error

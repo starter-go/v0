@@ -171,7 +171,8 @@ func (inst* p8158f311c0_unittestcases_CaseToTrySubject) inject(injext applicatio
 
 	
     com.ChainHolder = inst.getChainHolder(ie)
-    com.Enabled = inst.getEnabled(ie)
+    com.EnableSubject = inst.getEnableSubject(ie)
+    com.EnableChecker = inst.getEnableChecker(ie)
 
 
     return nil
@@ -183,8 +184,13 @@ func (inst*p8158f311c0_unittestcases_CaseToTrySubject) getChainHolder(ie applica
 }
 
 
-func (inst*p8158f311c0_unittestcases_CaseToTrySubject) getEnabled(ie application.InjectionExt)bool{
-    return ie.GetBool("${unit.test-subjects-1.enabled}")
+func (inst*p8158f311c0_unittestcases_CaseToTrySubject) getEnableSubject(ie application.InjectionExt)bool{
+    return ie.GetBool("${unit.test-subject.enabled}")
+}
+
+
+func (inst*p8158f311c0_unittestcases_CaseToTrySubject) getEnableChecker(ie application.InjectionExt)bool{
+    return ie.GetBool("${unit.test-checker.enabled}")
 }
 
 

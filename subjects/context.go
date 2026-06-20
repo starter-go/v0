@@ -9,8 +9,6 @@ import (
 type Context struct {
 	CC context.Context
 
-	// Method Method
-
 	Cache       *Cache // for reader
 	CacheHolder CacheHolder
 	CacheLoader CacheLoader
@@ -21,6 +19,8 @@ type Context struct {
 	FlagDirty  bool
 
 	Facade Subject
+
+	Checker Checker
 
 	Reader ReadFilterChain
 
@@ -82,6 +82,19 @@ func (inst *Context) GetCacheHolder(autoMake bool) CacheHolder {
 		inst.CacheHolder = ch
 	}
 	return ch
+}
+
+func (inst *Context) GetChecker(autoMake bool) Checker {
+	ckr := inst.Checker
+	if ckr == nil && autoMake {
+		checker, err := makeNewChecker(inst)
+		if err != nil {
+			panic(err)
+		}
+		ckr = checker
+		inst.Checker = checker
+	}
+	return ckr
 }
 
 func (inst *Context) GetCacheLoader(autoMake bool) CacheLoader {

@@ -19,6 +19,26 @@ type innerSubjectFacade struct {
 	context *Context
 }
 
+// SetChecker implements Subject.
+func (inst *innerSubjectFacade) SetChecker(c Checker) {
+	if c == nil {
+		return
+	}
+	inst.context.Checker = c
+}
+
+// DoCheck implements Subject.
+func (inst *innerSubjectFacade) DoCheck() (Checker, error) {
+
+	_, err := inst.innerGetCache()
+	if err != nil {
+		return nil, err
+	}
+
+	ckr := inst.context.GetChecker(true)
+	return ckr, nil
+}
+
 // Update implements Subject.
 func (inst *innerSubjectFacade) Update() error {
 	inst.context.FlagDirty = true

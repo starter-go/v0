@@ -18,7 +18,8 @@ type CaseToTrySubject struct {
 
 	ChainHolder subjects.FilterChainHolder //starter:inject("#")
 
-	Enabled bool //starter:inject("${unit.test-subjects-1.enabled}")
+	EnableSubject bool //starter:inject("${unit.test-subject.enabled}")
+	EnableChecker bool //starter:inject("${unit.test-checker.enabled}")
 
 }
 
@@ -27,11 +28,17 @@ func (inst *CaseToTrySubject) ListRegistrations(list []*units.Registration) []*u
 
 	u1 := &units.Registration{
 		Name:    "CaseToTrySubject",
-		Enabled: inst.Enabled,
-		Do:      inst.run,
+		Enabled: inst.EnableSubject,
+		Do:      inst.runTrySubject,
 	}
 
-	list = append(list, u1)
+	u2 := &units.Registration{
+		Name:    "CaseToTryChecker",
+		Enabled: inst.EnableChecker,
+		Do:      inst.runTryChecker,
+	}
+
+	list = append(list, u1, u2)
 	return list
 }
 
@@ -73,7 +80,43 @@ func (inst *CaseToTrySubject) prepareContext() (context.Context, error) {
 	return ctx.CC, nil
 }
 
-func (inst *CaseToTrySubject) run() error {
+func (inst *CaseToTrySubject) runTryChecker() error {
+
+	cc, err := inst.prepareContext()
+	if err != nil {
+		return err
+	}
+
+	sub, err := subjects.GetCurrent(cc)
+	if err != nil {
+		return err
+	}
+
+	setter, err := sub.DoSet()
+	if err != nil {
+		return err
+	}
+
+	setter.SetAuthenticated(true)
+	setter.SetUserID(789)
+	setter.SetUserName("foo")
+	setter.SetRoles("admin")
+
+	sub.Create()
+	sub.Flush()
+	sub.Reload()
+
+	ckr, err := sub.DoCheck()
+	if err != nil {
+		return err
+	}
+
+	ckr.AcceptAdmin()
+
+	return ckr.Check()
+}
+
+func (inst *CaseToTrySubject) runTrySubject() error {
 
 	cc, err := inst.prepareContext()
 	if err != nil {
