@@ -20,12 +20,13 @@ type Checker interface {
 
 	CheckObject(ch *Checking) Checker
 
-	AcceptRole(role rbac.RoleName) Checker
-
 	AcceptAdmin() Checker
-	AcceptRoot() Checker
 	AcceptAnonymous() Checker
+	AcceptAny() Checker
 	AcceptOwner() Checker
+	AcceptRoot() Checker
+
+	AcceptRole(role rbac.RoleName) Checker
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -38,6 +39,14 @@ type innerChecker struct {
 	accepts       map[rbac.RoleName]bool
 	countOwnerYes int
 	countOwnerNo  int
+}
+
+// AcceptAny implements Checker.
+func (inst *innerChecker) AcceptAny() Checker {
+	const (
+		role = rbac.RoleAny
+	)
+	return inst.AcceptRole(role)
 }
 
 func (inst *innerChecker) init(ctx *Context) error {
@@ -106,7 +115,9 @@ func (inst *innerChecker) AcceptRoot() Checker {
 // Check implements Checker.
 func (inst *innerChecker) Check() error {
 
-	if inst.auth && (inst.user > 0) {
+	uid := inst.user
+
+	if inst.auth && (uid > 0) {
 		// is any
 		if inst.isAcceptedRole(rbac.RoleAny) {
 			return nil
@@ -168,7 +179,17 @@ func (inst *innerChecker) hasRole(name rbac.RoleName) bool {
 
 // CheckObject implements Checker.
 func (inst *innerChecker) CheckObject(ch *Checking) Checker {
-	panic("unimplemented")
+
+	u1 := ch.Owner
+	u2 := inst.user
+
+	if (u1 > 0) && (u2 > 0) && (u1 == u2) {
+		inst.countOwnerYes++
+	} else {
+		inst.countOwnerNo++
+	}
+
+	return inst
 }
 
 func (inst *innerChecker) _impl() Checker {
