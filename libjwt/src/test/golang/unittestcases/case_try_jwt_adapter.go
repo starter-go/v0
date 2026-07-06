@@ -57,9 +57,9 @@ func (inst *CaseTryAdapter) innerNewToken() *jwt.Token {
 	return t
 }
 
-func (inst *CaseTryAdapter) run() error {
+func (inst *CaseTryAdapter) run(cc context.Context) error {
 
-	ctx := context.Background()
+	ctx := cc
 	ada := inst.Service.GetAdapter()
 	a1 := new(jwt.Access)
 	a2 := new(jwt.Access)

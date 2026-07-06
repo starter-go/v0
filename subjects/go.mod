@@ -3,8 +3,8 @@ module github.com/starter-go/v0/subjects
 go 1.23
 
 require (
-	github.com/starter-go/rbac v0.0.15
-	github.com/starter-go/security-gorm v1.0.55
+	github.com/starter-go/rbac v0.0.16
+	github.com/starter-go/security-gorm v0.1.56
 	gorm.io/gorm v1.30.1
 )
 
@@ -12,7 +12,7 @@ require (
 	github.com/go-sql-driver/mysql v1.7.1 // indirect
 	github.com/golang-jwt/jwt/v5 v5.2.0 // indirect
 	github.com/starter-go/keyvalues v0.0.1 // indirect
-	github.com/starter-go/units v0.1.1 // indirect
+	github.com/starter-go/units v0.1.3 // indirect
 	github.com/starter-go/v0/libjwt v0.0.1 // indirect
 	gorm.io/driver/mysql v1.5.2 // indirect
 )
@@ -26,7 +26,7 @@ require (
 	github.com/starter-go/configen v0.9.5 // indirect
 	github.com/starter-go/libgorm v0.9.16
 	github.com/starter-go/module-gorm-mysql v1.0.0
-	github.com/starter-go/security v1.0.57
+	github.com/starter-go/security v0.1.60
 	github.com/starter-go/starter v1.0.14
 	github.com/starter-go/vlog v0.9.12
 	golang.org/x/sys v0.22.0 // indirect

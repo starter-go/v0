@@ -1,6 +1,7 @@
 package unittestcases
 
 import (
+	"context"
 	"fmt"
 
 	"github.com/starter-go/base/lang"
@@ -40,7 +41,7 @@ func (inst *CaseTryJwtCodec) ListRegistrations(list []*units.Registration) []*un
 	return list
 }
 
-func (inst *CaseTryJwtCodec) run() error {
+func (inst *CaseTryJwtCodec) run(cc context.Context) error {
 
 	ser := inst.Service
 	dec := ser.GetDecoder()

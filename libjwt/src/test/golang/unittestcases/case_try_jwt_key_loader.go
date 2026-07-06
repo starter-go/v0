@@ -1,6 +1,8 @@
 package unittestcases
 
 import (
+	"context"
+
 	"github.com/starter-go/units"
 	"github.com/starter-go/v0/libjwt/api/jwt"
 	"github.com/starter-go/vlog"
@@ -37,7 +39,7 @@ func (inst *CaseTryKeyLoader) ListRegistrations(list []*units.Registration) []*u
 	return list
 }
 
-func (inst *CaseTryKeyLoader) run() error {
+func (inst *CaseTryKeyLoader) run(cc context.Context) error {
 
 	k, err := inst.Loader.Load()
 	if err != nil {

@@ -1,6 +1,8 @@
 package unittestcases
 
 import (
+	"context"
+
 	"github.com/starter-go/units"
 )
 
@@ -29,6 +31,6 @@ func (inst *ExampleCase) _impl() units.Unit {
 	return inst
 }
 
-func (inst *ExampleCase) run() error {
+func (inst *ExampleCase) run(cc context.Context) error {
 	return nil
 }

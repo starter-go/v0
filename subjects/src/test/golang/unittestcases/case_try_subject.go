@@ -46,9 +46,10 @@ func (inst *CaseToTrySubject) _impl() units.Unit {
 	return inst
 }
 
-func (inst *CaseToTrySubject) prepareContext() (context.Context, error) {
+func (inst *CaseToTrySubject) prepareContext(cc context.Context) (context.Context, error) {
 
-	cc := context.Background()
+	// cc := context.Background()
+
 	cc = context2.SetupConsoleContext(cc)
 	c2h, err := context2.GetHolder(cc)
 
@@ -80,9 +81,9 @@ func (inst *CaseToTrySubject) prepareContext() (context.Context, error) {
 	return ctx.CC, nil
 }
 
-func (inst *CaseToTrySubject) runTryChecker() error {
+func (inst *CaseToTrySubject) runTryChecker(cc context.Context) error {
 
-	cc, err := inst.prepareContext()
+	cc, err := inst.prepareContext(cc)
 	if err != nil {
 		return err
 	}
@@ -116,9 +117,9 @@ func (inst *CaseToTrySubject) runTryChecker() error {
 	return ckr.Check()
 }
 
-func (inst *CaseToTrySubject) runTrySubject() error {
+func (inst *CaseToTrySubject) runTrySubject(cc context.Context) error {
 
-	cc, err := inst.prepareContext()
+	cc, err := inst.prepareContext(cc)
 	if err != nil {
 		return err
 	}

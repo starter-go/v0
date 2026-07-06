@@ -36,12 +36,12 @@ func (inst *TrySessionService) _impl() units.Unit {
 	return inst
 }
 
-func (inst *TrySessionService) run() error {
+func (inst *TrySessionService) run(ctx context.Context) error {
 
 	vlog.Debug("TrySessionService.run()")
 
 	steps := make([]func(c context.Context) error, 0)
-	ctx := inst.innerPrepareContext()
+	ctx = inst.innerPrepareContext(ctx)
 
 	// steps
 
@@ -67,9 +67,10 @@ func (inst *TrySessionService) run() error {
 	return nil
 }
 
-func (inst *TrySessionService) innerPrepareContext() context.Context {
-
-	ctx := context.Background()
+func (inst *TrySessionService) innerPrepareContext(ctx context.Context) context.Context {
+	if ctx == nil {
+		ctx = context.Background()
+	}
 	return ctx
 }
 
