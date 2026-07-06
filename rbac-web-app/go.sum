@@ -112,6 +112,8 @@ github.com/starter-go/i18n v0.0.4 h1:8gKn+pFUqYvPXZfTrtnRa1Urlc7jp8BAEB7EFs7C0ko
 github.com/starter-go/i18n v0.0.4/go.mod h1:U5nd0lWaAZ8IGzG4ZHBxV9CAlPvTt2h/eJc0NqUulZg=
 github.com/starter-go/i18n v0.0.5 h1:WvjD2kPOpBhpMtpPtqlpshcKuBsuNYe/8+kOx0fRr6M=
 github.com/starter-go/i18n v0.0.5/go.mod h1:Im5G+3q23Dj5qNKy5ia4QR0L62QD9LKrana+n/mVAi0=
+github.com/starter-go/i18n v0.0.6 h1:p68wKFr/4nz3bJNMqF5HSzykDOyMlxcKH34yKZ5VFMM=
+github.com/starter-go/i18n v0.0.6/go.mod h1:TJ8P7G6UFCnTjiQ4mEEWOGI2Io54LlQPikK9SC7A17g=
 github.com/starter-go/keyvalues v0.0.1 h1:nwvE7xp0eCq5rjHfLyYFEfowgZkDYBZcIT39c9ECjjk=
 github.com/starter-go/keyvalues v0.0.1/go.mod h1:+S65W4rMjMYQZAmt766453lksB5C3PPp794W3iTCmVA=
 github.com/starter-go/libafs v0.0.7 h1:o8UI6OFhaQp5yLxXrXb5Na7LZ/XVHHBER0f7POCcLv0=
@@ -132,6 +134,8 @@ github.com/starter-go/mimetypes v0.0.2 h1:87loQH+gffKiysowo7k5oKXSUQE+VIhb2zGujv
 github.com/starter-go/mimetypes v0.0.2/go.mod h1:F4Ffq4kgT0yto4RMloFTK0viyUmXTnfIRPqkCO2Zdus=
 github.com/starter-go/mimetypes v0.0.6 h1:Y5456a7/Bpw2+l6QbhIk8J2UwGoye+pGekRDcauBd6A=
 github.com/starter-go/mimetypes v0.0.6/go.mod h1:q01pVwyKbBjlPC1DMuEXX3ZtcYVgM5QtWpRb1Ntj37Y=
+github.com/starter-go/mimetypes v0.0.7 h1:z3GeJ0bo/JXi1klftxpSgaGT6BdVz0D8Wy/YgzMdthk=
+github.com/starter-go/mimetypes v0.0.7/go.mod h1:n9flLdasZJQvuj3biwc2nwUxE3lGxxoAd0LkNDDYWK8=
 github.com/starter-go/module-gorm-mysql v1.0.0 h1:aWZ9Pc0EajrifTCMizQ9Q2RPpD1w3wzS5kWwmMfBae4=
 github.com/starter-go/module-gorm-mysql v1.0.0/go.mod h1:lNbJjC0EcO6xkOPEpXVi0bZq9Tc21tlkzaR91o9JEqY=
 github.com/starter-go/module-gorm-sqlserver v1.0.0 h1:hcQdqcFhV5BU8JLX6SqerJUx9zSGcJdmESYp1b25SaU=
@@ -142,10 +146,16 @@ github.com/starter-go/rbac v0.0.11 h1:9UYHYWB1meJz8e9JMPtlIAfw8cYofQijRB3sSRW1gA
 github.com/starter-go/rbac v0.0.11/go.mod h1:N93w2twpuiCD1yDDBeVyRm2a+Voz0OIpIpxpuox7fUY=
 github.com/starter-go/rbac v0.0.15 h1:sUxDR/q6Dg10ku2eL6xtYIVRS8QNIiHWE5ahxMQJkxs=
 github.com/starter-go/rbac v0.0.15/go.mod h1:o5pYLXIR/t+VKslSDZMrXIUM+7CwALCFOPHXw3MT3XU=
+github.com/starter-go/rbac v0.0.16 h1:5eXGJ0Gv0ZsbX6dbLG8DV6WUa43HasK7/aCu97Ly7kw=
+github.com/starter-go/rbac v0.0.16/go.mod h1:o5pYLXIR/t+VKslSDZMrXIUM+7CwALCFOPHXw3MT3XU=
+github.com/starter-go/security v0.1.60 h1:7SReegGlQ1TpgRU0cINEjcU0BLb+NmuRBTEHZNHGAn8=
+github.com/starter-go/security v0.1.60/go.mod h1:iVrEDRYagEJpz3FjyKZE2SpAMAUSOSIQfM48UUYslJU=
 github.com/starter-go/security v1.0.55 h1:ML1Qj4IGoHz7nMqVquuN2gsiBpDKpmmCpvZtshC4B1U=
 github.com/starter-go/security v1.0.55/go.mod h1:WQkxWC12s/qpasD0Mbc3IiTN+Xp94nJwbe0NkLiKrQg=
 github.com/starter-go/security v1.0.57 h1:VcEjYHnpnLymT5YmG8Zu62eMFkc527CDzuM95Ms/DEI=
 github.com/starter-go/security v1.0.57/go.mod h1:YP3OoM152Z0eSf8bitVki8YD3q96/Avvo5D41bJw9cs=
+github.com/starter-go/security-gorm v0.1.56 h1:ptfsdJv9zsIvjuG0hlkPOLpF/T0Sp5oH6IfeAQ57cgo=
+github.com/starter-go/security-gorm v0.1.56/go.mod h1:53BFoxKVz6q+lQxcsy0SAMPic33YgD5DhzIVJtbalXA=
 github.com/starter-go/security-gorm v1.0.55 h1:R8KEQklmp19hWwk0u4Pd/IvUtAdD4fD7ij4kspYO5hc=
 github.com/starter-go/security-gorm v1.0.55/go.mod h1:hGA7t7YwMUI+5V1XvabgLt8mOPPs5WmT13vTadvbdAM=
 github.com/starter-go/starter v1.0.14 h1:TPVTOlKrU/9XBuSVy2hzQb13gKT1Sbup/s3vQ5GrhqM=
@@ -160,6 +170,8 @@ github.com/starter-go/units v0.1.1 h1:Zd8tiu/+TiTO18afr7f8wRm4lViIG5EWUOjET+n0a3
 github.com/starter-go/units v0.1.1/go.mod h1:fnTy7hUsN6mWTak3/406hSaQ07RArTyPAX+lv5Dnr4o=
 github.com/starter-go/units v0.1.2 h1:WlCdqYrOArfCNFXSTpYBmBszX6qlzF84qpOq5fpmvmg=
 github.com/starter-go/units v0.1.2/go.mod h1:fnTy7hUsN6mWTak3/406hSaQ07RArTyPAX+lv5Dnr4o=
+github.com/starter-go/units v0.1.3 h1:MbpAAEY1dyRnuc1m2Ogq4Sp8qJfuhm+E9USQ7IEQv1k=
+github.com/starter-go/units v0.1.3/go.mod h1:fnTy7hUsN6mWTak3/406hSaQ07RArTyPAX+lv5Dnr4o=
 github.com/starter-go/v0/htttest v0.0.1 h1:5f1HiiIUxaHZR6OWMXiG2vEePCjQlDP+E17VXPJdZhc=
 github.com/starter-go/v0/htttest v0.0.1/go.mod h1:ZVr3ijuXHdyOSVVv0eHEsFM2yUZriEOAiRlJTq8fnM4=
 github.com/starter-go/v0/htttest v0.0.2 h1:SmcSH1SLcC4vX02/RF10OmRLUgHD1f9+W9qqVajXjec=
@@ -168,6 +180,8 @@ github.com/starter-go/v0/htttest v0.0.3 h1:9Ttjn1Rwltm6kCcPAjfcGWi/YTVhCOZ2K1TuL
 github.com/starter-go/v0/htttest v0.0.3/go.mod h1:3InwwsAdKn1NTIsyj7NYOEtJpQE9g4LhWhBP7Nwx7JM=
 github.com/starter-go/v0/libjwt v0.0.1 h1:5Z5DQaVt92kV1htELOOVWzdtCStPjj+zI5pBq+pqNUQ=
 github.com/starter-go/v0/libjwt v0.0.1/go.mod h1:lGD0R/KRMDzzs7jbNbMryJDvnUtvi+IeO0MEd/7vDc8=
+github.com/starter-go/v0/libjwt v0.0.2 h1:AJG1epbQ2AhVG7WHvkZ+f16sWz5eBbBg/bDEM0a49Zs=
+github.com/starter-go/v0/libjwt v0.0.2/go.mod h1:sLYNhXr6uP4ByCePdGz2KZf325qCpda0rgrhUQ2HyPE=
 github.com/starter-go/v0/subjects v0.0.1 h1:t2jS1703lNKiok1pSjh8KeDwdfS5NZca7BcW+bXsJKQ=
 github.com/starter-go/v0/subjects v0.0.1/go.mod h1:ywhKQbs/V1Aos+B6EtLtKdODbMJFvQmV4QNCaNtR8+M=
 github.com/starter-go/v0/subjects v0.0.2 h1:P48ZyUDS4S8PcPLaw6FvDPTwW+4XcBEsTOX4Xabdfo0=
@@ -178,6 +192,8 @@ github.com/starter-go/v0/subjects v0.0.4 h1:w+3DUBx0Hsr79XNc8yc6Qwf/Z6+56jgvoVEm
 github.com/starter-go/v0/subjects v0.0.4/go.mod h1:ywhKQbs/V1Aos+B6EtLtKdODbMJFvQmV4QNCaNtR8+M=
 github.com/starter-go/v0/subjects v0.0.5 h1:8d8wnATfKxgl9qwRL2zgFuTWklpTZdQxHFiD9/tk2Yg=
 github.com/starter-go/v0/subjects v0.0.5/go.mod h1:ywhKQbs/V1Aos+B6EtLtKdODbMJFvQmV4QNCaNtR8+M=
+github.com/starter-go/v0/subjects v0.0.8 h1:5527dqpFutScOotzeNRszCXgJbVW92iYpX6w8Xr9oEw=
+github.com/starter-go/v0/subjects v0.0.8/go.mod h1:ULPkKNO1FiDSpYMa6xq4+0vq00Cb2ojJJvKOVgB14OI=
 github.com/starter-go/vlog v0.9.7 h1:ysmWPxsJtgRxL5ht4abtWvJW9E7vLFAtuOOi/XtpSmY=
 github.com/starter-go/vlog v0.9.7/go.mod h1:ywWUCfWNTqXrelvO4/3sQ04SCW4ClR3PiN3qpSlXhH0=
 github.com/starter-go/vlog v0.9.12 h1:gaKCLPvEY6d8SoVfEemGTqyNdrFZlRqf1dVDimCqgZw=

@@ -1,6 +1,7 @@
 package unittestcases
 
 import (
+	"context"
 	"net/http"
 	"time"
 
@@ -39,7 +40,7 @@ func (inst *CaseTryPostAuth) ListRegistrations(list []*units.Registration) []*un
 	return list
 }
 
-func (inst *CaseTryPostAuth) run() error {
+func (inst *CaseTryPostAuth) run(cc context.Context) error {
 
 	ser := inst.Service
 	agent := ser.GetUserAgent()

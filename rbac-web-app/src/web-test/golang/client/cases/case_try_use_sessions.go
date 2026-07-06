@@ -1,6 +1,7 @@
 package cases
 
 import (
+	"context"
 	"net/http"
 
 	"github.com/starter-go/rbac"
@@ -29,7 +30,7 @@ func (inst *CaseTryUseSessions) ListRegistrations(list []*units.Registration) []
 	return list
 }
 
-func (inst *CaseTryUseSessions) run() error {
+func (inst *CaseTryUseSessions) run(cc context.Context) error {
 
 	ser := inst.HTTTestService
 	agent := ser.GetUserAgent()

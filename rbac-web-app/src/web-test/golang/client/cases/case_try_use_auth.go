@@ -1,6 +1,7 @@
 package cases
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 
@@ -30,7 +31,7 @@ func (inst *CaseTryUseAuth) ListRegistrations(list []*units.Registration) []*uni
 	return list
 }
 
-func (inst *CaseTryUseAuth) run() error {
+func (inst *CaseTryUseAuth) run(cc context.Context) error {
 
 	ser := inst.HTTTestService
 	agent := ser.GetUserAgent()

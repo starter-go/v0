@@ -1,6 +1,8 @@
 package testcase
 
 import (
+	"context"
+
 	"github.com/starter-go/units"
 )
 
@@ -23,7 +25,7 @@ func (inst *CaseTryExample) ListRegistrations(list []*units.Registration) []*uni
 	return list
 }
 
-func (inst *CaseTryExample) run() error {
+func (inst *CaseTryExample) run(cc context.Context) error {
 	return nil
 }
 

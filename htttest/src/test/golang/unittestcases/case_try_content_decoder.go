@@ -1,6 +1,7 @@
 package unittestcases
 
 import (
+	"context"
 	"net/http"
 
 	"github.com/starter-go/units"
@@ -44,7 +45,7 @@ func (inst *CaseTryContentDecoder) ListRegistrations(list []*units.Registration)
 	return list
 }
 
-func (inst *CaseTryContentDecoder) runAsText() error {
+func (inst *CaseTryContentDecoder) runAsText(cc context.Context) error {
 
 	ser := inst.Service
 	agent := ser.GetUserAgent()
@@ -74,7 +75,7 @@ func (inst *CaseTryContentDecoder) runAsText() error {
 	return agent.Execute(tr)
 }
 
-func (inst *CaseTryContentDecoder) runAsJson() error {
+func (inst *CaseTryContentDecoder) runAsJson(cc context.Context) error {
 
 	ser := inst.Service
 	agent := ser.GetUserAgent()

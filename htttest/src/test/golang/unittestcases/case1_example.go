@@ -1,6 +1,7 @@
 package unittestcases
 
 import (
+	"context"
 	"net/http"
 
 	"github.com/starter-go/units"
@@ -37,7 +38,7 @@ func (inst *ExampleCase) ListRegistrations(list []*units.Registration) []*units.
 	return list
 }
 
-func (inst *ExampleCase) run() error {
+func (inst *ExampleCase) run(cc context.Context) error {
 
 	ser := inst.Service
 	agent := ser.GetUserAgent()
