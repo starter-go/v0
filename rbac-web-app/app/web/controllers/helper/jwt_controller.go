@@ -55,8 +55,11 @@ func (inst *JWTokenController) setupMiddleware(rp libgin.RouterProxy) {
 	fnlist = append(fnlist, inst.handlePrepareRbacContext)
 
 	r1.Method = ""
-	r1.Path = "/api/*"
-	r1.Priority = 1
+	r1.Path = ""
+
+	// r1.Path = "/api/*"
+
+	r1.Priority = 9999
 	r1.Middleware = true
 	r1.Handlers = fnlist
 

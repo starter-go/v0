@@ -6,6 +6,44 @@ import (
      "github.com/starter-go/application"
 )
 
+// type p819ff5697.ExamplePermissionsProvider in package:github.com/starter-go/v0/rbac-web-app/src/web-test/golang/server/controllers
+//
+// id:com-819ff569706f8b38-controllers-ExamplePermissionsProvider
+// class:class-08935700f7002f152b848e80701dde49-Registry
+// alias:
+// scope:singleton
+//
+type p819ff56970_controllers_ExamplePermissionsProvider struct {
+}
+
+func (inst* p819ff56970_controllers_ExamplePermissionsProvider) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-819ff569706f8b38-controllers-ExamplePermissionsProvider"
+	r.Classes = "class-08935700f7002f152b848e80701dde49-Registry"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p819ff56970_controllers_ExamplePermissionsProvider) new() any {
+    return &p819ff5697.ExamplePermissionsProvider{}
+}
+
+func (inst* p819ff56970_controllers_ExamplePermissionsProvider) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p819ff5697.ExamplePermissionsProvider)
+	nop(ie, com)
+
+	
+
+
+    return nil
+}
+
+
+
 // type p819ff5697.WebUnitTestSessionController in package:github.com/starter-go/v0/rbac-web-app/src/web-test/golang/server/controllers
 //
 // id:com-819ff569706f8b38-controllers-WebUnitTestSessionController

@@ -1,4 +1,4 @@
-package testwebserver4rbacwa
+package test4libvlog
 
 import "github.com/starter-go/application"
 
@@ -30,8 +30,8 @@ func (inst *autoRegistrar) register(factory comFactory) error {
 func (inst*autoRegistrar) addAll() error {
 
     
-    inst.register(&p819ff56970_controllers_ExamplePermissionsProvider{})
-    inst.register(&p819ff56970_controllers_WebUnitTestSessionController{})
+    inst.register(&p17727fc705_testcom_Example1{})
+    inst.register(&p17727fc705_testcom_TryLogLevels{})
 
 
     return nil

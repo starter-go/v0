@@ -45,6 +45,7 @@ func (inst*autoRegistrar) addAll() error {
     inst.register(&pabcfb75207_idatabase_MyDatabaseAgentImpl{})
     inst.register(&pc3ca883e25_helper_GinLibjwtAdapter{})
     inst.register(&pc3ca883e25_helper_JWTokenController{})
+    inst.register(&pc3ca883e25_helper_RbacCheckerController{})
     inst.register(&pf75fd20ca4_database_MyDataGroup{})
 
 

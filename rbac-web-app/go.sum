@@ -65,8 +65,8 @@ github.com/jcmturner/goidentity/v6 v6.0.1/go.mod h1:X1YW3bgtvwAXju7V3LCIMpY0Gbxy
 github.com/jcmturner/gokrb5/v8 v8.4.4/go.mod h1:1btQEpgT6k+unzCwX1KdWMEwPPkkgBtP+F6aCACiMrs=
 github.com/jcmturner/rpc/v2 v2.0.3/go.mod h1:VUJYCIDm3PVOEHw8sgt091/20OJjskO/YJki3ELg/Hc=
 github.com/jinzhu/inflection v1.0.0 h1:K317FqzuhWc8YvSVlFMCCUb36O/S9MCKRDI7QkRKD/E=
-github.com/jinzhu/inflection v1.0.0/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
 github.com/jinzhu/inflection v1.0.0+incompatible/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
+github.com/jinzhu/inflection v1.0.0/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
 github.com/jinzhu/now v1.1.5 h1:/o9tlHleP7gOFmsnYNz3RGnqzefHA47wQpKrrdTIwXQ=
 github.com/jinzhu/now v1.1.5/go.mod h1:d3SSVoowX0Lcu0IBviAWJpolVfI5UJVZZ7cO71lE/z8=
 github.com/json-iterator/go v1.1.12 h1:PV8peI4a0ysnczrg+LtxykD8LfKY9ML6u2jnxaEnrnM=
@@ -120,6 +120,8 @@ github.com/starter-go/libafs v0.0.7 h1:o8UI6OFhaQp5yLxXrXb5Na7LZ/XVHHBER0f7POCcL
 github.com/starter-go/libafs v0.0.7/go.mod h1:IhwhU5gaIduI8/8doKyoyJ0hHZECT3neyNHYYF9ls+A=
 github.com/starter-go/libafs v0.0.8 h1:ntM3REa3VlPhZNvxSW4ipamczOpmMdQ8kFh0mvWQuZo=
 github.com/starter-go/libafs v0.0.8/go.mod h1:rzZ9eB/d7EgNhsBDIPWxFtFuE0ANL4TVB0/lnL2HGKA=
+github.com/starter-go/libafs v0.0.9 h1:ejkBdvXmxreg85gKOroOJXsndNlwbIcy9JOz/oCaGME=
+github.com/starter-go/libafs v0.0.9/go.mod h1:VbXysx2Yjso9dkzFSym/MtN0ViE3wdM5tnZ/0IkLajU=
 github.com/starter-go/libgin v0.1.21 h1:SXsQLi8ZImTOpO5gpUlbKmc+22C5zZ5VADiJvKEFHzY=
 github.com/starter-go/libgin v0.1.21/go.mod h1:mc4gkAQjyQyErO6iIfR6Yac4eOmzZGVRfOEA6OF+Fv4=
 github.com/starter-go/libgin v1.0.18 h1:0NdrUpueFtOzbZTywaa0GZ4TArgHeu54BUQLi7A9M1E=
@@ -164,6 +166,8 @@ github.com/starter-go/stopper v0.0.4 h1:mg82TqrR99xowmPdrRqUKrbc3N6XzvGs5p9T5TJB
 github.com/starter-go/stopper v0.0.4/go.mod h1:odBrgcDgyiHI8ecpBVwfE5+mlux1Tr0EKsKX6MPzYp0=
 github.com/starter-go/stopper v0.0.5 h1:Z7i7PqVPwqMFI7pimnhyyJxQOuUdJsFf4YR6eOCroGo=
 github.com/starter-go/stopper v0.0.5/go.mod h1:75vYuxXO4WLr7G8pL6Q1oVfYJRSeUJvVMiqDQNEGQqM=
+github.com/starter-go/stopper v0.0.6 h1:AaMbF1VOEJ5OpxQmEtNjl7fDzmGSgyTginmm8wq8xoU=
+github.com/starter-go/stopper v0.0.6/go.mod h1:kqOPfke8wZ4vTD50KdT/LPxicOuGxCMNOfmnWSok8Do=
 github.com/starter-go/units v0.0.6 h1:1sLqKa+9r3k+F89up7tGxqiBZ0kX/e7bbjgmw0bc1A8=
 github.com/starter-go/units v0.0.6/go.mod h1:GC3pHwA0Km2CZmZkv195/P/cTfHCPw4UlCerQngbcus=
 github.com/starter-go/units v0.1.1 h1:Zd8tiu/+TiTO18afr7f8wRm4lViIG5EWUOjET+n0a3g=
@@ -178,6 +182,8 @@ github.com/starter-go/v0/htttest v0.0.2 h1:SmcSH1SLcC4vX02/RF10OmRLUgHD1f9+W9qqV
 github.com/starter-go/v0/htttest v0.0.2/go.mod h1:3InwwsAdKn1NTIsyj7NYOEtJpQE9g4LhWhBP7Nwx7JM=
 github.com/starter-go/v0/htttest v0.0.3 h1:9Ttjn1Rwltm6kCcPAjfcGWi/YTVhCOZ2K1TuLy0z5bk=
 github.com/starter-go/v0/htttest v0.0.3/go.mod h1:3InwwsAdKn1NTIsyj7NYOEtJpQE9g4LhWhBP7Nwx7JM=
+github.com/starter-go/v0/htttest v0.0.4 h1:KjQnMXf8KdNYwCAVy10bH7ozBeqdJSic2T+JOc0DiAo=
+github.com/starter-go/v0/htttest v0.0.4/go.mod h1:K5GKXQVU4ElYKfhmCuxD9GuROD2oOUKStysFl1jEqZ4=
 github.com/starter-go/v0/libjwt v0.0.1 h1:5Z5DQaVt92kV1htELOOVWzdtCStPjj+zI5pBq+pqNUQ=
 github.com/starter-go/v0/libjwt v0.0.1/go.mod h1:lGD0R/KRMDzzs7jbNbMryJDvnUtvi+IeO0MEd/7vDc8=
 github.com/starter-go/v0/libjwt v0.0.2 h1:AJG1epbQ2AhVG7WHvkZ+f16sWz5eBbBg/bDEM0a49Zs=

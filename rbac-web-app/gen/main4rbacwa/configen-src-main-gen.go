@@ -2,6 +2,7 @@ package main4rbacwa
 import (
     pd1a916a20 "github.com/starter-go/libgin"
     p512a30914 "github.com/starter-go/libgorm"
+    p08935700f "github.com/starter-go/security/permissions"
     p9621e8b71 "github.com/starter-go/security/random"
     p84e86b31b "github.com/starter-go/v0/rbac-web-app/app/classes/authx"
     p2d258e798 "github.com/starter-go/v0/rbac-web-app/app/classes/users"
@@ -779,6 +780,50 @@ func (inst*pc3ca883e25_helper_GinLibjwtAdapter) getMyCookieSecure(ie application
 
 func (inst*pc3ca883e25_helper_GinLibjwtAdapter) getMyCookieHttpOnly(ie application.InjectionExt)bool{
     return ie.GetBool("${jwt-adapter.libgin.cookie.http-only}")
+}
+
+
+
+// type pc3ca883e2.RbacCheckerController in package:github.com/starter-go/v0/rbac-web-app/app/web/controllers/helper
+//
+// id:com-c3ca883e2525cff7-helper-RbacCheckerController
+// class:class-d1a916a203352fd5d33eabc36896b42e-Controller
+// alias:
+// scope:singleton
+//
+type pc3ca883e25_helper_RbacCheckerController struct {
+}
+
+func (inst* pc3ca883e25_helper_RbacCheckerController) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-c3ca883e2525cff7-helper-RbacCheckerController"
+	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pc3ca883e25_helper_RbacCheckerController) new() any {
+    return &pc3ca883e2.RbacCheckerController{}
+}
+
+func (inst* pc3ca883e25_helper_RbacCheckerController) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pc3ca883e2.RbacCheckerController)
+	nop(ie, com)
+
+	
+    com.PM = inst.getPM(ie)
+
+
+    return nil
+}
+
+
+func (inst*pc3ca883e25_helper_RbacCheckerController) getPM(ie application.InjectionExt)p08935700f.Manager{
+    return ie.GetComponent("#alias-08935700f7002f152b848e80701dde49-Manager").(p08935700f.Manager)
 }
 
 
