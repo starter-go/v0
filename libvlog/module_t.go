@@ -14,8 +14,8 @@ import (
 
 const (
 	theModuleName     = "github.com/starter-go/v0/libvlog"
-	theModuleVersion  = "v0.0.1"
-	theModuleRevision = 1
+	theModuleVersion  = "v0.10.0"
+	theModuleRevision = 2
 )
 
 ////////////////////////////////////////////////////////////////////////////////
