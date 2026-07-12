@@ -2,7 +2,6 @@ package users
 
 import (
 	"github.com/starter-go/rbac"
-	"github.com/starter-go/v0/rbac-web-app/app/data/entity"
 )
 
 type Query struct {
@@ -10,5 +9,5 @@ type Query struct {
 
 	Pagination rbac.Pagination
 
-	Want *entity.User
+	Want *Entity
 }

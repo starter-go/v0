@@ -34,8 +34,24 @@ require (
 	github.com/starter-go/application v0.10.0 // indirect
 	github.com/starter-go/base v0.10.0 // indirect
 	github.com/starter-go/configen v0.10.0 // indirect
-	github.com/starter-go/rbac v0.10.0 // indirect
+	github.com/starter-go/i18n v0.10.0 // indirect
+	github.com/starter-go/keyvalues v0.10.0 // indirect
+	github.com/starter-go/libafs v0.10.0 // indirect
+	github.com/starter-go/libgin v0.10.0 // indirect
+	github.com/starter-go/libgorm v0.10.0 // indirect
+	github.com/starter-go/mimetypes v0.10.0 // indirect
+	github.com/starter-go/module-gorm-mysql v0.10.0 // indirect
+	github.com/starter-go/module-gorm-sqlserver v0.10.0 // indirect
+	github.com/starter-go/rbac v0.10.1 // indirect
+	github.com/starter-go/security v0.10.0 // indirect
+	github.com/starter-go/security-gorm v0.10.0 // indirect
 	github.com/starter-go/starter v0.10.0 // indirect
+	github.com/starter-go/stopper v0.10.0 // indirect
+	github.com/starter-go/units v0.10.0 // indirect
+	github.com/starter-go/v0/htttest v0.10.0 // indirect
+	github.com/starter-go/v0/libjwt v0.10.0 // indirect
+	github.com/starter-go/v0/libvlog v0.10.0 // indirect
+	github.com/starter-go/v0/subjects v0.10.0 // indirect
 	github.com/starter-go/vlog v0.10.0 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.11 // indirect

@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/starter-go/starter"
+	"github.com/starter-go/units"
 	"github.com/starter-go/v0/rbac-web-app/modules/rbacwebapp"
 )
 
@@ -11,9 +11,12 @@ func main() {
 
 	a := os.Args
 	m := rbacwebapp.ModuleForTest()
-	i := starter.Init(a)
 
-	i.MainModule(m)
+	c := &units.Context{
+		Arguments: a,
+		Module:    m,
+		UsePanic:  true,
+	}
 
-	i.WithPanic(true).Run()
+	units.Run(c)
 }

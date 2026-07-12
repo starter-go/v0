@@ -10,6 +10,8 @@ type ExampleID IntegerID
 
 type UserID = rbac.UserID
 
-type SessionID IntegerID
+type PermissionID = rbac.PermissionID
+
+type SessionID = rbac.SessionIID
 
 type TokenID IntegerID

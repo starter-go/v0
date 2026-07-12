@@ -21,7 +21,7 @@ func (inst *ExamplePermissionsProvider) ListRegistrations() []*permissions.Regis
 	list := make([]*permissions.Registration, 0)
 
 	list = inst.accept(list, http.MethodGet, "/api/v1/admin/users/:id", rbac.RoleAdmin)
-	list = inst.accept(list, http.MethodGet, "/api/v1/auth", rbac.RoleAnonym)
+	list = inst.accept(list, http.MethodGet, "/api/v1/auth", rbac.RoleAnonym, rbac.RoleUser)
 
 	return list
 }

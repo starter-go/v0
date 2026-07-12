@@ -5,15 +5,17 @@ import (
     p08935700f "github.com/starter-go/security/permissions"
     p9621e8b71 "github.com/starter-go/security/random"
     p84e86b31b "github.com/starter-go/v0/rbac-web-app/app/classes/authx"
+    pe368f8662 "github.com/starter-go/v0/rbac-web-app/app/classes/permissions"
     p2d258e798 "github.com/starter-go/v0/rbac-web-app/app/classes/users"
     pf75fd20ca "github.com/starter-go/v0/rbac-web-app/app/data/database"
     p383a5f3ee "github.com/starter-go/v0/rbac-web-app/app/implements/iauthx"
     pabcfb7520 "github.com/starter-go/v0/rbac-web-app/app/implements/idatabase"
+    pea0a25a6a "github.com/starter-go/v0/rbac-web-app/app/implements/ipermissions"
     p4b670e5fa "github.com/starter-go/v0/rbac-web-app/app/implements/iusers"
     p7249a1596 "github.com/starter-go/v0/rbac-web-app/app/web/controllers"
     p7f79a0bbf "github.com/starter-go/v0/rbac-web-app/app/web/controllers/admin"
     pc3ca883e2 "github.com/starter-go/v0/rbac-web-app/app/web/controllers/helper"
-    p79b61f17f "github.com/starter-go/v0/rbac-web-app/app/web/controllers/home"
+    pe475f399c "github.com/starter-go/v0/rbac-web-app/app/web/controllers/my"
     pfd2c28477 "github.com/starter-go/v0/subjects"
      "github.com/starter-go/application"
 )
@@ -430,6 +432,100 @@ func (inst*pabcfb75207_idatabase_MyDatabaseAgentImpl) getDSManager(ie applicatio
 
 
 
+// type pea0a25a6a.PermissionDaoImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/ipermissions
+//
+// id:com-ea0a25a6a995b63a-ipermissions-PermissionDaoImpl
+// class:
+// alias:alias-e368f86629ca246ef7df63b6b1201d83-DAO
+// scope:singleton
+//
+type pea0a25a6a9_ipermissions_PermissionDaoImpl struct {
+}
+
+func (inst* pea0a25a6a9_ipermissions_PermissionDaoImpl) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-ea0a25a6a995b63a-ipermissions-PermissionDaoImpl"
+	r.Classes = ""
+	r.Aliases = "alias-e368f86629ca246ef7df63b6b1201d83-DAO"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pea0a25a6a9_ipermissions_PermissionDaoImpl) new() any {
+    return &pea0a25a6a.PermissionDaoImpl{}
+}
+
+func (inst* pea0a25a6a9_ipermissions_PermissionDaoImpl) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pea0a25a6a.PermissionDaoImpl)
+	nop(ie, com)
+
+	
+    com.Agent = inst.getAgent(ie)
+    com.UUIDSer = inst.getUUIDSer(ie)
+
+
+    return nil
+}
+
+
+func (inst*pea0a25a6a9_ipermissions_PermissionDaoImpl) getAgent(ie application.InjectionExt)pf75fd20ca.Agent{
+    return ie.GetComponent("#alias-f75fd20ca4f14f60caace00a3f949b98-Agent").(pf75fd20ca.Agent)
+}
+
+
+func (inst*pea0a25a6a9_ipermissions_PermissionDaoImpl) getUUIDSer(ie application.InjectionExt)p9621e8b71.UUIDService{
+    return ie.GetComponent("#alias-9621e8b71013b0fc25942a1749ed3652-UUIDService").(p9621e8b71.UUIDService)
+}
+
+
+
+// type pea0a25a6a.PermissionServiceImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/ipermissions
+//
+// id:com-ea0a25a6a995b63a-ipermissions-PermissionServiceImpl
+// class:
+// alias:alias-e368f86629ca246ef7df63b6b1201d83-Service
+// scope:singleton
+//
+type pea0a25a6a9_ipermissions_PermissionServiceImpl struct {
+}
+
+func (inst* pea0a25a6a9_ipermissions_PermissionServiceImpl) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-ea0a25a6a995b63a-ipermissions-PermissionServiceImpl"
+	r.Classes = ""
+	r.Aliases = "alias-e368f86629ca246ef7df63b6b1201d83-Service"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pea0a25a6a9_ipermissions_PermissionServiceImpl) new() any {
+    return &pea0a25a6a.PermissionServiceImpl{}
+}
+
+func (inst* pea0a25a6a9_ipermissions_PermissionServiceImpl) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pea0a25a6a.PermissionServiceImpl)
+	nop(ie, com)
+
+	
+    com.Dao = inst.getDao(ie)
+
+
+    return nil
+}
+
+
+func (inst*pea0a25a6a9_ipermissions_PermissionServiceImpl) getDao(ie application.InjectionExt)pe368f8662.DAO{
+    return ie.GetComponent("#alias-e368f86629ca246ef7df63b6b1201d83-DAO").(pe368f8662.DAO)
+}
+
+
+
 // type p4b670e5fa.UserDaoImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/iusers
 //
 // id:com-4b670e5facdc70b8-iusers-UserDaoImpl
@@ -574,6 +670,56 @@ func (inst*p7249a1596a_controllers_ExampleController) getService(ie application.
 
 
 
+// type p7f79a0bbf.AdminPermissionController in package:github.com/starter-go/v0/rbac-web-app/app/web/controllers/admin
+//
+// id:com-7f79a0bbff8317e1-admin-AdminPermissionController
+// class:class-d1a916a203352fd5d33eabc36896b42e-Controller
+// alias:
+// scope:singleton
+//
+type p7f79a0bbff_admin_AdminPermissionController struct {
+}
+
+func (inst* p7f79a0bbff_admin_AdminPermissionController) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-7f79a0bbff8317e1-admin-AdminPermissionController"
+	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p7f79a0bbff_admin_AdminPermissionController) new() any {
+    return &p7f79a0bbf.AdminPermissionController{}
+}
+
+func (inst* p7f79a0bbff_admin_AdminPermissionController) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p7f79a0bbf.AdminPermissionController)
+	nop(ie, com)
+
+	
+    com.Responder = inst.getResponder(ie)
+    com.Service = inst.getService(ie)
+
+
+    return nil
+}
+
+
+func (inst*p7f79a0bbff_admin_AdminPermissionController) getResponder(ie application.InjectionExt)pd1a916a20.Responder{
+    return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
+}
+
+
+func (inst*p7f79a0bbff_admin_AdminPermissionController) getService(ie application.InjectionExt)pe368f8662.Service{
+    return ie.GetComponent("#alias-e368f86629ca246ef7df63b6b1201d83-Service").(pe368f8662.Service)
+}
+
+
+
 // type p7f79a0bbf.UsersController in package:github.com/starter-go/v0/rbac-web-app/app/web/controllers/admin
 //
 // id:com-7f79a0bbff8317e1-admin-UsersController
@@ -624,19 +770,19 @@ func (inst*p7f79a0bbff_admin_UsersController) getService(ie application.Injectio
 
 
 
-// type pc3ca883e2.JWTokenController in package:github.com/starter-go/v0/rbac-web-app/app/web/controllers/helper
+// type p7f79a0bbf.ExampleController in package:github.com/starter-go/v0/rbac-web-app/app/web/controllers/admin
 //
-// id:com-c3ca883e2525cff7-helper-JWTokenController
+// id:com-7f79a0bbff8317e1-admin-ExampleController
 // class:class-d1a916a203352fd5d33eabc36896b42e-Controller
 // alias:
 // scope:singleton
 //
-type pc3ca883e25_helper_JWTokenController struct {
+type p7f79a0bbff_admin_ExampleController struct {
 }
 
-func (inst* pc3ca883e25_helper_JWTokenController) register(cr application.ComponentRegistry) error {
+func (inst* p7f79a0bbff_admin_ExampleController) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
-	r.ID = "com-c3ca883e2525cff7-helper-JWTokenController"
+	r.ID = "com-7f79a0bbff8317e1-admin-ExampleController"
 	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
 	r.Aliases = ""
 	r.Scope = "singleton"
@@ -645,13 +791,63 @@ func (inst* pc3ca883e25_helper_JWTokenController) register(cr application.Compon
 	return r.Commit()
 }
 
-func (inst* pc3ca883e25_helper_JWTokenController) new() any {
-    return &pc3ca883e2.JWTokenController{}
+func (inst* p7f79a0bbff_admin_ExampleController) new() any {
+    return &p7f79a0bbf.ExampleController{}
 }
 
-func (inst* pc3ca883e25_helper_JWTokenController) inject(injext application.InjectionExt, instance any) error {
+func (inst* p7f79a0bbff_admin_ExampleController) inject(injext application.InjectionExt, instance any) error {
 	ie := injext
-	com := instance.(*pc3ca883e2.JWTokenController)
+	com := instance.(*p7f79a0bbf.ExampleController)
+	nop(ie, com)
+
+	
+    com.Responder = inst.getResponder(ie)
+    com.Service = inst.getService(ie)
+
+
+    return nil
+}
+
+
+func (inst*p7f79a0bbff_admin_ExampleController) getResponder(ie application.InjectionExt)pd1a916a20.Responder{
+    return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
+}
+
+
+func (inst*p7f79a0bbff_admin_ExampleController) getService(ie application.InjectionExt)p2d258e798.Service{
+    return ie.GetComponent("#alias-2d258e79845135c43979b78bd9f1f74e-Service").(p2d258e798.Service)
+}
+
+
+
+// type pc3ca883e2.JWTokenFilter in package:github.com/starter-go/v0/rbac-web-app/app/web/controllers/helper
+//
+// id:com-c3ca883e2525cff7-helper-JWTokenFilter
+// class:class-d1a916a203352fd5d33eabc36896b42e-Controller
+// alias:
+// scope:singleton
+//
+type pc3ca883e25_helper_JWTokenFilter struct {
+}
+
+func (inst* pc3ca883e25_helper_JWTokenFilter) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-c3ca883e2525cff7-helper-JWTokenFilter"
+	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pc3ca883e25_helper_JWTokenFilter) new() any {
+    return &pc3ca883e2.JWTokenFilter{}
+}
+
+func (inst* pc3ca883e25_helper_JWTokenFilter) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pc3ca883e2.JWTokenFilter)
 	nop(ie, com)
 
 	
@@ -663,12 +859,12 @@ func (inst* pc3ca883e25_helper_JWTokenController) inject(injext application.Inje
 }
 
 
-func (inst*pc3ca883e25_helper_JWTokenController) getResponder(ie application.InjectionExt)pd1a916a20.Responder{
+func (inst*pc3ca883e25_helper_JWTokenFilter) getResponder(ie application.InjectionExt)pd1a916a20.Responder{
     return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
 }
 
 
-func (inst*pc3ca883e25_helper_JWTokenController) getChainHolder(ie application.InjectionExt)pfd2c28477.FilterChainHolder{
+func (inst*pc3ca883e25_helper_JWTokenFilter) getChainHolder(ie application.InjectionExt)pfd2c28477.FilterChainHolder{
     return ie.GetComponent("#alias-fd2c28477d8555ea1fa4190037afa453-FilterChainHolder").(pfd2c28477.FilterChainHolder)
 }
 
@@ -784,19 +980,19 @@ func (inst*pc3ca883e25_helper_GinLibjwtAdapter) getMyCookieHttpOnly(ie applicati
 
 
 
-// type pc3ca883e2.RbacCheckerController in package:github.com/starter-go/v0/rbac-web-app/app/web/controllers/helper
+// type pc3ca883e2.RbacCheckerFilter in package:github.com/starter-go/v0/rbac-web-app/app/web/controllers/helper
 //
-// id:com-c3ca883e2525cff7-helper-RbacCheckerController
+// id:com-c3ca883e2525cff7-helper-RbacCheckerFilter
 // class:class-d1a916a203352fd5d33eabc36896b42e-Controller
 // alias:
 // scope:singleton
 //
-type pc3ca883e25_helper_RbacCheckerController struct {
+type pc3ca883e25_helper_RbacCheckerFilter struct {
 }
 
-func (inst* pc3ca883e25_helper_RbacCheckerController) register(cr application.ComponentRegistry) error {
+func (inst* pc3ca883e25_helper_RbacCheckerFilter) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
-	r.ID = "com-c3ca883e2525cff7-helper-RbacCheckerController"
+	r.ID = "com-c3ca883e2525cff7-helper-RbacCheckerFilter"
 	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
 	r.Aliases = ""
 	r.Scope = "singleton"
@@ -805,42 +1001,48 @@ func (inst* pc3ca883e25_helper_RbacCheckerController) register(cr application.Co
 	return r.Commit()
 }
 
-func (inst* pc3ca883e25_helper_RbacCheckerController) new() any {
-    return &pc3ca883e2.RbacCheckerController{}
+func (inst* pc3ca883e25_helper_RbacCheckerFilter) new() any {
+    return &pc3ca883e2.RbacCheckerFilter{}
 }
 
-func (inst* pc3ca883e25_helper_RbacCheckerController) inject(injext application.InjectionExt, instance any) error {
+func (inst* pc3ca883e25_helper_RbacCheckerFilter) inject(injext application.InjectionExt, instance any) error {
 	ie := injext
-	com := instance.(*pc3ca883e2.RbacCheckerController)
+	com := instance.(*pc3ca883e2.RbacCheckerFilter)
 	nop(ie, com)
 
 	
     com.PM = inst.getPM(ie)
+    com.Bypass = inst.getBypass(ie)
 
 
     return nil
 }
 
 
-func (inst*pc3ca883e25_helper_RbacCheckerController) getPM(ie application.InjectionExt)p08935700f.Manager{
+func (inst*pc3ca883e25_helper_RbacCheckerFilter) getPM(ie application.InjectionExt)p08935700f.Manager{
     return ie.GetComponent("#alias-08935700f7002f152b848e80701dde49-Manager").(p08935700f.Manager)
 }
 
 
+func (inst*pc3ca883e25_helper_RbacCheckerFilter) getBypass(ie application.InjectionExt)bool{
+    return ie.GetBool("${web.rbac.bypass}")
+}
 
-// type p79b61f17f.AuthxController in package:github.com/starter-go/v0/rbac-web-app/app/web/controllers/home
+
+
+// type pe475f399c.AuthxController in package:github.com/starter-go/v0/rbac-web-app/app/web/controllers/my
 //
-// id:com-79b61f17f767d154-home-AuthxController
+// id:com-e475f399ce630bf3-my-AuthxController
 // class:class-d1a916a203352fd5d33eabc36896b42e-Controller
 // alias:
 // scope:singleton
 //
-type p79b61f17f7_home_AuthxController struct {
+type pe475f399ce_my_AuthxController struct {
 }
 
-func (inst* p79b61f17f7_home_AuthxController) register(cr application.ComponentRegistry) error {
+func (inst* pe475f399ce_my_AuthxController) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
-	r.ID = "com-79b61f17f767d154-home-AuthxController"
+	r.ID = "com-e475f399ce630bf3-my-AuthxController"
 	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
 	r.Aliases = ""
 	r.Scope = "singleton"
@@ -849,13 +1051,13 @@ func (inst* p79b61f17f7_home_AuthxController) register(cr application.ComponentR
 	return r.Commit()
 }
 
-func (inst* p79b61f17f7_home_AuthxController) new() any {
-    return &p79b61f17f.AuthxController{}
+func (inst* pe475f399ce_my_AuthxController) new() any {
+    return &pe475f399c.AuthxController{}
 }
 
-func (inst* p79b61f17f7_home_AuthxController) inject(injext application.InjectionExt, instance any) error {
+func (inst* pe475f399ce_my_AuthxController) inject(injext application.InjectionExt, instance any) error {
 	ie := injext
-	com := instance.(*p79b61f17f.AuthxController)
+	com := instance.(*pe475f399c.AuthxController)
 	nop(ie, com)
 
 	
@@ -867,30 +1069,30 @@ func (inst* p79b61f17f7_home_AuthxController) inject(injext application.Injectio
 }
 
 
-func (inst*p79b61f17f7_home_AuthxController) getResponder(ie application.InjectionExt)pd1a916a20.Responder{
+func (inst*pe475f399ce_my_AuthxController) getResponder(ie application.InjectionExt)pd1a916a20.Responder{
     return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
 }
 
 
-func (inst*p79b61f17f7_home_AuthxController) getService(ie application.InjectionExt)p84e86b31b.Service{
+func (inst*pe475f399ce_my_AuthxController) getService(ie application.InjectionExt)p84e86b31b.Service{
     return ie.GetComponent("#alias-84e86b31b37511e994be50a820fadd04-Service").(p84e86b31b.Service)
 }
 
 
 
-// type p79b61f17f.SessionController in package:github.com/starter-go/v0/rbac-web-app/app/web/controllers/home
+// type pe475f399c.SessionController in package:github.com/starter-go/v0/rbac-web-app/app/web/controllers/my
 //
-// id:com-79b61f17f767d154-home-SessionController
+// id:com-e475f399ce630bf3-my-SessionController
 // class:class-d1a916a203352fd5d33eabc36896b42e-Controller
 // alias:
 // scope:singleton
 //
-type p79b61f17f7_home_SessionController struct {
+type pe475f399ce_my_SessionController struct {
 }
 
-func (inst* p79b61f17f7_home_SessionController) register(cr application.ComponentRegistry) error {
+func (inst* pe475f399ce_my_SessionController) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
-	r.ID = "com-79b61f17f767d154-home-SessionController"
+	r.ID = "com-e475f399ce630bf3-my-SessionController"
 	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
 	r.Aliases = ""
 	r.Scope = "singleton"
@@ -899,13 +1101,13 @@ func (inst* p79b61f17f7_home_SessionController) register(cr application.Componen
 	return r.Commit()
 }
 
-func (inst* p79b61f17f7_home_SessionController) new() any {
-    return &p79b61f17f.SessionController{}
+func (inst* pe475f399ce_my_SessionController) new() any {
+    return &pe475f399c.SessionController{}
 }
 
-func (inst* p79b61f17f7_home_SessionController) inject(injext application.InjectionExt, instance any) error {
+func (inst* pe475f399ce_my_SessionController) inject(injext application.InjectionExt, instance any) error {
 	ie := injext
-	com := instance.(*p79b61f17f.SessionController)
+	com := instance.(*pe475f399c.SessionController)
 	nop(ie, com)
 
 	
@@ -916,7 +1118,7 @@ func (inst* p79b61f17f7_home_SessionController) inject(injext application.Inject
 }
 
 
-func (inst*p79b61f17f7_home_SessionController) getResponder(ie application.InjectionExt)pd1a916a20.Responder{
+func (inst*pe475f399ce_my_SessionController) getResponder(ie application.InjectionExt)pd1a916a20.Responder{
     return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
 }
 

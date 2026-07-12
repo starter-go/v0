@@ -1,4 +1,4 @@
-package home
+package my
 
 import (
 	"strconv"

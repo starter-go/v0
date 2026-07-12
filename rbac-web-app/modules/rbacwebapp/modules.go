@@ -4,10 +4,14 @@ import (
 	"github.com/starter-go/application"
 	"github.com/starter-go/libgin/modules/libgin"
 	"github.com/starter-go/libgorm/modules/libgorm"
-	"github.com/starter-go/module-gorm-mysql/modules/mysql"
-	"github.com/starter-go/module-gorm-sqlserver/modules/sqlserver"
+	"github.com/starter-go/module-gorm-mysql/modules/mysql4libgorm"
+	"github.com/starter-go/module-gorm-sqlserver/modules/sqlserver4libgorm"
 	"github.com/starter-go/security/modules/security"
+	"github.com/starter-go/starter"
+	"github.com/starter-go/stopper/modules/stopper"
+	"github.com/starter-go/units/modules/units"
 	"github.com/starter-go/v0/htttest/modules/htttest"
+	"github.com/starter-go/v0/libvlog"
 	rbacwebapp "github.com/starter-go/v0/rbac-web-app"
 	"github.com/starter-go/v0/rbac-web-app/gen/main4rbacwa"
 	"github.com/starter-go/v0/rbac-web-app/gen/test4rbacwa"
@@ -23,13 +27,16 @@ func Module() application.Module {
 
 	mb.Components(main4rbacwa.ExportComponents)
 
+	mb.Depend(starter.Module())
+	mb.Depend(stopper.Module())
 	mb.Depend(libgin.Module())
 	mb.Depend(libgorm.Module())
+	mb.Depend(libvlog.Module())
 	mb.Depend(security.Module())
 	mb.Depend(subjects.ModuleForLib())
 
-	mb.Depend(mysql.Module())
-	mb.Depend(sqlserver.Module())
+	mb.Depend(mysql4libgorm.Module())
+	mb.Depend(sqlserver4libgorm.Module())
 
 	return mb.Create()
 }
@@ -40,9 +47,8 @@ func ModuleForTest() application.Module {
 
 	mb.Components(test4rbacwa.ExportComponents)
 
-	// mb.Depend(Module())
-
 	mb.Depend(htttest.Module())
+	mb.Depend(units.Module())
 
 	return mb.Create()
 }

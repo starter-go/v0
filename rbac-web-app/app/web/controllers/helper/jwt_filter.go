@@ -10,7 +10,7 @@ import (
 	"github.com/starter-go/v0/subjects"
 )
 
-type JWTokenController struct {
+type JWTokenFilter struct {
 
 	//starter:component
 
@@ -26,17 +26,17 @@ type JWTokenController struct {
 
 }
 
-func (inst *JWTokenController) _impl() libgin.Controller {
+func (inst *JWTokenFilter) _impl() libgin.Controller {
 	return inst
 }
 
-func (inst *JWTokenController) Registration() *libgin.ControllerRegistration {
+func (inst *JWTokenFilter) Registration() *libgin.ControllerRegistration {
 	r1 := new(libgin.ControllerRegistration)
 	r1.Route = inst.route
 	return r1
 }
 
-func (inst *JWTokenController) route(rp libgin.RouterProxy) error {
+func (inst *JWTokenFilter) route(rp libgin.RouterProxy) error {
 
 	rp = rp.For("tokens")
 
@@ -47,7 +47,7 @@ func (inst *JWTokenController) route(rp libgin.RouterProxy) error {
 	return nil
 }
 
-func (inst *JWTokenController) setupMiddleware(rp libgin.RouterProxy) {
+func (inst *JWTokenFilter) setupMiddleware(rp libgin.RouterProxy) {
 
 	r1 := new(libgin.Routing)
 	fnlist := r1.Handlers
@@ -66,7 +66,7 @@ func (inst *JWTokenController) setupMiddleware(rp libgin.RouterProxy) {
 	rp.Route(r1)
 }
 
-// func (inst *JWTokenController) handleGetMock(c *gin.Context) {
+// func (inst *JWTokenFilter) handleGetMock(c *gin.Context) {
 
 // 	task := new(innerJWTokenTask)
 // 	task.context = c
@@ -75,7 +75,7 @@ func (inst *JWTokenController) setupMiddleware(rp libgin.RouterProxy) {
 // 	task.execute(task.doGetMock)
 // }
 
-func (inst *JWTokenController) handlePrepareRbacContext(c *gin.Context) {
+func (inst *JWTokenFilter) handlePrepareRbacContext(c *gin.Context) {
 	err := inst.doPrepareRbacContext(c)
 	if err != nil {
 		const code = http.StatusInternalServerError
@@ -83,7 +83,7 @@ func (inst *JWTokenController) handlePrepareRbacContext(c *gin.Context) {
 	}
 }
 
-func (inst *JWTokenController) doPrepareRbacContext(c *gin.Context) error {
+func (inst *JWTokenFilter) doPrepareRbacContext(c *gin.Context) error {
 
 	webcontexts.SetupAccessForGinContext(c)
 
@@ -112,7 +112,7 @@ func (inst *JWTokenController) doPrepareRbacContext(c *gin.Context) error {
 
 // type innerJWTokenTask struct {
 // 	context    *gin.Context
-// 	controller *JWTokenController
+// 	controller *JWTokenFilter
 
 // 	wantRequestID   bool
 // 	wantRequestBody bool

@@ -2,11 +2,10 @@ package users
 
 import (
 	"github.com/starter-go/security-gorm/rbacdb"
-	"github.com/starter-go/v0/rbac-web-app/app/data/entity"
 	"github.com/starter-go/v0/rbac-web-app/app/web/dto"
 )
 
-func ConvertE2D(src *entity.User, dst *dto.User) error {
+func ConvertE2D(src *Entity, dst *DTO) error {
 
 	dst.ID = src.ID
 
@@ -24,7 +23,7 @@ func ConvertE2D(src *entity.User, dst *dto.User) error {
 	return nil
 }
 
-func ConvertD2E(src *dto.User, dst *entity.User) error {
+func ConvertD2E(src *DTO, dst *Entity) error {
 
 	dst.ID = src.ID
 
@@ -42,7 +41,7 @@ func ConvertD2E(src *dto.User, dst *entity.User) error {
 	return nil
 }
 
-func ConvertListE2D(src []*entity.User, dst []*dto.User) ([]*dto.User, error) {
+func ConvertListE2D(src []*Entity, dst []*DTO) ([]*DTO, error) {
 
 	for _, it1 := range src {
 		it2 := new(dto.User)

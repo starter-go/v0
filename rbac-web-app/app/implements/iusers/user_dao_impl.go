@@ -20,8 +20,7 @@ type UserDaoImpl struct {
 
 	_as func(users.DAO) //starter:as("#")
 
-	Agent database.Agent //starter:inject("#")
-
+	Agent   database.Agent     //starter:inject("#")
 	UUIDSer random.UUIDService //starter:inject("#")
 
 }

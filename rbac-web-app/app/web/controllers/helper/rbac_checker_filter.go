@@ -9,35 +9,45 @@ import (
 	"github.com/starter-go/rbac"
 	"github.com/starter-go/security/permissions"
 	"github.com/starter-go/v0/subjects"
+	"github.com/starter-go/vlog"
 )
 
-type RbacCheckerController struct {
+type RbacCheckerFilter struct {
 
 	//starter:component
 
 	_as func(libgin.Controller) //starter:as(".")
 
 	PM permissions.Manager //starter:inject("#")
+
+	Bypass bool //starter:inject("${web.rbac.bypass}")
+
 }
 
 // Registration implements libgin.Controller.
-func (inst *RbacCheckerController) Registration() *libgin.ControllerRegistration {
+func (inst *RbacCheckerFilter) Registration() *libgin.ControllerRegistration {
 	return &libgin.ControllerRegistration{
 		Route: inst.route,
 	}
 }
 
-func (inst *RbacCheckerController) route(rp libgin.RouterProxy) error {
+func (inst *RbacCheckerFilter) route(rp libgin.RouterProxy) error {
 	r1 := &libgin.Routing{
 		Middleware: true,
 		Priority:   9991,
 	}
-	r1.Handlers = append(r1.Handlers, inst.handle)
+
+	if inst.Bypass {
+		r1.Handlers = append(r1.Handlers, inst.handleBypass)
+	} else {
+		r1.Handlers = append(r1.Handlers, inst.handleNormal)
+	}
+
 	rp.Route(r1)
 	return nil
 }
 
-func (inst *RbacCheckerController) handle(c *gin.Context) {
+func (inst *RbacCheckerFilter) handleNormal(c *gin.Context) {
 	err := inst.checkRoles(c)
 	if err != nil {
 		code := http.StatusForbidden
@@ -45,7 +55,15 @@ func (inst *RbacCheckerController) handle(c *gin.Context) {
 	}
 }
 
-func (inst *RbacCheckerController) checkRoles(c *gin.Context) error {
+func (inst *RbacCheckerFilter) handleBypass(c *gin.Context) {
+
+	// todo : setup a bypass-nop-checker
+
+	vlog.Warn("RbacCheckerFilter: handle web-request in bypass mode")
+
+}
+
+func (inst *RbacCheckerFilter) checkRoles(c *gin.Context) error {
 
 	sub, err := subjects.GetCurrent(c)
 	if err != nil {
@@ -79,7 +97,7 @@ func (inst *RbacCheckerController) checkRoles(c *gin.Context) error {
 	return checker.Check()
 }
 
-func (inst *RbacCheckerController) _impl() libgin.Controller {
+func (inst *RbacCheckerFilter) _impl() libgin.Controller {
 	return inst
 }
 
@@ -137,6 +155,16 @@ func (inst *innerRbacChecker) Check() error {
 type innerRbacSubjectChecker struct {
 }
 
+// CheckDTO implements subjects.Checker.
+func (i *innerRbacSubjectChecker) CheckDTO(ref rbac.DTORef) subjects.Checker {
+	panic("unimplemented")
+}
+
+// CheckEntity implements subjects.Checker.
+func (i *innerRbacSubjectChecker) CheckEntity(ref rbac.EntityRef) subjects.Checker {
+	panic("unimplemented")
+}
+
 // AcceptAdmin implements subjects.Checker.
 func (i *innerRbacSubjectChecker) AcceptAdmin() subjects.Checker {
 	panic("unimplemented")
@@ -175,6 +203,10 @@ func (i *innerRbacSubjectChecker) Check() error {
 // CheckObject implements subjects.Checker.
 func (i *innerRbacSubjectChecker) CheckObject(ch *subjects.Checking) subjects.Checker {
 	panic("unimplemented")
+}
+
+func (i *innerRbacSubjectChecker) _impl() subjects.Checker {
+	return i
 }
 
 ////////////////////////////////////////////////////////////////////////////////
