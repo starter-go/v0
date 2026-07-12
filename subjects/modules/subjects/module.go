@@ -3,7 +3,7 @@ package subjects
 import (
 	"github.com/starter-go/application"
 	"github.com/starter-go/libgorm/modules/libgorm"
-	"github.com/starter-go/module-gorm-mysql/modules/mysql"
+	"github.com/starter-go/module-gorm-mysql/modules/mysql4libgorm"
 	"github.com/starter-go/security/modules/security"
 	"github.com/starter-go/starter"
 	"github.com/starter-go/units/modules/units"
@@ -23,7 +23,7 @@ func ModuleForLib() application.Module {
 	mb.Depend(libgorm.Module())
 	mb.Depend(libjwt.Module())
 
-	mb.Depend(mysql.Module())
+	mb.Depend(mysql4libgorm.Module())
 
 	return mb.Create()
 }

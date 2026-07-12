@@ -1,6 +1,7 @@
 package subjects
 
 import (
+	"context"
 	"fmt"
 	"strings"
 
@@ -19,6 +20,8 @@ type Checker interface {
 	Check() error
 
 	CheckObject(ch *Checking) Checker
+	CheckDTO(ref rbac.DTORef) Checker
+	CheckEntity(ref rbac.EntityRef) Checker
 
 	AcceptAdmin() Checker
 	AcceptAnonymous() Checker
@@ -31,6 +34,50 @@ type Checker interface {
 
 ////////////////////////////////////////////////////////////////////////////////
 
+func CheckDTO(cc context.Context, o rbac.DTORef) error {
+
+	if o == nil || cc == nil {
+		return fmt.Errorf("subjects.CheckDTO() : param(s) is nil")
+	}
+
+	sub, err := GetCurrent(cc)
+	if err != nil {
+		return err
+	}
+
+	ch, err := sub.DoCheck()
+	if err != nil {
+		return err
+	}
+
+	ch.CheckDTO(o)
+
+	return ch.Check()
+}
+
+func CheckEntity(cc context.Context, o rbac.EntityRef) error {
+
+	if o == nil || cc == nil {
+		return fmt.Errorf("subjects.CheckDTO() : param(s) is nil")
+	}
+
+	sub, err := GetCurrent(cc)
+	if err != nil {
+		return err
+	}
+
+	ch, err := sub.DoCheck()
+	if err != nil {
+		return err
+	}
+
+	ch.CheckEntity(o)
+
+	return ch.Check()
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
 type innerChecker struct {
 	context       *Context
 	auth          bool
@@ -39,6 +86,28 @@ type innerChecker struct {
 	accepts       map[rbac.RoleName]bool
 	countOwnerYes int
 	countOwnerNo  int
+}
+
+// CheckDTO implements Checker.
+func (inst *innerChecker) CheckDTO(ref rbac.DTORef) Checker {
+	tar := ref.GetTarget()
+	ch := &Checking{
+		Owner:  tar.Owner,
+		Type:   "",
+		Target: ref,
+	}
+	return inst.CheckObject(ch)
+}
+
+// CheckEntity implements Checker.
+func (inst *innerChecker) CheckEntity(ref rbac.EntityRef) Checker {
+	tar := ref.GetTarget()
+	ch := &Checking{
+		Owner:  tar.Owner,
+		Type:   "",
+		Target: ref,
+	}
+	return inst.CheckObject(ch)
 }
 
 // AcceptAny implements Checker.
