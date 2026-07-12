@@ -5,6 +5,7 @@ import (
 
 	"github.com/starter-go/application"
 	"github.com/starter-go/starter"
+	"github.com/starter-go/units/modules/units"
 	"github.com/starter-go/v0/simple-app-template/gen/main4sat"
 	"github.com/starter-go/v0/simple-app-template/gen/test4sat"
 )
@@ -13,8 +14,8 @@ import (
 
 const (
 	theModuleName     = "github.com/starter-go/v0/simple-app-template"
-	theModuleVersion  = "v0.0.1"
-	theModuleRevision = 2
+	theModuleVersion  = "v0.10.0"
+	theModuleRevision = 3
 )
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -60,6 +61,7 @@ func ModuleForTest() application.Module {
 	mb.Components(test4sat.ExportComponents)
 
 	mb.Depend(Module())
+	mb.Depend(units.Module())
 
 	return mb.Create()
 }
