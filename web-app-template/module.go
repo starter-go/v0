@@ -6,6 +6,7 @@ import (
 	"github.com/starter-go/application"
 	"github.com/starter-go/libgin/modules/libgin"
 	"github.com/starter-go/starter"
+	"github.com/starter-go/units/modules/units"
 	"github.com/starter-go/v0/web-app-template/gen/main4wat"
 	"github.com/starter-go/v0/web-app-template/gen/test4wat"
 )
@@ -14,7 +15,7 @@ import (
 
 const (
 	theModuleName     = "github.com/starter-go/v0/web-app-template"
-	theModuleVersion  = "v0.0.0"
+	theModuleVersion  = "v0.10.0"
 	theModuleRevision = 0
 )
 
@@ -62,6 +63,7 @@ func ModuleForTest() application.Module {
 	mb.Components(test4wat.ExportComponents)
 
 	mb.Depend(Module())
+	mb.Depend(units.Module())
 
 	return mb.Create()
 }

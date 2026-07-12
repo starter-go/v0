@@ -1,22 +1,22 @@
 package test4wat
 import (
-    p891b3af5b "github.com/starter-go/v0/web-app-template/src/test/golang/unittestcases"
+    pb7cda72c4 "github.com/starter-go/v0/web-app-template/src/test/golang/unitcom"
      "github.com/starter-go/application"
 )
 
-// type p891b3af5b.ExampleCase in package:github.com/starter-go/v0/web-app-template/src/test/golang/unittestcases
+// type pb7cda72c4.Example1 in package:github.com/starter-go/v0/web-app-template/src/test/golang/unitcom
 //
-// id:com-891b3af5b83599e0-unittestcases-ExampleCase
+// id:com-b7cda72c4dc1987a-unitcom-Example1
 // class:
 // alias:
 // scope:singleton
 //
-type p891b3af5b8_unittestcases_ExampleCase struct {
+type pb7cda72c4d_unitcom_Example1 struct {
 }
 
-func (inst* p891b3af5b8_unittestcases_ExampleCase) register(cr application.ComponentRegistry) error {
+func (inst* pb7cda72c4d_unitcom_Example1) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
-	r.ID = "com-891b3af5b83599e0-unittestcases-ExampleCase"
+	r.ID = "com-b7cda72c4dc1987a-unitcom-Example1"
 	r.Classes = ""
 	r.Aliases = ""
 	r.Scope = "singleton"
@@ -25,13 +25,13 @@ func (inst* p891b3af5b8_unittestcases_ExampleCase) register(cr application.Compo
 	return r.Commit()
 }
 
-func (inst* p891b3af5b8_unittestcases_ExampleCase) new() any {
-    return &p891b3af5b.ExampleCase{}
+func (inst* pb7cda72c4d_unitcom_Example1) new() any {
+    return &pb7cda72c4.Example1{}
 }
 
-func (inst* p891b3af5b8_unittestcases_ExampleCase) inject(injext application.InjectionExt, instance any) error {
+func (inst* pb7cda72c4d_unitcom_Example1) inject(injext application.InjectionExt, instance any) error {
 	ie := injext
-	com := instance.(*p891b3af5b.ExampleCase)
+	com := instance.(*pb7cda72c4.Example1)
 	nop(ie, com)
 
 	
