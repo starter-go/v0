@@ -24,6 +24,7 @@ require (
 	github.com/golang-jwt/jwt/v5 v5.2.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
+	github.com/starter-go/v0/libvlog v0.10.0
 	golang.org/x/sys v0.22.0 // indirect
 	golang.org/x/text v0.20.0 // indirect
 	gorm.io/driver/mysql v1.5.2 // indirect

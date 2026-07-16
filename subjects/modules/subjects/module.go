@@ -8,6 +8,7 @@ import (
 	"github.com/starter-go/starter"
 	"github.com/starter-go/units/modules/units"
 	"github.com/starter-go/v0/libjwt"
+	"github.com/starter-go/v0/libvlog"
 	"github.com/starter-go/v0/subjects"
 	"github.com/starter-go/v0/subjects/gen/main4subjects"
 	"github.com/starter-go/v0/subjects/gen/test4subjects"
@@ -22,6 +23,7 @@ func ModuleForLib() application.Module {
 	mb.Depend(security.Module())
 	mb.Depend(libgorm.Module())
 	mb.Depend(libjwt.Module())
+	mb.Depend(libvlog.Module())
 
 	mb.Depend(mysql4libgorm.Module())
 

@@ -3,9 +3,9 @@ github.com/go-sql-driver/mysql v1.7.1 h1:lUIinVbN1DY0xBg0eMOzmmtGoHwWBbvnWubQUrt
 github.com/go-sql-driver/mysql v1.7.1/go.mod h1:OXbVy3sEdcQ2Doequ6Z5BW6fXNQTmx+9S1MCJN5yJMI=
 github.com/golang-jwt/jwt/v5 v5.2.0 h1:d/ix8ftRUorsN+5eMIlF4T6J8CAt9rch3My2winC1Jw=
 github.com/golang-jwt/jwt/v5 v5.2.0/go.mod h1:pqrtFR0X4osieyHYxtmOUWsAWrfe1Q5UVIyoH402zdk=
-github.com/jinzhu/inflection v1.0.0+incompatible/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
 github.com/jinzhu/inflection v1.0.0 h1:K317FqzuhWc8YvSVlFMCCUb36O/S9MCKRDI7QkRKD/E=
 github.com/jinzhu/inflection v1.0.0/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
+github.com/jinzhu/inflection v1.0.0+incompatible/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
 github.com/jinzhu/now v1.1.5 h1:/o9tlHleP7gOFmsnYNz3RGnqzefHA47wQpKrrdTIwXQ=
 github.com/jinzhu/now v1.1.5/go.mod h1:d3SSVoowX0Lcu0IBviAWJpolVfI5UJVZZ7cO71lE/z8=
 github.com/starter-go/afs v0.9.13 h1:yA6OdyM2Z300pm7hSm0UAxjNcDxyuRyOljgUYKyRsp8=
@@ -92,6 +92,8 @@ github.com/starter-go/v0/libjwt v0.0.2 h1:AJG1epbQ2AhVG7WHvkZ+f16sWz5eBbBg/bDEM0
 github.com/starter-go/v0/libjwt v0.0.2/go.mod h1:sLYNhXr6uP4ByCePdGz2KZf325qCpda0rgrhUQ2HyPE=
 github.com/starter-go/v0/libjwt v0.10.0 h1:YnRzeWQLiBxD0x9iKY4ewDKo4+y+8QT/3CKoST3IwpI=
 github.com/starter-go/v0/libjwt v0.10.0/go.mod h1:dmlpV5oEmsIOQbGrGB7H+TF/GajQh/Vy+HPi+32J6kM=
+github.com/starter-go/v0/libvlog v0.10.0 h1:3Wm4PaNBt3BJa1GLTFKzmxsOSLwhG3i4nn++wEeY4/U=
+github.com/starter-go/v0/libvlog v0.10.0/go.mod h1:jsOQ0/WLt7lw79yfXCofvsFBe6+2E5hJpoT4RAjYtOM=
 github.com/starter-go/vlog v0.9.12 h1:gaKCLPvEY6d8SoVfEemGTqyNdrFZlRqf1dVDimCqgZw=
 github.com/starter-go/vlog v0.9.12/go.mod h1:ywWUCfWNTqXrelvO4/3sQ04SCW4ClR3PiN3qpSlXhH0=
 github.com/starter-go/vlog v0.10.0 h1:K9jkGPFqCTfMZYF69rcgcPDjYckEHOJHT6Jw2h3zQJU=
