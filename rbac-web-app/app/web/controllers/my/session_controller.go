@@ -46,6 +46,7 @@ func (inst *SessionController) route(rp libgin.RouterProxy) error {
 	rp.GET("example", inst.handleGetExample)
 
 	rp.POST("keep-alive", inst.handlePostKeepAlive)
+	rp.POST("exit", inst.handlePostExit)
 
 	return nil
 }
@@ -75,6 +76,15 @@ func (inst *SessionController) handlePostKeepAlive(c *gin.Context) {
 	task.controller = inst
 
 	task.execute(task.doKeepAlive)
+}
+
+func (inst *SessionController) handlePostExit(c *gin.Context) {
+
+	task := new(innerSessionTask)
+	task.context = c
+	task.controller = inst
+
+	task.execute(task.doExit)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -213,6 +223,15 @@ func (inst *innerSessionTask) doKeepAlive() error {
 	}
 
 	return nil
+}
+
+func (inst *innerSessionTask) doExit() error {
+	ctx := inst.context
+	sub, err := subjects.GetCurrent(ctx)
+	if err != nil {
+		return err
+	}
+	return sub.Exit()
 }
 
 ////////////////////////////////////////////////////////////////////////////////

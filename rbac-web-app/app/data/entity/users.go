@@ -41,4 +41,7 @@ type User struct {
 	Admin bool // 指出该用户是否为管理员 (admin|root)
 
 	Enabled bool // 表示该账号是否已经激活可用
+
+	Locked bool // 表示该账号是否已经被锁定
+
 }

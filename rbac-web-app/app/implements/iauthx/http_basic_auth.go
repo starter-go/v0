@@ -67,6 +67,11 @@ func (inst *HTTPBasicAuthenticator) innerAuthenticate(ctx *authx.AuthenticationC
 		return err
 	}
 
+	err = task.checkIsUserEnabled()
+	if err != nil {
+		return err
+	}
+
 	err = task.verify()
 	if err != nil {
 		return err
@@ -144,6 +149,21 @@ func (inst *innerHTTPBasicAuthenticatorTask) loadUserInfo() error {
 
 	inst.userDto = userDto
 	inst.userEnt = userEnt
+	return nil
+}
+
+func (inst *innerHTTPBasicAuthenticatorTask) checkIsUserEnabled() error {
+
+	user := inst.userEnt
+
+	if !user.Enabled {
+		return fmt.Errorf("account is disabled")
+	}
+
+	if user.Locked {
+		return fmt.Errorf("account is locked")
+	}
+
 	return nil
 }
 
