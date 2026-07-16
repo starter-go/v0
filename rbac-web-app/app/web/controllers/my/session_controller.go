@@ -4,6 +4,7 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
+	"github.com/starter-go/base/lang"
 	"github.com/starter-go/libgin"
 	"github.com/starter-go/rbac"
 
@@ -168,16 +169,48 @@ func (inst *innerSessionTask) doGetCurrentSessionInfo() error {
 	se := new(sessions.DTO)
 	gett.GetSession(se)
 
+	tk := new(rbac.TokenDTO)
+	gett.GetToken(tk)
+
 	inst.body2.Items = []*rbac.SessionDTO{se}
+	inst.body2.Tokens = []*rbac.TokenDTO{tk}
+
 	return nil
 }
 
 func (inst *innerSessionTask) doKeepAlive() error {
 
-	msg := "todo: no impl"
+	ctx := inst.context
+	now := lang.Now()
 
-	inst.body2.Error = msg
-	inst.body2.Message = msg
+	sub, err := subjects.GetCurrent(ctx)
+	if err != nil {
+		return err
+	}
+
+	gett, err := sub.DoGet()
+	if err != nil {
+		return err
+	}
+
+	sett, err := sub.DoSet()
+	if err != nil {
+		return err
+	}
+
+	const key = "x-keep-alive-at"
+	gett.GetProperty(key)
+	sett.SetProperty(key, now.String())
+
+	err = sub.Update()
+	if err != nil {
+		return err
+	}
+
+	err = sub.Flush()
+	if err != nil {
+		return err
+	}
 
 	return nil
 }

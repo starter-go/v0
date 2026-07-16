@@ -83,10 +83,39 @@ func (inst *Filter4jwt) onReadDone(c *subjects.IOC, tk *jwt.Token) error {
 	return nil
 }
 
+func (inst *Filter4jwt) onWritePre(ioc *subjects.IOC) error {
+
+	if ioc == nil {
+		return nil
+	}
+
+	subCtx := ioc.Context
+	want := &ioc.Want
+
+	if subCtx == nil {
+		return nil
+	}
+
+	cache := subCtx.Cache
+	if cache == nil {
+		return nil
+	}
+
+	want.SessionID = cache.SessionID
+	want.SessionUUID = cache.SessionUUID
+
+	return nil
+}
+
 // Write implements subjects.WriteFilter.
 func (inst *Filter4jwt) Write(c *subjects.IOC, next subjects.WriteFilterChain) error {
 
-	err := next.Write(c)
+	err := inst.onWritePre(c)
+	if err != nil {
+		return err
+	}
+
+	err = next.Write(c)
 	if err != nil {
 		return err
 	}

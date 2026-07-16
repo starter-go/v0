@@ -51,7 +51,7 @@ require (
 	github.com/starter-go/v0/htttest v0.10.0 // indirect
 	github.com/starter-go/v0/libjwt v0.10.0 // indirect
 	github.com/starter-go/v0/libvlog v0.10.0 // indirect
-	github.com/starter-go/v0/subjects v0.10.0 // indirect
+	github.com/starter-go/v0/subjects v0.10.1 // indirect
 	github.com/starter-go/vlog v0.10.0 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.11 // indirect
