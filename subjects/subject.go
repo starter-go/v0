@@ -14,7 +14,9 @@ type Getter interface {
 
 	Names() []string
 
-	GetSession(se *rbac.SessionDTO) bool
+	GetSession(se *rbac.SessionDTO) error
+
+	GetToken(tk *rbac.TokenDTO) error
 
 	IsAuthenticated() bool
 

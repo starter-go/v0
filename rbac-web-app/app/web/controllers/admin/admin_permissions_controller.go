@@ -38,10 +38,12 @@ func (inst *AdminPermissionController) route(rp libgin.RouterProxy) error {
 	rp = rp.For("admin/permissions")
 
 	rp.GET("", inst.handleGetQuery)
-	rp.GET("query", inst.handleGetQuery)
 	rp.GET(":id", inst.handleGetOne)
-	rp.GET("mock", inst.handleGetMock)
-	rp.GET("setup", inst.handlePostSetup)
+	rp.GET("do/query", inst.handleGetQuery)
+	rp.GET("do/mock", inst.handleGetMock)
+	rp.GET("do/setup", inst.handlePostSetup)
+
+	rp.POST("", inst.handlePostInsert)
 
 	return nil
 }
@@ -86,6 +88,17 @@ func (inst *AdminPermissionController) handlePostSetup(c *gin.Context) {
 	// task.wantRequestQuery = true
 
 	task.execute(task.doSetup)
+}
+
+func (inst *AdminPermissionController) handlePostInsert(c *gin.Context) {
+
+	task := new(innerAdminPermissionTask)
+
+	task.context = c
+	task.controller = inst
+	task.wantRequestBody = true
+
+	task.execute(task.doInsert)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -210,19 +223,17 @@ func (inst *innerAdminPermissionTask) execute(fn func() error) {
 
 func (inst *innerAdminPermissionTask) doGetMock() error {
 
-	ctx := inst.context
-	ser := inst.controller.Service
-	id := inst.id
+	it1 := new(permissions.DTO)
+	it2 := new(permissions.DTO)
 
-	item, err := ser.Find(ctx, id)
-	if err != nil {
-		return err
-	}
+	it1.ID = 1
+	it2.ID = 2
 
-	page := new(rbac.Pagination)
+	list := inst.body2.Permissions
+	list = append(list, it1)
+	list = append(list, it2)
+	inst.body2.Permissions = list
 
-	inst.body2.Pagination = page
-	inst.body2.Permissions = []*dto.Permission{item}
 	return nil
 }
 
@@ -279,6 +290,25 @@ func (inst *innerAdminPermissionTask) doSetup() error {
 	inst.body2.Pagination = page
 	inst.body2.Permissions = list
 
+	return nil
+}
+
+func (inst *innerAdminPermissionTask) doInsert() error {
+
+	ctx := inst.context
+	ser := inst.controller.Service
+	src := inst.body1.Permissions
+	dst := inst.body2.Permissions
+
+	for _, item1 := range src {
+		item2, err := ser.Insert(ctx, item1)
+		if err != nil {
+			return err
+		}
+		dst = append(dst, item2)
+	}
+
+	inst.body2.Permissions = dst
 	return nil
 }
 

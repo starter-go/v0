@@ -10,5 +10,5 @@ type Query struct {
 
 	Pagination rbac.Pagination
 
-	Want *entity.Example
+	Want *entity.Role
 }

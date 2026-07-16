@@ -32,6 +32,7 @@ func (inst *ExampleController) _impl() libgin.Controller {
 func (inst *ExampleController) Registration() *libgin.ControllerRegistration {
 	r1 := new(libgin.ControllerRegistration)
 	r1.Route = inst.route
+	r1.Groups = []string{"disabled"}
 	return r1
 }
 

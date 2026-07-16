@@ -6,14 +6,13 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/starter-go/libgin"
 	"github.com/starter-go/rbac"
-	"github.com/starter-go/v0/rbac-web-app/app/classes/users"
-	"github.com/starter-go/v0/rbac-web-app/app/data/dxo"
 	"github.com/starter-go/v0/rbac-web-app/app/data/entity"
 	"github.com/starter-go/v0/rbac-web-app/app/web/dto"
 	"github.com/starter-go/v0/rbac-web-app/app/web/vo"
+	"github.com/starter-go/v0/subjects/core/classes/sessions"
 )
 
-type UsersController struct {
+type AdminSessionController struct {
 
 	//starter:component
 
@@ -21,46 +20,44 @@ type UsersController struct {
 
 	Responder libgin.Responder //starter:inject("#")
 
-	Service users.Service //starter:inject("#")
+	Service sessions.Service //starter:inject("#")
 
 }
 
-func (inst *UsersController) _impl() libgin.Controller {
+func (inst *AdminSessionController) _impl() libgin.Controller {
 	return inst
 }
 
-func (inst *UsersController) Registration() *libgin.ControllerRegistration {
+func (inst *AdminSessionController) Registration() *libgin.ControllerRegistration {
 	r1 := new(libgin.ControllerRegistration)
 	r1.Route = inst.route
 	return r1
 }
 
-func (inst *UsersController) route(rp libgin.RouterProxy) error {
+func (inst *AdminSessionController) route(rp libgin.RouterProxy) error {
 
-	rp = rp.For("admin/users")
+	rp = rp.For("admin/sessions")
 
 	rp.GET("", inst.handleGetQuery)
 	rp.GET(":id", inst.handleGetOne)
 	rp.GET("do/mock", inst.handleGetMock)
 	rp.GET("do/query", inst.handleGetQuery)
 
-	rp.POST("", inst.handlePostInsert)
-
 	return nil
 }
 
-func (inst *UsersController) handleGetMock(c *gin.Context) {
+func (inst *AdminSessionController) handleGetMock(c *gin.Context) {
 
-	task := new(innerUsersTask)
+	task := new(innerAdminSessionTask)
 	task.context = c
 	task.controller = inst
 
 	task.execute(task.doGetMock)
 }
 
-func (inst *UsersController) handleGetOne(c *gin.Context) {
+func (inst *AdminSessionController) handleGetOne(c *gin.Context) {
 
-	task := new(innerUsersTask)
+	task := new(innerAdminSessionTask)
 	task.context = c
 	task.controller = inst
 
@@ -69,9 +66,9 @@ func (inst *UsersController) handleGetOne(c *gin.Context) {
 	task.execute(task.doFindOneItem)
 }
 
-func (inst *UsersController) handleGetQuery(c *gin.Context) {
+func (inst *AdminSessionController) handleGetQuery(c *gin.Context) {
 
-	task := new(innerUsersTask)
+	task := new(innerAdminSessionTask)
 	task.context = c
 	task.controller = inst
 
@@ -80,35 +77,24 @@ func (inst *UsersController) handleGetQuery(c *gin.Context) {
 	task.execute(task.doGetQuery)
 }
 
-func (inst *UsersController) handlePostInsert(c *gin.Context) {
-
-	task := new(innerUsersTask)
-
-	task.context = c
-	task.controller = inst
-	task.wantRequestBody = true
-
-	task.execute(task.doInsert)
-}
-
 ////////////////////////////////////////////////////////////////////////////////
 
-type innerUsersTask struct {
+type innerAdminSessionTask struct {
 	context    *gin.Context
-	controller *UsersController
+	controller *AdminSessionController
 
 	wantRequestID    bool
 	wantRequestBody  bool
 	wantRequestQuery bool
 
-	id    dxo.UserID
-	query *users.Query
+	id    sessions.ID
+	query sessions.Query
 
-	body1 vo.Users
-	body2 vo.Users
+	body1 vo.Sessions
+	body2 vo.Sessions
 }
 
-func (inst *innerUsersTask) open(c *gin.Context) error {
+func (inst *innerAdminSessionTask) open(c *gin.Context) error {
 
 	if inst.wantRequestID {
 		idstr := c.Param("id")
@@ -116,16 +102,16 @@ func (inst *innerUsersTask) open(c *gin.Context) error {
 		if err != nil {
 			return err
 		}
-		inst.id = dxo.UserID(num)
+		inst.id = sessions.ID(num)
 	}
 
 	if inst.wantRequestQuery {
-		q := new(users.Query)
+		q := new(sessions.Query)
 		err := inst.parseQuery(c, q)
 		if err != nil {
 			return err
 		}
-		inst.query = q
+		inst.query = *q
 	}
 
 	if inst.wantRequestBody {
@@ -139,26 +125,22 @@ func (inst *innerUsersTask) open(c *gin.Context) error {
 	return nil
 }
 
-func (inst *innerUsersTask) parseQuery(c *gin.Context, q *users.Query) error {
+func (inst *innerAdminSessionTask) parseQuery(c *gin.Context, q *sessions.Query) error {
 
 	limit := int64(1)
 	offset := int64(0)
-	want := new(entity.User)
+	want := new(entity.Session)
 
 	strLimit := c.Query("limit")
 	strOffset := c.Query("offset")
 	strWantID := c.Query("want-id")
-	strWantEmail := c.Query("want-email")
-	strWantPhone := c.Query("want-phone")
-	strWantName := c.Query("want-name")
-	strWantNickName := c.Query("want-nickname")
 
 	if strWantID != "" {
 		num, err := strconv.ParseInt(strWantID, 10, 64)
 		if err != nil {
 			return err
 		}
-		want.ID = dxo.UserID(num)
+		want.ID = sessions.ID(num)
 	}
 
 	if strLimit != "" {
@@ -177,22 +159,6 @@ func (inst *innerUsersTask) parseQuery(c *gin.Context, q *users.Query) error {
 		offset = num
 	}
 
-	if strWantPhone != "" {
-		want.Mobile = dxo.PhoneNumber(strWantPhone)
-	}
-
-	if strWantEmail != "" {
-		want.Email = dxo.EmailAddress(strWantEmail)
-	}
-
-	if strWantNickName != "" {
-		want.DisplayName = strWantNickName
-	}
-
-	if strWantName != "" {
-		want.Name = dxo.UserName(strWantName)
-	}
-
 	if offset < 0 {
 		offset = 0
 	}
@@ -206,7 +172,7 @@ func (inst *innerUsersTask) parseQuery(c *gin.Context, q *users.Query) error {
 	return nil
 }
 
-func (inst *innerUsersTask) send(err error) {
+func (inst *innerAdminSessionTask) send(err error) {
 
 	ctx := inst.context
 	body := &inst.body2
@@ -222,7 +188,7 @@ func (inst *innerUsersTask) send(err error) {
 	sender.Send(resp)
 }
 
-func (inst *innerUsersTask) execute(fn func() error) {
+func (inst *innerAdminSessionTask) execute(fn func() error) {
 	ctx := inst.context
 	err := inst.open(ctx)
 	if err == nil {
@@ -231,18 +197,16 @@ func (inst *innerUsersTask) execute(fn func() error) {
 	inst.send(err)
 }
 
-func (inst *innerUsersTask) doGetMock() error {
+func (inst *innerAdminSessionTask) doGetMock() error {
 
-	it1 := new(users.DTO)
-	it2 := new(users.DTO)
+	it1 := new(sessions.DTO)
+	it2 := new(sessions.DTO)
 
 	it1.ID = 1
 
 	it2.ID = 2
-	it2.Name = "foo"
-	it2.DisplayName = "bar"
-	it2.Roles = []rbac.RoleName{rbac.RoleGuest, rbac.RoleUser}
-	it2.Email = "mock@example.com"
+	it2.Avatar = "http://example.com/image/avatar.png"
+	it2.Nickname = "foo"
 
 	list := inst.body2.Items
 	list = append(list, it1)
@@ -252,7 +216,7 @@ func (inst *innerUsersTask) doGetMock() error {
 	return nil
 }
 
-func (inst *innerUsersTask) doFindOneItem() error {
+func (inst *innerAdminSessionTask) doFindOneItem() error {
 
 	ctx := inst.context
 	ser := inst.controller.Service
@@ -266,15 +230,15 @@ func (inst *innerUsersTask) doFindOneItem() error {
 	page := new(rbac.Pagination)
 
 	inst.body2.Pagination = page
-	inst.body2.Items = []*dto.User{item}
+	inst.body2.Items = []*dto.Session{item}
 	return nil
 }
 
-func (inst *innerUsersTask) doGetQuery() error {
+func (inst *innerAdminSessionTask) doGetQuery() error {
 
 	ctx := inst.context
 	ser := inst.controller.Service
-	q := inst.query
+	q := &inst.query
 
 	list1, err := ser.Query(ctx, q)
 	if err != nil {
@@ -285,25 +249,6 @@ func (inst *innerUsersTask) doGetQuery() error {
 
 	inst.body2.Pagination = page
 	inst.body2.Items = list1
-	return nil
-}
-
-func (inst *innerUsersTask) doInsert() error {
-
-	ctx := inst.context
-	ser := inst.controller.Service
-	src := inst.body1.Items
-	dst := inst.body2.Items
-
-	for _, item1 := range src {
-		item2, err := ser.Insert(ctx, item1)
-		if err != nil {
-			return err
-		}
-		dst = append(dst, item2)
-	}
-
-	inst.body2.Items = dst
 	return nil
 }
 

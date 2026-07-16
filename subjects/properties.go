@@ -27,4 +27,9 @@ const (
 	PNameMobile   PropertyName = "mobile"
 	PNameEmail    PropertyName = "email"
 	PNameLanguage PropertyName = "language"
+
+	PNameTokenNotAfter  PropertyName = "token_not_after"  // a i64 of millisec
+	PNameTokenNotBefore PropertyName = "token_not_before" // a i64 of millisec
+	PNameTokenReferID   PropertyName = "token_ref_id"     // a session-id
+	PNameTokenReferUUID PropertyName = "token_ref_uuid"   // a session-uuid
 )

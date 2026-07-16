@@ -1,5 +1,7 @@
 package entity
 
+import "github.com/starter-go/v0/subjects/core/classes/sessions"
+
 // type Session struct {
 
 // 	// id
@@ -16,3 +18,5 @@ package entity
 
 // 	Alive bool
 // }
+
+type Session = sessions.Entity

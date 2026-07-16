@@ -11,6 +11,8 @@ type Finder struct {
 	db   *gorm.DB
 	page *rbac.Pagination
 
+	all bool
+
 	list any
 	item any
 	want any
@@ -42,6 +44,11 @@ func (inst *Finder) SetPagination(p *rbac.Pagination) *Finder {
 
 func (inst *Finder) SetWant(w any) *Finder {
 	inst.want = w
+	return inst
+}
+
+func (inst *Finder) SetAll(all bool) *Finder {
+	inst.all = all
 	return inst
 }
 

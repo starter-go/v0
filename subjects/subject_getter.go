@@ -87,7 +87,7 @@ func (inst *innerGetterImpl) GetProperty(name PropertyName) string {
 }
 
 // GetSession implements Getter.
-func (inst *innerGetterImpl) GetSession(se *rbac.SessionDTO) bool {
+func (inst *innerGetterImpl) GetSession(se *rbac.SessionDTO) error {
 
 	agent := inst.innerGetAgent()
 
@@ -146,7 +146,38 @@ func (inst *innerGetterImpl) GetSession(se *rbac.SessionDTO) bool {
 	se.Roles = rbac.RoleNameList(valueRoles)
 	se.Language = localization.Locale(valueLang)
 
-	return false
+	return nil
+}
+
+// GetToken implements [Getter].
+func (inst *innerGetterImpl) GetToken(tk *rbac.TokenDTO) error {
+
+	agent := inst.innerGetAgent()
+
+	// keys
+
+	const (
+		keyTNotAfter  = string(PNameTokenNotAfter)
+		keyTNotBefore = string(PNameTokenNotBefore)
+		keyTReferID   = string(PNameTokenReferID)
+		keyTReferUUID = string(PNameTokenReferUUID)
+	)
+
+	// get
+
+	valueNotAfter := agent.GetInt64(keyTNotAfter)
+	valueNotBefore := agent.GetInt64(keyTNotBefore)
+	valueSessionID := agent.GetInt64(keyTReferID)
+	valueSessionUUID := agent.GetString(keyTReferUUID)
+
+	// set
+
+	tk.NotAfter = lang.Time(valueNotAfter)
+	tk.NotBefore = lang.Time(valueNotBefore)
+	tk.SessionID = rbac.SessionID(valueSessionID)
+	tk.SessionUUID = rbac.SessionUUID(valueSessionUUID)
+
+	return nil
 }
 
 // GetUserEmail implements Getter.

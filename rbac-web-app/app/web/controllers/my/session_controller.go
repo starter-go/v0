@@ -38,12 +38,13 @@ func (inst *SessionController) Registration() *libgin.ControllerRegistration {
 
 func (inst *SessionController) route(rp libgin.RouterProxy) error {
 
-	rp = rp.For("sessions")
+	rp = rp.For("/api/v1/sessions")
 
 	rp.GET("", inst.handleGetCurrentSessionInfo) // alias to 'current'
-
-	rp.GET("example", inst.handleGetExample)
 	rp.GET("current", inst.handleGetCurrentSessionInfo)
+	rp.GET("example", inst.handleGetExample)
+
+	rp.POST("keep-alive", inst.handlePostKeepAlive)
 
 	return nil
 }
@@ -64,6 +65,15 @@ func (inst *SessionController) handleGetCurrentSessionInfo(c *gin.Context) {
 	task.controller = inst
 
 	task.execute(task.doGetCurrentSessionInfo)
+}
+
+func (inst *SessionController) handlePostKeepAlive(c *gin.Context) {
+
+	task := new(innerSessionTask)
+	task.context = c
+	task.controller = inst
+
+	task.execute(task.doKeepAlive)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -159,6 +169,16 @@ func (inst *innerSessionTask) doGetCurrentSessionInfo() error {
 	gett.GetSession(se)
 
 	inst.body2.Items = []*rbac.SessionDTO{se}
+	return nil
+}
+
+func (inst *innerSessionTask) doKeepAlive() error {
+
+	msg := "todo: no impl"
+
+	inst.body2.Error = msg
+	inst.body2.Message = msg
+
 	return nil
 }
 

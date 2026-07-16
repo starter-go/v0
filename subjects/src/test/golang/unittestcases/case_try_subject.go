@@ -239,14 +239,25 @@ func (inst *CaseToTrySubject) innerTryGetL2(cc context.Context) error {
 	if err != nil {
 		return err
 	}
+
 	session := new(rbac.SessionDTO)
 	gett.GetSession(session)
 
-	str, err := json.MarshalIndent(session, "\t", "\t")
+	token := new(rbac.TokenDTO)
+	gett.GetToken(token)
+
+	str1, err := json.MarshalIndent(token, "\t", "\t")
 	if err != nil {
 		return err
 	}
 
-	vlog.Info("subject.GetSession() : result = %s", str)
+	str2, err := json.MarshalIndent(session, "\t", "\t")
+	if err != nil {
+		return err
+	}
+
+	vlog.Info("subject.DoGet().GetSession() : result = %s", str2)
+	vlog.Info("subject.DoGet().GetToken() : result = %s", str1)
+
 	return nil
 }

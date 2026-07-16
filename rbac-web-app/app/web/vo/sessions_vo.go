@@ -6,4 +6,6 @@ type Sessions struct {
 	Base
 
 	Items []*dto.Session `json:"sessions"`
+
+	Tokens []*dto.Token `json:"tokens"`
 }

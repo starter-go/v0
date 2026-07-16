@@ -5,18 +5,23 @@ import (
     p08935700f "github.com/starter-go/security/permissions"
     p9621e8b71 "github.com/starter-go/security/random"
     p84e86b31b "github.com/starter-go/v0/rbac-web-app/app/classes/authx"
+    p35a5c6912 "github.com/starter-go/v0/rbac-web-app/app/classes/examples"
     pe368f8662 "github.com/starter-go/v0/rbac-web-app/app/classes/permissions"
+    p2bdcd88a4 "github.com/starter-go/v0/rbac-web-app/app/classes/roles"
     p2d258e798 "github.com/starter-go/v0/rbac-web-app/app/classes/users"
     pf75fd20ca "github.com/starter-go/v0/rbac-web-app/app/data/database"
     p383a5f3ee "github.com/starter-go/v0/rbac-web-app/app/implements/iauthx"
     pabcfb7520 "github.com/starter-go/v0/rbac-web-app/app/implements/idatabase"
+    p590373c3a "github.com/starter-go/v0/rbac-web-app/app/implements/iexamples"
     pea0a25a6a "github.com/starter-go/v0/rbac-web-app/app/implements/ipermissions"
+    p95d8708df "github.com/starter-go/v0/rbac-web-app/app/implements/iroles"
     p4b670e5fa "github.com/starter-go/v0/rbac-web-app/app/implements/iusers"
     p7249a1596 "github.com/starter-go/v0/rbac-web-app/app/web/controllers"
     p7f79a0bbf "github.com/starter-go/v0/rbac-web-app/app/web/controllers/admin"
     pc3ca883e2 "github.com/starter-go/v0/rbac-web-app/app/web/controllers/helper"
     pe475f399c "github.com/starter-go/v0/rbac-web-app/app/web/controllers/my"
     pfd2c28477 "github.com/starter-go/v0/subjects"
+    p85899ef78 "github.com/starter-go/v0/subjects/core/classes/sessions"
      "github.com/starter-go/application"
 )
 
@@ -432,6 +437,100 @@ func (inst*pabcfb75207_idatabase_MyDatabaseAgentImpl) getDSManager(ie applicatio
 
 
 
+// type p590373c3a.ExampleDaoImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/iexamples
+//
+// id:com-590373c3a21b532e-iexamples-ExampleDaoImpl
+// class:
+// alias:alias-35a5c691270890485178b12935d12d1a-DAO
+// scope:singleton
+//
+type p590373c3a2_iexamples_ExampleDaoImpl struct {
+}
+
+func (inst* p590373c3a2_iexamples_ExampleDaoImpl) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-590373c3a21b532e-iexamples-ExampleDaoImpl"
+	r.Classes = ""
+	r.Aliases = "alias-35a5c691270890485178b12935d12d1a-DAO"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p590373c3a2_iexamples_ExampleDaoImpl) new() any {
+    return &p590373c3a.ExampleDaoImpl{}
+}
+
+func (inst* p590373c3a2_iexamples_ExampleDaoImpl) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p590373c3a.ExampleDaoImpl)
+	nop(ie, com)
+
+	
+    com.Agent = inst.getAgent(ie)
+    com.UUIDSer = inst.getUUIDSer(ie)
+
+
+    return nil
+}
+
+
+func (inst*p590373c3a2_iexamples_ExampleDaoImpl) getAgent(ie application.InjectionExt)pf75fd20ca.Agent{
+    return ie.GetComponent("#alias-f75fd20ca4f14f60caace00a3f949b98-Agent").(pf75fd20ca.Agent)
+}
+
+
+func (inst*p590373c3a2_iexamples_ExampleDaoImpl) getUUIDSer(ie application.InjectionExt)p9621e8b71.UUIDService{
+    return ie.GetComponent("#alias-9621e8b71013b0fc25942a1749ed3652-UUIDService").(p9621e8b71.UUIDService)
+}
+
+
+
+// type p590373c3a.ExampleServiceImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/iexamples
+//
+// id:com-590373c3a21b532e-iexamples-ExampleServiceImpl
+// class:
+// alias:alias-35a5c691270890485178b12935d12d1a-Service
+// scope:singleton
+//
+type p590373c3a2_iexamples_ExampleServiceImpl struct {
+}
+
+func (inst* p590373c3a2_iexamples_ExampleServiceImpl) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-590373c3a21b532e-iexamples-ExampleServiceImpl"
+	r.Classes = ""
+	r.Aliases = "alias-35a5c691270890485178b12935d12d1a-Service"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p590373c3a2_iexamples_ExampleServiceImpl) new() any {
+    return &p590373c3a.ExampleServiceImpl{}
+}
+
+func (inst* p590373c3a2_iexamples_ExampleServiceImpl) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p590373c3a.ExampleServiceImpl)
+	nop(ie, com)
+
+	
+    com.Dao = inst.getDao(ie)
+
+
+    return nil
+}
+
+
+func (inst*p590373c3a2_iexamples_ExampleServiceImpl) getDao(ie application.InjectionExt)p35a5c6912.DAO{
+    return ie.GetComponent("#alias-35a5c691270890485178b12935d12d1a-DAO").(p35a5c6912.DAO)
+}
+
+
+
 // type pea0a25a6a.PermissionDaoImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/ipermissions
 //
 // id:com-ea0a25a6a995b63a-ipermissions-PermissionDaoImpl
@@ -522,6 +621,100 @@ func (inst* pea0a25a6a9_ipermissions_PermissionServiceImpl) inject(injext applic
 
 func (inst*pea0a25a6a9_ipermissions_PermissionServiceImpl) getDao(ie application.InjectionExt)pe368f8662.DAO{
     return ie.GetComponent("#alias-e368f86629ca246ef7df63b6b1201d83-DAO").(pe368f8662.DAO)
+}
+
+
+
+// type p95d8708df.RoleDaoImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/iroles
+//
+// id:com-95d8708df41985e3-iroles-RoleDaoImpl
+// class:
+// alias:alias-2bdcd88a44487f93d4e74cbd2130a4d8-DAO
+// scope:singleton
+//
+type p95d8708df4_iroles_RoleDaoImpl struct {
+}
+
+func (inst* p95d8708df4_iroles_RoleDaoImpl) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-95d8708df41985e3-iroles-RoleDaoImpl"
+	r.Classes = ""
+	r.Aliases = "alias-2bdcd88a44487f93d4e74cbd2130a4d8-DAO"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p95d8708df4_iroles_RoleDaoImpl) new() any {
+    return &p95d8708df.RoleDaoImpl{}
+}
+
+func (inst* p95d8708df4_iroles_RoleDaoImpl) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p95d8708df.RoleDaoImpl)
+	nop(ie, com)
+
+	
+    com.Agent = inst.getAgent(ie)
+    com.UUIDSer = inst.getUUIDSer(ie)
+
+
+    return nil
+}
+
+
+func (inst*p95d8708df4_iroles_RoleDaoImpl) getAgent(ie application.InjectionExt)pf75fd20ca.Agent{
+    return ie.GetComponent("#alias-f75fd20ca4f14f60caace00a3f949b98-Agent").(pf75fd20ca.Agent)
+}
+
+
+func (inst*p95d8708df4_iroles_RoleDaoImpl) getUUIDSer(ie application.InjectionExt)p9621e8b71.UUIDService{
+    return ie.GetComponent("#alias-9621e8b71013b0fc25942a1749ed3652-UUIDService").(p9621e8b71.UUIDService)
+}
+
+
+
+// type p95d8708df.RoleServiceImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/iroles
+//
+// id:com-95d8708df41985e3-iroles-RoleServiceImpl
+// class:
+// alias:alias-2bdcd88a44487f93d4e74cbd2130a4d8-Service
+// scope:singleton
+//
+type p95d8708df4_iroles_RoleServiceImpl struct {
+}
+
+func (inst* p95d8708df4_iroles_RoleServiceImpl) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-95d8708df41985e3-iroles-RoleServiceImpl"
+	r.Classes = ""
+	r.Aliases = "alias-2bdcd88a44487f93d4e74cbd2130a4d8-Service"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p95d8708df4_iroles_RoleServiceImpl) new() any {
+    return &p95d8708df.RoleServiceImpl{}
+}
+
+func (inst* p95d8708df4_iroles_RoleServiceImpl) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p95d8708df.RoleServiceImpl)
+	nop(ie, com)
+
+	
+    com.Dao = inst.getDao(ie)
+
+
+    return nil
+}
+
+
+func (inst*p95d8708df4_iroles_RoleServiceImpl) getDao(ie application.InjectionExt)p2bdcd88a4.DAO{
+    return ie.GetComponent("#alias-2bdcd88a44487f93d4e74cbd2130a4d8-DAO").(p2bdcd88a4.DAO)
 }
 
 
@@ -720,6 +913,106 @@ func (inst*p7f79a0bbff_admin_AdminPermissionController) getService(ie applicatio
 
 
 
+// type p7f79a0bbf.AdminRoleController in package:github.com/starter-go/v0/rbac-web-app/app/web/controllers/admin
+//
+// id:com-7f79a0bbff8317e1-admin-AdminRoleController
+// class:class-d1a916a203352fd5d33eabc36896b42e-Controller
+// alias:
+// scope:singleton
+//
+type p7f79a0bbff_admin_AdminRoleController struct {
+}
+
+func (inst* p7f79a0bbff_admin_AdminRoleController) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-7f79a0bbff8317e1-admin-AdminRoleController"
+	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p7f79a0bbff_admin_AdminRoleController) new() any {
+    return &p7f79a0bbf.AdminRoleController{}
+}
+
+func (inst* p7f79a0bbff_admin_AdminRoleController) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p7f79a0bbf.AdminRoleController)
+	nop(ie, com)
+
+	
+    com.Responder = inst.getResponder(ie)
+    com.Service = inst.getService(ie)
+
+
+    return nil
+}
+
+
+func (inst*p7f79a0bbff_admin_AdminRoleController) getResponder(ie application.InjectionExt)pd1a916a20.Responder{
+    return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
+}
+
+
+func (inst*p7f79a0bbff_admin_AdminRoleController) getService(ie application.InjectionExt)p2bdcd88a4.Service{
+    return ie.GetComponent("#alias-2bdcd88a44487f93d4e74cbd2130a4d8-Service").(p2bdcd88a4.Service)
+}
+
+
+
+// type p7f79a0bbf.AdminSessionController in package:github.com/starter-go/v0/rbac-web-app/app/web/controllers/admin
+//
+// id:com-7f79a0bbff8317e1-admin-AdminSessionController
+// class:class-d1a916a203352fd5d33eabc36896b42e-Controller
+// alias:
+// scope:singleton
+//
+type p7f79a0bbff_admin_AdminSessionController struct {
+}
+
+func (inst* p7f79a0bbff_admin_AdminSessionController) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-7f79a0bbff8317e1-admin-AdminSessionController"
+	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p7f79a0bbff_admin_AdminSessionController) new() any {
+    return &p7f79a0bbf.AdminSessionController{}
+}
+
+func (inst* p7f79a0bbff_admin_AdminSessionController) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p7f79a0bbf.AdminSessionController)
+	nop(ie, com)
+
+	
+    com.Responder = inst.getResponder(ie)
+    com.Service = inst.getService(ie)
+
+
+    return nil
+}
+
+
+func (inst*p7f79a0bbff_admin_AdminSessionController) getResponder(ie application.InjectionExt)pd1a916a20.Responder{
+    return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
+}
+
+
+func (inst*p7f79a0bbff_admin_AdminSessionController) getService(ie application.InjectionExt)p85899ef78.Service{
+    return ie.GetComponent("#alias-85899ef785c3f033c4d8293618ff61de-Service").(p85899ef78.Service)
+}
+
+
+
 // type p7f79a0bbf.UsersController in package:github.com/starter-go/v0/rbac-web-app/app/web/controllers/admin
 //
 // id:com-7f79a0bbff8317e1-admin-UsersController
@@ -814,8 +1107,8 @@ func (inst*p7f79a0bbff_admin_ExampleController) getResponder(ie application.Inje
 }
 
 
-func (inst*p7f79a0bbff_admin_ExampleController) getService(ie application.InjectionExt)p2d258e798.Service{
-    return ie.GetComponent("#alias-2d258e79845135c43979b78bd9f1f74e-Service").(p2d258e798.Service)
+func (inst*p7f79a0bbff_admin_ExampleController) getService(ie application.InjectionExt)p35a5c6912.Service{
+    return ie.GetComponent("#alias-35a5c691270890485178b12935d12d1a-Service").(p35a5c6912.Service)
 }
 
 

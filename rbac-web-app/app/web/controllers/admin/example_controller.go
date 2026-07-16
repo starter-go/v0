@@ -6,11 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/starter-go/libgin"
 	"github.com/starter-go/rbac"
-	"github.com/starter-go/v0/rbac-web-app/app/classes/users"
-	"github.com/starter-go/v0/rbac-web-app/app/data/dxo"
-	"github.com/starter-go/v0/rbac-web-app/app/data/entity"
-	"github.com/starter-go/v0/rbac-web-app/app/web/dto"
-	"github.com/starter-go/v0/rbac-web-app/app/web/vo"
+	"github.com/starter-go/v0/rbac-web-app/app/classes/examples"
 )
 
 type ExampleController struct {
@@ -21,7 +17,7 @@ type ExampleController struct {
 
 	Responder libgin.Responder //starter:inject("#")
 
-	Service users.Service //starter:inject("#")
+	Service examples.Service //starter:inject("#")
 
 }
 
@@ -32,6 +28,7 @@ func (inst *ExampleController) _impl() libgin.Controller {
 func (inst *ExampleController) Registration() *libgin.ControllerRegistration {
 	r1 := new(libgin.ControllerRegistration)
 	r1.Route = inst.route
+	r1.Groups = []string{"disabled"}
 	return r1
 }
 
@@ -87,11 +84,10 @@ type innerExampleTask struct {
 	wantRequestBody  bool
 	wantRequestQuery bool
 
-	id    dxo.UserID
-	query *users.Query
-
-	body1 vo.Users
-	body2 vo.Users
+	id    examples.ID
+	query examples.Query
+	body1 examples.VO
+	body2 examples.VO
 }
 
 func (inst *innerExampleTask) open(c *gin.Context) error {
@@ -102,16 +98,16 @@ func (inst *innerExampleTask) open(c *gin.Context) error {
 		if err != nil {
 			return err
 		}
-		inst.id = dxo.UserID(num)
+		inst.id = examples.ID(num)
 	}
 
 	if inst.wantRequestQuery {
-		q := new(users.Query)
+		q := new(examples.Query)
 		err := inst.parseQuery(c, q)
 		if err != nil {
 			return err
 		}
-		inst.query = q
+		inst.query = *q
 	}
 
 	if inst.wantRequestBody {
@@ -125,70 +121,8 @@ func (inst *innerExampleTask) open(c *gin.Context) error {
 	return nil
 }
 
-func (inst *innerExampleTask) parseQuery(c *gin.Context, q *users.Query) error {
+func (inst *innerExampleTask) parseQuery(c *gin.Context, q *examples.Query) error {
 
-	limit := int64(1)
-	offset := int64(0)
-	want := new(entity.User)
-
-	strLimit := c.Query("limit")
-	strOffset := c.Query("offset")
-	strWantID := c.Query("want-id")
-	strWantEmail := c.Query("want-email")
-	strWantPhone := c.Query("want-phone")
-	strWantName := c.Query("want-name")
-	strWantNickName := c.Query("want-nickname")
-
-	if strWantID != "" {
-		num, err := strconv.ParseInt(strWantID, 10, 64)
-		if err != nil {
-			return err
-		}
-		want.ID = dxo.UserID(num)
-	}
-
-	if strLimit != "" {
-		num, err := strconv.ParseInt(strLimit, 10, 64)
-		if err != nil {
-			return err
-		}
-		limit = num
-	}
-
-	if strOffset != "" {
-		num, err := strconv.ParseInt(strOffset, 10, 64)
-		if err != nil {
-			return err
-		}
-		offset = num
-	}
-
-	if strWantPhone != "" {
-		want.Mobile = dxo.PhoneNumber(strWantPhone)
-	}
-
-	if strWantEmail != "" {
-		want.Email = dxo.EmailAddress(strWantEmail)
-	}
-
-	if strWantNickName != "" {
-		want.DisplayName = strWantNickName
-	}
-
-	if strWantName != "" {
-		want.Name = dxo.UserName(strWantName)
-	}
-
-	if offset < 0 {
-		offset = 0
-	}
-	if limit < 1 {
-		limit = 1
-	}
-
-	q.Pagination.Size = int(limit)
-	q.Pagination.Page = (offset / limit) + 1
-	q.Want = want
 	return nil
 }
 
@@ -231,7 +165,7 @@ func (inst *innerExampleTask) doGetMock() error {
 	page := new(rbac.Pagination)
 
 	inst.body2.Pagination = page
-	inst.body2.Items = []*dto.User{item}
+	inst.body2.Items = []*examples.DTO{item}
 	return nil
 }
 
@@ -249,7 +183,7 @@ func (inst *innerExampleTask) doFindOneItem() error {
 	page := new(rbac.Pagination)
 
 	inst.body2.Pagination = page
-	inst.body2.Items = []*dto.User{item}
+	inst.body2.Items = []*examples.DTO{item}
 	return nil
 }
 
@@ -257,7 +191,7 @@ func (inst *innerExampleTask) doGetQuery() error {
 
 	ctx := inst.context
 	ser := inst.controller.Service
-	q := inst.query
+	q := &inst.query
 
 	list1, err := ser.Query(ctx, q)
 	if err != nil {
