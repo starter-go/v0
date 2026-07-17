@@ -3,6 +3,7 @@ package filters
 import (
 	"net/http"
 
+	"github.com/starter-go/v0/libvlog/api/config"
 	"github.com/starter-go/vlog"
 )
 
@@ -12,9 +13,9 @@ type LevelFilter struct {
 
 	_as func(vlog.FilterRegistry) //starter:as(".")
 
-	Level string //starter:inject("${vlog.level}")
+	ConfigService config.Service //starter:inject("#")
 
-	cache *innerLevelFilterCache
+	cache *config.Configuration
 }
 
 // DoFilter implements vlog.Filter.
@@ -52,28 +53,20 @@ func (inst *LevelFilter) ListLogFilterRegistration() []*vlog.FilterRegistration 
 func (inst *LevelFilter) innerGetLimit() vlog.Level {
 	c := inst.cache
 	if c == nil {
-		c = new(innerLevelFilterCache)
-		c.load(inst)
-		inst.cache = c
+		ser := inst.ConfigService
+		c2, _ := ser.GetConfiguration()
+		if c2 == nil {
+			c2 = new(config.Configuration)
+			ser.LoadDefault(c2)
+		}
+		c = c2
+		inst.cache = c2
 	}
-	return c.limit
+	return c.Level
 }
 
 func (inst *LevelFilter) _impl() (vlog.FilterRegistry, vlog.Filter) {
 	return inst, inst
-}
-
-////////////////////////////////////////////////////////////////////////////////
-
-type innerLevelFilterCache struct {
-	limit vlog.Level
-}
-
-func (inst *innerLevelFilterCache) load(f *LevelFilter) error {
-	str := f.Level
-	l, err := vlog.ParseLevel(str)
-	inst.limit = l
-	return err
 }
 
 ////////////////////////////////////////////////////////////////////////////////

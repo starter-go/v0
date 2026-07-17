@@ -35,6 +35,7 @@ func (inst*autoRegistrar) addAll() error {
     inst.register(&p83b2f29a09_filters_FormatterFilter{})
     inst.register(&p83b2f29a09_filters_LevelFilter{})
     inst.register(&p83b2f29a09_filters_TimeFilter{})
+    inst.register(&p9fa282bf9a_iconfig_VLogConfigService{})
     inst.register(&pdc2a427af1_boot_VLogBootLoader{})
 
 

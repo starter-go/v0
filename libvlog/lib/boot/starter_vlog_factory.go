@@ -4,6 +4,7 @@ import (
 	"sort"
 
 	"github.com/starter-go/application"
+	"github.com/starter-go/v0/libvlog/api/config"
 	"github.com/starter-go/vlog"
 )
 
@@ -13,8 +14,8 @@ type VLogBootLoader struct {
 
 	_as func(application.Lifecycle) //starter:as(".")
 
-	FilterList []vlog.FilterRegistry //starter:inject(".")
-
+	FilterList    []vlog.FilterRegistry //starter:inject(".")
+	ConfigService config.Service        //starter:inject("#")
 }
 
 // Create implements vlog.LoggerFactory.
@@ -23,12 +24,19 @@ func (inst *VLogBootLoader) Create() vlog.Logger {
 	fcloader := new(innerFilterChainLoader)
 	fcloader.init(inst.FilterList)
 	chain := fcloader.load()
+	cfgser := inst.ConfigService
+
+	cfg, _ := cfgser.GetConfiguration()
+	if cfg == nil {
+		cfg = new(config.Configuration)
+		cfgser.LoadDefault(cfg)
+	}
 
 	ada := new(vlog.LoggerAdapter)
 	ada.SetTargetChain(chain)
 	ada.SetSender(inst)
-	ada.SetLevelAccepted(vlog.INFO)
-	ada.SetTag("VLogBootLoader")
+	ada.SetLevelAccepted(cfg.Level)
+	ada.SetTag(cfg.Tag)
 
 	return ada
 }
@@ -36,12 +44,12 @@ func (inst *VLogBootLoader) Create() vlog.Logger {
 // Life implements application.Lifecycle.
 func (inst *VLogBootLoader) Life() *application.Life {
 	return &application.Life{
-		Order:    999,
-		OnCreate: inst.onCreate,
+		Order:      -9999,
+		OnStartPre: inst.startup,
 	}
 }
 
-func (inst *VLogBootLoader) onCreate() error {
+func (inst *VLogBootLoader) startup() error {
 	vlog.SetLoggerFactory(inst)
 	return nil
 }

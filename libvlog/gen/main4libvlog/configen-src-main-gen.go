@@ -1,7 +1,9 @@
 package main4libvlog
 import (
+    p71306b574 "github.com/starter-go/v0/libvlog/api/config"
     pdc2a427af "github.com/starter-go/v0/libvlog/lib/boot"
     p83b2f29a0 "github.com/starter-go/v0/libvlog/lib/filters"
+    p9fa282bf9 "github.com/starter-go/v0/libvlog/lib/iconfig"
     p55f0853be "github.com/starter-go/vlog"
      "github.com/starter-go/application"
 )
@@ -38,6 +40,7 @@ func (inst* pdc2a427af1_boot_VLogBootLoader) inject(injext application.Injection
 
 	
     com.FilterList = inst.getFilterList(ie)
+    com.ConfigService = inst.getConfigService(ie)
 
 
     return nil
@@ -52,6 +55,11 @@ func (inst*pdc2a427af1_boot_VLogBootLoader) getFilterList(ie application.Injecti
         dst = append(dst, item2)
     }
     return dst
+}
+
+
+func (inst*pdc2a427af1_boot_VLogBootLoader) getConfigService(ie application.InjectionExt)p71306b574.Service{
+    return ie.GetComponent("#alias-71306b574152e0d5595c6d22b4e56ee7-Service").(p71306b574.Service)
 }
 
 
@@ -207,15 +215,15 @@ func (inst* p83b2f29a09_filters_LevelFilter) inject(injext application.Injection
 	nop(ie, com)
 
 	
-    com.Level = inst.getLevel(ie)
+    com.ConfigService = inst.getConfigService(ie)
 
 
     return nil
 }
 
 
-func (inst*p83b2f29a09_filters_LevelFilter) getLevel(ie application.InjectionExt)string{
-    return ie.GetString("${vlog.level}")
+func (inst*p83b2f29a09_filters_LevelFilter) getConfigService(ie application.InjectionExt)p71306b574.Service{
+    return ie.GetComponent("#alias-71306b574152e0d5595c6d22b4e56ee7-Service").(p71306b574.Service)
 }
 
 
@@ -254,6 +262,56 @@ func (inst* p83b2f29a09_filters_TimeFilter) inject(injext application.InjectionE
 
 
     return nil
+}
+
+
+
+// type p9fa282bf9.VLogConfigService in package:github.com/starter-go/v0/libvlog/lib/iconfig
+//
+// id:com-9fa282bf9ad55fb4-iconfig-VLogConfigService
+// class:
+// alias:alias-71306b574152e0d5595c6d22b4e56ee7-Service
+// scope:singleton
+//
+type p9fa282bf9a_iconfig_VLogConfigService struct {
+}
+
+func (inst* p9fa282bf9a_iconfig_VLogConfigService) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-9fa282bf9ad55fb4-iconfig-VLogConfigService"
+	r.Classes = ""
+	r.Aliases = "alias-71306b574152e0d5595c6d22b4e56ee7-Service"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p9fa282bf9a_iconfig_VLogConfigService) new() any {
+    return &p9fa282bf9.VLogConfigService{}
+}
+
+func (inst* p9fa282bf9a_iconfig_VLogConfigService) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p9fa282bf9.VLogConfigService)
+	nop(ie, com)
+
+	
+    com.StrLevel = inst.getStrLevel(ie)
+    com.StrTag = inst.getStrTag(ie)
+
+
+    return nil
+}
+
+
+func (inst*p9fa282bf9a_iconfig_VLogConfigService) getStrLevel(ie application.InjectionExt)string{
+    return ie.GetString("${vlog.level}")
+}
+
+
+func (inst*p9fa282bf9a_iconfig_VLogConfigService) getStrTag(ie application.InjectionExt)string{
+    return ie.GetString("${vlog.tag}")
 }
 
 
