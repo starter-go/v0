@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/starter-go/application"
 	"github.com/starter-go/libgin"
 	"github.com/starter-go/rbac"
 	"github.com/starter-go/security/permissions"
@@ -22,6 +23,21 @@ type RbacCheckerFilter struct {
 
 	Bypass bool //starter:inject("${web.rbac.bypass}")
 
+}
+
+// Life implements [application.Lifecycle].
+func (inst *RbacCheckerFilter) Life() *application.Life {
+	l := &application.Life{
+		OnStart: inst.onStart,
+	}
+	return l
+}
+
+func (inst *RbacCheckerFilter) onStart() error {
+	if inst.Bypass {
+		vlog.Warn("RbacCheckerFilter: handle web-request in bypass mode")
+	}
+	return nil
 }
 
 // Registration implements libgin.Controller.
@@ -56,11 +72,28 @@ func (inst *RbacCheckerFilter) handleNormal(c *gin.Context) {
 }
 
 func (inst *RbacCheckerFilter) handleBypass(c *gin.Context) {
+	err := inst.innerDoBypass(c)
+	if err != nil {
+		code := http.StatusInternalServerError
+		c.AbortWithError(code, err)
+	}
+}
 
-	// todo : setup a bypass-nop-checker
+func (inst *RbacCheckerFilter) innerDoBypass(c *gin.Context) error {
 
-	vlog.Warn("RbacCheckerFilter: handle web-request in bypass mode")
+	sub, err := subjects.GetCurrent(c)
+	if err != nil {
+		return err
+	}
 
+	checker := inst.innerNewNopChecker()
+	sub.SetChecker(checker)
+
+	return nil
+}
+
+func (inst *RbacCheckerFilter) innerNewNopChecker() subjects.Checker {
+	return new(innerBypassChecker)
 }
 
 func (inst *RbacCheckerFilter) checkRoles(c *gin.Context) error {
@@ -97,8 +130,8 @@ func (inst *RbacCheckerFilter) checkRoles(c *gin.Context) error {
 	return checker.Check()
 }
 
-func (inst *RbacCheckerFilter) _impl() libgin.Controller {
-	return inst
+func (inst *RbacCheckerFilter) _impl() (libgin.Controller, application.Lifecycle) {
+	return inst, inst
 }
 
 ////////////////////////////////////////////////////////////////////////////////
