@@ -30,6 +30,8 @@ func (inst *autoRegistrar) register(factory comFactory) error {
 func (inst*autoRegistrar) addAll() error {
 
     
+    inst.register(&p0b2b1174e8_itables_TableDaoImpl{})
+    inst.register(&p0b2b1174e8_itables_TableServiceImpl{})
     inst.register(&p383a5f3ee9_iauthx_ActionLoginAuthorizer{})
     inst.register(&p383a5f3ee9_iauthx_AuthenticationServiceImpl{})
     inst.register(&p383a5f3ee9_iauthx_AuthorizationServiceImpl{})
@@ -44,6 +46,7 @@ func (inst*autoRegistrar) addAll() error {
     inst.register(&p7f79a0bbff_admin_AdminPermissionController{})
     inst.register(&p7f79a0bbff_admin_AdminRoleController{})
     inst.register(&p7f79a0bbff_admin_AdminSessionController{})
+    inst.register(&p7f79a0bbff_admin_AdminTableController{})
     inst.register(&p7f79a0bbff_admin_ExampleController{})
     inst.register(&p7f79a0bbff_admin_UsersController{})
     inst.register(&p95d8708df4_iroles_RoleDaoImpl{})

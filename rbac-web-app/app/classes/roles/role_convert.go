@@ -1,12 +1,14 @@
 package roles
 
-import "github.com/starter-go/security-gorm/rbacdb"
+import (
+	"github.com/starter-go/rbac"
+)
 
 func ConvertD2E(src *DTO, dst *Entity) error {
 
 	dst.ID = src.ID
 
-	rbacdb.CopyBaseFieldsFromDtoToEntity(&src.DTO, &dst.BaseEntity)
+	rbac.CopyBaseFieldsD2E(src, dst)
 
 	dst.Name = src.Name
 	dst.Description = src.Description
@@ -18,7 +20,7 @@ func ConvertE2D(src *Entity, dst *DTO) error {
 
 	dst.ID = src.ID
 
-	rbacdb.CopyBaseFieldsFromEntityToDTO(&src.BaseEntity, &dst.DTO)
+	rbac.CopyBaseFieldsE2D(src, dst)
 
 	dst.Name = src.Name
 	dst.Description = src.Description

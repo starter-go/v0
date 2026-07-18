@@ -8,6 +8,7 @@ import (
     p35a5c6912 "github.com/starter-go/v0/rbac-web-app/app/classes/examples"
     pe368f8662 "github.com/starter-go/v0/rbac-web-app/app/classes/permissions"
     p2bdcd88a4 "github.com/starter-go/v0/rbac-web-app/app/classes/roles"
+    pf812c750c "github.com/starter-go/v0/rbac-web-app/app/classes/tables"
     p2d258e798 "github.com/starter-go/v0/rbac-web-app/app/classes/users"
     pf75fd20ca "github.com/starter-go/v0/rbac-web-app/app/data/database"
     p383a5f3ee "github.com/starter-go/v0/rbac-web-app/app/implements/iauthx"
@@ -15,6 +16,7 @@ import (
     p590373c3a "github.com/starter-go/v0/rbac-web-app/app/implements/iexamples"
     pea0a25a6a "github.com/starter-go/v0/rbac-web-app/app/implements/ipermissions"
     p95d8708df "github.com/starter-go/v0/rbac-web-app/app/implements/iroles"
+    p0b2b1174e "github.com/starter-go/v0/rbac-web-app/app/implements/itables"
     p4b670e5fa "github.com/starter-go/v0/rbac-web-app/app/implements/iusers"
     p7249a1596 "github.com/starter-go/v0/rbac-web-app/app/web/controllers"
     p7f79a0bbf "github.com/starter-go/v0/rbac-web-app/app/web/controllers/admin"
@@ -769,6 +771,112 @@ func (inst*p95d8708df4_iroles_RoleServiceImpl) getDao(ie application.InjectionEx
 
 
 
+// type p0b2b1174e.TableDaoImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/itables
+//
+// id:com-0b2b1174e8a7336a-itables-TableDaoImpl
+// class:
+// alias:alias-f812c750cf3f3820ad8990db9497a014-DAO
+// scope:singleton
+//
+type p0b2b1174e8_itables_TableDaoImpl struct {
+}
+
+func (inst* p0b2b1174e8_itables_TableDaoImpl) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-0b2b1174e8a7336a-itables-TableDaoImpl"
+	r.Classes = ""
+	r.Aliases = "alias-f812c750cf3f3820ad8990db9497a014-DAO"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p0b2b1174e8_itables_TableDaoImpl) new() any {
+    return &p0b2b1174e.TableDaoImpl{}
+}
+
+func (inst* p0b2b1174e8_itables_TableDaoImpl) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p0b2b1174e.TableDaoImpl)
+	nop(ie, com)
+
+	
+    com.Agent = inst.getAgent(ie)
+    com.UUIDSer = inst.getUUIDSer(ie)
+
+
+    return nil
+}
+
+
+func (inst*p0b2b1174e8_itables_TableDaoImpl) getAgent(ie application.InjectionExt)pf75fd20ca.Agent{
+    return ie.GetComponent("#alias-f75fd20ca4f14f60caace00a3f949b98-Agent").(pf75fd20ca.Agent)
+}
+
+
+func (inst*p0b2b1174e8_itables_TableDaoImpl) getUUIDSer(ie application.InjectionExt)p9621e8b71.UUIDService{
+    return ie.GetComponent("#alias-9621e8b71013b0fc25942a1749ed3652-UUIDService").(p9621e8b71.UUIDService)
+}
+
+
+
+// type p0b2b1174e.TableServiceImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/itables
+//
+// id:com-0b2b1174e8a7336a-itables-TableServiceImpl
+// class:
+// alias:alias-f812c750cf3f3820ad8990db9497a014-Service
+// scope:singleton
+//
+type p0b2b1174e8_itables_TableServiceImpl struct {
+}
+
+func (inst* p0b2b1174e8_itables_TableServiceImpl) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-0b2b1174e8a7336a-itables-TableServiceImpl"
+	r.Classes = ""
+	r.Aliases = "alias-f812c750cf3f3820ad8990db9497a014-Service"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p0b2b1174e8_itables_TableServiceImpl) new() any {
+    return &p0b2b1174e.TableServiceImpl{}
+}
+
+func (inst* p0b2b1174e8_itables_TableServiceImpl) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p0b2b1174e.TableServiceImpl)
+	nop(ie, com)
+
+	
+    com.Dao = inst.getDao(ie)
+    com.DataGroupList = inst.getDataGroupList(ie)
+
+
+    return nil
+}
+
+
+func (inst*p0b2b1174e8_itables_TableServiceImpl) getDao(ie application.InjectionExt)pf812c750c.DAO{
+    return ie.GetComponent("#alias-f812c750cf3f3820ad8990db9497a014-DAO").(pf812c750c.DAO)
+}
+
+
+func (inst*p0b2b1174e8_itables_TableServiceImpl) getDataGroupList(ie application.InjectionExt)[]p512a30914.GroupRegistry{
+    dst := make([]p512a30914.GroupRegistry, 0)
+    src := ie.ListComponents(".class-512a309140d0ad99eb1c95c8dc0d02f9-GroupRegistry")
+    for _, item1 := range src {
+        item2 := item1.(p512a30914.GroupRegistry)
+        dst = append(dst, item2)
+    }
+    return dst
+}
+
+
+
 // type p4b670e5fa.UserDaoImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/iusers
 //
 // id:com-4b670e5facdc70b8-iusers-UserDaoImpl
@@ -1059,6 +1167,56 @@ func (inst*p7f79a0bbff_admin_AdminSessionController) getResponder(ie application
 
 func (inst*p7f79a0bbff_admin_AdminSessionController) getService(ie application.InjectionExt)p85899ef78.Service{
     return ie.GetComponent("#alias-85899ef785c3f033c4d8293618ff61de-Service").(p85899ef78.Service)
+}
+
+
+
+// type p7f79a0bbf.AdminTableController in package:github.com/starter-go/v0/rbac-web-app/app/web/controllers/admin
+//
+// id:com-7f79a0bbff8317e1-admin-AdminTableController
+// class:class-d1a916a203352fd5d33eabc36896b42e-Controller
+// alias:
+// scope:singleton
+//
+type p7f79a0bbff_admin_AdminTableController struct {
+}
+
+func (inst* p7f79a0bbff_admin_AdminTableController) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-7f79a0bbff8317e1-admin-AdminTableController"
+	r.Classes = "class-d1a916a203352fd5d33eabc36896b42e-Controller"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p7f79a0bbff_admin_AdminTableController) new() any {
+    return &p7f79a0bbf.AdminTableController{}
+}
+
+func (inst* p7f79a0bbff_admin_AdminTableController) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p7f79a0bbf.AdminTableController)
+	nop(ie, com)
+
+	
+    com.Responder = inst.getResponder(ie)
+    com.Service = inst.getService(ie)
+
+
+    return nil
+}
+
+
+func (inst*p7f79a0bbff_admin_AdminTableController) getResponder(ie application.InjectionExt)pd1a916a20.Responder{
+    return ie.GetComponent("#alias-d1a916a203352fd5d33eabc36896b42e-Responder").(pd1a916a20.Responder)
+}
+
+
+func (inst*p7f79a0bbff_admin_AdminTableController) getService(ie application.InjectionExt)pf812c750c.Service{
+    return ie.GetComponent("#alias-f812c750cf3f3820ad8990db9497a014-Service").(pf812c750c.Service)
 }
 
 

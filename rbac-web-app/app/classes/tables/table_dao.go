@@ -1,5 +1,11 @@
 package tables
 
-import "github.com/starter-go/rbac"
+import "gorm.io/gorm"
 
-type DAO = rbac.TableDAO
+type DAO interface {
+	Find(db *gorm.DB, id ID) (*Entity, error)
+
+	Query(db *gorm.DB, q *Query) ([]*Entity, error)
+
+	Insert(db *gorm.DB, item *Entity) (*Entity, error)
+}
