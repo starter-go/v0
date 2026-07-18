@@ -32,7 +32,7 @@ require (
 	github.com/pelletier/go-toml/v2 v2.0.8 // indirect
 	github.com/starter-go/afs v0.10.0 // indirect
 	github.com/starter-go/application v0.10.0 // indirect
-	github.com/starter-go/base v0.10.0 // indirect
+	github.com/starter-go/base v0.10.1 // indirect
 	github.com/starter-go/configen v0.10.0 // indirect
 	github.com/starter-go/i18n v0.10.0 // indirect
 	github.com/starter-go/keyvalues v0.10.0 // indirect
@@ -42,7 +42,7 @@ require (
 	github.com/starter-go/mimetypes v0.10.0 // indirect
 	github.com/starter-go/module-gorm-mysql v0.10.0 // indirect
 	github.com/starter-go/module-gorm-sqlserver v0.10.0 // indirect
-	github.com/starter-go/rbac v0.10.1 // indirect
+	github.com/starter-go/rbac v0.10.3 // indirect
 	github.com/starter-go/security v0.10.0 // indirect
 	github.com/starter-go/security-gorm v0.10.0 // indirect
 	github.com/starter-go/starter v0.10.0 // indirect
@@ -50,7 +50,7 @@ require (
 	github.com/starter-go/units v0.10.0 // indirect
 	github.com/starter-go/v0/htttest v0.10.0 // indirect
 	github.com/starter-go/v0/libjwt v0.10.0 // indirect
-	github.com/starter-go/v0/libvlog v0.10.0 // indirect
+	github.com/starter-go/v0/libvlog v0.10.1 // indirect
 	github.com/starter-go/v0/subjects v0.10.2 // indirect
 	github.com/starter-go/vlog v0.10.0 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect

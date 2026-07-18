@@ -10,4 +10,6 @@ type Service interface {
 	Insert(cc context.Context, item *DTO) (*DTO, error)
 
 	Setup(cc context.Context) ([]*DTO, error)
+
+	Reload(cc context.Context) error
 }

@@ -41,9 +41,11 @@ func (inst *AdminPermissionController) route(rp libgin.RouterProxy) error {
 	rp.GET(":id", inst.handleGetOne)
 	rp.GET("do/query", inst.handleGetQuery)
 	rp.GET("do/mock", inst.handleGetMock)
-	rp.GET("do/setup", inst.handlePostSetup)
 
 	rp.POST("", inst.handlePostInsert)
+	rp.POST("do/insert", inst.handlePostInsert)
+	rp.POST("do/reload", inst.handlePostReload)
+	rp.POST("do/setup", inst.handlePostSetup)
 
 	return nil
 }
@@ -99,6 +101,17 @@ func (inst *AdminPermissionController) handlePostInsert(c *gin.Context) {
 	task.wantRequestBody = true
 
 	task.execute(task.doInsert)
+}
+
+func (inst *AdminPermissionController) handlePostReload(c *gin.Context) {
+
+	task := new(innerAdminPermissionTask)
+
+	task.context = c
+	task.controller = inst
+	task.wantRequestBody = false
+
+	task.execute(task.doReload)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -310,6 +323,12 @@ func (inst *innerAdminPermissionTask) doInsert() error {
 
 	inst.body2.Permissions = dst
 	return nil
+}
+
+func (inst *innerAdminPermissionTask) doReload() error {
+	ctx := inst.context
+	ser := inst.controller.Service
+	return ser.Reload(ctx)
 }
 
 ////////////////////////////////////////////////////////////////////////////////

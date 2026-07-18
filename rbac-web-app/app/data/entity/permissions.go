@@ -1,9 +1,7 @@
 package entity
 
-import (
-	"github.com/starter-go/security-gorm/rbacdb"
-)
+import "github.com/starter-go/rbac"
 
 type Permission struct {
-	rbacdb.PermissionEntity
+	rbac.PermissionEntity
 }

@@ -581,6 +581,50 @@ func (inst*pea0a25a6a9_ipermissions_PermissionDaoImpl) getUUIDSer(ie application
 
 
 
+// type pea0a25a6a.DatabasePermissionLoader in package:github.com/starter-go/v0/rbac-web-app/app/implements/ipermissions
+//
+// id:com-ea0a25a6a995b63a-ipermissions-DatabasePermissionLoader
+// class:class-08935700f7002f152b848e80701dde49-Registry
+// alias:
+// scope:singleton
+//
+type pea0a25a6a9_ipermissions_DatabasePermissionLoader struct {
+}
+
+func (inst* pea0a25a6a9_ipermissions_DatabasePermissionLoader) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-ea0a25a6a995b63a-ipermissions-DatabasePermissionLoader"
+	r.Classes = "class-08935700f7002f152b848e80701dde49-Registry"
+	r.Aliases = ""
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* pea0a25a6a9_ipermissions_DatabasePermissionLoader) new() any {
+    return &pea0a25a6a.DatabasePermissionLoader{}
+}
+
+func (inst* pea0a25a6a9_ipermissions_DatabasePermissionLoader) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*pea0a25a6a.DatabasePermissionLoader)
+	nop(ie, com)
+
+	
+    com.Dao = inst.getDao(ie)
+
+
+    return nil
+}
+
+
+func (inst*pea0a25a6a9_ipermissions_DatabasePermissionLoader) getDao(ie application.InjectionExt)pe368f8662.DAO{
+    return ie.GetComponent("#alias-e368f86629ca246ef7df63b6b1201d83-DAO").(pe368f8662.DAO)
+}
+
+
+
 // type pea0a25a6a.PermissionServiceImpl in package:github.com/starter-go/v0/rbac-web-app/app/implements/ipermissions
 //
 // id:com-ea0a25a6a995b63a-ipermissions-PermissionServiceImpl
@@ -613,6 +657,7 @@ func (inst* pea0a25a6a9_ipermissions_PermissionServiceImpl) inject(injext applic
 
 	
     com.Dao = inst.getDao(ie)
+    com.PermMan = inst.getPermMan(ie)
 
 
     return nil
@@ -621,6 +666,11 @@ func (inst* pea0a25a6a9_ipermissions_PermissionServiceImpl) inject(injext applic
 
 func (inst*pea0a25a6a9_ipermissions_PermissionServiceImpl) getDao(ie application.InjectionExt)pe368f8662.DAO{
     return ie.GetComponent("#alias-e368f86629ca246ef7df63b6b1201d83-DAO").(pe368f8662.DAO)
+}
+
+
+func (inst*pea0a25a6a9_ipermissions_PermissionServiceImpl) getPermMan(ie application.InjectionExt)p08935700f.Manager{
+    return ie.GetComponent("#alias-08935700f7002f152b848e80701dde49-Manager").(p08935700f.Manager)
 }
 
 

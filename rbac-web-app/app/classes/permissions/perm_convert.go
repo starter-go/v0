@@ -3,21 +3,24 @@ package permissions
 import (
 	"strings"
 
-	"github.com/starter-go/security-gorm/rbacdb"
+	"github.com/starter-go/base/lang"
+	"github.com/starter-go/rbac"
 )
 
 func ConvertD2E(src *DTO, dst *Entity) error {
 
 	dst.ID = src.ID
 
-	rbacdb.CopyBaseFieldsFromDtoToEntity(&src.BaseDTO, &dst.BaseEntity)
+	rbac.CopyBaseFieldsD2E(src, dst)
 
+	dst.Enabled = src.Enabled
 	dst.Method = src.Method
 	dst.Path = src.Path
-	dst.AcceptRoles = src.Roles
-	dst.Enabled = src.Enabled
+	dst.Priority = src.Priority
+	dst.Roles = src.Roles
 
-	dst.Resource = innerComputeResUri(src.Method, src.Path)
+	uri := innerComputeResUri(src.Method, src.Path)
+	dst.URI = lang.URI(uri)
 
 	return nil
 }
@@ -26,12 +29,14 @@ func ConvertE2D(src *Entity, dst *DTO) error {
 
 	dst.ID = src.ID
 
-	rbacdb.CopyBaseFieldsFromEntityToDTO(&src.BaseEntity, &dst.BaseDTO)
+	rbac.CopyBaseFieldsE2D(src, dst)
 
+	dst.Enabled = src.Enabled
 	dst.Method = src.Method
 	dst.Path = src.Path
-	dst.Roles = src.AcceptRoles
-	dst.Enabled = src.Enabled
+	dst.Priority = src.Priority
+	dst.Roles = src.Roles
+	dst.URI = src.URI
 
 	return nil
 }

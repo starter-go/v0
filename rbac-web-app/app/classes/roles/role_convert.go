@@ -6,7 +6,7 @@ func ConvertD2E(src *DTO, dst *Entity) error {
 
 	dst.ID = src.ID
 
-	rbacdb.CopyBaseFieldsFromDtoToEntity(&src.BaseDTO, &dst.BaseEntity)
+	rbacdb.CopyBaseFieldsFromDtoToEntity(&src.DTO, &dst.BaseEntity)
 
 	dst.Name = src.Name
 	dst.Description = src.Description
@@ -18,7 +18,7 @@ func ConvertE2D(src *Entity, dst *DTO) error {
 
 	dst.ID = src.ID
 
-	rbacdb.CopyBaseFieldsFromEntityToDTO(&src.BaseEntity, &dst.BaseDTO)
+	rbacdb.CopyBaseFieldsFromEntityToDTO(&src.BaseEntity, &dst.DTO)
 
 	dst.Name = src.Name
 	dst.Description = src.Description

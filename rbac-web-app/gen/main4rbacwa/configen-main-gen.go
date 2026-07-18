@@ -54,6 +54,7 @@ func (inst*autoRegistrar) addAll() error {
     inst.register(&pc3ca883e25_helper_RbacCheckerFilter{})
     inst.register(&pe475f399ce_my_AuthxController{})
     inst.register(&pe475f399ce_my_SessionController{})
+    inst.register(&pea0a25a6a9_ipermissions_DatabasePermissionLoader{})
     inst.register(&pea0a25a6a9_ipermissions_PermissionDaoImpl{})
     inst.register(&pea0a25a6a9_ipermissions_PermissionServiceImpl{})
     inst.register(&pf75fd20ca4_database_MyDataGroup{})

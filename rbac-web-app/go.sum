@@ -64,9 +64,9 @@ github.com/jcmturner/gofork v1.7.6/go.mod h1:1622LH6i/EZqLloHfE7IeZ0uEJwMSUyQ/nD
 github.com/jcmturner/goidentity/v6 v6.0.1/go.mod h1:X1YW3bgtvwAXju7V3LCIMpY0Gbxyjn/mY9zx4tFonSg=
 github.com/jcmturner/gokrb5/v8 v8.4.4/go.mod h1:1btQEpgT6k+unzCwX1KdWMEwPPkkgBtP+F6aCACiMrs=
 github.com/jcmturner/rpc/v2 v2.0.3/go.mod h1:VUJYCIDm3PVOEHw8sgt091/20OJjskO/YJki3ELg/Hc=
-github.com/jinzhu/inflection v1.0.0+incompatible/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
 github.com/jinzhu/inflection v1.0.0 h1:K317FqzuhWc8YvSVlFMCCUb36O/S9MCKRDI7QkRKD/E=
 github.com/jinzhu/inflection v1.0.0/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
+github.com/jinzhu/inflection v1.0.0+incompatible/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
 github.com/jinzhu/now v1.1.5 h1:/o9tlHleP7gOFmsnYNz3RGnqzefHA47wQpKrrdTIwXQ=
 github.com/jinzhu/now v1.1.5/go.mod h1:d3SSVoowX0Lcu0IBviAWJpolVfI5UJVZZ7cO71lE/z8=
 github.com/json-iterator/go v1.1.12 h1:PV8peI4a0ysnczrg+LtxykD8LfKY9ML6u2jnxaEnrnM=
@@ -110,6 +110,8 @@ github.com/starter-go/base v0.9.16 h1:W0ctxdDF6feUb1ycX7/i2DWhw56fBD/uotFF1AhNKh
 github.com/starter-go/base v0.9.16/go.mod h1:MMqPMFzwPHjKyfX0cMmkpAAbeJ0tJupFbI8D+x27fJM=
 github.com/starter-go/base v0.10.0 h1:f2wuxeZXv+Gdfo2JzbbpuEfD0YKlJABvS1AnYyWikOE=
 github.com/starter-go/base v0.10.0/go.mod h1:MMqPMFzwPHjKyfX0cMmkpAAbeJ0tJupFbI8D+x27fJM=
+github.com/starter-go/base v0.10.1 h1:tLqluxtS5uGGimBC/+q6j1FC8zi22kfRiHKLVWOky9k=
+github.com/starter-go/base v0.10.1/go.mod h1:MMqPMFzwPHjKyfX0cMmkpAAbeJ0tJupFbI8D+x27fJM=
 github.com/starter-go/configen v0.0.0-20240808074138-30de1adf37ed h1:M2a7T859WdgePU0bZsTkXwH1kWWO+PG96MxBcboWrOU=
 github.com/starter-go/configen v0.0.0-20240808074138-30de1adf37ed/go.mod h1:0/b+YCh9TfNLAmnYUniqdX/xOH3VnR7He1VRln2SIos=
 github.com/starter-go/configen v0.9.5 h1:KTwueLMQA3Ba70sJddK+hOLEifOI0dTXpPkX/jiBjIo=
@@ -181,6 +183,10 @@ github.com/starter-go/rbac v0.10.0 h1:xJCpRTWrwv2mdi9db3TUdoFLHCvu/ja2Sl6SZKaqec
 github.com/starter-go/rbac v0.10.0/go.mod h1:PY5+MSC7PViiZeOC5j3uo6NCkYdSsWbqpx3Ha3vtr84=
 github.com/starter-go/rbac v0.10.1 h1:kX9ZHYsED5MspJuCSiH9MoI4hxPQNvtt8rimRAMrnUY=
 github.com/starter-go/rbac v0.10.1/go.mod h1:M4U7bKLeP/WgnQXVPM/xxjk/Uk0kDmRSKc1rGi1hi/o=
+github.com/starter-go/rbac v0.10.2 h1:RyiqAR32GNLqx3Habb1eqWxnREgK4EZ5K1kYltuBI2k=
+github.com/starter-go/rbac v0.10.2/go.mod h1:pl9uU9f0nmnRqL4TlvzQTPNzMn71LncakWiBRSKDbFA=
+github.com/starter-go/rbac v0.10.3 h1:s9AYBLjuCgKI28uo5GLxDwQ3LY6sFquEBP2rW1dMuhw=
+github.com/starter-go/rbac v0.10.3/go.mod h1:pl9uU9f0nmnRqL4TlvzQTPNzMn71LncakWiBRSKDbFA=
 github.com/starter-go/security v0.1.60 h1:7SReegGlQ1TpgRU0cINEjcU0BLb+NmuRBTEHZNHGAn8=
 github.com/starter-go/security v0.1.60/go.mod h1:iVrEDRYagEJpz3FjyKZE2SpAMAUSOSIQfM48UUYslJU=
 github.com/starter-go/security v0.10.0 h1:ShhrnnZwiz0ljGsseNOWuDUm6YSUIThNtQ3LN5JmxfY=
@@ -235,6 +241,8 @@ github.com/starter-go/v0/libjwt v0.10.0 h1:YnRzeWQLiBxD0x9iKY4ewDKo4+y+8QT/3CKoS
 github.com/starter-go/v0/libjwt v0.10.0/go.mod h1:dmlpV5oEmsIOQbGrGB7H+TF/GajQh/Vy+HPi+32J6kM=
 github.com/starter-go/v0/libvlog v0.10.0 h1:3Wm4PaNBt3BJa1GLTFKzmxsOSLwhG3i4nn++wEeY4/U=
 github.com/starter-go/v0/libvlog v0.10.0/go.mod h1:jsOQ0/WLt7lw79yfXCofvsFBe6+2E5hJpoT4RAjYtOM=
+github.com/starter-go/v0/libvlog v0.10.1 h1:5EZwisfutcqmsS5+L45ClSNBk3g5AW6c3KTcVFheGpw=
+github.com/starter-go/v0/libvlog v0.10.1/go.mod h1:jsOQ0/WLt7lw79yfXCofvsFBe6+2E5hJpoT4RAjYtOM=
 github.com/starter-go/v0/subjects v0.0.1 h1:t2jS1703lNKiok1pSjh8KeDwdfS5NZca7BcW+bXsJKQ=
 github.com/starter-go/v0/subjects v0.0.1/go.mod h1:ywhKQbs/V1Aos+B6EtLtKdODbMJFvQmV4QNCaNtR8+M=
 github.com/starter-go/v0/subjects v0.0.2 h1:P48ZyUDS4S8PcPLaw6FvDPTwW+4XcBEsTOX4Xabdfo0=

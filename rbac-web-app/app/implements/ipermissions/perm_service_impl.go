@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/starter-go/rbac"
+	secperm "github.com/starter-go/security/permissions"
 	"github.com/starter-go/v0/rbac-web-app/app/classes/permissions"
 	"github.com/starter-go/vlog"
 	"gorm.io/gorm"
@@ -16,8 +17,22 @@ type PermissionServiceImpl struct {
 
 	_as func(permissions.Service) //starter:as("#")
 
-	Dao permissions.DAO //starter:inject("#")
+	Dao     permissions.DAO //starter:inject("#")
+	PermMan secperm.Manager //starter:inject("#")
 
+}
+
+// Reload implements [permissions.Service].
+func (inst *PermissionServiceImpl) Reload(cc context.Context) error {
+
+	cache, err := inst.PermMan.GetCache()
+	if err != nil {
+		return err
+	}
+
+	cache.Clear()
+	_, err = inst.PermMan.GetCache()
+	return err
 }
 
 // Setup implements permissions.Service.
