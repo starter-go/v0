@@ -19,10 +19,5 @@ func SetDefaultFormatter(f Formatter) {
 	theDefaultFormatter = f
 }
 
-func Format(parent error, reg *Registration, args ...any) error {
-	f := DefaultFormatter()
-	return f.Format(parent, reg, args...)
-}
-
 ////////////////////////////////////////////////////////////////////////////////
 // EOF

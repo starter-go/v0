@@ -64,6 +64,8 @@ func (inst *Token) SetProperty(name, value string) {
 		pt = make(map[string]string)
 		inst.Properties = pt
 	}
+
+	pt[name] = value
 }
 
 func (inst *Token) GetTable() properties.Table {

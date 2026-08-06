@@ -1,5 +1,6 @@
 package main4liberr
 import (
+    p52d293b71 "github.com/starter-go/i18n"
     p430c7b94c "github.com/starter-go/v0/liberr"
     p0059025e6 "github.com/starter-go/v0/liberr/core"
      "github.com/starter-go/application"
@@ -69,6 +70,56 @@ func (inst*p0059025e6c_core_ErrorManagerImpl) getErrSets(ie application.Injectio
         dst = append(dst, item2)
     }
     return dst
+}
+
+
+
+// type p0059025e6.ErrorServiceImpl in package:github.com/starter-go/v0/liberr/core
+//
+// id:com-0059025e6cc2f67a-core-ErrorServiceImpl
+// class:
+// alias:alias-430c7b94c7c73bc48c254d5d9d9f6a6c-Service
+// scope:singleton
+//
+type p0059025e6c_core_ErrorServiceImpl struct {
+}
+
+func (inst* p0059025e6c_core_ErrorServiceImpl) register(cr application.ComponentRegistry) error {
+	r := cr.NewRegistration()
+	r.ID = "com-0059025e6cc2f67a-core-ErrorServiceImpl"
+	r.Classes = ""
+	r.Aliases = "alias-430c7b94c7c73bc48c254d5d9d9f6a6c-Service"
+	r.Scope = "singleton"
+	r.NewFunc = inst.new
+	r.InjectFunc = inst.inject
+	return r.Commit()
+}
+
+func (inst* p0059025e6c_core_ErrorServiceImpl) new() any {
+    return &p0059025e6.ErrorServiceImpl{}
+}
+
+func (inst* p0059025e6c_core_ErrorServiceImpl) inject(injext application.InjectionExt, instance any) error {
+	ie := injext
+	com := instance.(*p0059025e6.ErrorServiceImpl)
+	nop(ie, com)
+
+	
+    com.Man = inst.getMan(ie)
+    com.I18nser = inst.getI18nser(ie)
+
+
+    return nil
+}
+
+
+func (inst*p0059025e6c_core_ErrorServiceImpl) getMan(ie application.InjectionExt)p430c7b94c.ErrorManager{
+    return ie.GetComponent("#alias-430c7b94c7c73bc48c254d5d9d9f6a6c-ErrorManager").(p430c7b94c.ErrorManager)
+}
+
+
+func (inst*p0059025e6c_core_ErrorServiceImpl) getI18nser(ie application.InjectionExt)p52d293b71.Service{
+    return ie.GetComponent("#alias-52d293b7197ae4adfab092ade2e718a2-Service").(p52d293b71.Service)
 }
 
 

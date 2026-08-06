@@ -91,7 +91,7 @@ func (inst *ErrorManagerImpl) innerGetCache() *innerErrorManagerCache {
 
 type innerErrorManagerCache struct {
 	man *ErrorManagerImpl
-	all []*liberr.Registration
+	all []*api.Registration
 }
 
 func (inst *innerErrorManagerCache) load() error {
@@ -123,33 +123,33 @@ func (inst *innerErrorManagerCache) rebuildCodeForItem(item *api.Registration) {
 
 func (inst *innerErrorManagerCache) filterEmpty(src []*api.Registration) []*api.Registration {
 	dst := make([]*api.Registration, 0)
-	for _, it := range src {
-		if it == nil {
+	for _, reg := range src {
+		if reg == nil {
 			continue
 		}
 
-		fo := it.Formatter
-		ex := it.Example
+		ff := reg.GetFormatter()
+		example := reg.Example
 
-		if fo == nil {
-			fo = liberr.DefaultFormatter()
-			it.Formatter = fo
+		if ff == nil {
+			ff = liberr.DefaultFormatter()
+			reg.Formatter = ff
 		}
 
-		if ex == nil {
-			args := inst.makeMockArgs(it)
-			ex := fo.Format(nil, it, args)
-			it.Example = ex
+		if example == nil {
+			args := inst.makeMockArgs(reg)
+			err := ff.Format(args...)
+			reg.Example = err
 		}
 
-		dst = append(dst, it)
+		dst = append(dst, reg)
 	}
 	return dst
 }
 
 func (inst *innerErrorManagerCache) copyItems() []*api.Registration {
 	src := inst.all
-	dst := make([]*liberr.Registration, len(src))
+	dst := make([]*api.Registration, len(src))
 	copy(dst, src)
 	return dst
 }

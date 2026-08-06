@@ -17,14 +17,37 @@ func GetBaseFormatter() Formatter {
 type innerBaseFormatter struct {
 }
 
-// Format implements Formatter.
-func (i *innerBaseFormatter) Format(parent error, reg *Registration, args ...any) error {
+// Format implements [Formatter].
+func (inst *innerBaseFormatter) Format(args ...any) error {
+	panic("unimplemented")
+}
 
-	str1 := fmt.Sprintf("error:%d/%s:", reg.Code, reg.Name)
+// FormatInfo implements [Formatter].
+func (inst *innerBaseFormatter) FormatInfo(info *HyperErrorInfo, format string, args ...any) string {
+	head := ""
+	if info == nil {
+		head = "HyperError"
+	} else {
+		name := info.Name
+		code := info.Code
+		head = fmt.Sprintf("%s(%d)", name, code)
+	}
+	body := fmt.Sprintf(format, args...)
+	return (head + ":" + body)
+}
 
-	str2 := fmt.Sprintf(reg.Format, args...)
+// FormatRegistration implements [Formatter].
+func (inst *innerBaseFormatter) FormatRegistration(reg *Registration, args ...any) string {
+	if reg == nil {
+		return ""
+	}
+	a1i := &reg.HyperErrorInfo
+	a2f := reg.Format
+	return inst.FormatInfo(a1i, a2f, args...)
+}
 
-	return fmt.Errorf("%s %s", str1, str2)
+func (inst *innerBaseFormatter) _impl() Formatter {
+	return inst
 }
 
 ////////////////////////////////////////////////////////////////////////////////

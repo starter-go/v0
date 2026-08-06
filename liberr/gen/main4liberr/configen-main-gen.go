@@ -31,6 +31,7 @@ func (inst*autoRegistrar) addAll() error {
 
     
     inst.register(&p0059025e6c_core_ErrorManagerImpl{})
+    inst.register(&p0059025e6c_core_ErrorServiceImpl{})
 
 
     return nil

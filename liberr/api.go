@@ -1,8 +1,6 @@
 package liberr
 
-import (
-	"github.com/starter-go/v0/liberr/api"
-)
+import "github.com/starter-go/v0/liberr/api"
 
 ////////////////////////////////////////////////////////////////////////////////
 // types
@@ -17,9 +15,21 @@ type Registration = api.Registration
 
 type ErrorSet = api.ErrorSet
 
+type ErrorSetHolder = api.ErrorSetHolder
+
+type ErrorSetLoader = api.ErrorSetLoader
+
 type Formatter = api.Formatter
 
 type ErrorManager = api.ErrorManager
+
+type Service = api.Service
+
+// hyper-error
+
+type HyperError = api.HyperError
+
+type HyperErrorInfo = api.HyperErrorInfo
 
 ////////////////////////////////////////////////////////////////////////////////
 // functions
@@ -32,8 +42,8 @@ func DefaultFormatter() Formatter {
 	return api.DefaultFormatter()
 }
 
-func Format(parent error, reg *Registration, args ...any) error {
-	return api.Format(parent, reg, args...)
+func NewHyperError(info *HyperErrorInfo) HyperError {
+	return api.NewHyperError(info)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
