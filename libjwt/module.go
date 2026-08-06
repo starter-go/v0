@@ -14,8 +14,8 @@ import (
 
 const (
 	theModuleName     = "github.com/starter-go/v0/libjwt"
-	theModuleVersion  = "v0.10.0"
-	theModuleRevision = 3
+	theModuleVersion  = "v0.10.1"
+	theModuleRevision = 4
 )
 
 ////////////////////////////////////////////////////////////////////////////////
