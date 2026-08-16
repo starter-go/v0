@@ -20,7 +20,7 @@ type StdRbacDataAgent struct {
 
 	// config
 
-	ConfigAlias string //starter:inject("${datagroup.std-rbac-dg.alias}")
+	ConfigSource string //starter:inject("${datagroup.std-rbac-dg.datasource}")
 
 	// cache
 
@@ -28,8 +28,8 @@ type StdRbacDataAgent struct {
 }
 
 func (inst *StdRbacDataAgent) load() (*gorm.DB, error) {
-	alias := inst.ConfigAlias
-	ds, err := inst.DSM.GetDataSource(alias)
+	source := inst.ConfigSource
+	ds, err := inst.DSM.GetDataSource(source)
 	if err != nil {
 		return nil, err
 	}

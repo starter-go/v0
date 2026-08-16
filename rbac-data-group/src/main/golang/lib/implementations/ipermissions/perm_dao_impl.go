@@ -4,8 +4,11 @@ import (
 	"fmt"
 
 	"github.com/starter-go/base/lang"
-	"github.com/starter-go/rbac/lib/classes/permissions"
-	"github.com/starter-go/security/random"
+	"github.com/starter-go/rbac"
+	"github.com/starter-go/rbac/api/classes/permissions"
+
+	"github.com/starter-go/v0/libdao"
+	"github.com/starter-go/v0/libdao/api/libdaoapi"
 	"github.com/starter-go/v0/rbac-data-group/src/main/golang/api/daos"
 	"gorm.io/gorm"
 )
@@ -14,16 +17,36 @@ type PermissionDaoImpl struct {
 
 	//starter:component
 
-	_as func(daos.IPermissionDao) //starter:as("#")
+	_as func(rbac.PermissionDAO) //starter:as(".")
 
-	DBAgent    daos.IDatabaseAgent //starter:inject("#")
-	UUIDGenSer random.UUIDService  //starter:inject("#")
+	ConfigClass    string //starter:inject("${rbac-data-group.sql.class}")
+	ConfigEnabled  bool   //starter:inject("${rbac-data-group.sql.enabled}")
+	ConfigPriority int    //starter:inject("${rbac-data-group.sql.priority}")
+
+	DBAgent daos.IDatabaseAgent //starter:inject("#")
+
 }
 
-func (inst *PermissionDaoImpl) innerGenUUID() lang.UUID {
-	b := inst.UUIDGenSer.Build()
-	b.Class("permissions.Entity")
-	return b.Generate()
+// GetRegistration implements [permissions.DAO].
+func (inst *PermissionDaoImpl) GetRegistration() *libdaoapi.DaoRegistration {
+
+	r1 := &libdao.DaoRegistration{
+		Name:     "PermissionDaoImpl",
+		ID:       "sql-rbac-permission-dao",
+		Class:    inst.ConfigClass,
+		Enabled:  inst.ConfigEnabled,
+		Priority: inst.ConfigPriority,
+		DAO:      inst,
+	}
+
+	return r1
+}
+
+func (inst *PermissionDaoImpl) innerGenUUID(item any) lang.UUID {
+	ser := lang.DefaultUUIDService()
+	b := ser.NewBuilder()
+	b.ForObject(item)
+	return b.Build()
 }
 
 func (inst *PermissionDaoImpl) innerMakeItem() *permissions.Entity {
@@ -62,7 +85,7 @@ func (inst *PermissionDaoImpl) GetDB(old *gorm.DB) *gorm.DB {
 func (inst *PermissionDaoImpl) Insert(db *gorm.DB, item *permissions.Entity) (*permissions.Entity, error) {
 
 	db = inst.GetDB(db)
-	uuid := inst.innerGenUUID()
+	uuid := inst.innerGenUUID(item)
 
 	item.ID = 0
 	item.UUID = uuid
@@ -107,6 +130,6 @@ func (inst *PermissionDaoImpl) Update(db *gorm.DB, id permissions.ID, callback f
 	return item, err
 }
 
-func (inst *PermissionDaoImpl) _impl() daos.IPermissionDao {
+func (inst *PermissionDaoImpl) _impl() rbac.PermissionDAO {
 	return inst
 }

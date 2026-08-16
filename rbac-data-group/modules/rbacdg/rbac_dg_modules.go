@@ -4,10 +4,11 @@ import (
 	"github.com/starter-go/application"
 	"github.com/starter-go/libgorm/modules/libgorm"
 	"github.com/starter-go/module-gorm-mysql/modules/mysql4libgorm"
-	"github.com/starter-go/rbac/modules/librbac"
-	"github.com/starter-go/security/modules/security"
+	"github.com/starter-go/rbac/modules/rbac"
+
 	"github.com/starter-go/starter"
 	"github.com/starter-go/units/modules/units"
+	"github.com/starter-go/v0/libdao/modules/libdao"
 	rbacdatagroup "github.com/starter-go/v0/rbac-data-group"
 	"github.com/starter-go/v0/rbac-data-group/gen/main4rbacdg"
 	"github.com/starter-go/v0/rbac-data-group/gen/test4rbacdg"
@@ -27,8 +28,10 @@ func ModuleForLib() application.Module {
 
 	mb.Depend(starter.Module())
 	mb.Depend(libgorm.Module())
-	mb.Depend(librbac.Module())
-	mb.Depend(security.Module())
+	mb.Depend(libdao.Module())
+	mb.Depend(rbac.Module())
+	mb.Depend(rbac.ModuleForCore())
+	mb.Depend(rbac.ModuleForExtension())
 
 	return mb.Create()
 }

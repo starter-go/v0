@@ -4,9 +4,13 @@ import (
 	"fmt"
 
 	"github.com/starter-go/base/lang"
-	"github.com/starter-go/rbac/lib/classes/tables"
-	"github.com/starter-go/security/random"
+	"github.com/starter-go/rbac"
+	"github.com/starter-go/rbac/api/classes/tables"
+
+	"github.com/starter-go/v0/libdao"
+	"github.com/starter-go/v0/libdao/api/libdaoapi"
 	"github.com/starter-go/v0/rbac-data-group/src/main/golang/api/daos"
+
 	"gorm.io/gorm"
 )
 
@@ -14,16 +18,36 @@ type TableDaoImpl struct {
 
 	//starter:component
 
-	_as func(daos.ITableDao) //starter:as("#")
+	_as func(rbac.TableDAO) //starter:as(".")
 
-	DBAgent    daos.IDatabaseAgent //starter:inject("#")
-	UUIDGenSer random.UUIDService  //starter:inject("#")
+	ConfigClass    string //starter:inject("${rbac-data-group.sql.class}")
+	ConfigEnabled  bool   //starter:inject("${rbac-data-group.sql.enabled}")
+	ConfigPriority int    //starter:inject("${rbac-data-group.sql.priority}")
+
+	DBAgent daos.IDatabaseAgent //starter:inject("#")
+
 }
 
-func (inst *TableDaoImpl) innerGenUUID() lang.UUID {
-	b := inst.UUIDGenSer.Build()
-	b.Class("tables.Entity")
-	return b.Generate()
+// GetRegistration implements [tables.DAO].
+func (inst *TableDaoImpl) GetRegistration() *libdaoapi.DaoRegistration {
+
+	r1 := &libdao.DaoRegistration{
+		Name:     "TableDaoImpl",
+		ID:       "sql-rbac-table-dao",
+		Class:    inst.ConfigClass,
+		Enabled:  inst.ConfigEnabled,
+		Priority: inst.ConfigPriority,
+		DAO:      inst,
+	}
+
+	return r1
+}
+
+func (inst *TableDaoImpl) innerGenUUID(item any) lang.UUID {
+	ser := lang.DefaultUUIDService()
+	b := ser.NewBuilder()
+	b.ForObject(item)
+	return b.Build()
 }
 
 func (inst *TableDaoImpl) innerMakeItem() *tables.Entity {
@@ -62,7 +86,7 @@ func (inst *TableDaoImpl) GetDB(old *gorm.DB) *gorm.DB {
 func (inst *TableDaoImpl) Insert(db *gorm.DB, item *tables.Entity) (*tables.Entity, error) {
 
 	db = inst.GetDB(db)
-	uuid := inst.innerGenUUID()
+	uuid := inst.innerGenUUID(item)
 
 	item.ID = 0
 	item.UUID = uuid
@@ -107,6 +131,6 @@ func (inst *TableDaoImpl) Update(db *gorm.DB, id tables.ID, callback func(old *t
 	return item, err
 }
 
-func (inst *TableDaoImpl) _impl() daos.ITableDao {
+func (inst *TableDaoImpl) _impl() rbac.TableDAO {
 	return inst
 }

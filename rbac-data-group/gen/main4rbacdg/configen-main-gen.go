@@ -31,14 +31,13 @@ func (inst*autoRegistrar) addAll() error {
 
     
     inst.register(&p01fd859558_isessions_SessionDaoImpl{})
-    inst.register(&p3da2710ff4_idatagroup_StdRbacDaoSet{})
     inst.register(&p3da2710ff4_idatagroup_StdRbacDataAgent{})
     inst.register(&p3da2710ff4_idatagroup_StdRbacDataGroup{})
     inst.register(&p651d619428_iroles_RoleDaoImpl{})
     inst.register(&pa2c28bd102_iusers_UserDaoImpl{})
     inst.register(&pb437cfd580_itables_TableDaoImpl{})
     inst.register(&pe64067b08c_ipermissions_PermissionDaoImpl{})
-    inst.register(&pfa85f3231c_iauths_AuthentDaoImpl{})
+    inst.register(&pfa85f3231c_iauths_AuthenticationDaoImpl{})
 
 
     return nil

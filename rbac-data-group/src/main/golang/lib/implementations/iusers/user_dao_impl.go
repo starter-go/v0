@@ -4,8 +4,11 @@ import (
 	"fmt"
 
 	"github.com/starter-go/base/lang"
-	"github.com/starter-go/rbac/lib/classes/users"
-	"github.com/starter-go/security/random"
+	"github.com/starter-go/rbac"
+	"github.com/starter-go/rbac/api/classes/users"
+
+	"github.com/starter-go/v0/libdao"
+	"github.com/starter-go/v0/libdao/api/libdaoapi"
 	"github.com/starter-go/v0/rbac-data-group/src/main/golang/api/daos"
 	"gorm.io/gorm"
 )
@@ -14,16 +17,49 @@ type UserDaoImpl struct {
 
 	//starter:component
 
-	_as func(daos.IUserDao) //starter:as("#")
+	_as func(rbac.UserDAO) //starter:as(".")
 
-	DBAgent    daos.IDatabaseAgent //starter:inject("#")
-	UUIDGenSer random.UUIDService  //starter:inject("#")
+	ConfigClass    string //starter:inject("${rbac-data-group.sql.class}")
+	ConfigEnabled  bool   //starter:inject("${rbac-data-group.sql.enabled}")
+	ConfigPriority int    //starter:inject("${rbac-data-group.sql.priority}")
+
+	DBAgent daos.IDatabaseAgent //starter:inject("#")
+
 }
 
-func (inst *UserDaoImpl) innerGenUUID() lang.UUID {
-	b := inst.UUIDGenSer.Build()
-	b.Class("users.Entity")
-	return b.Generate()
+// FindByEmail implements [users.UserDAO].
+func (inst *UserDaoImpl) FindByEmail(db *gorm.DB, addr users.EmailAddress) (*users.Entity, error) {
+	panic("unimplemented")
+}
+
+// FindByName implements [users.UserDAO].
+func (inst *UserDaoImpl) FindByName(db *gorm.DB, name users.UserName) (*users.Entity, error) {
+	panic("unimplemented")
+}
+
+// FindByPhone implements [users.UserDAO].
+func (inst *UserDaoImpl) FindByPhone(db *gorm.DB, num users.PhoneNumber) (*users.Entity, error) {
+	panic("unimplemented")
+}
+
+// GetRegistration implements [users.UserDAO].
+func (inst *UserDaoImpl) GetRegistration() *libdaoapi.DaoRegistration {
+	r1 := &libdao.DaoRegistration{
+		Name:     "UserDaoImpl",
+		ID:       "sql-rbac-user-dao",
+		Class:    inst.ConfigClass,
+		Enabled:  inst.ConfigEnabled,
+		Priority: inst.ConfigPriority,
+		DAO:      inst,
+	}
+	return r1
+}
+
+func (inst *UserDaoImpl) innerGenUUID(item any) lang.UUID {
+	ser := lang.DefaultUUIDService()
+	b := ser.NewBuilder()
+	b.ForObject(item)
+	return b.Build()
 }
 
 func (inst *UserDaoImpl) innerMakeItem() *users.Entity {
@@ -62,7 +98,7 @@ func (inst *UserDaoImpl) GetDB(old *gorm.DB) *gorm.DB {
 func (inst *UserDaoImpl) Insert(db *gorm.DB, item *users.Entity) (*users.Entity, error) {
 
 	db = inst.GetDB(db)
-	uuid := inst.innerGenUUID()
+	uuid := inst.innerGenUUID(item)
 
 	item.ID = 0
 	item.UUID = uuid
@@ -75,7 +111,17 @@ func (inst *UserDaoImpl) Insert(db *gorm.DB, item *users.Entity) (*users.Entity,
 // Query implements [users.UserDAO].
 func (inst *UserDaoImpl) Query(db *gorm.DB, q *users.Query) ([]*users.Entity, error) {
 
-	panic("unimplemented")
+	db = inst.GetDB(db)
+	finder := new(rbac.Finder)
+	list := inst.innerMakeItemList()
+	p := &q.Pagination
+	m := inst.innerMakeItem()
+
+	finder.SetDB(db).SetPagination(p).SetAll(q.All)
+	finder.SetList(&list).SetWant(q.Want).SetModel(m)
+
+	err := finder.Find()
+	return list, err
 }
 
 // Update implements [users.UserDAO].
@@ -107,6 +153,6 @@ func (inst *UserDaoImpl) Update(db *gorm.DB, id users.ID, callback func(old *use
 	return item, err
 }
 
-func (inst *UserDaoImpl) _impl() daos.IUserDao {
+func (inst *UserDaoImpl) _impl() rbac.UserDAO {
 	return inst
 }

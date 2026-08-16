@@ -4,8 +4,11 @@ import (
 	"fmt"
 
 	"github.com/starter-go/base/lang"
-	"github.com/starter-go/rbac/lib/classes/sessions"
-	"github.com/starter-go/security/random"
+	"github.com/starter-go/rbac"
+	"github.com/starter-go/rbac/api/classes/sessions"
+
+	"github.com/starter-go/v0/libdao"
+	"github.com/starter-go/v0/libdao/api/libdaoapi"
 	"github.com/starter-go/v0/rbac-data-group/src/main/golang/api/daos"
 	"gorm.io/gorm"
 )
@@ -14,16 +17,36 @@ type SessionDaoImpl struct {
 
 	//starter:component
 
-	_as func(daos.ISessionDao) //starter:as("#")
+	_as func(rbac.SessionDAO) //starter:as(".")
 
-	DBAgent    daos.IDatabaseAgent //starter:inject("#")
-	UUIDGenSer random.UUIDService  //starter:inject("#")
+	ConfigClass    string //starter:inject("${rbac-data-group.sql.class}")
+	ConfigEnabled  bool   //starter:inject("${rbac-data-group.sql.enabled}")
+	ConfigPriority int    //starter:inject("${rbac-data-group.sql.priority}")
+
+	DBAgent daos.IDatabaseAgent //starter:inject("#")
+
 }
 
-func (inst *SessionDaoImpl) innerGenUUID() lang.UUID {
-	b := inst.UUIDGenSer.Build()
-	b.Class("sessions.Entity")
-	return b.Generate()
+// GetRegistration implements [sessions.DAO].
+func (inst *SessionDaoImpl) GetRegistration() *libdaoapi.DaoRegistration {
+
+	r1 := &libdao.DaoRegistration{
+		Name:     "SessionDaoImpl",
+		ID:       "sql-rbac-session-dao",
+		Class:    inst.ConfigClass,
+		Enabled:  inst.ConfigEnabled,
+		Priority: inst.ConfigPriority,
+		DAO:      inst,
+	}
+
+	return r1
+}
+
+func (inst *SessionDaoImpl) innerGenUUID(item any) lang.UUID {
+	ser := lang.DefaultUUIDService()
+	b := ser.NewBuilder()
+	b.ForObject(item)
+	return b.Build()
 }
 
 func (inst *SessionDaoImpl) innerMakeItem() *sessions.Entity {
@@ -62,7 +85,7 @@ func (inst *SessionDaoImpl) GetDB(old *gorm.DB) *gorm.DB {
 func (inst *SessionDaoImpl) Insert(db *gorm.DB, item *sessions.Entity) (*sessions.Entity, error) {
 
 	db = inst.GetDB(db)
-	uuid := inst.innerGenUUID()
+	uuid := inst.innerGenUUID(item)
 
 	item.ID = 0
 	item.UUID = uuid
@@ -107,6 +130,6 @@ func (inst *SessionDaoImpl) Update(db *gorm.DB, id sessions.ID, callback func(ol
 	return item, err
 }
 
-func (inst *SessionDaoImpl) _impl() daos.ISessionDao {
+func (inst *SessionDaoImpl) _impl() rbac.SessionDAO {
 	return inst
 }
