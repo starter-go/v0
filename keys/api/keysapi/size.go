@@ -1,0 +1,17 @@
+package keysapi
+
+type SizeInBytes int
+
+type SizeInBits int
+
+////////////////////////////////////////////////////////////////////////////////
+
+func (src SizeInBits) ForBytes() SizeInBytes {
+	return SizeInBytes(src / 8)
+}
+
+func (src SizeInBytes) ForBits() SizeInBits {
+	return SizeInBits(src * 8)
+}
+
+////////////////////////////////////////////////////////////////////////////////
