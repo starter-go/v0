@@ -11,7 +11,7 @@ import (
 const (
 	theModuleName     = "github.com/starter-go/v0/libdao"
 	theModuleVersion  = "v0.10.0"
-	theModuleRevision = 0
+	theModuleRevision = 1
 )
 
 ////////////////////////////////////////////////////////////////////////////////
