@@ -98,7 +98,17 @@ func (inst *PermissionDaoImpl) Insert(db *gorm.DB, item *permissions.Entity) (*p
 // Query implements [permissions.UserDAO].
 func (inst *PermissionDaoImpl) Query(db *gorm.DB, q *permissions.Query) ([]*permissions.Entity, error) {
 
-	panic("unimplemented")
+	db = inst.GetDB(db)
+	finder := new(rbac.Finder)
+	list := inst.innerMakeItemList()
+	m := inst.innerMakeItem()
+	p := &q.Pagination
+
+	finder.SetDB(db).SetPagination(p).SetAll(q.All)
+	finder.SetList(&list).SetWant(q.Want).SetModel(m)
+
+	err := finder.Find()
+	return list, err
 }
 
 // Update implements [permissions.UserDAO].

@@ -99,7 +99,18 @@ func (inst *TableDaoImpl) Insert(db *gorm.DB, item *tables.Entity) (*tables.Enti
 // Query implements [tables.UserDAO].
 func (inst *TableDaoImpl) Query(db *gorm.DB, q *tables.Query) ([]*tables.Entity, error) {
 
-	panic("unimplemented")
+	db = inst.GetDB(db)
+	finder := new(rbac.Finder)
+	list := inst.innerMakeItemList()
+	m := inst.innerMakeItem()
+	p := &q.Pagination
+
+	finder.SetDB(db).SetPagination(p).SetAll(q.All)
+	finder.SetList(&list).SetWant(q.Want).SetModel(m)
+
+	err := finder.Find()
+	return list, err
+
 }
 
 // Update implements [tables.UserDAO].

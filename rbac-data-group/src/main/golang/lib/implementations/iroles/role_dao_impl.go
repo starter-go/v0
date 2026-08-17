@@ -97,7 +97,18 @@ func (inst *RoleDaoImpl) Insert(db *gorm.DB, item *roles.Entity) (*roles.Entity,
 // Query implements [roles.UserDAO].
 func (inst *RoleDaoImpl) Query(db *gorm.DB, q *roles.Query) ([]*roles.Entity, error) {
 
-	panic("unimplemented")
+	db = inst.GetDB(db)
+	finder := new(rbac.Finder)
+	list := inst.innerMakeItemList()
+	m := inst.innerMakeItem()
+	p := &q.Pagination
+
+	finder.SetDB(db).SetPagination(p).SetAll(q.All)
+	finder.SetList(&list).SetWant(q.Want).SetModel(m)
+
+	err := finder.Find()
+	return list, err
+
 }
 
 // Update implements [roles.UserDAO].
