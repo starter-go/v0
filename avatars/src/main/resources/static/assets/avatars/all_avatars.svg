@@ -1,0 +1,505 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800mm" height="400mm" viewBox="0 0 800 400">
+  <defs>
+    <style>
+      .s { stroke:#2D2A32; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+      .ln { fill:none; stroke:#2D2A32; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+      .eye { fill:#2D2A32; }
+      .bg { stroke:#2D2A32; stroke-width:2; }
+    </style>
+
+    <!-- 1 男孩 -->
+    <g id="a1">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#BFE3FF"/>
+      <ellipse class="s" cx="50" cy="56" rx="20" ry="21" fill="#FFDFC4"/>
+      <circle class="s" cx="30" cy="58" r="4" fill="#FFDFC4"/>
+      <circle class="s" cx="70" cy="58" r="4" fill="#FFDFC4"/>
+      <path class="s" d="M30 50 Q28 24 50 24 Q72 24 70 50 Q66 34 50 36 Q34 34 30 50 Z" fill="#5B3A29"/>
+      <circle class="eye" cx="43" cy="56" r="2.5"/>
+      <circle class="eye" cx="57" cy="56" r="2.5"/>
+      <path class="ln" d="M45 64 Q50 68 55 64"/>
+      <path class="s" d="M30 78 Q30 92 50 92 Q70 92 70 78 L70 74 Q50 80 30 74 Z" fill="#4A90E2"/>
+    </g>
+
+    <!-- 2 女孩 -->
+    <g id="a2">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#FFD1DC"/>
+      <ellipse class="s" cx="50" cy="56" rx="19" ry="21" fill="#FFDFC4"/>
+      <path class="s" d="M31 52 Q29 24 50 22 Q71 24 69 52 Q71 74 62 80 Q50 72 38 80 Q29 74 31 52 Z" fill="#3B2B24"/>
+      <path class="s" d="M50 22 L40 14 L40 28 Z" fill="#E85D75"/>
+      <path class="s" d="M50 22 L60 14 L60 28 Z" fill="#E85D75"/>
+      <circle class="s" cx="50" cy="22" r="4" fill="#F4A3B5"/>
+      <circle class="eye" cx="44" cy="56" r="2.5"/>
+      <circle class="eye" cx="56" cy="56" r="2.5"/>
+      <path class="ln" d="M46 64 Q50 67 54 64"/>
+      <circle cx="38" cy="62" r="4" fill="#F5A3B5" opacity="0.6"/>
+      <circle cx="62" cy="62" r="4" fill="#F5A3B5" opacity="0.6"/>
+      <path class="s" d="M31 78 Q31 92 50 92 Q69 92 69 78 L69 74 Q50 80 31 74 Z" fill="#F4A3B5"/>
+    </g>
+
+    <!-- 3 眼镜男 -->
+    <g id="a3">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#C8F7C5"/>
+      <ellipse class="s" cx="50" cy="56" rx="20" ry="21" fill="#F1C27D"/>
+      <circle class="s" cx="30" cy="58" r="4" fill="#F1C27D"/>
+      <circle class="s" cx="70" cy="58" r="4" fill="#F1C27D"/>
+      <path class="s" d="M30 50 Q28 26 50 26 Q72 26 70 50 Q64 35 50 36 Q36 35 30 50 Z" fill="#222222"/>
+      <circle class="ln" cx="43" cy="56" r="6"/>
+      <circle class="ln" cx="57" cy="56" r="6"/>
+      <line class="ln" x1="49" y1="56" x2="51" y2="56"/>
+      <ellipse class="s" cx="50" cy="70" rx="14" ry="6" fill="#D9B38C"/>
+      <path class="ln" d="M46 68 Q50 70 54 68"/>
+      <path class="s" d="M30 78 Q30 92 50 92 Q70 92 70 78 L70 74 Q50 80 30 74 Z" fill="#4A90E2"/>
+    </g>
+
+    <!-- 4 帽子女 -->
+    <g id="a4">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#E8D5F5"/>
+      <ellipse class="s" cx="50" cy="56" rx="19" ry="21" fill="#FFDFC4"/>
+      <path class="s" d="M31 50 Q28 22 50 20 Q72 22 69 50 Q71 72 61 78 Q50 70 39 78 Q29 72 31 50 Z" fill="#F4C542"/>
+      <ellipse class="s" cx="50" cy="32" rx="26" ry="6" fill="#D7A1F5"/>
+      <path class="s" d="M34 32 Q34 10 50 10 Q66 10 66 32 Z" fill="#C77DF0"/>
+      <circle class="eye" cx="44" cy="56" r="2.5"/>
+      <circle class="eye" cx="56" cy="56" r="2.5"/>
+      <path class="ln" d="M46 64 Q50 67 54 64"/>
+      <path class="s" d="M31 78 Q31 92 50 92 Q69 92 69 78 L69 74 Q50 80 31 74 Z" fill="#C77DF0"/>
+    </g>
+
+    <!-- 5 爷爷 -->
+    <g id="a5">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#D9E6F2"/>
+      <ellipse class="s" cx="50" cy="56" rx="19" ry="20" fill="#F1C27D"/>
+      <path class="s" d="M31 48 Q32 28 50 28 Q68 28 69 48 Q65 38 50 38 Q35 38 31 48 Z" fill="#E8E8E8"/>
+      <path class="s" d="M32 68 Q30 84 50 88 Q70 84 68 68 Q60 80 50 80 Q40 80 32 68 Z" fill="#FFFFFF"/>
+      <circle class="ln" cx="43" cy="55" r="5"/>
+      <circle class="ln" cx="57" cy="55" r="5"/>
+      <line class="ln" x1="48" y1="55" x2="52" y2="55"/>
+      <path class="s" d="M31 78 Q31 92 50 92 Q69 92 69 78 L69 74 Q50 80 31 74 Z" fill="#8B7355"/>
+    </g>
+
+    <!-- 6 奶奶 -->
+    <g id="a6">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#FFE3E3"/>
+      <ellipse class="s" cx="50" cy="56" rx="19" ry="20" fill="#F5D6B8"/>
+      <path class="s" d="M31 50 Q29 22 50 22 Q71 22 69 50 Q66 34 50 35 Q34 34 31 50 Z" fill="#E0E0E0"/>
+      <circle class="s" cx="50" cy="16" r="8" fill="#E0E0E0"/>
+      <circle class="s" cx="30" cy="62" r="2.5" fill="#D4AF37"/>
+      <circle class="s" cx="70" cy="62" r="2.5" fill="#D4AF37"/>
+      <circle class="eye" cx="44" cy="56" r="2.5"/>
+      <circle class="eye" cx="56" cy="56" r="2.5"/>
+      <path class="ln" d="M46 64 Q50 67 54 64"/>
+      <line class="ln" x1="40" y1="62" x2="36" y2="64"/>
+      <line class="ln" x1="60" y1="62" x2="64" y2="64"/>
+      <path class="s" d="M31 78 Q31 92 50 92 Q69 92 69 78 L69 74 Q50 80 31 74 Z" fill="#C77DF0"/>
+    </g>
+
+    <!-- 7 婴儿 -->
+    <g id="a7">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#FFF2CC"/>
+      <ellipse class="s" cx="50" cy="56" rx="19" ry="21" fill="#FFDFC4"/>
+      <circle class="s" cx="38" cy="32" r="6" fill="#5B3A29"/>
+      <circle class="s" cx="50" cy="28" r="7" fill="#5B3A29"/>
+      <circle class="s" cx="62" cy="32" r="6" fill="#5B3A29"/>
+      <circle class="eye" cx="44" cy="55" r="2.5"/>
+      <circle class="eye" cx="56" cy="55" r="2.5"/>
+      <circle class="s" cx="50" cy="64" r="5" fill="#F4A3B5"/>
+      <rect class="s" x="47" y="64" width="6" height="3" fill="#F4A3B5"/>
+      <path class="s" d="M31 78 Q31 92 50 92 Q69 92 69 78 L69 74 Q50 80 31 74 Z" fill="#AAD4FF"/>
+    </g>
+
+    <!-- 8 宇航员 -->
+    <g id="a8">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#1F3A5F"/>
+      <circle class="s" cx="50" cy="50" r="30" fill="#E8F4F8"/>
+      <circle class="s" cx="50" cy="52" r="17" fill="#AAD4FF"/>
+      <path class="ln" d="M38 44 Q44 36 54 36"/>
+      <path class="s" d="M28 80 Q30 94 50 94 Q70 94 72 80 L72 72 Q50 78 28 72 Z" fill="#F0F4F8"/>
+      <circle class="s" cx="40" cy="82" r="2" fill="#E85D75"/>
+      <circle class="s" cx="60" cy="82" r="2" fill="#4A90E2"/>
+    </g>
+
+    <!-- 9 医生 -->
+    <g id="a9">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#E0F7FA"/>
+      <ellipse class="s" cx="50" cy="56" rx="19" ry="21" fill="#F1C27D"/>
+      <path class="s" d="M35 34 Q35 14 50 14 Q65 14 65 34 Q58 28 50 28 Q42 28 35 34 Z" fill="#FFFFFF"/>
+      <rect class="s" x="34" y="32" width="32" height="4" rx="2" fill="#E85D75"/>
+      <rect class="s" x="46" y="16" width="3" height="8" fill="#E85D75"/>
+      <rect class="s" x="43.5" y="18.5" width="8" height="3" fill="#E85D75"/>
+      <circle class="eye" cx="43" cy="55" r="2.5"/>
+      <circle class="eye" cx="57" cy="55" r="2.5"/>
+      <rect class="s" x="40" y="62" width="20" height="12" rx="3" fill="#FFFFFF"/>
+      <line class="ln" x1="43" y1="68" x2="47" y2="68"/>
+      <path class="ln" d="M50 74 L50 82 Q50 86 44 88"/>
+      <circle class="s" cx="42" cy="88" r="4" fill="#4A90E2"/>
+      <path class="s" d="M31 78 Q31 92 50 92 Q69 92 69 78 L69 74 Q50 80 31 74 Z" fill="#FFFFFF"/>
+    </g>
+
+    <!-- 10 厨师 -->
+    <g id="a10">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#FFE0B2"/>
+      <ellipse class="s" cx="50" cy="56" rx="19" ry="21" fill="#F1C27D"/>
+      <path class="s" d="M32 32 Q30 12 50 12 Q70 12 68 32 Q62 24 50 24 Q38 24 32 32 Z" fill="#FFFFFF"/>
+      <path class="s" d="M36 62 Q50 58 64 62 Q60 66 50 66 Q40 66 36 62 Z" fill="#5B3A29"/>
+      <circle class="eye" cx="43" cy="55" r="2.5"/>
+      <circle class="eye" cx="57" cy="55" r="2.5"/>
+      <path class="s" d="M31 78 Q31 92 50 92 Q69 92 69 78 L69 74 Q50 80 31 74 Z" fill="#FFFFFF"/>
+      <path class="s" d="M42 78 L58 78 L58 84 L42 84 Z" fill="#E85D75"/>
+    </g>
+
+    <!-- 11 警察 -->
+    <g id="a11">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#B3D9FF"/>
+      <ellipse class="s" cx="50" cy="56" rx="19" ry="21" fill="#F1C27D"/>
+      <path class="s" d="M32 34 Q32 14 50 14 Q68 14 68 34 L68 38 Q50 32 32 38 Z" fill="#2B3A67"/>
+      <rect class="s" x="30" y="36" width="40" height="5" rx="2" fill="#1F2A4A"/>
+      <circle class="s" cx="50" cy="24" r="4" fill="#D4AF37"/>
+      <circle class="eye" cx="43" cy="56" r="2.5"/>
+      <circle class="eye" cx="57" cy="56" r="2.5"/>
+      <path class="ln" d="M45 64 Q50 68 55 64"/>
+      <path class="s" d="M30 76 Q30 92 50 92 Q70 92 70 76 L70 72 Q50 78 30 72 Z" fill="#2B3A67"/>
+      <path class="s" d="M47 76 L53 76 L50 82 Z" fill="#E85D75"/>
+    </g>
+
+    <!-- 12 消防员 -->
+    <g id="a12">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#FFCDD2"/>
+      <ellipse class="s" cx="50" cy="56" rx="19" ry="21" fill="#F1C27D"/>
+      <path class="s" d="M30 36 Q28 14 50 14 Q72 14 70 36 Q65 30 50 30 Q35 30 30 36 Z" fill="#E85D75"/>
+      <rect class="s" x="28" y="32" width="44" height="5" fill="#F4C542"/>
+      <rect class="s" x="36" y="50" width="28" height="10" rx="5" fill="#AAD4FF"/>
+      <circle class="eye" cx="43" cy="55" r="2.5"/>
+      <circle class="eye" cx="57" cy="55" r="2.5"/>
+      <path class="s" d="M31 78 Q31 92 50 92 Q69 92 69 78 L69 74 Q50 80 31 74 Z" fill="#F4C542"/>
+    </g>
+
+    <!-- 13 猫 -->
+    <g id="a13">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#EDE0F5"/>
+      <polygon class="s" points="28,38 26,16 44,28" fill="#F5B97F"/>
+      <polygon class="s" points="72,38 74,16 56,28" fill="#F5B97F"/>
+      <polygon class="s" points="31,34 30,20 41,29" fill="#F5A3B5"/>
+      <polygon class="s" points="69,34 70,20 59,29" fill="#F5A3B5"/>
+      <ellipse class="s" cx="50" cy="56" rx="24" ry="21" fill="#F5B97F"/>
+      <circle class="eye" cx="42" cy="54" r="2.5"/>
+      <circle class="eye" cx="58" cy="54" r="2.5"/>
+      <polygon class="s" points="48,62 52,62 50,65" fill="#E85D75"/>
+      <path class="ln" d="M50 65 Q45 69 40 67 M50 65 Q55 69 60 67"/>
+      <line class="ln" x1="20" y1="58" x2="34" y2="60"/>
+      <line class="ln" x1="20" y1="66" x2="34" y2="64"/>
+      <line class="ln" x1="80" y1="58" x2="66" y2="60"/>
+      <line class="ln" x1="80" y1="66" x2="66" y2="64"/>
+    </g>
+
+    <!-- 14 狗 -->
+    <g id="a14">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#FFF4CC"/>
+      <ellipse class="s" cx="30" cy="46" rx="9" ry="15" fill="#8B5A2B" transform="rotate(15 30 46)"/>
+      <ellipse class="s" cx="70" cy="46" rx="9" ry="15" fill="#8B5A2B" transform="rotate(-15 70 46)"/>
+      <ellipse class="s" cx="50" cy="55" rx="24" ry="20" fill="#C68B59"/>
+      <ellipse class="s" cx="50" cy="62" rx="12" ry="9" fill="#E8D5B5"/>
+      <ellipse cx="50" cy="58" rx="5" ry="3.5" fill="#2D2A32"/>
+      <circle class="eye" cx="42" cy="51" r="2.5"/>
+      <circle class="eye" cx="58" cy="51" r="2.5"/>
+      <path class="s" d="M47 67 Q50 74 53 67 Z" fill="#F5A3B5"/>
+      <path class="ln" d="M42 67 Q50 72 58 67"/>
+    </g>
+
+    <!-- 15 兔子 -->
+    <g id="a15">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#FFE0EC"/>
+      <ellipse class="s" cx="38" cy="26" rx="8" ry="16" fill="#FFFFFF"/>
+      <ellipse class="s" cx="62" cy="26" rx="8" ry="16" fill="#FFFFFF"/>
+      <ellipse class="s" cx="38" cy="28" rx="4" ry="10" fill="#F5A3B5"/>
+      <ellipse class="s" cx="62" cy="28" rx="4" ry="10" fill="#F5A3B5"/>
+      <ellipse class="s" cx="50" cy="55" rx="23" ry="18" fill="#FFFFFF"/>
+      <circle class="eye" cx="43" cy="54" r="2.5"/>
+      <circle class="eye" cx="57" cy="54" r="2.5"/>
+      <polygon class="s" points="48,60 52,60 50,63" fill="#F5A3B5"/>
+      <rect class="s" x="47" y="64" width="2.5" height="4" fill="#FFFFFF"/>
+      <rect class="s" x="50.5" y="64" width="2.5" height="4" fill="#FFFFFF"/>
+      <path class="ln" d="M45 65 Q50 69 55 65"/>
+      <circle cx="37" cy="61" r="4" fill="#F5A3B5" opacity="0.6"/>
+      <circle cx="63" cy="61" r="4" fill="#F5A3B5" opacity="0.6"/>
+    </g>
+
+    <!-- 16 熊 -->
+    <g id="a16">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#E8D1B5"/>
+      <circle class="s" cx="30" cy="36" r="8" fill="#8B5A2B"/>
+      <circle class="s" cx="70" cy="36" r="8" fill="#8B5A2B"/>
+      <circle cx="30" cy="36" r="4" fill="#D2A679"/>
+      <circle cx="70" cy="36" r="4" fill="#D2A679"/>
+      <ellipse class="s" cx="50" cy="55" rx="26" ry="22" fill="#8B5A2B"/>
+      <ellipse class="s" cx="50" cy="62" rx="11" ry="8" fill="#D2A679"/>
+      <ellipse cx="50" cy="60" rx="4" ry="3" fill="#2D2A32"/>
+      <circle class="eye" cx="42" cy="52" r="2.5"/>
+      <circle class="eye" cx="58" cy="52" r="2.5"/>
+      <path class="ln" d="M46 65 Q50 68 54 65"/>
+    </g>
+
+    <!-- 17 熊猫 -->
+    <g id="a17">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#F0F0F0"/>
+      <circle cx="30" cy="34" r="8" fill="#2D2A32"/>
+      <circle cx="70" cy="34" r="8" fill="#2D2A32"/>
+      <ellipse class="s" cx="50" cy="55" rx="25" ry="21" fill="#FFFFFF"/>
+      <ellipse cx="42" cy="53" rx="7" ry="8" fill="#2D2A32" transform="rotate(-15 42 53)"/>
+      <ellipse cx="58" cy="53" rx="7" ry="8" fill="#2D2A32" transform="rotate(15 58 53)"/>
+      <circle cx="42" cy="53" r="2" fill="#FFFFFF"/>
+      <circle cx="58" cy="53" r="2" fill="#FFFFFF"/>
+      <ellipse cx="50" cy="61" rx="4" ry="3" fill="#2D2A32"/>
+      <path class="ln" d="M46 65 Q50 68 54 65"/>
+    </g>
+
+    <!-- 18 狮子 -->
+    <g id="a18">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#FFE0B2"/>
+      <circle class="s" cx="50" cy="50" r="30" fill="#F4A261"/>
+      <ellipse class="s" cx="50" cy="55" rx="20" ry="18" fill="#F7C873"/>
+      <circle class="s" cx="29" cy="40" r="6" fill="#F4A261"/>
+      <circle class="s" cx="71" cy="40" r="6" fill="#F4A261"/>
+      <circle class="eye" cx="43" cy="53" r="2.5"/>
+      <circle class="eye" cx="57" cy="53" r="2.5"/>
+      <polygon class="s" points="48,59 52,59 50,62" fill="#8B5A2B"/>
+      <path class="ln" d="M50 62 Q46 66 42 64 M50 62 Q54 66 58 64"/>
+    </g>
+
+    <!-- 19 狐狸 -->
+    <g id="a19">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#FFE1CC"/>
+      <polygon class="s" points="28,40 22,16 42,28" fill="#E86A3A"/>
+      <polygon class="s" points="72,40 78,16 58,28" fill="#E86A3A"/>
+      <polygon class="s" points="31,36 27,22 39,29" fill="#FFFFFF"/>
+      <polygon class="s" points="69,36 73,22 61,29" fill="#FFFFFF"/>
+      <ellipse class="s" cx="50" cy="56" rx="23" ry="19" fill="#E86A3A"/>
+      <path class="s" d="M50 48 Q30 58 32 74 Q40 80 50 77 Q60 80 68 74 Q70 58 50 48 Z" fill="#FFFFFF"/>
+      <circle class="eye" cx="42" cy="51" r="2.5"/>
+      <circle class="eye" cx="58" cy="51" r="2.5"/>
+      <circle cx="50" cy="62" r="3" fill="#2D2A32"/>
+      <path class="ln" d="M46 66 Q50 69 54 66"/>
+    </g>
+
+    <!-- 20 猪 -->
+    <g id="a20">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#FFD6E0"/>
+      <ellipse class="s" cx="31" cy="38" rx="8" ry="10" fill="#F5A3B5" transform="rotate(-20 31 38)"/>
+      <ellipse class="s" cx="69" cy="38" rx="8" ry="10" fill="#F5A3B5" transform="rotate(20 69 38)"/>
+      <ellipse class="s" cx="50" cy="55" rx="24" ry="20" fill="#F5A3B5"/>
+      <ellipse class="s" cx="50" cy="60" rx="10" ry="6" fill="#E86A8A"/>
+      <ellipse cx="47" cy="60" rx="1.5" ry="2.5" fill="#2D2A32"/>
+      <ellipse cx="53" cy="60" rx="1.5" ry="2.5" fill="#2D2A32"/>
+      <circle class="eye" cx="42" cy="52" r="2.5"/>
+      <circle class="eye" cx="58" cy="52" r="2.5"/>
+      <path class="ln" d="M45 68 Q50 72 55 68"/>
+    </g>
+
+    <!-- 21 青蛙 -->
+    <g id="a21">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#D4F5D4"/>
+      <circle class="s" cx="38" cy="38" r="9" fill="#FFFFFF"/>
+      <circle class="s" cx="62" cy="38" r="9" fill="#FFFFFF"/>
+      <circle class="eye" cx="38" cy="38" r="3.5"/>
+      <circle class="eye" cx="62" cy="38" r="3.5"/>
+      <ellipse class="s" cx="50" cy="56" rx="26" ry="21" fill="#6FBF4E"/>
+      <path class="ln" d="M34 65 Q50 75 66 65"/>
+      <circle cx="36" cy="64" r="4" fill="#F5A3B5" opacity="0.7"/>
+      <circle cx="64" cy="64" r="4" fill="#F5A3B5" opacity="0.7"/>
+    </g>
+
+    <!-- 22 企鹅 -->
+    <g id="a22">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#D6F0FA"/>
+      <ellipse class="s" cx="50" cy="58" rx="23" ry="27" fill="#2D2A32"/>
+      <ellipse class="s" cx="50" cy="62" rx="15" ry="19" fill="#FFFFFF"/>
+      <circle class="s" cx="42" cy="44" r="4" fill="#FFFFFF"/>
+      <circle class="s" cx="58" cy="44" r="4" fill="#FFFFFF"/>
+      <circle class="eye" cx="42" cy="44" r="2"/>
+      <circle class="eye" cx="58" cy="44" r="2"/>
+      <polygon class="s" points="45,52 55,52 50,58" fill="#F4A261"/>
+      <path class="s" d="M28 62 Q20 70 24 82 L28 76 Z" fill="#2D2A32"/>
+      <path class="s" d="M72 62 Q80 70 76 82 L72 76 Z" fill="#2D2A32"/>
+      <ellipse class="s" cx="42" cy="88" rx="6" ry="4" fill="#F4A261"/>
+      <ellipse class="s" cx="58" cy="88" rx="6" ry="4" fill="#F4A261"/>
+    </g>
+
+    <!-- 23 向日葵 -->
+    <g id="a23">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#FFF2B3"/>
+      <ellipse class="s" cx="50" cy="30" rx="6" ry="13" fill="#F4C430" transform="rotate(0 50 50)"/>
+      <ellipse class="s" cx="50" cy="30" rx="6" ry="13" fill="#F4C430" transform="rotate(45 50 50)"/>
+      <ellipse class="s" cx="50" cy="30" rx="6" ry="13" fill="#F4C430" transform="rotate(90 50 50)"/>
+      <ellipse class="s" cx="50" cy="30" rx="6" ry="13" fill="#F4C430" transform="rotate(135 50 50)"/>
+      <ellipse class="s" cx="50" cy="30" rx="6" ry="13" fill="#F4C430" transform="rotate(180 50 50)"/>
+      <ellipse class="s" cx="50" cy="30" rx="6" ry="13" fill="#F4C430" transform="rotate(225 50 50)"/>
+      <ellipse class="s" cx="50" cy="30" rx="6" ry="13" fill="#F4C430" transform="rotate(270 50 50)"/>
+      <ellipse class="s" cx="50" cy="30" rx="6" ry="13" fill="#F4C430" transform="rotate(315 50 50)"/>
+      <circle class="s" cx="50" cy="50" r="16" fill="#7B4B2A"/>
+      <circle cx="44" cy="46" r="1.5" fill="#5B3A29"/>
+      <circle cx="56" cy="46" r="1.5" fill="#5B3A29"/>
+      <circle cx="50" cy="54" r="1.5" fill="#5B3A29"/>
+    </g>
+
+    <!-- 24 仙人掌 -->
+    <g id="a24">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#F5E6CC"/>
+      <path class="s" d="M32 70 L68 70 L64 88 Q64 92 60 92 L40 92 Q36 92 36 88 Z" fill="#E86A5A"/>
+      <rect class="s" x="30" y="66" width="40" height="6" rx="2" fill="#D9534A"/>
+      <ellipse class="s" cx="50" cy="50" rx="12" ry="20" fill="#6FBF4E"/>
+      <ellipse class="s" cx="34" cy="42" rx="7" ry="10" fill="#6FBF4E" transform="rotate(-30 34 42)"/>
+      <ellipse class="s" cx="66" cy="42" rx="7" ry="10" fill="#6FBF4E" transform="rotate(30 66 42)"/>
+      <line class="ln" x1="50" y1="32" x2="50" y2="28"/>
+      <line class="ln" x1="50" y1="68" x2="50" y2="72"/>
+      <line class="ln" x1="38" y1="50" x2="34" y2="50"/>
+      <line class="ln" x1="62" y1="50" x2="66" y2="50"/>
+      <line class="ln" x1="33" y1="36" x2="30" y2="33"/>
+      <line class="ln" x1="67" y1="36" x2="70" y2="33"/>
+      <circle class="s" cx="50" cy="28" r="5" fill="#F5A3B5"/>
+    </g>
+
+    <!-- 25 郁金香 -->
+    <g id="a25">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#FFDDE1"/>
+      <path class="ln" d="M50 70 Q50 50 50 42"/>
+      <path class="s" d="M50 65 Q38 60 34 48 Q42 50 50 58 Z" fill="#6FBF4E"/>
+      <path class="s" d="M50 62 Q62 56 66 44 Q58 46 50 54 Z" fill="#6FBF4E"/>
+      <path class="s" d="M38 38 Q38 22 50 20 Q62 22 62 38 Q60 30 50 32 Q40 30 38 38 Z" fill="#E85D75"/>
+    </g>
+
+    <!-- 26 四叶草 -->
+    <g id="a26">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#E0F7D4"/>
+      <ellipse class="s" cx="50" cy="38" rx="8" ry="10" fill="#6FBF4E"/>
+      <ellipse class="s" cx="38" cy="50" rx="10" ry="8" fill="#6FBF4E"/>
+      <ellipse class="s" cx="62" cy="50" rx="10" ry="8" fill="#6FBF4E"/>
+      <ellipse class="s" cx="50" cy="62" rx="8" ry="10" fill="#6FBF4E"/>
+      <circle class="s" cx="50" cy="50" r="3" fill="#FFFFFF"/>
+      <path class="ln" d="M50 70 Q50 80 48 88"/>
+    </g>
+
+    <!-- 27 蘑菇 -->
+    <g id="a27">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#FFE5D9"/>
+      <path class="s" d="M30 48 Q30 20 50 20 Q70 20 70 48 Z" fill="#E85D75"/>
+      <circle class="s" cx="40" cy="38" r="3" fill="#FFFFFF"/>
+      <circle class="s" cx="55" cy="32" r="3" fill="#FFFFFF"/>
+      <circle class="s" cx="62" cy="42" r="3" fill="#FFFFFF"/>
+      <path class="s" d="M44 48 L56 48 Q58 70 54 74 Q50 76 46 74 Q42 70 44 48 Z" fill="#FFF2E6"/>
+      <line class="ln" x1="34" y1="80" x2="28" y2="78"/>
+      <line class="ln" x1="66" y1="80" x2="72" y2="78"/>
+    </g>
+
+    <!-- 28 树 -->
+    <g id="a28">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#D9EFF7"/>
+      <path class="s" d="M44 72 Q42 88 48 88 Q54 88 56 72 Z" fill="#8B5A2B"/>
+      <circle class="s" cx="40" cy="50" r="18" fill="#6FBF4E"/>
+      <circle class="s" cx="60" cy="50" r="18" fill="#6FBF4E"/>
+      <circle class="s" cx="50" cy="35" r="20" fill="#6FBF4E"/>
+      <circle cx="45" cy="45" r="3" fill="#E85D75"/>
+      <circle cx="58" cy="38" r="3" fill="#E85D75"/>
+    </g>
+
+    <!-- 29 玫瑰 -->
+    <g id="a29">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#F8D7DA"/>
+      <path class="ln" d="M50 72 Q48 52 50 38"/>
+      <ellipse class="s" cx="38" cy="58" rx="8" ry="4" fill="#6FBF4E" transform="rotate(-30 38 58)"/>
+      <ellipse class="s" cx="62" cy="54" rx="8" ry="4" fill="#6FBF4E" transform="rotate(30 62 54)"/>
+      <circle class="s" cx="50" cy="34" r="12" fill="#D92B4B"/>
+      <circle class="s" cx="50" cy="34" r="8" fill="#E85D75"/>
+      <circle class="s" cx="50" cy="34" r="4" fill="#B01F3A"/>
+      <path class="ln" d="M44 30 Q50 26 56 30"/>
+    </g>
+
+    <!-- 30 雏菊 -->
+    <g id="a30">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#F0F8FF"/>
+      <ellipse class="s" cx="50" cy="28" rx="5" ry="10" fill="#FFFFFF" transform="rotate(0 50 50)"/>
+      <ellipse class="s" cx="50" cy="28" rx="5" ry="10" fill="#FFFFFF" transform="rotate(45 50 50)"/>
+      <ellipse class="s" cx="50" cy="28" rx="5" ry="10" fill="#FFFFFF" transform="rotate(90 50 50)"/>
+      <ellipse class="s" cx="50" cy="28" rx="5" ry="10" fill="#FFFFFF" transform="rotate(135 50 50)"/>
+      <ellipse class="s" cx="50" cy="28" rx="5" ry="10" fill="#FFFFFF" transform="rotate(180 50 50)"/>
+      <ellipse class="s" cx="50" cy="28" rx="5" ry="10" fill="#FFFFFF" transform="rotate(225 50 50)"/>
+      <ellipse class="s" cx="50" cy="28" rx="5" ry="10" fill="#FFFFFF" transform="rotate(270 50 50)"/>
+      <ellipse class="s" cx="50" cy="28" rx="5" ry="10" fill="#FFFFFF" transform="rotate(315 50 50)"/>
+      <circle class="s" cx="50" cy="50" r="10" fill="#F4C542"/>
+      <path class="ln" d="M50 70 Q50 80 48 88"/>
+      <ellipse class="s" cx="38" cy="74" rx="7" ry="3" fill="#6FBF4E" transform="rotate(-20 38 74)"/>
+    </g>
+
+    <!-- 31 枫叶 -->
+    <g id="a31">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#FFEDCC"/>
+      <path class="s" d="M50 28 Q55 40 65 38 Q70 45 60 50 Q70 55 65 60 Q70 68 58 64 Q55 72 50 62 Q45 72 42 64 Q30 68 35 60 Q30 55 40 50 Q30 45 35 38 Q45 40 50 28 Z" fill="#E86A3A"/>
+      <path class="ln" d="M50 62 Q48 72 46 82"/>
+      <line class="ln" x1="50" y1="38" x2="50" y2="58"/>
+      <line class="ln" x1="42" y1="46" x2="58" y2="46"/>
+    </g>
+
+    <!-- 32 樱花 -->
+    <g id="a32">
+      <circle class="bg" cx="50" cy="50" r="47" fill="#FDE2E4"/>
+      <path class="s" d="M30 72 Q40 60 50 58 Q60 56 72 62 L70 66 Q58 60 48 62 Q38 64 32 76 Z" fill="#8B5A2B"/>
+      <circle class="s" cx="35" cy="37" r="5" fill="#F8C8D4"/>
+      <circle class="s" cx="28" cy="43" r="5" fill="#F8C8D4"/>
+      <circle class="s" cx="42" cy="43" r="5" fill="#F8C8D4"/>
+      <circle class="s" cx="30" cy="49" r="5" fill="#F8C8D4"/>
+      <circle class="s" cx="40" cy="49" r="5" fill="#F8C8D4"/>
+      <circle class="s" cx="35" cy="44" r="3" fill="#E85D75"/>
+      <circle class="s" cx="62" cy="32" r="4" fill="#F8C8D4"/>
+      <circle class="s" cx="56" cy="37" r="4" fill="#F8C8D4"/>
+      <circle class="s" cx="68" cy="37" r="4" fill="#F8C8D4"/>
+      <circle class="s" cx="58" cy="43" r="4" fill="#F8C8D4"/>
+      <circle class="s" cx="66" cy="43" r="4" fill="#F8C8D4"/>
+      <circle class="s" cx="62" cy="38" r="2.5" fill="#E85D75"/>
+      <circle class="s" cx="52" cy="52" r="3.5" fill="#F8C8D4"/>
+      <circle class="s" cx="47" cy="56" r="3.5" fill="#F8C8D4"/>
+      <circle class="s" cx="57" cy="56" r="3.5" fill="#F8C8D4"/>
+      <circle class="s" cx="49" cy="62" r="3.5" fill="#F8C8D4"/>
+      <circle class="s" cx="55" cy="62" r="3.5" fill="#F8C8D4"/>
+      <circle class="s" cx="52" cy="58" r="2" fill="#E85D75"/>
+    </g>
+  </defs>
+
+  <rect width="800" height="400" fill="#FFFFFF"/>
+
+  <!-- 第1行 -->
+  <use href="#a1" x="0" y="0"/>
+  <use href="#a2" x="100" y="0"/>
+  <use href="#a3" x="200" y="0"/>
+  <use href="#a4" x="300" y="0"/>
+  <use href="#a5" x="400" y="0"/>
+  <use href="#a6" x="500" y="0"/>
+  <use href="#a7" x="600" y="0"/>
+  <use href="#a8" x="700" y="0"/>
+
+  <!-- 第2行 -->
+  <use href="#a9" x="0" y="100"/>
+  <use href="#a10" x="100" y="100"/>
+  <use href="#a11" x="200" y="100"/>
+  <use href="#a12" x="300" y="100"/>
+  <use href="#a13" x="400" y="100"/>
+  <use href="#a14" x="500" y="100"/>
+  <use href="#a15" x="600" y="100"/>
+  <use href="#a16" x="700" y="100"/>
+
+  <!-- 第3行 -->
+  <use href="#a17" x="0" y="200"/>
+  <use href="#a18" x="100" y="200"/>
+  <use href="#a19" x="200" y="200"/>
+  <use href="#a20" x="300" y="200"/>
+  <use href="#a21" x="400" y="200"/>
+  <use href="#a22" x="500" y="200"/>
+  <use href="#a23" x="600" y="200"/>
+  <use href="#a24" x="700" y="200"/>
+
+  <!-- 第4行 -->
+  <use href="#a25" x="0" y="300"/>
+  <use href="#a26" x="100" y="300"/>
+  <use href="#a27" x="200" y="300"/>
+  <use href="#a28" x="300" y="300"/>
+  <use href="#a29" x="400" y="300"/>
+  <use href="#a30" x="500" y="300"/>
+  <use href="#a31" x="600" y="300"/>
+  <use href="#a32" x="700" y="300"/>
+</svg>
