@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100mm" height="100mm" viewBox="0 0 100 100">
+  <defs>
+    <style>
+      .s { stroke:#2D2A32; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+      .ln { fill:none; stroke:#2D2A32; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+      .eye { fill:#2D2A32; }
+      .bg { stroke:#2D2A32; stroke-width:2; }
+    </style>
+  </defs>
+  <g id="a21">
+
+      <circle class="bg" cx="50" cy="50" r="47" fill="#D4F5D4"/>
+      <circle class="s" cx="38" cy="38" r="9" fill="#FFFFFF"/>
+      <circle class="s" cx="62" cy="38" r="9" fill="#FFFFFF"/>
+      <circle class="eye" cx="38" cy="38" r="3.5"/>
+      <circle class="eye" cx="62" cy="38" r="3.5"/>
+      <ellipse class="s" cx="50" cy="56" rx="26" ry="21" fill="#6FBF4E"/>
+      <path class="ln" d="M34 65 Q50 75 66 65"/>
+      <circle cx="36" cy="64" r="4" fill="#F5A3B5" opacity="0.7"/>
+      <circle cx="64" cy="64" r="4" fill="#F5A3B5" opacity="0.7"/>
+      </g>
+</svg>

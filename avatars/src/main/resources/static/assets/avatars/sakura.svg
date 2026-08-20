@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100mm" height="100mm" viewBox="0 0 100 100">
+  <defs>
+    <style>
+      .s { stroke:#2D2A32; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+      .ln { fill:none; stroke:#2D2A32; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+      .eye { fill:#2D2A32; }
+      .bg { stroke:#2D2A32; stroke-width:2; }
+    </style>
+  </defs>
+  <g id="a32">
+
+      <circle class="bg" cx="50" cy="50" r="47" fill="#FDE2E4"/>
+      <path class="s" d="M30 72 Q40 60 50 58 Q60 56 72 62 L70 66 Q58 60 48 62 Q38 64 32 76 Z" fill="#8B5A2B"/>
+      <circle class="s" cx="35" cy="37" r="5" fill="#F8C8D4"/>
+      <circle class="s" cx="28" cy="43" r="5" fill="#F8C8D4"/>
+      <circle class="s" cx="42" cy="43" r="5" fill="#F8C8D4"/>
+      <circle class="s" cx="30" cy="49" r="5" fill="#F8C8D4"/>
+      <circle class="s" cx="40" cy="49" r="5" fill="#F8C8D4"/>
+      <circle class="s" cx="35" cy="44" r="3" fill="#E85D75"/>
+      <circle class="s" cx="62" cy="32" r="4" fill="#F8C8D4"/>
+      <circle class="s" cx="56" cy="37" r="4" fill="#F8C8D4"/>
+      <circle class="s" cx="68" cy="37" r="4" fill="#F8C8D4"/>
+      <circle class="s" cx="58" cy="43" r="4" fill="#F8C8D4"/>
+      <circle class="s" cx="66" cy="43" r="4" fill="#F8C8D4"/>
+      <circle class="s" cx="62" cy="38" r="2.5" fill="#E85D75"/>
+      <circle class="s" cx="52" cy="52" r="3.5" fill="#F8C8D4"/>
+      <circle class="s" cx="47" cy="56" r="3.5" fill="#F8C8D4"/>
+      <circle class="s" cx="57" cy="56" r="3.5" fill="#F8C8D4"/>
+      <circle class="s" cx="49" cy="62" r="3.5" fill="#F8C8D4"/>
+      <circle class="s" cx="55" cy="62" r="3.5" fill="#F8C8D4"/>
+      <circle class="s" cx="52" cy="58" r="2" fill="#E85D75"/>
+      </g>
+</svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100mm" height="100mm" viewBox="0 0 100 100">
+  <defs>
+    <style>
+      .s { stroke:#2D2A32; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+      .ln { fill:none; stroke:#2D2A32; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+      .eye { fill:#2D2A32; }
+      .bg { stroke:#2D2A32; stroke-width:2; }
+    </style>
+  </defs>
+  <g id="a2">
+
+      <circle class="bg" cx="50" cy="50" r="47" fill="#FFD1DC"/>
+      <ellipse class="s" cx="50" cy="56" rx="19" ry="21" fill="#FFDFC4"/>
+      <path class="s" d="M31 52 Q29 24 50 22 Q71 24 69 52 Q71 74 62 80 Q50 72 38 80 Q29 74 31 52 Z" fill="#3B2B24"/>
+      <path class="s" d="M50 22 L40 14 L40 28 Z" fill="#E85D75"/>
+      <path class="s" d="M50 22 L60 14 L60 28 Z" fill="#E85D75"/>
+      <circle class="s" cx="50" cy="22" r="4" fill="#F4A3B5"/>
+      <circle class="eye" cx="44" cy="56" r="2.5"/>
+      <circle class="eye" cx="56" cy="56" r="2.5"/>
+      <path class="ln" d="M46 64 Q50 67 54 64"/>
+      <circle cx="38" cy="62" r="4" fill="#F5A3B5" opacity="0.6"/>
+      <circle cx="62" cy="62" r="4" fill="#F5A3B5" opacity="0.6"/>
+      <path class="s" d="M31 78 Q31 92 50 92 Q69 92 69 78 L69 74 Q50 80 31 74 Z" fill="#F4A3B5"/>
+      </g>
+</svg>

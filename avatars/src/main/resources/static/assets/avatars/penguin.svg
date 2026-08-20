@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100mm" height="100mm" viewBox="0 0 100 100">
+  <defs>
+    <style>
+      .s { stroke:#2D2A32; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+      .ln { fill:none; stroke:#2D2A32; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+      .eye { fill:#2D2A32; }
+      .bg { stroke:#2D2A32; stroke-width:2; }
+    </style>
+  </defs>
+  <g id="a22">
+
+      <circle class="bg" cx="50" cy="50" r="47" fill="#D6F0FA"/>
+      <ellipse class="s" cx="50" cy="58" rx="23" ry="27" fill="#2D2A32"/>
+      <ellipse class="s" cx="50" cy="62" rx="15" ry="19" fill="#FFFFFF"/>
+      <circle class="s" cx="42" cy="44" r="4" fill="#FFFFFF"/>
+      <circle class="s" cx="58" cy="44" r="4" fill="#FFFFFF"/>
+      <circle class="eye" cx="42" cy="44" r="2"/>
+      <circle class="eye" cx="58" cy="44" r="2"/>
+      <polygon class="s" points="45,52 55,52 50,58" fill="#F4A261"/>
+      <path class="s" d="M28 62 Q20 70 24 82 L28 76 Z" fill="#2D2A32"/>
+      <path class="s" d="M72 62 Q80 70 76 82 L72 76 Z" fill="#2D2A32"/>
+      <ellipse class="s" cx="42" cy="88" rx="6" ry="4" fill="#F4A261"/>
+      <ellipse class="s" cx="58" cy="88" rx="6" ry="4" fill="#F4A261"/>
+      </g>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100mm" height="100mm" viewBox="0 0 100 100">
+  <defs>
+    <style>
+      .s { stroke:#2D2A32; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+      .ln { fill:none; stroke:#2D2A32; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+      .eye { fill:#2D2A32; }
+      .bg { stroke:#2D2A32; stroke-width:2; }
+    </style>
+  </defs>
+  <g id="a24">
+
+      <circle class="bg" cx="50" cy="50" r="47" fill="#F5E6CC"/>
+      <path class="s" d="M32 70 L68 70 L64 88 Q64 92 60 92 L40 92 Q36 92 36 88 Z" fill="#E86A5A"/>
+      <rect class="s" x="30" y="66" width="40" height="6" rx="2" fill="#D9534A"/>
+      <ellipse class="s" cx="50" cy="50" rx="12" ry="20" fill="#6FBF4E"/>
+      <ellipse class="s" cx="34" cy="42" rx="7" ry="10" fill="#6FBF4E" transform="rotate(-30 34 42)"/>
+      <ellipse class="s" cx="66" cy="42" rx="7" ry="10" fill="#6FBF4E" transform="rotate(30 66 42)"/>
+      <line class="ln" x1="50" y1="32" x2="50" y2="28"/>
+      <line class="ln" x1="50" y1="68" x2="50" y2="72"/>
+      <line class="ln" x1="38" y1="50" x2="34" y2="50"/>
+      <line class="ln" x1="62" y1="50" x2="66" y2="50"/>
+      <line class="ln" x1="33" y1="36" x2="30" y2="33"/>
+      <line class="ln" x1="67" y1="36" x2="70" y2="33"/>
+      <circle class="s" cx="50" cy="28" r="5" fill="#F5A3B5"/>
+      </g>
+</svg>

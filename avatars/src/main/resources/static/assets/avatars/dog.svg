@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100mm" height="100mm" viewBox="0 0 100 100">
+  <defs>
+    <style>
+      .s { stroke:#2D2A32; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+      .ln { fill:none; stroke:#2D2A32; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+      .eye { fill:#2D2A32; }
+      .bg { stroke:#2D2A32; stroke-width:2; }
+    </style>
+  </defs>
+  <g id="a14">
+
+      <circle class="bg" cx="50" cy="50" r="47" fill="#FFF4CC"/>
+      <ellipse class="s" cx="30" cy="46" rx="9" ry="15" fill="#8B5A2B" transform="rotate(15 30 46)"/>
+      <ellipse class="s" cx="70" cy="46" rx="9" ry="15" fill="#8B5A2B" transform="rotate(-15 70 46)"/>
+      <ellipse class="s" cx="50" cy="55" rx="24" ry="20" fill="#C68B59"/>
+      <ellipse class="s" cx="50" cy="62" rx="12" ry="9" fill="#E8D5B5"/>
+      <ellipse cx="50" cy="58" rx="5" ry="3.5" fill="#2D2A32"/>
+      <circle class="eye" cx="42" cy="51" r="2.5"/>
+      <circle class="eye" cx="58" cy="51" r="2.5"/>
+      <path class="s" d="M47 67 Q50 74 53 67 Z" fill="#F5A3B5"/>
+      <path class="ln" d="M42 67 Q50 72 58 67"/>
+      </g>
+</svg>

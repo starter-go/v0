@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100mm" height="100mm" viewBox="0 0 100 100">
+  <defs>
+    <style>
+      .s { stroke:#2D2A32; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+      .ln { fill:none; stroke:#2D2A32; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+      .eye { fill:#2D2A32; }
+      .bg { stroke:#2D2A32; stroke-width:2; }
+    </style>
+  </defs>
+  <g id="a8">
+
+      <circle class="bg" cx="50" cy="50" r="47" fill="#1F3A5F"/>
+      <circle class="s" cx="50" cy="50" r="30" fill="#E8F4F8"/>
+      <circle class="s" cx="50" cy="52" r="17" fill="#AAD4FF"/>
+      <path class="ln" d="M38 44 Q44 36 54 36"/>
+      <path class="s" d="M28 80 Q30 94 50 94 Q70 94 72 80 L72 72 Q50 78 28 72 Z" fill="#F0F4F8"/>
+      <circle class="s" cx="40" cy="82" r="2" fill="#E85D75"/>
+      <circle class="s" cx="60" cy="82" r="2" fill="#4A90E2"/>
+      </g>
+</svg>
