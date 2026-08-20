@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>头像列表</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 24px;
+            font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background-color: #f4f5f7;
+            color: #2d2a32;
+        }
+
+        header {
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            margin: 0 0 4px;
+            font-size: 24px;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 16px;
+        }
+
+        .card {
+            display: block;
+            padding: 16px 12px;
+            text-align: center;
+            text-decoration: none;
+            background-color: #ffffff;
+            border: 1px solid #e3e5e8;
+            border-radius: 12px;
+            transition: box-shadow 0.15s ease, transform 0.15s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .card img {
+            display: block;
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 10px;
+        }
+
+        .card .label {
+            font-size: 14px;
+            color: #2d2a32;
+        }
+
+        .card .file {
+            margin-top: 2px;
+            font-size: 12px;
+            color: #9aa0a6;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        <h1>头像列表</h1>
+        <p>共 32 个头像</p>
+    </header>
+
+    <main class="grid">
+        <a class="card" href="astronaut.svg" title="astronaut.svg">
+            <img src="astronaut.svg" alt="宇航员" loading="lazy">
+            <div class="label">宇航员</div>
+            <div class="file">astronaut.svg</div>
+        </a>
+        <a class="card" href="baby.svg" title="baby.svg">
+            <img src="baby.svg" alt="婴儿" loading="lazy">
+            <div class="label">婴儿</div>
+            <div class="file">baby.svg</div>
+        </a>
+        <a class="card" href="bear.svg" title="bear.svg">
+            <img src="bear.svg" alt="熊" loading="lazy">
+            <div class="label">熊</div>
+            <div class="file">bear.svg</div>
+        </a>
+        <a class="card" href="boy.svg" title="boy.svg">
+            <img src="boy.svg" alt="男孩" loading="lazy">
+            <div class="label">男孩</div>
+            <div class="file">boy.svg</div>
+        </a>
+        <a class="card" href="cactus.svg" title="cactus.svg">
+            <img src="cactus.svg" alt="仙人掌" loading="lazy">
+            <div class="label">仙人掌</div>
+            <div class="file">cactus.svg</div>
+        </a>
+        <a class="card" href="cat.svg" title="cat.svg">
+            <img src="cat.svg" alt="猫" loading="lazy">
+            <div class="label">猫</div>
+            <div class="file">cat.svg</div>
+        </a>
+        <a class="card" href="chef.svg" title="chef.svg">
+            <img src="chef.svg" alt="厨师" loading="lazy">
+            <div class="label">厨师</div>
+            <div class="file">chef.svg</div>
+        </a>
+        <a class="card" href="daisy.svg" title="daisy.svg">
+            <img src="daisy.svg" alt="雏菊" loading="lazy">
+            <div class="label">雏菊</div>
+            <div class="file">daisy.svg</div>
+        </a>
+        <a class="card" href="doctor.svg" title="doctor.svg">
+            <img src="doctor.svg" alt="医生" loading="lazy">
+            <div class="label">医生</div>
+            <div class="file">doctor.svg</div>
+        </a>
+        <a class="card" href="dog.svg" title="dog.svg">
+            <img src="dog.svg" alt="狗" loading="lazy">
+            <div class="label">狗</div>
+            <div class="file">dog.svg</div>
+        </a>
+        <a class="card" href="firefighter.svg" title="firefighter.svg">
+            <img src="firefighter.svg" alt="消防员" loading="lazy">
+            <div class="label">消防员</div>
+            <div class="file">firefighter.svg</div>
+        </a>
+        <a class="card" href="four-leaf-clover.svg" title="four-leaf-clover.svg">
+            <img src="four-leaf-clover.svg" alt="四叶草" loading="lazy">
+            <div class="label">四叶草</div>
+            <div class="file">four-leaf-clover.svg</div>
+        </a>
+        <a class="card" href="fox.svg" title="fox.svg">
+            <img src="fox.svg" alt="狐狸" loading="lazy">
+            <div class="label">狐狸</div>
+            <div class="file">fox.svg</div>
+        </a>
+        <a class="card" href="frog.svg" title="frog.svg">
+            <img src="frog.svg" alt="青蛙" loading="lazy">
+            <div class="label">青蛙</div>
+            <div class="file">frog.svg</div>
+        </a>
+        <a class="card" href="girl.svg" title="girl.svg">
+            <img src="girl.svg" alt="女孩" loading="lazy">
+            <div class="label">女孩</div>
+            <div class="file">girl.svg</div>
+        </a>
+        <a class="card" href="grandfather.svg" title="grandfather.svg">
+            <img src="grandfather.svg" alt="爷爷" loading="lazy">
+            <div class="label">爷爷</div>
+            <div class="file">grandfather.svg</div>
+        </a>
+        <a class="card" href="grandmother.svg" title="grandmother.svg">
+            <img src="grandmother.svg" alt="奶奶" loading="lazy">
+            <div class="label">奶奶</div>
+            <div class="file">grandmother.svg</div>
+        </a>
+        <a class="card" href="lion.svg" title="lion.svg">
+            <img src="lion.svg" alt="狮子" loading="lazy">
+            <div class="label">狮子</div>
+            <div class="file">lion.svg</div>
+        </a>
+        <a class="card" href="man.svg" title="man.svg">
+            <img src="man.svg" alt="眼镜男" loading="lazy">
+            <div class="label">眼镜男</div>
+            <div class="file">man.svg</div>
+        </a>
+        <a class="card" href="maple-leaf.svg" title="maple-leaf.svg">
+            <img src="maple-leaf.svg" alt="枫叶" loading="lazy">
+            <div class="label">枫叶</div>
+            <div class="file">maple-leaf.svg</div>
+        </a>
+        <a class="card" href="mushroom.svg" title="mushroom.svg">
+            <img src="mushroom.svg" alt="蘑菇" loading="lazy">
+            <div class="label">蘑菇</div>
+            <div class="file">mushroom.svg</div>
+        </a>
+        <a class="card" href="panda.svg" title="panda.svg">
+            <img src="panda.svg" alt="熊猫" loading="lazy">
+            <div class="label">熊猫</div>
+            <div class="file">panda.svg</div>
+        </a>
+        <a class="card" href="penguin.svg" title="penguin.svg">
+            <img src="penguin.svg" alt="企鹅" loading="lazy">
+            <div class="label">企鹅</div>
+            <div class="file">penguin.svg</div>
+        </a>
+        <a class="card" href="pig.svg" title="pig.svg">
+            <img src="pig.svg" alt="猪" loading="lazy">
+            <div class="label">猪</div>
+            <div class="file">pig.svg</div>
+        </a>
+        <a class="card" href="policeman.svg" title="policeman.svg">
+            <img src="policeman.svg" alt="警察" loading="lazy">
+            <div class="label">警察</div>
+            <div class="file">policeman.svg</div>
+        </a>
+        <a class="card" href="rabbit.svg" title="rabbit.svg">
+            <img src="rabbit.svg" alt="兔子" loading="lazy">
+            <div class="label">兔子</div>
+            <div class="file">rabbit.svg</div>
+        </a>
+        <a class="card" href="rose.svg" title="rose.svg">
+            <img src="rose.svg" alt="玫瑰" loading="lazy">
+            <div class="label">玫瑰</div>
+            <div class="file">rose.svg</div>
+        </a>
+        <a class="card" href="sakura.svg" title="sakura.svg">
+            <img src="sakura.svg" alt="樱花" loading="lazy">
+            <div class="label">樱花</div>
+            <div class="file">sakura.svg</div>
+        </a>
+        <a class="card" href="sunflower.svg" title="sunflower.svg">
+            <img src="sunflower.svg" alt="向日葵" loading="lazy">
+            <div class="label">向日葵</div>
+            <div class="file">sunflower.svg</div>
+        </a>
+        <a class="card" href="tree.svg" title="tree.svg">
+            <img src="tree.svg" alt="树" loading="lazy">
+            <div class="label">树</div>
+            <div class="file">tree.svg</div>
+        </a>
+        <a class="card" href="tulip.svg" title="tulip.svg">
+            <img src="tulip.svg" alt="郁金香" loading="lazy">
+            <div class="label">郁金香</div>
+            <div class="file">tulip.svg</div>
+        </a>
+        <a class="card" href="woman.svg" title="woman.svg">
+            <img src="woman.svg" alt="帽子女" loading="lazy">
+            <div class="label">帽子女</div>
+            <div class="file">woman.svg</div>
+        </a>
+    </main>
+
+</body>
+
+</html>

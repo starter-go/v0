@@ -1,12 +1,132 @@
 {
     "avatars": [
         {
+            "file": "astronaut.svg",
+            "label": "宇航员"
+        },
+        {
+            "file": "baby.svg",
+            "label": "婴儿"
+        },
+        {
+            "file": "bear.svg",
+            "label": "熊"
+        },
+        {
+            "file": "boy.svg",
+            "label": "男孩"
+        },
+        {
+            "file": "cactus.svg",
+            "label": "仙人掌"
+        },
+        {
             "file": "cat.svg",
             "label": "猫"
         },
         {
+            "file": "chef.svg",
+            "label": "厨师"
+        },
+        {
+            "file": "daisy.svg",
+            "label": "雏菊"
+        },
+        {
+            "file": "doctor.svg",
+            "label": "医生"
+        },
+        {
             "file": "dog.svg",
             "label": "狗"
+        },
+        {
+            "file": "firefighter.svg",
+            "label": "消防员"
+        },
+        {
+            "file": "four-leaf-clover.svg",
+            "label": "四叶草"
+        },
+        {
+            "file": "fox.svg",
+            "label": "狐狸"
+        },
+        {
+            "file": "frog.svg",
+            "label": "青蛙"
+        },
+        {
+            "file": "girl.svg",
+            "label": "女孩"
+        },
+        {
+            "file": "grandfather.svg",
+            "label": "爷爷"
+        },
+        {
+            "file": "grandmother.svg",
+            "label": "奶奶"
+        },
+        {
+            "file": "lion.svg",
+            "label": "狮子"
+        },
+        {
+            "file": "man.svg",
+            "label": "眼镜男"
+        },
+        {
+            "file": "maple-leaf.svg",
+            "label": "枫叶"
+        },
+        {
+            "file": "mushroom.svg",
+            "label": "蘑菇"
+        },
+        {
+            "file": "panda.svg",
+            "label": "熊猫"
+        },
+        {
+            "file": "penguin.svg",
+            "label": "企鹅"
+        },
+        {
+            "file": "pig.svg",
+            "label": "猪"
+        },
+        {
+            "file": "policeman.svg",
+            "label": "警察"
+        },
+        {
+            "file": "rabbit.svg",
+            "label": "兔子"
+        },
+        {
+            "file": "rose.svg",
+            "label": "玫瑰"
+        },
+        {
+            "file": "sakura.svg",
+            "label": "樱花"
+        },
+        {
+            "file": "sunflower.svg",
+            "label": "向日葵"
+        },
+        {
+            "file": "tree.svg",
+            "label": "树"
+        },
+        {
+            "file": "tulip.svg",
+            "label": "郁金香"
+        },
+        {
+            "file": "woman.svg",
+            "label": "帽子女"
         }
     ]
 }
