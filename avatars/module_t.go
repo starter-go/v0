@@ -10,8 +10,8 @@ import (
 
 const (
 	theModuleName     = "github.com/starter-go/v0/avatars"
-	theModuleVersion  = "v0.10.0"
-	theModuleRevision = 0
+	theModuleVersion  = "v0.10.1"
+	theModuleRevision = 1
 )
 
 ////////////////////////////////////////////////////////////////////////////////
