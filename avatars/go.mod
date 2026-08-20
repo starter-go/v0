@@ -23,12 +23,12 @@ require (
 	github.com/pelletier/go-toml/v2 v2.0.8 // indirect
 	github.com/starter-go/afs v0.10.0 // indirect
 	github.com/starter-go/application v0.10.0 // indirect
-	github.com/starter-go/base v0.10.3 // indirect
+	github.com/starter-go/base v0.10.4 // indirect
 	github.com/starter-go/configen v0.10.0 // indirect
 	github.com/starter-go/i18n v0.10.0 // indirect
 	github.com/starter-go/libafs v0.10.0 // indirect
-	github.com/starter-go/libgin v0.10.3 // indirect
-	github.com/starter-go/mimetypes v0.10.2 // indirect
+	github.com/starter-go/libgin v0.10.4 // indirect
+	github.com/starter-go/mimetypes v0.10.3 // indirect
 	github.com/starter-go/rbac v0.10.11 // indirect
 	github.com/starter-go/starter v1.0.14 // indirect
 	github.com/starter-go/stopper v0.10.1 // indirect

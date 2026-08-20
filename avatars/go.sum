@@ -59,6 +59,8 @@ github.com/starter-go/base v0.10.0 h1:f2wuxeZXv+Gdfo2JzbbpuEfD0YKlJABvS1AnYyWikO
 github.com/starter-go/base v0.10.0/go.mod h1:MMqPMFzwPHjKyfX0cMmkpAAbeJ0tJupFbI8D+x27fJM=
 github.com/starter-go/base v0.10.3 h1:ZZly3LaStxPbAxwC9lXcSzVj51zTOSLEmH/MaS8/ET0=
 github.com/starter-go/base v0.10.3/go.mod h1:MMqPMFzwPHjKyfX0cMmkpAAbeJ0tJupFbI8D+x27fJM=
+github.com/starter-go/base v0.10.4 h1:KvFOQkO3Imjb7rMGkIwEnA/ELq3+h9/PzqiaMu3LJTc=
+github.com/starter-go/base v0.10.4/go.mod h1:MMqPMFzwPHjKyfX0cMmkpAAbeJ0tJupFbI8D+x27fJM=
 github.com/starter-go/configen v0.0.0-20240808074138-30de1adf37ed h1:M2a7T859WdgePU0bZsTkXwH1kWWO+PG96MxBcboWrOU=
 github.com/starter-go/configen v0.0.0-20240808074138-30de1adf37ed/go.mod h1:0/b+YCh9TfNLAmnYUniqdX/xOH3VnR7He1VRln2SIos=
 github.com/starter-go/configen v0.9.5 h1:KTwueLMQA3Ba70sJddK+hOLEifOI0dTXpPkX/jiBjIo=
@@ -77,6 +79,8 @@ github.com/starter-go/libgin v0.10.0 h1:bgYkNTs2CtGFrgkJ6rldOdK+TLC3PuW2xsetMCSg
 github.com/starter-go/libgin v0.10.0/go.mod h1:rwXm7XK9RA8RlnSVfqN08bu8aKdbwAFObmmEsT0j9QA=
 github.com/starter-go/libgin v0.10.3 h1:WT6XOWQJlZWbwYp09HGKoHMWNflP2OvpwS/+Y8XLtx4=
 github.com/starter-go/libgin v0.10.3/go.mod h1:17X2u45DN2drNUl0hzv8vQNIC14EHpK/WhaSJdGYzbU=
+github.com/starter-go/libgin v0.10.4 h1:nVbpVX6floUUgRfehgwOKSgrSHi0VZxbaQyetWjrlmQ=
+github.com/starter-go/libgin v0.10.4/go.mod h1:CZo+MP37ej8H6MCguJKb+idlRUIj4NPMZDNd0iBXQ38=
 github.com/starter-go/libgin v1.0.18 h1:0NdrUpueFtOzbZTywaa0GZ4TArgHeu54BUQLi7A9M1E=
 github.com/starter-go/libgin v1.0.18/go.mod h1:gXcZfjwy5R2YiGPU+fJrNwv9pO++w6WvG2pWQalfVP4=
 github.com/starter-go/libgin v1.0.19 h1:FNLuR18HOTM2dfbPxiBLPYUY2EyY/9dcIDFYINEzllk=
@@ -89,6 +93,8 @@ github.com/starter-go/mimetypes v0.10.0 h1:YAuWM1yGJUqZEAMclHENMzmV8O/qU77JaR4x0
 github.com/starter-go/mimetypes v0.10.0/go.mod h1:361DXRB+F2toHuh6UfX/bkKKIqxIR+zIy65SDdebw5E=
 github.com/starter-go/mimetypes v0.10.2 h1:xCQF5nKtbLEgjhbdD9baz2qQh1606hb6EMEQGFSIBcw=
 github.com/starter-go/mimetypes v0.10.2/go.mod h1:361DXRB+F2toHuh6UfX/bkKKIqxIR+zIy65SDdebw5E=
+github.com/starter-go/mimetypes v0.10.3 h1:FI1fRhaZNEgqpKQ99XvrnmD+SNG9gGF1Q1Si60eF0Fs=
+github.com/starter-go/mimetypes v0.10.3/go.mod h1:C6QIdyNXy6tp21lkXyhzI9LY5TL8P5/zZqZhuzx7I5s=
 github.com/starter-go/rbac v0.0.1 h1:lreMbRRyrJV2xPeotS9cetiS7vC2CttodzfLtZY1+0o=
 github.com/starter-go/rbac v0.0.1/go.mod h1:N93w2twpuiCD1yDDBeVyRm2a+Voz0OIpIpxpuox7fUY=
 github.com/starter-go/rbac v0.10.1 h1:kX9ZHYsED5MspJuCSiH9MoI4hxPQNvtt8rimRAMrnUY=

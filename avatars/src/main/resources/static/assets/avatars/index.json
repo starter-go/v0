@@ -1,0 +1,12 @@
+{
+    "avatars": [
+        {
+            "file": "cat.svg",
+            "label": "猫"
+        },
+        {
+            "file": "dog.svg",
+            "label": "狗"
+        }
+    ]
+}
